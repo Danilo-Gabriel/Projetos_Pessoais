@@ -8,6 +8,14 @@ TECNOLOGIAS UTILIZADAS
 - Spring
 - Maven
 - MySQL
+- Docker
+
+
+# FEAK
+DESCRIÇÃO: 
+
+TECNOLOGIAS UTILIZADAS
+- 
 
 
 
