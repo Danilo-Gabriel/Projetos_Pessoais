@@ -8,7 +8,10 @@ TECNOLOGIAS UTILIZADAS
 - Spring
 - Maven
 - MySQL
-- Docker
+- Flymay
+- Docker~
+- JPA / Hibernate
+- Lombok
 
 
 # FEAK
