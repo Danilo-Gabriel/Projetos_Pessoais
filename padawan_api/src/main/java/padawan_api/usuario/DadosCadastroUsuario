@@ -1,7 +1,0 @@
-package padawan_api.usuario;
-
-public record DadosCadastroUsuario (){
-
-
-    
-}
