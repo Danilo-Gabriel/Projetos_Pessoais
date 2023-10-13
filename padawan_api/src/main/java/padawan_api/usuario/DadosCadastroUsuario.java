@@ -1,4 +1,12 @@
 package padawan_api.usuario;
 
-public class DadosCadastroUsuario {
+import jakarta.validation.constraints.NotNull;
+
+public record DadosCadastroUsuario(
+
+        @NotNull
+        String username,
+
+        @NotNull
+        String password) {
 }
