@@ -1,0 +1,20 @@
+#LEMBRETE IMAGEM CONSTRUIDA PARA QUE O DOCKER-COMPOSE POSSA CRIAR O CONTAINER PARTIR DESSA CONF
+
+FROM postgres:latest
+RUN localedef -i pt_BR -c -f UTF-8 -A /usr/share/locale/locale.alias pt_BR.UTF-8
+ENV LANG pt_BR.UTF-8
+
+#ESTUDAR PARA FUTURA IMPLEMENTAÇÃO (DOCKER-COMPOSE BUSCA NO DOCKERFILE)
+#build:
+#      context: ./meu_diretorio_com_dockerfile
+#      dockerfile: Dockerfile
+#    image: nome_da_sua_imagem_personalizada
+
+
+#command: "seu_comando_de_inicialização"
+#   depends_on:
+#     - initdb  # Dependência do serviço "initdb"
+#command: "postgres -c 'config_file=/etc/postgresql/postgresql.conf'"
+#    depends_on:
+#      - initdb
+
