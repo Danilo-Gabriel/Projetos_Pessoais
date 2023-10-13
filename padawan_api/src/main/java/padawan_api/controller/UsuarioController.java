@@ -35,6 +35,7 @@ public class UsuarioController {
         return repository.findAll().stream().map(DadosListagemUsuario::new).toList();
     }
 
+
     /*
     public Page<DadosListagemUsuario> usuarioList(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao){
         return repository.findAllById(paginacao).map(DadosListagemUsuario::new);
