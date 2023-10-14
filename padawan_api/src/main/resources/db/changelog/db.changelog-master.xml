@@ -26,13 +26,23 @@
 
     <changeSet id="2" author="daniloGabriel">
         <insert tableName="usuarios">
-            <column name="username" value="login_admin"></column>
+            <column name="username" value="login_admin"></>
             <column name="password" value="admin"/>
         </insert>
     </changeSet>
     -->
 
-    
-    
+    <changeSet id="2" author="daniloGabriel">
+        <addColumn tableName="usuarios">
+            <column name="ativo" type="boolean"/>
+        </addColumn>
+    </changeSet>
+
+
+    <changeSet id="3" author="daniloGabriel">
+        <update tableName="usuarios">
+            <column name="ativo">true</column>
+        </update>
+    </changeSet>
 
 </databaseChangeLog>

@@ -20,12 +20,28 @@ public class Usuario {
     private Long id;
     private String username;
     private String password;
+    private Boolean ativo;
 
 
     public Usuario(DadosCadastroUsuario dados) {
         this.username = dados.username();
         this.password = BCrypt.hashpw(dados.password(), BCrypt.gensalt());
+        this.ativo = true;
     }
+
+    public void atualizarInformacao(DadosAtualizaUsuario dados) {
+        if(dados.username() != null){
+            this.username = dados.username();
+        }
+        if(dados.password() != null){
+            this.password = BCrypt.hashpw(dados.password(), BCrypt.gensalt());
+        }
+    }
+
+    public void inativo(){
+        this.ativo = false;
+    }
+
 
 
     public void validarUsuario(DadosValidarUsuario dados) {
@@ -40,6 +56,7 @@ public class Usuario {
         //Ação logar no front depois
 
     }
+
 }
 
 

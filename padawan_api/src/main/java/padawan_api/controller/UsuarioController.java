@@ -31,16 +31,36 @@ public class UsuarioController {
 
 
     @GetMapping
-    public List<DadosListagemUsuario> pacienteList(){
-        return repository.findAll().stream().map(DadosListagemUsuario::new).toList();
+    public Page<DadosListagemUsuario> listUsuario(@PageableDefault(size = 10, sort = {"username"}) Pageable paginacao){
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemUsuario::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizaUsuario dados){
+        var usuario = repository.getReferenceById(dados.id());
+
+        usuario.atualizarInformacao(dados);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        repository.deleteById(id);
+
     }
 
 
     /*
-    public Page<DadosListagemUsuario> usuarioList(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao){
-        return repository.findAllById(paginacao).map(DadosListagemUsuario::new);
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void inativo(@PathVariable Long id){
+       var usuario = repository.getReferenceById(id);
+       usuario.inativo();
     }
 
      */
+
+
 
 }

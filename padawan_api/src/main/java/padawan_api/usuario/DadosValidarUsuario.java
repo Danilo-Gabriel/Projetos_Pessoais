@@ -9,7 +9,6 @@ public record DadosValidarUsuario(
 
         @NotNull
         Long id,
-
         String username,
 
         String password) {
@@ -18,3 +17,5 @@ public record DadosValidarUsuario(
                 this(usuario.getId(), usuario.getUsername(), usuario.getPassword());
         }
 }
+
+
