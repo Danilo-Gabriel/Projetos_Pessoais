@@ -1,10 +1,10 @@
-package padawan_api.usuario;
+package padawan_api.domain.usuario;
 
 public record DadosListagemUsuario(
         Long id,
-        String username) {
+        String login) {
 
     public DadosListagemUsuario(Usuario usuario){
-        this(usuario.getId(), usuario.getUsername());
+        this(usuario.getId(), usuario.getLogin());
     }
 }

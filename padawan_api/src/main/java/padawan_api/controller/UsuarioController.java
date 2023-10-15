@@ -8,9 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import padawan_api.usuario.*;
+import padawan_api.domain.usuario.*;
 
-import java.util.List;
 
 
 @RestController
@@ -25,14 +24,16 @@ public class UsuarioController {
     @Transactional
     public void cadastrar(@RequestBody @Valid DadosCadastroUsuario dados){
 
-    repository.save(new Usuario(dados));
+        repository.save(new Usuario(dados));
 
     }
 
 
     @GetMapping
     public Page<DadosListagemUsuario> listUsuario(@PageableDefault(size = 10, sort = {"username"}) Pageable paginacao){
-        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemUsuario::new);
+        return repository.findAll(paginacao).map(DadosListagemUsuario::new);
+
+        //return repository.findAllByAtivoTrue(paginacao).map(DadosListagemUsuario::new);
     }
 
     @PutMapping
@@ -46,8 +47,10 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     @Transactional
     public void excluir(@PathVariable Long id){
+
         repository.deleteById(id);
 
+        // Tipo ResponseEntity return ResponseEntity.noContent().build();
     }
 
 

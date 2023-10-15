@@ -1,4 +1,4 @@
-package padawan_api.usuario;
+package padawan_api.domain.usuario;
 
 
 import jakarta.validation.constraints.NotBlank;
@@ -9,10 +9,10 @@ public record DadosAtualizaUsuario(
         Long id,
 
         @NotBlank
-        String username,
+        String login,
 
         @NotBlank
-        String password) {
+        String senha) {
 
 }
 
