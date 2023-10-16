@@ -14,6 +14,11 @@ public record DadosAtualizaUsuario(
         @NotBlank
         String senha) {
 
+
+        public DadosAtualizaUsuario(Usuario usuario){
+                this(usuario.getId(), usuario.getLogin(), usuario.getSenha());
+        }
+
 }
 
 
