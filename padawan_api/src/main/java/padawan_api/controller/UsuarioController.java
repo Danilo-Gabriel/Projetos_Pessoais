@@ -33,29 +33,28 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<Page<DadosListagemUsuario>> listUsuario(@PageableDefault(size = 10, sort = {"username"}) Pageable paginacao){
-          var page = repository.findAll(paginacao).map(DadosListagemUsuario::new);
+            var page = repository.findAll(paginacao).map(DadosListagemUsuario::new);
 
-          return ResponseEntity.ok(page);
-        //return repository.findAllByAtivoTrue(paginacao).map(DadosListagemUsuario::new);
+            return ResponseEntity.ok(page);
+            //return repository.findAllByAtivoTrue(paginacao).map(DadosListagemUsuario::new);
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizaUsuario dados){
+    public void atualizar(@RequestBody @Valid DadosAtualizaUsuario dados){
         var usuario = repository.getReferenceById(dados.id());
 
         usuario.atualizarInformacao(dados);
 
-        return ResponseEntity.ok( new DadosAtualizaUsuario(usuario));
+
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity excluir(@PathVariable Long id){
+    public void excluir(@PathVariable Long id){
 
         repository.deleteById(id);
 
-        return ResponseEntity.noContent().build();
     }
 
 

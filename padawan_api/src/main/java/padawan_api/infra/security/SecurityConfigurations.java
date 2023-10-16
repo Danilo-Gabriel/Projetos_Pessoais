@@ -1,4 +1,4 @@
-package padawan_api.infra.security;
+/*package padawan_api.infra.security;
 
 
 import org.springframework.context.annotation.Bean;
@@ -36,3 +36,5 @@ public class SecurityConfigurations {
 
 }
 
+
+ */

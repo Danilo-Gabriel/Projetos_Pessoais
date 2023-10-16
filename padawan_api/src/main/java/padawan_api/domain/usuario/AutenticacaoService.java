@@ -1,4 +1,4 @@
-package padawan_api.domain.usuario;
+/*package padawan_api.domain.usuario;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,3 +21,6 @@ public class AutenticacaoService implements UserDetailsService {
 }
 
 
+
+
+ */
