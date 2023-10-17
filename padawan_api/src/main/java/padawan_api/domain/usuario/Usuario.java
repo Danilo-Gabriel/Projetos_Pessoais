@@ -31,12 +31,12 @@ public class Usuario {
     private String login;
     private String senha;
     
-    //private Boolean ativo;
+   private Boolean ativo;
 
     public Usuario(DadosCadastroUsuario dados) {
         this.login = dados.login();
         this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
-      //  this.ativo = true;
+        this.ativo = true;
     }
 
     public void atualizarInformacao(DadosAtualizaUsuario dados) {
@@ -58,12 +58,12 @@ public class Usuario {
         }
     }
 
-    /*
+
     public void inativo(){
         this.ativo = false;
     }
 
-     */
+
 
 
     /*

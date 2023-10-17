@@ -24,7 +24,7 @@
 
 
 
-<!--
+
     <changeSet id="2" author="daniloGabriel">
         <addColumn tableName="usuarios">
             <column name="ativo" type="boolean"/>
@@ -37,7 +37,7 @@
             <column name="ativo">true</column>
         </update>
     </changeSet>
- -->
+
 
 
 </databaseChangeLog>
