@@ -1,6 +1,6 @@
 <div class="conteudo-login">
 
-    <form class="conteudo-form" [formGroup]="loginForm" (submit)="submitLogin()">
+    <form class="conteudo-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
         <div class="Logo">
 
@@ -9,30 +9,34 @@
 
         <div>
             <div>
-                <input class="input-login"  placeholder="username" formControlName="username"/>
+                <input class="input-login" type="text" placeholder="login" formControlName="login" id="login"/>
             </div>
 
+            <!---
             <div class="mensagem-erro"
             *ngIf="loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched">
 
                     CAMPO OBRIGATÓRIO
 
             </div>
+        -->
 
 
             <div>
-                <input class="input-login" type="password"  placeholder="password" formControlName="password"/>
+                <input class="input-login" type="password" placeholder="senha"  autocomplete="current-password" formControlName="senha" id="senha"/>
             </div>
 
+            <!---
             <div class="mensagem-erro"
             *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
 
                     CAMPO OBRIGATÓRIO
 
             </div>
+        -->
 
             <div>
-                <button class="input-submit">
+                <button class="input-submit" type="submit" [disabled]="!loginForm.valid">
                     LOGAR
                 </button>
             </div>

@@ -1,8 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { loginModel } from 'src/app/models/LoginModel';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,41 +9,49 @@ import { loginModel } from 'src/app/models/LoginModel';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm!: FormGroup;
+  public loginForm!: FormGroup;
 
-  constructor( private formBuilder : FormBuilder,
-    private router : Router ){ }
+
+  constructor(private formBuilder: FormBuilder, public http: HttpClient) {}
 
   ngOnInit(): void {
-      this.loginForm = this.formBuilder.group(
 
-        {
-          username: ['', [Validators.required]],
-          password: ['', [Validators.required]]
-
-        }
-      );
+    this.loginForm = this.formBuilder.group({
+      login: ['', Validators.required],
+      senha: ['', Validators.required]
+    });
   }
-  submitLogin()
-  {
-    debugger
-    var dadosLogin = this.loginForm.getRawValue() as loginModel;
 
-    /*
-    this.LoginService.LoginUsuario(dadosLogin)
+  onSubmit() {
+    if (this.loginForm.valid) {
+   
+    
+      const formData = this.loginForm.value
 
-      /*.subscribe(
-      token =>
-      {
-      debugger
-      var nossoToken = Token
-      },
-      error => {
+      const apiUrl = 'http:localhost:8080/usuarios'
 
-    })
+      this.http.post(apiUrl, formData).subscribe(
+        (response) => {
 
-       */
+          console.log("DEU CERTO")
+          debugger
 
+        },
+        (error) => {
+
+          console.log(formData)
+          console.log("DEU ERRADO")
+        }
+      )
+    }
   }
 }
+
+
+
+     
+
+
+
+
 

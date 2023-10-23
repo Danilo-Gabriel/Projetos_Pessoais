@@ -16,7 +16,9 @@ import padawan_api.domain.usuario.*;
 
 
 
+
 @RestController
+
 @RequestMapping("/usuarios")
 
 public class UsuarioController {
@@ -26,11 +28,10 @@ public class UsuarioController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroUsuario dados){
+    public void cadastrar(@RequestBody @Valid DadosCadastroUsuario dados){
 
         repository.save(new Usuario(dados));
 
-        return ResponseEntity.created(uri).body(dto);
 
     }
 
