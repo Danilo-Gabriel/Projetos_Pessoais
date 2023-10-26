@@ -28,13 +28,14 @@ export class LoginComponent implements OnInit {
     
       const formData = this.loginForm.value
 
-      const apiUrl = 'http:localhost:8080/usuarios'
+      const backendUrl = 'http://localhost:8080'
+
+      const apiUrl = `${backendUrl}/usuarios/cadastrar`
 
       this.http.post(apiUrl, formData).subscribe(
         (response) => {
 
-          console.log("DEU CERTO")
-          debugger
+          console.log("usuario cadastrado: ", response)
 
         },
         (error) => {
