@@ -1,10 +1,11 @@
-package padawan_api.domain.usuario;
+package padawan_api.domain.usuario.dto;
 
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import padawan_api.domain.usuario.Usuario;
 
-public record DadosAtualizaUsuario(
+public record DetalhamentoUsuario_DTO(
         @NotNull
         Long id,
 
@@ -15,7 +16,7 @@ public record DadosAtualizaUsuario(
         String senha) {
 
 
-        public DadosAtualizaUsuario(Usuario usuario){
+        public DetalhamentoUsuario_DTO(Usuario usuario){
                 this(usuario.getId(), usuario.getLogin(), usuario.getSenha());
         }
 
