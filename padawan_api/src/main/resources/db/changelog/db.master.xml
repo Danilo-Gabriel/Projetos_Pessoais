@@ -8,5 +8,6 @@
 
     <include file="/db/changelog/db.migracao/V1.create_table_usuario.xml"/>
     <include file="/db/changelog/db.migracao/V2.add_column_usuario.xml"/>
+    <include file="/db/changelog/db.migracao/V3.add_usuario_root.xml"/>
 
 </databaseChangeLog>
