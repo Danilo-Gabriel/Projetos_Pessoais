@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
 
 
 @Component({
@@ -12,12 +14,12 @@ export class LoginComponent implements OnInit {
 
   public loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, public http: HttpClient) {}
+  constructor(private formBuilder: FormBuilder, public http: HttpClient, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      login: ['', Validators.required], // Deve corresponder a "formControlName="login"" no HTML
-      senha: ['', Validators.required] // Deve corresponder a "formControlName="senha"" no HTML
+      login: ['', Validators.required],
+      senha: ['', Validators.required]
     });
   }
 
@@ -25,17 +27,27 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
       const backendUrl = 'http://localhost:8080';
-      const apiUrl = `${backendUrl}/usuarios/cadastrar`;
+      const apiUrl = `${backendUrl}/auth/login`;
 
       this.http.post(apiUrl, formData).subscribe(
         (response) => {
-          console.log("usuário cadastrado: ", response);
+         this.onAviso("LOGIN CORRETO")
         },
         (error) => {
-          console.log(formData);
-          console.log("DEU ERRADO");
+          this.onAviso("LOGIN INCORRETO")
         }
       );
     }
   }
+
+
+
+ onAviso(avisoMsg: string)
+ {
+  this.dialog.open(ErrorDialogComponent, {
+   data: avisoMsg
+  });
+}
+
+
 }

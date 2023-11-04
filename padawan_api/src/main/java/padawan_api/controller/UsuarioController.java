@@ -15,7 +15,7 @@ import padawan_api.domain.usuario.*;
 import padawan_api.domain.usuario.dto.DadosAtualizaUsuario_DTO;
 import padawan_api.domain.usuario.dto.DadosCadastroUsuario_DTO;
 import padawan_api.domain.usuario.dto.DadosListagemUsuario_DTO;
-import padawan_api.domain.usuario.dto.DetalhamentoUsuario_DTO;
+
 import padawan_api.repository.UsuarioRepository;
 import padawan_api.service.UsuarioService;
 

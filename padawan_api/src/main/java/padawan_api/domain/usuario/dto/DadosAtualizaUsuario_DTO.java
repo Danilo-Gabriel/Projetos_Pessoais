@@ -2,7 +2,6 @@ package padawan_api.domain.usuario.dto;
 
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import padawan_api.domain.usuario.Usuario;
 
 public record DadosAtualizaUsuario_DTO(

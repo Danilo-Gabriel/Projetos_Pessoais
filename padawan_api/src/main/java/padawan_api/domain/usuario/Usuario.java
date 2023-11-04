@@ -49,12 +49,19 @@ public class Usuario {
     }
 
     public void validarUsuario(DadosValidarUsuario_DTO dados) {
+        
         if (dados.login() != null && dados.login().equals(this.login)) {
             if (dados.senha() != null && BCrypt.checkpw(dados.senha(), this.senha)) {
                 System.out.println("LOGIN CORRETO");
             }
-        } else {
-            System.out.println("USERNAME OU SENHA INCORRETA");
+
+            else{
+                System.out.println("SENHA INCORRETA");
+            }
+
+        }
+         else {
+            System.out.println("LOGIN INCORRETO");
         }
     }
 

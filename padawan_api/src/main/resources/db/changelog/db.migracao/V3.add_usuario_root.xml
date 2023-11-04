@@ -8,7 +8,7 @@
     <changeSet id="1" author="daniloGabriel">
         <insert tableName="usuarios">
             <column name="login" value="root"/>
-            <column name="senha" value="admin"/>
+            <column name="senha" value="$2a$12$gCUHEKn5rx4NYXcMoB/J1ObLBYDerKe1JpFse1QFkTQlWtYR0tzPK"/>
             <column name="ativo" value="true"/>
         </insert>
     </changeSet>

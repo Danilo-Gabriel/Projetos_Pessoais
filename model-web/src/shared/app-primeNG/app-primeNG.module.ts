@@ -1,9 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   MatToolbarModule,
   DividerModule,
   HttpClientModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  MatDialogModule
+
 
  ]
 })
