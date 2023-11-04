@@ -8,10 +8,13 @@ import { SharedModule } from 'src/shared/shared.module';
 
 @NgModule({
   declarations: [],
+
   imports: [
     CommonModule,
     AppPrimeNGModule,
-    SharedModule
+    SharedModule,
+
   ]
 })
+
 export class LoginModule { }

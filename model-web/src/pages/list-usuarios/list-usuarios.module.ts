@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ListUsuariosComponent } from './list-usuarios/list-usuarios.component';
 import { AppPrimeNGModule } from 'src/shared/app-primeNG/app-primeNG.module';
 import { SharedModule } from 'src/shared/shared.module';
+import { TabMenuModule } from 'primeng/tabmenu';
+
 
 
 
@@ -13,7 +15,9 @@ import { SharedModule } from 'src/shared/shared.module';
   imports: [
     CommonModule,
     AppPrimeNGModule,
-    SharedModule
+    SharedModule,
+    TabMenuModule
+
   ]
 })
 export class ListUsuariosModule { }
