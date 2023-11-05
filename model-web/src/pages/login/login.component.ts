@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MenuItem } from 'primeng/api';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
 
 
@@ -16,7 +17,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, public http: HttpClient, public dialog: MatDialog) {}
 
+
+
   ngOnInit(): void {
+
     this.loginForm = this.formBuilder.group({
       login: ['', Validators.required],
       senha: ['', Validators.required]

@@ -13,4 +13,4 @@ import { SharedModule } from 'src/shared/shared.module';
     SharedModule
   ]
 })
-export class ListUsuariosModule { }
+export class HomeModule { }

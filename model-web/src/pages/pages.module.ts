@@ -4,7 +4,7 @@ import { AppPrimeNGModule } from 'src/shared/app-primeNG/app-primeNG.module';
 import { SharedModule } from 'src/shared/shared.module';
 
 import { PagesRoutingModule } from './pages-routing.module';
-import { LoginComponent } from './login/login/login.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({

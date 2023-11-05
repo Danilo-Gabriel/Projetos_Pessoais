@@ -6,6 +6,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
+import { TabMenuModule } from 'primeng/tabmenu';
+
 
 
 
@@ -20,6 +22,7 @@ import { DividerModule } from 'primeng/divider';
   ReactiveFormsModule,
   MatDialogModule,
   MatMenuModule,
+  TabMenuModule
 
 
 

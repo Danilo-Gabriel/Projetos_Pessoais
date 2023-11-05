@@ -6,13 +6,17 @@ import { SharedModule } from 'src/shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ListUsuariosComponent } from '../pages/list-usuarios/list-usuarios.component';
+import { HomeComponent } from '../pages/home/home.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListUsuariosComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
