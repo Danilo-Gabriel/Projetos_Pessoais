@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Usuarios } from './model/usuarios';
+import { UsuariosService } from './services/usuarios.service';
+import { Observable, catchError, of } from 'rxjs';
+import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-list-usuarios',
@@ -9,7 +15,34 @@ import { MenuItem } from 'primeng/api';
 export class ListUsuariosComponent implements OnInit {
 
 
+
+    listUsuario$: Observable<Usuarios[]>;
+
+    displayedColumns = ['login', 'situacao'];
+
   items: MenuItem[] | undefined;
+
+  constructor( private listUser: UsuariosService, public dialog: MatDialog){
+
+    this.listUsuario$= this.listUser.list()
+    .pipe(
+      catchError(error => {
+        this.onAviso('Error ao carregar')
+        return of([])
+      })
+    );
+
+
+
+  }
+
+  onAviso(errorMsg: string)
+  {
+   this.dialog.open(ErrorDialogComponent, {
+    data: errorMsg
+   });
+ }
+
 
   ngOnInit(): void {
 

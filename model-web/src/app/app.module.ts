@@ -16,7 +16,8 @@ import { HomeComponent } from '../pages/home/home.component';
   declarations: [
     AppComponent,
     ListUsuariosComponent,
-    HomeComponent
+    HomeComponent,
+    
   ],
   imports: [
     BrowserModule,

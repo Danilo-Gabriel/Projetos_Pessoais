@@ -1,7 +1,9 @@
+import { environment } from './../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Route, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
 
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, public http: HttpClient, public dialog: MatDialog) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, public http: HttpClient, public dialog: MatDialog) {}
 
 
 
@@ -30,12 +32,12 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
-      const backendUrl = 'http://localhost:8080';
+      const backendUrl = environment.endPoint;
       const apiUrl = `${backendUrl}/auth/login`;
 
       this.http.post(apiUrl, formData).subscribe(
         (response) => {
-         this.onAviso("LOGIN CORRETO")
+        this.onSuccessfulLogin()
         },
         (error) => {
           this.onAviso("LOGIN INCORRETO")
@@ -44,6 +46,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  onSuccessfulLogin() {
+
+    this.router.navigate(['/pages/home']);
+  }
 
 
  onAviso(avisoMsg: string)
