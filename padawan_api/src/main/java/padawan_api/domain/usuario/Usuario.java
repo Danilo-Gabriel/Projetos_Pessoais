@@ -57,6 +57,7 @@ public class Usuario {
 
             else{
                 System.out.println("SENHA INCORRETA");
+                throw new Error("ERROR");
             }
 
         }
@@ -113,7 +114,6 @@ public class Usuario {
     public boolean isEnabled() {
         return true;
     }
-
 
      */
 

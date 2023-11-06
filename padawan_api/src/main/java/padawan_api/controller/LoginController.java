@@ -25,7 +25,17 @@ public class LoginController {
     @Autowired
     UsuarioRepository repository;
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid DadosValidarUsuario_DTO dados){
+
+    public void login(@RequestBody @Valid DadosValidarUsuario_DTO dados){
+        
+        Optional<Usuario> usuario = repository.findByLogin(dados.login());
+        usuario.get().validarUsuario(dados);
+
+       
+
+      
+/*
+ *  public ResponseEntity<?> login(@RequestBody @Valid DadosValidarUsuario_DTO dados){
         
        try{
 
@@ -41,8 +51,10 @@ public class LoginController {
 
        }
        
+ * 
+ */
+   
 
-     
     
     }
 }
