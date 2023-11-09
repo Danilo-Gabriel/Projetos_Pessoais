@@ -6,13 +6,12 @@ import jakarta.validation.Valid;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import padawan_api.domain.usuario.dto.DadosValidarUsuario_DTO;
+import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.repository.UsuarioRepository;
 import padawan_api.domain.usuario.Usuario;
 
@@ -26,12 +25,15 @@ public class LoginController {
     UsuarioRepository repository;
     @PostMapping("/login")
 
-    public void login(@RequestBody @Valid DadosValidarUsuario_DTO dados){
+    public void login(@RequestBody @Valid DadosCadastroUsuarioDTO dados){
         
-        Optional<Usuario> usuario = repository.findByLogin(dados.login());
-        usuario.get().validarUsuario(dados);
 
-       
+            Optional<Usuario> usuario = repository.findByLogin(dados.login());
+
+                usuario.get().validarUsuario(dados);
+            }
+
+    
 
       
 /*
@@ -57,4 +59,5 @@ public class LoginController {
 
     
     }
-}
+
+

@@ -10,16 +10,16 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 import padawan_api.domain.usuario.*;
-import padawan_api.domain.usuario.dto.DadosAtualizaUsuario_DTO;
-import padawan_api.domain.usuario.dto.DadosCadastroUsuario_DTO;
-import padawan_api.domain.usuario.dto.DadosListagemUsuario_DTO;
+import padawan_api.domain.usuario.dto.DadosAtualizaUsuarioDTO;
+import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
+import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
+import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
 
 import padawan_api.repository.UsuarioRepository;
 import padawan_api.service.UsuarioService;
 
-import java.net.URI;
+
 import java.util.Optional;
 
 
@@ -37,10 +37,10 @@ public class UsuarioController {
 
     @PostMapping("/cadastrar")
     @Transactional
-    public ResponseEntity<?> cadastrar(@RequestBody @Valid DadosCadastroUsuario_DTO dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid DadosCadastroUsuarioDTO dados){
 
         try{
-            DadosCadastroUsuario_DTO usuarioCadastrado = this.usuarioService.cadastrar(dados);
+            DadosCadastroUsuarioDTO usuarioCadastrado = this.usuarioService.cadastrar(dados);
             return ResponseEntity.ok(usuarioCadastrado);
         }
 
@@ -52,35 +52,31 @@ public class UsuarioController {
     }
 
     @GetMapping("/listarUsuario")
-    public ResponseEntity<Page<DadosListagemUsuario_DTO>>  listUsuario(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao){
-        
-        Page<DadosListagemUsuario_DTO> x = repository.findAllByAtivoTrue(paginacao).map(DadosListagemUsuario_DTO::new);
-        return ResponseEntity.ok(x);
+    public ResponseEntity<Page<DadosListagemUsuarioDTO>> listUsuario(Pageable paginacao){
 
-            
-        
+        try {
+            Page<DadosListagemUsuarioDTO> listUsuario = this.usuarioService.listUsuario(paginacao);
+
+            return ResponseEntity.ok(listUsuario);
+
+
+        }catch (Exception e){
+
+           ResponseEntity.<Page<DadosListagemUsuarioDTO>>badRequest().body(e.getMessage());
+
+
+        }
+
+        return null;
     }
 
     @PutMapping("atualizar")
     @Transactional
-    public  ResponseEntity<?> atualizar(@RequestBody @Valid DadosAtualizaUsuario_DTO dados) {
+    public  ResponseEntity<?> atualizar(@RequestBody @Valid DadosAtualizaUsuarioDTO dados) {
 
         try{
-            Optional<Usuario> usuariosOptional = this.repository.findByLogin(dados.login());
-    
-            if (usuariosOptional.isPresent()) {
-                Usuario usuario = usuariosOptional.get();
-                if(usuario.isAtivo()){
-                    usuario.atualizarInformacao(dados);
-                    repository.save(usuario);
-                    return ResponseEntity.ok(usuario);
-                } else {
-                    return ResponseEntity.badRequest().body("O usuário não está ativo e não pode ser atualizado.");
-                }
-    
-            } else {
-                throw new Exception("Usuário não cadastrado");
-            }
+           DadosAtualizaUsuarioDTO atualizarUsuario = this.usuarioService.atualizar(dados);
+           return ResponseEntity.ok(dados);
         }
         catch(Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -89,19 +85,17 @@ public class UsuarioController {
 
     }
 
-    @DeleteMapping("/inativar/{login}")
+    @DeleteMapping("/inativar/{dados}")
     @Transactional
-    public ResponseEntity<?> inativo(@PathVariable String login) {
+    public ResponseEntity<?> inativo(@PathVariable DadosInativarUsuarioDTO dados) {
 
-        Optional<Usuario> usuarioOptional = this.repository.findByLogin(login);
-
-        if (usuarioOptional.isPresent()) {
-            Usuario usuario = usuarioOptional.get();
-            usuario.inativo();
-            repository.save(usuario);
+        try{
+            DadosInativarUsuarioDTO inativar = this.usuarioService.inativar(dados);
             return ResponseEntity.noContent().build();
-        } else {
+        }catch (Exception e){
+
             return ResponseEntity.notFound().build();
+
         }
     }
 

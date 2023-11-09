@@ -2,14 +2,17 @@ package padawan_api.domain.usuario;
 
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
+
 import org.mindrot.jbcrypt.BCrypt;
-import padawan_api.domain.usuario.dto.DadosAtualizaUsuario_DTO;
-import padawan_api.domain.usuario.dto.DadosCadastroUsuario_DTO;
-import padawan_api.domain.usuario.dto.DadosValidarUsuario_DTO;
+
+import padawan_api.domain.usuario.dto.DadosAtualizaUsuarioDTO;
+import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +25,7 @@ import padawan_api.domain.usuario.dto.DadosValidarUsuario_DTO;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @EqualsAndHashCode(of = "id")
 
 public class Usuario {
@@ -36,19 +40,19 @@ public class Usuario {
     
    private Boolean ativo;
 
-    public Usuario(DadosCadastroUsuario_DTO dados) {
+    public Usuario(DadosCadastroUsuarioDTO dados) {
         this.login = dados.login();
         this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
         this.ativo = true;
     }
 
-    public void atualizarInformacao(DadosAtualizaUsuario_DTO dados) {
+    public void atualizarInformacao(DadosAtualizaUsuarioDTO dados) {
         if(dados.senha() != null){
             this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
         }
     }
 
-    public void validarUsuario(DadosValidarUsuario_DTO dados) {
+    public void validarUsuario(DadosCadastroUsuarioDTO dados) {
         
         if (dados.login() != null && dados.login().equals(this.login)) {
             if (dados.senha() != null && BCrypt.checkpw(dados.senha(), this.senha)) {
@@ -56,6 +60,7 @@ public class Usuario {
             }
 
             else{
+            
                 System.out.println("SENHA INCORRETA");
                 throw new Error("ERROR");
             }

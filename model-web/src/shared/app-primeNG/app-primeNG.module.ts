@@ -31,8 +31,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   MatProgressSpinnerModule
 
 
-
-
  ]
 })
 export class AppPrimeNGModule { }

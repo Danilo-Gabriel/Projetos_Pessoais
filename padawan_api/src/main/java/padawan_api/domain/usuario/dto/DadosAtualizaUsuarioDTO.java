@@ -4,7 +4,7 @@ package padawan_api.domain.usuario.dto;
 import jakarta.validation.constraints.NotBlank;
 import padawan_api.domain.usuario.Usuario;
 
-public record DadosAtualizaUsuario_DTO(
+public record DadosAtualizaUsuarioDTO(
 
         @NotBlank
         String login,
@@ -13,7 +13,7 @@ public record DadosAtualizaUsuario_DTO(
         String senha) {
 
 
-        public DadosAtualizaUsuario_DTO(Usuario usuario){
+        public DadosAtualizaUsuarioDTO(Usuario usuario){
                 this(usuario.getLogin(), usuario.getSenha());
         }
 
