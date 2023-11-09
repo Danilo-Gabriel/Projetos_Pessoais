@@ -1,4 +1,4 @@
-import { environment } from './../../../environment/environment';
+import { environment } from '../../../environment/environment';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,8 +11,11 @@ import { delay, first, tap } from 'rxjs';
 export class UsuariosService {
 
 
-  private readonly API = '/assets/cursos.json';
-  //private readonly API = 'http://localhost:8080/usuarios/listarUsuario';
+  // private readonly API = '/assets/cursos.json';
+
+  backendURL = environment.endPoint;
+
+  private readonly API = `${this.backendURL}/usuarios/listarUsuario;`
 
   constructor(public httpClient: HttpClient) { }
 

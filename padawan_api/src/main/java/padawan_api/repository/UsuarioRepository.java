@@ -13,7 +13,9 @@ import java.util.List;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 
-    Page<Usuario> findAllByAtivoTrue(Pageable paginacao); // Paginação
+    Page<Usuario> findAllByAtivoTrue(Pageable paginacao);
+
+    List<Usuario> findAllByAtivoTrue();// Paginação
 
     Optional<Usuario> findByLogin(String login); //Tratamento de Login atraves de usuario do tipo optional (pode ser nulo ou não)
 

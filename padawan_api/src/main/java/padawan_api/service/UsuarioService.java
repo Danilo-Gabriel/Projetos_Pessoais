@@ -1,10 +1,6 @@
 package padawan_api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import padawan_api.domain.usuario.Usuario;
@@ -15,6 +11,7 @@ import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
 import padawan_api.repository.UsuarioRepository;
 
 import java.util.Optional;
+import java.util.List;
 
 @Service
 public class UsuarioService {
@@ -29,12 +26,20 @@ public class UsuarioService {
         return dados;
     }
 
+    public List<DadosListagemUsuarioDTO> listarUsuario(){
+        return repository.findAllByAtivoTrue().stream().map(DadosListagemUsuarioDTO::new).toList();
+    }
+
+
+
+    /*
     public Page<DadosListagemUsuarioDTO> listUsuario(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
 
         Page<DadosListagemUsuarioDTO> x = repository.findAllByAtivoTrue(paginacao).map(DadosListagemUsuarioDTO::new);
 
         return x;
     }
+     */
 
     public DadosAtualizaUsuarioDTO atualizar(DadosAtualizaUsuarioDTO dados) throws Exception {
 

@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,19 +26,7 @@ public class LoginController {
     UsuarioRepository repository;
     @PostMapping("/login")
 
-    public void login(@RequestBody @Valid DadosCadastroUsuarioDTO dados){
-        
-
-            Optional<Usuario> usuario = repository.findByLogin(dados.login());
-
-                usuario.get().validarUsuario(dados);
-            }
-
-    
-
-      
-/*
- *  public ResponseEntity<?> login(@RequestBody @Valid DadosValidarUsuario_DTO dados){
+   public ResponseEntity<?> login(@RequestBody @Valid DadosCadastroUsuarioDTO dados){
         
        try{
 
@@ -52,12 +41,11 @@ public class LoginController {
         return ResponseEntity.badRequest().body("Usuario Incorreto");
 
        }
-       
- * 
- */
-   
+
 
     
+      }
     }
+    
 
 

@@ -52,7 +52,7 @@ public class Usuario {
         }
     }
 
-    public void validarUsuario(DadosCadastroUsuarioDTO dados) {
+    public void validarUsuario(DadosCadastroUsuarioDTO dados) throws Exception {
         
         if (dados.login() != null && dados.login().equals(this.login)) {
             if (dados.senha() != null && BCrypt.checkpw(dados.senha(), this.senha)) {
@@ -60,14 +60,13 @@ public class Usuario {
             }
 
             else{
-            
-                System.out.println("SENHA INCORRETA");
-                throw new Error("ERROR");
+
+                throw new Exception("ERROR");
             }
 
         }
          else {
-            System.out.println("LOGIN INCORRETO");
+            throw new Exception("LOGIN INCORRETO");
         }
     }
 

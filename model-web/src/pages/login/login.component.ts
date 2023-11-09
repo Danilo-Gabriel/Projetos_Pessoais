@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Route, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { finalize } from 'rxjs';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
 
 
@@ -30,19 +31,27 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
       const backendUrl = environment.endPoint;
       const apiUrl = `${backendUrl}/auth/login`;
 
-      this.http.post(apiUrl, formData).subscribe(
+
+      this.http.post<any>(apiUrl, formData)
+      // .pipe(finalize(() => {}))
+      .subscribe(
         (response) => {
-        this.onSuccessfulLogin()
+          console.log("entrou no sucesso")
+          this.onSuccessfulLogin();
         },
         (error) => {
-          this.onAviso("LOGIN INCORRETO")
+          // debugger
+          console.log("error: ", error)
+          this.onAviso(error.error);
         }
       );
+
     }
   }
 

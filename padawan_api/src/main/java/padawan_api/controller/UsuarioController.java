@@ -4,23 +4,18 @@ package padawan_api.controller;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import padawan_api.domain.usuario.*;
 import padawan_api.domain.usuario.dto.DadosAtualizaUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
 
-import padawan_api.repository.UsuarioRepository;
 import padawan_api.service.UsuarioService;
 
 
-import java.util.Optional;
+import java.util.List;
 
 
 @RestController
@@ -28,9 +23,6 @@ import java.util.Optional;
 @RequestMapping("/usuarios")
 
 public class UsuarioController {
-
-    @Autowired
-    private UsuarioRepository repository;
 
     @Autowired
     private UsuarioService usuarioService;
@@ -52,6 +44,22 @@ public class UsuarioController {
     }
 
     @GetMapping("/listarUsuario")
+    public ResponseEntity<List<DadosListagemUsuarioDTO>> list(){
+
+        try {
+           List<DadosListagemUsuarioDTO> listarUsuario = this.usuarioService.listarUsuario();
+           
+           return ResponseEntity.ok().body(listarUsuario);
+        }catch (Exception e){
+
+            return ResponseEntity.badRequest().build();
+        }
+
+    }
+
+
+
+    /*
     public ResponseEntity<Page<DadosListagemUsuarioDTO>> listUsuario(Pageable paginacao){
 
         try {
@@ -69,6 +77,8 @@ public class UsuarioController {
 
         return null;
     }
+
+     */
 
     @PutMapping("atualizar")
     @Transactional
@@ -91,7 +101,7 @@ public class UsuarioController {
 
         try{
             DadosInativarUsuarioDTO inativar = this.usuarioService.inativar(dados);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok().build();
         }catch (Exception e){
 
             return ResponseEntity.notFound().build();
