@@ -23,10 +23,20 @@ public class UsuarioService {
 
     public void validarLogin(DadosCadastroUsuarioDTO dados) throws Exception{
 
-        Optional<Usuario> usuario = repository.findByLogin(dados.login());
+        Optional<Usuario> usuarioOptional = repository.findByLogin(dados.login());
 
-        if(usuario.isPresent()){
-            usuario.get().validarUsuario(dados);
+
+        if(usuarioOptional.isPresent()){
+
+            Usuario usuario = usuarioOptional.get();
+            if(usuario.isAtivo()){
+                usuarioOptional.get().validarUsuario(dados);
+            }else{
+
+                throw new Exception("USUARIO ESTÁ INATIVO");
+            }
+
+            
           }else{
 
             throw new Exception("USUARIO NÃO CADASTRADO");
