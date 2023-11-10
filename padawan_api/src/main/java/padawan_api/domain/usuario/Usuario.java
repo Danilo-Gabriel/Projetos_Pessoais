@@ -61,12 +61,12 @@ public class Usuario {
 
             else{
 
-                throw new Exception("ERROR");
+                throw new Exception("SENHA INCORRETA");
             }
 
         }
          else {
-            throw new Exception("LOGIN INCORRETO");
+            throw new Exception("USUARIO E SENHA INCORRETA");
         }
     }
 

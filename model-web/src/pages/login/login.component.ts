@@ -38,11 +38,11 @@ export class LoginComponent implements OnInit {
       const apiUrl = `${backendUrl}/auth/login`;
 
 
-      this.http.post<any>(apiUrl, formData)
+      this.http.post<any>(apiUrl, formData, { responseType: 'text' as 'json'})
       // .pipe(finalize(() => {}))
       .subscribe(
         (response) => {
-          console.log("entrou no sucesso")
+          this.onAviso(response)
           this.onSuccessfulLogin();
         },
         (error) => {

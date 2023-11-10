@@ -33,12 +33,11 @@ public class LoginController {
         Optional<Usuario> usuario = repository.findByLogin(dados.login());
         usuario.get().validarUsuario(dados);
 
-        return ResponseEntity.ok().body("Login Correto");
+        return ResponseEntity.ok().body("LOGIN CORRETO");
 
        } catch(Exception e){
 
-        System.out.println("Usuario Incorreto");
-        return ResponseEntity.badRequest().body("Usuario Incorreto");
+        return ResponseEntity.badRequest().body(e.getMessage());
 
        }
 
