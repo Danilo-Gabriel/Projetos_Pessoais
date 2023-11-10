@@ -65,9 +65,7 @@ public class Usuario {
             }
 
         }
-         else {
-            throw new Exception("USUARIO E SENHA INCORRETA");
-        }
+         
     }
 
 

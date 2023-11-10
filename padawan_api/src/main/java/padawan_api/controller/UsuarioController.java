@@ -43,7 +43,7 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/listarUsuario")
+    @GetMapping("/list")
     public ResponseEntity<List<DadosListagemUsuarioDTO>> list(){
 
         try {
@@ -95,16 +95,17 @@ public class UsuarioController {
 
     }
 
-    @DeleteMapping("/inativar/{dados}")
+    @DeleteMapping("/inativar/{login}")
     @Transactional
-    public ResponseEntity<?> inativo(@PathVariable DadosInativarUsuarioDTO dados) {
+    public ResponseEntity<?> inativo(@PathVariable DadosInativarUsuarioDTO login) {
 
         try{
-            DadosInativarUsuarioDTO inativar = this.usuarioService.inativar(dados);
-            return ResponseEntity.ok().build();
+            DadosInativarUsuarioDTO inativar = this.usuarioService.inativar(login);
+            return ResponseEntity.ok().body(inativar);
+            
         }catch (Exception e){
 
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().body(e.getMessage());
 
         }
     }

@@ -1,6 +1,7 @@
 package padawan_api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import padawan_api.domain.usuario.Usuario;
@@ -20,10 +21,35 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repository;
 
-    public DadosCadastroUsuarioDTO cadastrar(DadosCadastroUsuarioDTO dados) {
+    public void validarLogin(DadosCadastroUsuarioDTO dados) throws Exception{
+
+        Optional<Usuario> usuario = repository.findByLogin(dados.login());
+
+        if(usuario.isPresent()){
+            usuario.get().validarUsuario(dados);
+          }else{
+
+            throw new Exception("USUARIO NÃO CADASTRADO");
+          }
+
+    }
+
+
+    public DadosCadastroUsuarioDTO cadastrar(DadosCadastroUsuarioDTO dados) throws Exception {
+
+        Optional<Usuario> usuariOptional = repository.findByLogin(dados.login());
+        
+        if(usuariOptional.isPresent()){
+            throw new Exception("USUARIO JÁ CADASTRADO");
+        }else{
+
         Usuario usuario = new Usuario(dados);
         repository.save(usuario);
         return dados;
+
+        }
+
+     
     }
 
     public List<DadosListagemUsuarioDTO> listarUsuario(){
@@ -64,11 +90,21 @@ public class UsuarioService {
 
         Optional<Usuario> usuarioOptional = this.repository.findByLogin(dados.login());
         if (usuarioOptional.isPresent()) {
+
             Usuario usuario = usuarioOptional.get();
-            usuario.inativo();
-            repository.save(usuario);
+
+            if (usuario.isAtivo()) {
+
+                usuario.inativo();
+                repository.save(usuario);
+
+            }
+            else{
+                throw new Exception("USUARIO JÁ ESTÁ INATIVO");
+            }
+           
         } else {
-            throw new Exception("Erro ao inativar usuario");
+            throw new Exception("USUARIO NÃO CADASTRADO");
         }
 
         return dados;

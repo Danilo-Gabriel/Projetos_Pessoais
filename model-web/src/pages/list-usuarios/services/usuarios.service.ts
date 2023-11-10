@@ -15,7 +15,7 @@ export class UsuariosService {
 
   backendURL = environment.endPoint;
 
-  private readonly API = `${this.backendURL}/usuarios/listarUsuario;`
+  private readonly API = `${this.backendURL}/usuarios/list;`
 
   constructor(public httpClient: HttpClient) { }
 
