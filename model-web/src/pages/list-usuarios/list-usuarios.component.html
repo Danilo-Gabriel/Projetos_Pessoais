@@ -21,9 +21,43 @@
 
     <!-- Ativo -->
     <ng-container matColumnDef="situacao">
-      <th mat-header-cell *matHeaderCellDef> Situação </th>
+      <th mat-header-cell *matHeaderCellDef> Ativo</th>
       <td mat-cell *matCellDef="let element"> {{element.ativo}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+
+        <p-button icon="pi pi-user" [rounded]="true" severity="info">
+
+          <mat-icon (click)="onAdd()">add</mat-icon>
+
+        </p-button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let curso">
+
+
+        <p-button icon="pi pi-user" [rounded]="true" severity="secondary">
+
+          <mat-icon (click)="onAdd()">edit</mat-icon>
+
+        </p-button>
+
+
+        <p-button  icon="pi pi-user" [rounded]="true" severity="danger">
+
+          <mat-icon (click)="onAdd()">delete</mat-icon>
+
+        </p-button>
+
+      </mat-cell>
+
+    </ng-container>
+
+
+
+
 
 
 

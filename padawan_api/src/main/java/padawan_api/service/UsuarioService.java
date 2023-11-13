@@ -1,7 +1,6 @@
 package padawan_api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import padawan_api.domain.usuario.Usuario;

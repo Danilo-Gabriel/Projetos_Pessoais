@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListUsuariosComponent } from '../pages/list-usuarios/list-usuarios.component';
 import { HomeComponent } from '../pages/home/home.component';
+import { AddUsuariosComponent } from '../pages/add-usuarios/add-usuarios.component';
 
 
 
@@ -17,7 +18,8 @@ import { HomeComponent } from '../pages/home/home.component';
     AppComponent,
     ListUsuariosComponent,
     HomeComponent,
-    
+    AddUsuariosComponent,
+
   ],
   imports: [
     BrowserModule,

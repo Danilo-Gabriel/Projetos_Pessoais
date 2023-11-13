@@ -5,6 +5,7 @@ import { UsuariosService } from './services/usuarios.service';
 import { Observable, catchError, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,11 +19,11 @@ export class ListUsuariosComponent implements OnInit {
 
     listUsuario$: Observable<Usuarios[]>;
 
-    displayedColumns = ['login', 'situacao'];
+    displayedColumns = ['login', 'situacao', 'actions'];
 
   items: MenuItem[] | undefined;
 
-  constructor( private listUser: UsuariosService, public dialog: MatDialog){
+  constructor( private listUser: UsuariosService, public dialog: MatDialog, private router: Router){
 
     this.listUsuario$= this.listUser.list()
     .pipe(
@@ -51,6 +52,11 @@ export class ListUsuariosComponent implements OnInit {
       { label: 'Listar Usuario', icon: 'pi pi-fw pi-pencil', routerLink: '/pages/home/list'}
   ];
 
+  }
+
+  onAdd(){
+
+    this.router.navigate(['/pages/home/add-usuario'])
   }
 
 }

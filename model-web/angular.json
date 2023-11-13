@@ -66,6 +66,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "allowedHosts": ["localhost", "192.168.10.17"],
+            "browserTarget": "model-web:build:development"
+          },
           "configurations": {
             "production": {
               "browserTarget": "model-web:build:production"

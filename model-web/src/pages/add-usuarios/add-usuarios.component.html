@@ -1,0 +1,52 @@
+
+<mat-card class="tabelaCadastro">
+
+  <mat-card-header>
+
+  <mat-toolbar color="primary">Cadastrar Usuarios</mat-toolbar>
+
+  </mat-card-header>
+  <mat-card-content>
+  <form [formGroup]="form">
+
+    <br>
+    <mat-form-field class="full-width">
+
+      <input matInput placeholder="Nome" formControlName="login">
+
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+
+      <input matInput type="password" placeholder="Senha" formControlName="senha">
+
+    </mat-form-field>
+
+  </form>
+
+</mat-card-content>
+
+<mat-card-actions>
+
+  <button  mat-raised-button color="primary"  (click)="onSubmit()">Salvar</button> &nbsp;
+
+  <button  mat-raised-button (click)="onCancel()">Cancelar</button>
+
+</mat-card-actions>
+</mat-card>
+
+<div>
+  <router-outlet></router-outlet>
+</div>
+
+
+      <!-- ADICIOANR OPÇÕES SELECIONAVES
+
+
+      <mat-label>Senha</mat-label>
+      <mat-select formControlName="senha">
+        <mat-option value="null"></mat-option>
+        <mat-option value="Front-end">Front-end</mat-option>
+        <mat-option value="Back-end">Backe-end</mat-option>
+      </mat-select>
+      -->

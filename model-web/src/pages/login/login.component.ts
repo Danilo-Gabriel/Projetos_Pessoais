@@ -3,11 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Route, Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
-import { finalize } from 'rxjs';
+import {  Router } from '@angular/router';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
-
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-login',
