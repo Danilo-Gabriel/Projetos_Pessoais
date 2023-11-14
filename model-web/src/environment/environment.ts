@@ -2,5 +2,5 @@
 export const environment = {
 
   production: false,
-  endPoint:"http://192.168.10.17:8080"
+  endPoint:"http://localhost:8080"
 };

@@ -28,7 +28,7 @@
 
 <mat-card-actions>
 
-  <button  mat-raised-button color="primary"  (click)="onSubmit()">Salvar</button> &nbsp;
+  <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()">Salvar</button> &nbsp;
 
   <button  mat-raised-button (click)="onCancel()">Cancelar</button>
 

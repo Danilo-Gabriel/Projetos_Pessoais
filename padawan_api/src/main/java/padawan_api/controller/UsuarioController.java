@@ -4,6 +4,7 @@ package padawan_api.controller;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -33,10 +34,12 @@ public class UsuarioController {
 
         try{
             DadosCadastroUsuarioDTO usuarioCadastrado = this.usuarioService.cadastrar(dados);
-            return ResponseEntity.ok(usuarioCadastrado);
+           // System.out.println(usuarioCadastrado);
+            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioCadastrado);
         }
 
         catch(Exception e){
+          //  System.out.println(e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
 

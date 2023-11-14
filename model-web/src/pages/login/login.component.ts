@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
 
     if (this.loginForm.valid) {
+
       const formData = this.loginForm.value;
       const backendUrl = environment.endPoint;
       const apiUrl = `${backendUrl}/auth/login`;

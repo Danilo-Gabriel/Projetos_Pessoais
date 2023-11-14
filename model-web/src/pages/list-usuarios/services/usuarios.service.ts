@@ -24,7 +24,6 @@ export class UsuariosService {
     return this.httpClient.get<Usuarios[]>(this.API)
     .pipe(
       first(),
-      delay(600),
       tap(usuarios => console.log(usuarios))
     );
 
