@@ -1,4 +1,4 @@
-export interface CadastroUsuario {
+export interface AddUsuario {
 
   login: string;
   senha: string;

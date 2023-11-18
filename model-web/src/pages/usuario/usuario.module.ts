@@ -6,11 +6,14 @@ import { SharedModule } from 'src/shared/shared.module';
 
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     AppPrimeNGModule,
     SharedModule
+  ],
+  declarations: [
+
+
   ]
 })
-export class ListUsuariosModule { }
+export class UsuarioModule { }

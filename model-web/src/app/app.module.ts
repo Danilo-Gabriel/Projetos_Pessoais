@@ -6,9 +6,12 @@ import { SharedModule } from 'src/shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListUsuariosComponent } from '../pages/list-usuarios/list-usuarios.component';
-import { HomeComponent } from '../pages/home/home.component';
-import { AddUsuariosComponent } from '../pages/add-usuarios/add-usuarios.component';
+import {LoginComponent} from "../pages/login/login.component";
+import {ListUsuarioComponent} from "../pages/usuario/list-usuario/list-usuario.component";
+import {EditUsuarioComponent} from "../pages/usuario/edit-usuario/edit-usuario.component";
+import {AddUsuarioComponent} from "../pages/usuario/add-usuario/add-usuario.component";
+import {HomeComponent} from "../pages/home/home.component";
+
 
 
 
@@ -16,9 +19,10 @@ import { AddUsuariosComponent } from '../pages/add-usuarios/add-usuarios.compone
 @NgModule({
   declarations: [
     AppComponent,
-    ListUsuariosComponent,
-    HomeComponent,
-    AddUsuariosComponent,
+    ListUsuarioComponent,
+    EditUsuarioComponent,
+    AddUsuarioComponent,
+    HomeComponent
 
   ],
   imports: [

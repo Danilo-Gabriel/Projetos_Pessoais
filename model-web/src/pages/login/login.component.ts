@@ -1,11 +1,10 @@
-import { environment } from './../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { environment } from 'src/environment/environment';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
-import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +15,13 @@ export class LoginComponent implements OnInit {
 
   public loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, public http: HttpClient, public dialog: MatDialog) {}
+
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    public http: HttpClient,
+    public dialog: MatDialog) {}
 
 
 
@@ -26,6 +31,8 @@ export class LoginComponent implements OnInit {
       login: ['', Validators.required],
       senha: ['', Validators.required]
     });
+
+
   }
 
   onSubmit() {
@@ -33,6 +40,10 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
 
       const formData = this.loginForm.value;
+
+      debugger
+
+      console.log(this.loginForm.value)
       const backendUrl = environment.endPoint;
       const apiUrl = `${backendUrl}/auth/login`;
 
@@ -56,7 +67,7 @@ export class LoginComponent implements OnInit {
 
   onSuccessfulLogin() {
 
-    this.router.navigate(['/pages/home']);
+    this.router.navigate(['pages/home']);
   }
 
 

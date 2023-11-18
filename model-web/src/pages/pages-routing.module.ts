@@ -2,20 +2,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from 'src/pages/home/home.component';
-import { ListUsuariosComponent } from './list-usuarios/list-usuarios.component';
-import { AddUsuariosComponent } from './add-usuarios/add-usuarios.component';
+import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
+import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
 
   {path:'', component:LoginComponent},
 
-  {path:'home/list', component: ListUsuariosComponent},
+  {path:'home', component:HomeComponent},
 
-  {path:'home/add-usuario', component: AddUsuariosComponent},
+  {path:'home/list-usuario', component: ListUsuarioComponent},
 
-  {path: 'home', component:HomeComponent}
+  {path:'home/add-usuario', component: AddUsuarioComponent},
+
+
 
 
 ]

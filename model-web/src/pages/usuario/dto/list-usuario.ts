@@ -1,4 +1,4 @@
-export interface Usuarios {
+export interface ListUsuario {
 
   _id: string;
   login: string;

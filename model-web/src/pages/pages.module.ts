@@ -5,7 +5,6 @@ import { SharedModule } from 'src/shared/shared.module';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { LoginComponent } from './login/login.component';
-import { AddUsuariosComponent } from './add-usuarios/add-usuarios.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
