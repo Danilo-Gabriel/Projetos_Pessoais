@@ -11,6 +11,8 @@ import {ListUsuarioComponent} from "../pages/usuario/list-usuario/list-usuario.c
 import {EditUsuarioComponent} from "../pages/usuario/edit-usuario/edit-usuario.component";
 import {AddUsuarioComponent} from "../pages/usuario/add-usuario/add-usuario.component";
 import {HomeComponent} from "../pages/home/home.component";
+import { LoginService } from 'src/pages/login/services/login.service';
+import { AuthGuard } from './guard/auth.guard';
 
 
 
@@ -33,7 +35,7 @@ import {HomeComponent} from "../pages/home/home.component";
     SharedModule
 
   ],
-  providers: [],
+  providers: [LoginService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

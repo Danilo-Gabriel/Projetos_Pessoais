@@ -1,10 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { environment } from 'src/environment/environment';
-import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
+
+import { LoginService } from './services/login.service';
+
 
 @Component({
   selector: 'app-login',
@@ -16,12 +14,10 @@ export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
 
 
-
   constructor(
+    private loginService : LoginService,
     private formBuilder: FormBuilder,
-    private router: Router,
-    public http: HttpClient,
-    public dialog: MatDialog) {}
+  ) {}
 
 
 
@@ -39,44 +35,13 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.valid) {
 
-      const formData = this.loginForm.value;
-
+      this.loginService.login(this.loginForm.value)
       debugger
-
-      console.log(this.loginForm.value)
-      const backendUrl = environment.endPoint;
-      const apiUrl = `${backendUrl}/auth/login`;
-
-
-      this.http.post<any>(apiUrl, formData, { responseType: 'text' as 'json'})
-      // .pipe(finalize(() => {}))
-      .subscribe(
-        (response) => {
-          this.onAviso(response)
-          this.onSuccessfulLogin();
-        },
-        (error) => {
-          // debugger
-          console.log("error: ", error)
-          this.onAviso(error.error);
-        }
-      );
+    }
+    else{
+      console.log("TRATA DEPOIS")
+    }
 
     }
   }
 
-  onSuccessfulLogin() {
-
-    this.router.navigate(['pages/home']);
-  }
-
-
- onAviso(avisoMsg: string)
- {
-  this.dialog.open(ErrorDialogComponent, {
-   data: avisoMsg
-  });
-}
-
-
-}

@@ -1,3 +1,4 @@
+import { AuthGuard } from 'src/app/guard/auth.guard';
 import { Component, OnInit } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
@@ -6,6 +7,7 @@ import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ListUsuarioService } from './service/list-usuario.service';
+import { LoginService } from 'src/pages/login/services/login.service';
 
 @Component({
   selector: 'app-list-usuario',
@@ -24,7 +26,8 @@ items: MenuItem[] | undefined;
 constructor(
   private listUsuarioService: ListUsuarioService,
   private router: Router,
-  public dialog: MatDialog){
+  public dialog: MatDialog,
+  private auth: LoginService){
 
   this.listUsuario$= this.listUsuarioService.list()
   .pipe(
@@ -44,8 +47,15 @@ ngOnInit(): void {
 
   this.items = [
     { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/pages/home'},
-    { label: 'Listar Usuario', icon: 'pi pi-fw pi-pencil', routerLink: '/pages/home/list-usuario'}
+    { label: 'Listar Usuario', icon: 'pi pi-fw pi-pencil', routerLink: '/pages/home/list-usuario'},
+    { label: 'logout', icon: 'pi pi-fw pi-home', routerLink: '/pages/'},
 ];
+
+}
+
+logout(){
+
+  this.auth.logout(false);
 
 }
 
