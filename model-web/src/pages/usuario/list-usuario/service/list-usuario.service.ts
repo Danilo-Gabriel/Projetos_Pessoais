@@ -29,4 +29,17 @@ list() {
 
 }
 
+getProductsData() {
+  return [
+      {
+          id: '001',
+          login: 'f230fh0g3',
+          ativo: true
+      }]
+    }
+
+    getProducts() {
+      return Promise.resolve(this.getProductsData());
+  }
+
 }

@@ -17,6 +17,7 @@ import { LoginService } from 'src/pages/login/services/login.service';
 export class ListUsuarioComponent implements OnInit {
 
 
+  listarUser! : ListUsuario[];
   listUsuario$: Observable<ListUsuario[]>;
 
   displayedColumns = ['login', 'situacao', 'actions'];
@@ -38,12 +39,31 @@ constructor(
   );
 
 
+  this.listUsuario$ = this.listUsuarioService.list()
+  .pipe(
+    catchError(error => {
+      this.onAviso('Error ao carregar')
+      return of([])
+    })
+  );
+
+  this.listUsuario$ = this.listUsuarioService.list()
+  .pipe(
+    catchError(error => {
+      this.onAviso('Error ao carregar')
+      return of([])
+    })
+  );
+
 
 }
 
 
-
 ngOnInit(): void {
+
+  this.listUsuarioService.getProducts().then((data) => {
+    this.listarUser = data;
+});
 
   this.items = [
     { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/pages/home'},

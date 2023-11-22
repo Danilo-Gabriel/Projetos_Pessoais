@@ -1,4 +1,28 @@
 <div class="card">
+  <p-table [value]="listarUser" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Name</th>
+              <th>Situação</th>
+              <!--<th>Quantity</th>-->
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-listar>
+          <tr>
+
+              <td>{{ listar.login }}</td>
+              <td>{{ listar.ativo }}</td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+
+
+
+
+
+
+<div class="card">
     <p-tabMenu [model]="items"></p-tabMenu>
 </div>
 
