@@ -9,9 +9,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 
+
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
 
 
   ],

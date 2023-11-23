@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AddUsuarioService } from './service/add-usuario.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-add-usuario',
@@ -9,8 +10,10 @@ import { AddUsuarioService } from './service/add-usuario.service';
   styleUrls: ['./add-usuario.component.scss']
 })
 export class AddUsuarioComponent implements OnInit {
+
   form!: FormGroup;
 
+  items: MenuItem[] | undefined;
   constructor(
     private router : Router,
     private formBuilder : FormBuilder,
@@ -25,6 +28,13 @@ export class AddUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.items = [
+      { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/pages/home'},
+      { label: 'Listar Usuario', icon: 'pi pi-fw pi-pencil', routerLink: '/pages/home/list-usuario'},
+      { label: 'logout', icon: 'pi pi-fw pi-home', routerLink: '/pages/'},
+  ];
+
 
   }
 

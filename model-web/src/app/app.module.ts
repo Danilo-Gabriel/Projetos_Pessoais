@@ -13,6 +13,7 @@ import {AddUsuarioComponent} from "../pages/usuario/add-usuario/add-usuario.comp
 import {HomeComponent} from "../pages/home/home.component";
 import { LoginService } from 'src/pages/login/services/login.service';
 import { AuthGuard } from './guard/auth.guard';
+import { HeaderComponent } from 'src/pages/header/header.component';
 
 
 
@@ -24,7 +25,8 @@ import { AuthGuard } from './guard/auth.guard';
     ListUsuarioComponent,
     EditUsuarioComponent,
     AddUsuarioComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent
 
   ],
   imports: [

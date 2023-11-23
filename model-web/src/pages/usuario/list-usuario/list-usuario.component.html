@@ -1,106 +1,72 @@
 <div class="card">
-  <p-table [value]="listarUser" [tableStyle]="{ 'min-width': '50rem' }">
-      <ng-template pTemplate="header">
-          <tr>
-              <th>Name</th>
-              <th>Situação</th>
-              <!--<th>Quantity</th>-->
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-listar>
-          <tr>
-
-              <td>{{ listar.login }}</td>
-              <td>{{ listar.ativo }}</td>
-          </tr>
-      </ng-template>
-  </p-table>
+  <p-tabMenu [model]="items"></p-tabMenu>
 </div>
 
 
 
+<mat-card class="tabelaCadastro">
 
-
-
-<div class="card">
-    <p-tabMenu [model]="items"></p-tabMenu>
-</div>
-
-<br>
-
-<mat-card>
 
     <mat-toolbar color="primary">Usuarios Cadastrado</mat-toolbar>
-    <div *ngIf="listUsuario$ | async as cursos; else loading">
 
 
-        <table mat-table [dataSource]="listUsuario$" class="mat-elevation-z8">
+  <div class="card" *ngIf="listUsuario$ | async as cursos; else loading">
+    <p-table
+     [value]="listUser"
+     [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Situação</th>
+                <th>
+                    <p-button (click)="onAdd()" label="Adicionar"></p-button>
+                </th>
+                <!--<th>Quantity</th>-->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-listar>
+            <tr>
 
-
-            <!-- Nome dos Usuarios -->
-            <ng-container matColumnDef="login">
-                <th mat-header-cell *matHeaderCellDef> Login</th>
-                <td mat-cell *matCellDef="let element"> {{element.login}} </td>
-            </ng-container>
-
-            <!-- Ativo -->
-            <ng-container matColumnDef="situacao">
-                <th mat-header-cell *matHeaderCellDef> Ativo</th>
-                <td mat-cell *matCellDef="let element"> {{element.ativo}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="actions">
-                <mat-header-cell *matHeaderCellDef>
-
-                    <p-button icon="pi pi-user" [rounded]="true" severity="info">
-
-                        <mat-icon (click)="onAdd()">add</mat-icon>
-
-                    </p-button>
-                </mat-header-cell>
-
-                <mat-cell *matCellDef="let curso">
-
-
+                <td>{{ listar.login }}</td>
+                <td>{{ listar.ativo }}</td>
+                <td>
                     <p-button icon="pi pi-user" [rounded]="true" severity="secondary">
 
-                        <mat-icon (click)="onAdd()">edit</mat-icon>
+                        <mat-icon (click)="onEdit()">edit</mat-icon>
 
-                    </p-button>
-
+                    </p-button> &nbsp;
 
                     <p-button  icon="pi pi-user" [rounded]="true" severity="danger">
 
-                        <mat-icon (click)="onAdd()">delete</mat-icon>
+                        <mat-icon (click)="onDelete()">delete</mat-icon>
 
                     </p-button>
-
-                </mat-cell>
-
-            </ng-container>
+                </td>
 
 
 
+            </tr>
+        </ng-template>
+
+    </p-table>
+</div>
 
 
+<ng-template #loading>
 
+    <div class="loading-spinner">
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <mat-spinner></mat-spinner>
 
-        </table>
     </div>
 
+</ng-template>
 
-    <ng-template #loading>
-        <div class="loading-spinner">
-
-            <mat-spinner></mat-spinner>
-
-        </div>
-
-    </ng-template>
-</mat-card>
 
 
 <div>

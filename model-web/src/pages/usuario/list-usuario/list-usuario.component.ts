@@ -16,13 +16,10 @@ import { LoginService } from 'src/pages/login/services/login.service';
 })
 export class ListUsuarioComponent implements OnInit {
 
-
-  listarUser! : ListUsuario[];
+  items: MenuItem[] | undefined;
+  listUser! : ListUsuario[];
   listUsuario$: Observable<ListUsuario[]>;
 
-  displayedColumns = ['login', 'situacao', 'actions'];
-
-items: MenuItem[] | undefined;
 
 constructor(
   private listUsuarioService: ListUsuarioService,
@@ -30,24 +27,11 @@ constructor(
   public dialog: MatDialog,
   private auth: LoginService){
 
+
+
+
+
   this.listUsuario$= this.listUsuarioService.list()
-  .pipe(
-    catchError(error => {
-      this.onAviso('Error ao carregar')
-      return of([])
-    })
-  );
-
-
-  this.listUsuario$ = this.listUsuarioService.list()
-  .pipe(
-    catchError(error => {
-      this.onAviso('Error ao carregar')
-      return of([])
-    })
-  );
-
-  this.listUsuario$ = this.listUsuarioService.list()
   .pipe(
     catchError(error => {
       this.onAviso('Error ao carregar')
@@ -61,9 +45,7 @@ constructor(
 
 ngOnInit(): void {
 
-  this.listUsuarioService.getProducts().then((data) => {
-    this.listarUser = data;
-});
+    this.obterDadosUsuario();
 
   this.items = [
     { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/pages/home'},
@@ -84,6 +66,14 @@ onAdd(){
   this.router.navigate(['pages/home/add-usuario'])
 }
 
+onEdit(){
+  this.router.navigate(['pages/home/edit-usuario'])
+}
+
+onDelete(){[
+ // this.router.navigate(['pages/home/deletar-usuario'])
+]}
+
 onAviso(errorMsg: string)
 {
  this.dialog.open(ErrorDialogComponent, {
@@ -92,4 +82,14 @@ onAviso(errorMsg: string)
 }
 
 
+    private obterDadosUsuario() {
+        this.listUsuarioService.obterUsuario().subscribe(
+            data => {
+                this.listUser = data;
+            },
+            error =>{
+                console.error('ERROR', error);
+            }
+        )
+    }
 }

@@ -6,6 +6,7 @@ import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.compon
 import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
+import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,9 @@ const routes: Routes = [
   {path:'home/list-usuario', component: ListUsuarioComponent, },
 
   {path:'home/add-usuario', component: AddUsuarioComponent, canActivate:[AuthGuard]},
+
+  {path:'home/edit-usuario', component: EditUsuarioComponent}
+
 
 
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
-import { AddUsuario } from '../../dto/add-usuario';
+
 import { first, tap } from 'rxjs';
 import { ListUsuario } from '../../dto/list-usuario';
 
@@ -29,17 +29,8 @@ list() {
 
 }
 
-getProductsData() {
-  return [
-      {
-          id: '001',
-          login: 'f230fh0g3',
-          ativo: true
-      }]
+
+    obterUsuario() {
+        return this.http.get<ListUsuario[]>(this.API)
     }
-
-    getProducts() {
-      return Promise.resolve(this.getProductsData());
-  }
-
 }
