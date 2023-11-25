@@ -16,7 +16,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { TableModule } from 'primeng/table';
-
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SidebarModule } from 'primeng/sidebar';
+import { DropdownModule } from 'primeng/dropdown';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 
 
@@ -39,8 +43,12 @@ import { TableModule } from 'primeng/table';
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  TableModule
-
+  TableModule,
+  MatSidenavModule,
+  MatDividerModule,
+  SidebarModule,
+  DropdownModule,
+  SplitButtonModule
 
 
  ]

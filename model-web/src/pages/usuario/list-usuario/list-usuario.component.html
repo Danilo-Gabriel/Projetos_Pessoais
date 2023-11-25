@@ -1,9 +1,4 @@
-<div class="card">
-  <p-tabMenu [model]="items"></p-tabMenu>
-</div>
-
-
-
+<app-home></app-home>
 <mat-card class="tabelaCadastro">
 
 
@@ -17,8 +12,8 @@
     [rows]="5"
     [showCurrentPageReport]="true"
     [tableStyle]="{ 'min-width': '50rem' }"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[10, 25, 50]">
+    currentPageReportTemplate="suarios {first} to {last} of {totalRecords} usuarios"
+    >
         <ng-template pTemplate="header">
             <tr>
                 <th>Name</th>
@@ -35,13 +30,13 @@
                 <td>{{ listar.login }}</td>
                 <td>{{ listar.ativo }}</td>
                 <td>
-                    <p-button icon="pi pi-user" [rounded]="true" severity="secondary">
+                    <p-button [rounded]="true" severity="secondary">
 
                         <mat-icon (click)="onEdit()">edit</mat-icon>
 
                     </p-button> &nbsp;
 
-                    <p-button  icon="pi pi-user" [rounded]="true" severity="danger">
+                    <p-button [rounded]="true" severity="danger">
 
                         <mat-icon (click)="onDelete()">delete</mat-icon>
 
@@ -87,16 +82,3 @@
 
 
 
-
-
-
-
-
-
-<footer class="footer">
-
-    <mat-toolbar color="primary">
-        <span></span>
-    </mat-toolbar>
-
-</footer>
