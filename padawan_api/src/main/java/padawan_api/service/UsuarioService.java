@@ -119,6 +119,13 @@ public class UsuarioService {
         return dados;
 
     }
+
+
+    public Optional<Usuario> listID(Long id) {
+
+        return this.repository.findById(id);
+        
+    }
 }
 
 

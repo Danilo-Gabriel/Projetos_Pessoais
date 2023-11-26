@@ -1,4 +1,4 @@
-<app-home></app-home>
+<app-header></app-header>
 <mat-card class="tabelaCadastro">
 
 
@@ -11,8 +11,8 @@
      [paginator]="true"
     [rows]="5"
     [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    currentPageReportTemplate="suarios {first} to {last} of {totalRecords} usuarios"
+    [tableStyle]="{ 'min-width': '10rem' }"
+    currentPageReportTemplate="usuarios {first} to {last} of {totalRecords} usuarios"
     >
         <ng-template pTemplate="header">
             <tr>
@@ -29,6 +29,7 @@
 
                 <td>{{ listar.login }}</td>
                 <td>{{ listar.ativo }}</td>
+
                 <td>
                     <p-button [rounded]="true" severity="secondary">
 

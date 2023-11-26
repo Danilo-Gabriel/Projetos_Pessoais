@@ -21,7 +21,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidebarModule } from 'primeng/sidebar';
 import { DropdownModule } from 'primeng/dropdown';
 import { SplitButtonModule } from 'primeng/splitbutton';
-
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
 
 
 
@@ -48,7 +50,11 @@ import { SplitButtonModule } from 'primeng/splitbutton';
   MatDividerModule,
   SidebarModule,
   DropdownModule,
-  SplitButtonModule
+  SplitButtonModule,
+  DynamicDialogModule,
+  ToastModule,
+  MessagesModule
+
 
 
  ]

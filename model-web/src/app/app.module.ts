@@ -1,4 +1,4 @@
-import { SidenavModule } from './../pages/sidenav/sidenav.module';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,7 +14,8 @@ import {HomeComponent} from "../pages/home/home.component";
 import { LoginService } from 'src/pages/login/services/login.service';
 import { AuthGuard } from './guard/auth.guard';
 import { HeaderComponent } from 'src/pages/header/header.component';
-import { SidenavComponent } from 'src/pages/sidenav/sidenav.component';
+
+
 
 
 
@@ -29,7 +30,6 @@ import { SidenavComponent } from 'src/pages/sidenav/sidenav.component';
     AddUsuarioComponent,
     HomeComponent,
     HeaderComponent,
-    SidenavComponent
 
   ],
   imports: [

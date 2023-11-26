@@ -1,1 +1,80 @@
-<h1>olá header</h1>
+<mat-toolbar>
+  <p>
+    PROJETO PADAWAN
+  </p>
+</mat-toolbar>
+<div>
+
+  <p-sidebar class="sidebar" [(visible)]="sidebarVisible">
+
+    <img class="avatar mat-elevation-z8" src="https://images7.alphacoders.com/131/1319607.jpeg"/>
+    <h4 class="nome"> Mandaloriano</h4>
+    <p class="funcao">Caçador: Como deve ser!</p>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/pages/home">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLink="/pages/home/list-usuario">
+      <mat-icon>person</mat-icon>
+      <span>Usuario</span>
+  </button>
+
+  <button mat-button class="menu-button" (click)="logout()" >
+    <mat-icon>logout</mat-icon>
+    <span>Sair</span>
+</button>
+
+</p-sidebar>
+
+
+
+</div>
+<p-button class="menu"  (click)="sidebarVisible = true" icon="pi pi-th-large"></p-button>
+
+<!---
+  <div class="content">
+
+
+
+  </div>
+-->
+
+<footer class="footer">
+
+  <mat-toolbar color="primary">
+    <span></span>
+  </mat-toolbar>
+
+</footer>
+
+<router-outlet></router-outlet>
+
+
+
+<!---
+                <h1> PARA FAZER</h1>
+
+                <h2>A fazer (2):</h2>
+
+                <p>Crud usuário (Cadastrar novo, alterar existente (Apenas login), excluir, inativar/ativar)</p>
+                <p>Utilizar novos popUps (https://primeng.org/toast)</p>
+                <p>Permitir trocar senha (Deve pedir senha atual, nova senha e confirmação de nova senha)</p>
+
+                <p>Carregamento de tela até reposta do backend</p>
+
+                <p>Botão de logout</p>
+
+                <p>Tratamento de rotas para usuário logado no frontend</p>
+
+
+
+
+                <h1>A fazer (3):</h1>
+
+
+                <p>Envio de senha por email.</p>
+-->

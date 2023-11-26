@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import padawan_api.domain.usuario.Usuario;
 import padawan_api.domain.usuario.dto.DadosAtualizaUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
@@ -57,6 +59,14 @@ public class UsuarioController {
 
             return ResponseEntity.badRequest().build();
         }
+
+    }
+
+    @GetMapping("/{id}")
+    public  ResponseEntity<Usuario> listarUserID(@PathVariable Long id){
+
+        return usuarioService.listID(id).map(record -> ResponseEntity.ok().body(record))
+        .orElse(ResponseEntity.notFound().build());
 
     }
 

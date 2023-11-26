@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
+
+
+<!--  INSERINDO COLUNAS NA TABELA USUARIO -->
+
+   
+   <changeSet author="daniloGabriel" id="1"> 
+    <addColumn tableName="usuarios">
+
+        <column name="nome_login" type="varchar(255)"></column>
+        <column name="email" type="varchar(255)"></column>  
+        <column name="cpf" type="char(11)"></column>
+        <column name="telefone" type="varchar(255)"></column>  
+    </addColumn>  
+</changeSet>
+
+
+<!--  RENOMEANDO COLUNA -->
+
+<changeSet  author="daniloGabriel"  id="2">  
+    <renameColumn
+            newColumnName="nome_completo"  
+            oldColumnName="login"    
+            tableName="person"/>  
+</changeSet>
+
+
+
+
+
+</databaseChangeLog>
