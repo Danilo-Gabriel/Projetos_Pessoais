@@ -5,9 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
 import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from 'src/app/guard/auth.guard';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
-import { HeaderComponent } from './header/header.component';
-
 
 
 const routes: Routes = [
@@ -22,13 +21,13 @@ const routes: Routes = [
 
   {path:'home/edit-usuario', component: EditUsuarioComponent},
 
-  {path:'#', component: HeaderComponent},
 
 
 
 
 
 
+  {path:'home/edit-usuario', component:EditUsuarioComponent}
 
 
 

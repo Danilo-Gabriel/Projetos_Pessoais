@@ -8,17 +8,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
 import padawan_api.domain.usuario.Usuario;
 import padawan_api.domain.usuario.dto.DadosAtualizaUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
 
+import padawan_api.repository.UsuarioRepository;
 import padawan_api.service.UsuarioService;
 
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -47,6 +48,7 @@ public class UsuarioController {
 
 
     }
+
 
     @GetMapping("/list")
     public ResponseEntity<List<DadosListagemUsuarioDTO>> list(){

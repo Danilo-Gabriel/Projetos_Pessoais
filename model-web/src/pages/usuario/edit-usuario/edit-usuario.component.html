@@ -1,4 +1,3 @@
-<app-header></app-header>
 <mat-card class="tabelaCadastro">
 
   <mat-card-header>
@@ -7,13 +6,30 @@
 
   </mat-card-header>
   <mat-card-content>
+  <form [formGroup]="form">
 
+    <br>
+    <mat-form-field class="full-width">
+
+      <input matInput placeholder="Nome" formControlName="login">
+
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+
+      <input matInput type="password" placeholder="Senha" formControlName="senha">
+
+    </mat-form-field>
+
+  </form>
 
 </mat-card-content>
 
 <mat-card-actions>
 
+  <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()">Salvar</button> &nbsp;
 
+  <button  mat-raised-button (click)="onCancel()">Cancelar</button>
 
 </mat-card-actions>
 </mat-card>
@@ -21,6 +37,15 @@
 
 
 
+      <!-- ADICIOANR OPÇÕES SELECIONAVES
 
 
-<router-outlet></router-outlet>
+      <mat-label>Senha</mat-label>
+      <mat-select formControlName="senha">
+        <mat-option value="null"></mat-option>
+        <mat-option value="Front-end">Front-end</mat-option>
+        <mat-option value="Back-end">Backe-end</mat-option>
+      </mat-select>
+      -->
+
+      <router-outlet></router-outlet>

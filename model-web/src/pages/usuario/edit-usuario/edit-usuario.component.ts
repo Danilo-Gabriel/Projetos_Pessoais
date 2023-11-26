@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { EditUsuarioService } from './service/edit-usuario.service';
 
 @Component({
   selector: 'app-edit-usuario',
@@ -7,20 +9,43 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./edit-usuario.component.scss']
 })
 export class EditUsuarioComponent implements OnInit {
+  form!: FormGroup;
 
+  constructor(
+    private router : Router,
+    private formBuilder : FormBuilder,
+    private editService : EditUsuarioService)
 
-  items: MenuItem[] | undefined;
-
-  constructor() { }
-
-  ngOnInit() {
-
-    this.items = [
-      { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/pages/home'},
-      { label: 'Listar Usuario', icon: 'pi pi-fw pi-pencil', routerLink: '/pages/home/list-usuario'},
-      { label: 'logout', icon: 'pi pi-fw pi-home', routerLink: '/pages/'},
-  ];
+    {
+    this.form = this.formBuilder.group({
+      login: ['', Validators.required],
+      //senha: ['', Validators.required]
+    });
 
   }
+
+  ngOnInit(): void {
+
+  }
+
+  onSubmit(){
+
+    if(this.form.valid){
+      this.editService.atualizar(this.form.value);
+    }else{
+      console.log("ERRO, TRATAR DEPOIS")
+    }
+
+  }
+
+
+
+
+  onCancel(){
+
+    this.router.navigate(['pages/home/list-usuario']);
+
+  }
+
 
 }

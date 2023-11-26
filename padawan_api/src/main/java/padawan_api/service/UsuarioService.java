@@ -65,8 +65,6 @@ public class UsuarioService {
         return repository.findAllByAtivoTrue().stream().map(DadosListagemUsuarioDTO::new).toList();
     }
 
-
-
     /*
     public Page<DadosListagemUsuarioDTO> listUsuario(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
 
