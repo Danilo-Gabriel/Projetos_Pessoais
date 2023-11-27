@@ -30,7 +30,7 @@ public class LoginController {
        try{
 
           this.usuarioService.validarLogin(dados);
-          return ResponseEntity.ok().body("LOGIN CORRETO");
+          return ResponseEntity.ok(dados);
   
        } catch(Exception e){
 

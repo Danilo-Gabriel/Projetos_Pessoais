@@ -66,8 +66,8 @@ onAdd(){
   this.router.navigate(['pages/home/add-usuario'])
 }
 
-onEdit(){
-  this.router.navigate(['pages/home/edit-usuario'])
+onEdit(usuario: ListUsuario){
+  this.router.navigate([`pages/home/edit-usuario/${usuario.id}`])
 }
 
 onDelete(){[

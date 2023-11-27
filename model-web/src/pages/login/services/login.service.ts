@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
 
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,27 +18,26 @@ export class LoginService {
 
   private readonly apiUrl = `${this.backendUrl}/auth/login`;
 
-  private usuarioAutenticado : boolean = false;
-
   constructor(
     private http : HttpClient,
     private router : Router,
     private dialog : MatDialog
+
   )
   { }
 
 
   logout(dados : boolean){
 
-    this.usuarioAutenticado = dados;
     this.router.navigate([ '/pages'])
   }
 
 
   isAutenticado(){
-
-      return this.usuarioAutenticado;
+    let usuarioLogado: any = localStorage.getItem("usuario-logado")
+    return usuarioLogado!=null;
   }
+
 
 
   login(record : AddUsuario){
@@ -44,22 +46,26 @@ export class LoginService {
       // .pipe(finalize(() => {}))
       .subscribe(
         (response) => {
-          this.usuarioAutenticado = true;
+          localStorage.setItem("usuario-logado", response)
           this.router.navigate(['pages/home']);
+
         },
         (error) => {
           // debugger
 
           console.log("error: ", error)
-          this.usuarioAutenticado = false;
           this.onAviso(error.error);
+
         }
       );
 
 
-
-
   }
+
+
+
+
+
 
  onAviso(avisoMsg: string)
  {

@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoginService } from './services/login.service';
+import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
+
+
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: []
 })
 export class LoginComponent implements OnInit {
 
@@ -17,7 +21,12 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService : LoginService,
     private formBuilder: FormBuilder,
-  ) {}
+
+
+  ) {
+
+  }
+
 
 
 
@@ -36,7 +45,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
 
       this.loginService.login(this.loginForm.value)
-      debugger
+
+      // debugger
     }
     else{
       console.log("TRATA DEPOIS")

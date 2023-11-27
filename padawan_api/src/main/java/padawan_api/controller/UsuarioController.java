@@ -54,6 +54,7 @@ public class UsuarioController {
     public ResponseEntity<List<DadosListagemUsuarioDTO>> list(){
 
         try {
+            Thread.sleep(2000);
            List<DadosListagemUsuarioDTO> listarUsuario = this.usuarioService.listarUsuario();
            
            return ResponseEntity.ok().body(listarUsuario);

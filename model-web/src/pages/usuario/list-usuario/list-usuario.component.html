@@ -24,14 +24,14 @@
                 <!--<th>Quantity</th>-->
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-listar>
+        <ng-template pTemplate="body" let-usuario>
             <tr>
 
-                <td>{{ listar.login }}</td>
-                <td>{{ listar.ativo }}</td>
+                <td>{{ usuario.login }}</td>
+                <td>{{ usuario.ativo }}</td>
 
                 <td>
-                    <p-button (click)="onEdit()" [rounded]="true" severity="secondary">
+                    <p-button (click)="onEdit(usuario)" [rounded]="true" severity="secondary">
 
                         <mat-icon >edit</mat-icon>
 
