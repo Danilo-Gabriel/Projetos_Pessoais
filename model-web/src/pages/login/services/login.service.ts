@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
+import { MessageService } from 'primeng/api';
+import { catchError, throwError } from 'rxjs';
 
 
 
@@ -21,7 +23,8 @@ export class LoginService {
   constructor(
     private http : HttpClient,
     private router : Router,
-    private dialog : MatDialog
+    private dialog : MatDialog,
+    private messageService : MessageService
 
   )
   { }
@@ -43,27 +46,28 @@ export class LoginService {
   login(record : AddUsuario){
 
     this.http.post<any>(this.apiUrl, record, { responseType: 'text' as 'json'})
-      // .pipe(finalize(() => {}))
-      .subscribe(
-        (response) => {
-          localStorage.setItem("usuario-logado", response)
-          this.router.navigate(['pages/home']);
+    .subscribe(
+      (response) => {
+        localStorage.setItem('usuario-logado', response);
+        //this.messageService.add({
+        //  severity: 'success',
+        //  summary: 'Sucesso',
+        //  detail: response
+        //  });
 
-        },
-        (error) => {
-          // debugger
+       this.router.navigate(['/pages/home']);
+      },
+      (error) => {
+        console.error('error: ', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: error.error
+        });
 
-          console.log("error: ", error)
-          this.onAviso(error.error);
-
-        }
-      );
-
-
-  }
-
-
-
+      }
+    );
+}
 
 
 
@@ -75,4 +79,4 @@ export class LoginService {
 }
 
 
-}
+  }

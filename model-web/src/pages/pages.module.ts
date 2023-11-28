@@ -6,6 +6,7 @@ import { SharedModule } from 'src/shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppPrimeNGModule,
     SharedModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers:[]
 })
 export class PagesModule { }

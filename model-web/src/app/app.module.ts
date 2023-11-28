@@ -14,6 +14,7 @@ import {HomeComponent} from "../pages/home/home.component";
 import { LoginService } from 'src/pages/login/services/login.service';
 import { AuthGuard } from './guard/auth.guard';
 import { HeaderComponent } from 'src/pages/header/header.component';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -31,6 +32,7 @@ import { HeaderComponent } from 'src/pages/header/header.component';
     HomeComponent,
     HeaderComponent,
 
+
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,7 @@ import { HeaderComponent } from 'src/pages/header/header.component';
     SharedModule
 
   ],
-  providers: [LoginService, AuthGuard],
+  providers: [LoginService, AuthGuard, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

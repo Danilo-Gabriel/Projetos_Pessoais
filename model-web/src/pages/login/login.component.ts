@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoginService } from './services/login.service';
-import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
 
 
 
