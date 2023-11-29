@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
 import { AddUsuario} from '../../dto/add-usuario';
-import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
+import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +13,9 @@ export class AddUsuarioService {
 constructor(
 
   private http : HttpClient,
-  private dialog: MatDialog,
-  private router : Router
+  //private dialog: MatDialog,
+  private router : Router,
+  private message : AppMessageService
 
   ) {
 
@@ -30,22 +30,26 @@ save(record: AddUsuario ){
   return this.http.post<AddUsuario>(this.API, record)
   .subscribe(
     (response) => {
-    this.onAviso("Usuario Cadastrado");
-     this.router.navigate(['/pages/home/list']);
+      this.message.showSuccess(response.login),
+      this.router.navigate(['/pages/home/list-usuario']);
+      //this.onAviso(response)
   },
   (error) => {
-    this.onAviso(error.error);
+    this.message.showError(error.message);
+    //this.onAviso(error.error)
   }
 );
 }
 
 
+/*
 onAviso(avisoMsg: string)
 {
  this.dialog.open(ErrorDialogComponent, {
   data: avisoMsg
  });
 }
+*/
 
 
 }

@@ -1,13 +1,10 @@
-import { AuthGuard } from 'src/app/guard/auth.guard';
 import { Component, OnInit } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
-import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
 import { ListUsuario } from '../dto/list-usuario';
-import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 import { ListUsuarioService } from './service/list-usuario.service';
 import { LoginService } from 'src/pages/login/services/login.service';
+import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 
 @Component({
   selector: 'app-list-usuario',
@@ -16,7 +13,6 @@ import { LoginService } from 'src/pages/login/services/login.service';
 })
 export class ListUsuarioComponent implements OnInit {
 
-  items: MenuItem[] | undefined;
   listUser! : ListUsuario[];
   listUsuario$: Observable<ListUsuario[]>;
 
@@ -24,8 +20,9 @@ export class ListUsuarioComponent implements OnInit {
 constructor(
   private listUsuarioService: ListUsuarioService,
   private router: Router,
-  public dialog: MatDialog,
-  private auth: LoginService){
+ //public dialog: MatDialog,
+  private loginService: LoginService,
+  private message : AppMessageService){
 
 
 
@@ -34,7 +31,7 @@ constructor(
   this.listUsuario$= this.listUsuarioService.list()
   .pipe(
     catchError(error => {
-      this.onAviso('Error ao carregar')
+      this.message.showError(error)
       return of([])
     })
   );
@@ -47,17 +44,11 @@ ngOnInit(): void {
 
     this.obterDadosUsuario();
 
-  this.items = [
-    { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/pages/home'},
-    { label: 'Listar Usuario', icon: 'pi pi-fw pi-pencil', routerLink: '/pages/home/list-usuario'},
-    { label: 'logout', icon: 'pi pi-fw pi-home', routerLink: '/pages/'},
-];
-
 }
 
 logout(){
 
-  this.auth.logout(false);
+  this.loginService.logout(false);
 
 }
 
@@ -74,12 +65,15 @@ onDelete(){[
  // this.router.navigate(['pages/home/deletar-usuario'])
 ]}
 
+
+/*
 onAviso(errorMsg: string)
 {
  this.dialog.open(ErrorDialogComponent, {
   data: errorMsg
  });
 }
+*/
 
 
     private obterDadosUsuario() {

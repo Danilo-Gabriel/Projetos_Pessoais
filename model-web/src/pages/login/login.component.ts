@@ -41,16 +41,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    if (this.loginForm.valid) {
-
-      this.loginService.login(this.loginForm.value)
-
-      // debugger
-    }
-    else{
-      console.log("TRATA DEPOIS")
-    }
-
+      this.loginService.login(this.loginForm.value);
     }
   }
 

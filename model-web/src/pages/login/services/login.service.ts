@@ -3,10 +3,7 @@ import { environment } from 'src/environment/environment';
 import { AddUsuario } from 'src/pages/usuario/dto/add-usuario';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
-import { MessageService } from 'primeng/api';
-import { catchError, throwError } from 'rxjs';
+import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 
 
 
@@ -23,8 +20,8 @@ export class LoginService {
   constructor(
     private http : HttpClient,
     private router : Router,
-    private dialog : MatDialog,
-    private messageService : MessageService
+    //private dialog : MatDialog,
+    private messageService : AppMessageService
 
   )
   { }
@@ -48,35 +45,29 @@ export class LoginService {
     this.http.post<any>(this.apiUrl, record, { responseType: 'text' as 'json'})
     .subscribe(
       (response) => {
-        localStorage.setItem('usuario-logado', response);
-        //this.messageService.add({
-        //  severity: 'success',
-        //  summary: 'Sucesso',
-        //  detail: response
-        //  });
-
-       this.router.navigate(['/pages/home']);
+        localStorage.setItem('usuario-logado', response),
+        this.messageService.showSuccess("Login Correto"),
+        this.router.navigate(['/pages/home']);
+        //this.onAviso(response)
       },
       (error) => {
-        console.error('error: ', error);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Erro',
-          detail: error.error
-        });
-
+        console.error('error: ', error),
+        this.messageService.showError(error.error);
+        //this.onAviso(response)
       }
     );
 }
 
 
 
+/*
  onAviso(avisoMsg: string)
  {
   this.dialog.open(ErrorDialogComponent, {
    data: avisoMsg
   });
 }
+*/
 
 
-  }
+}

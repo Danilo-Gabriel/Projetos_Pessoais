@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
 import { EditUsuario } from '../../dto/edit-usuario';
-import { ErrorDialogComponent } from 'src/shared/components/error-dialog/error-dialog.component';
+import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,8 @@ export class EditUsuarioService {
   constructor(
 
     private http : HttpClient,
-    private dialog: MatDialog,
+    private message : AppMessageService,
+    //private dialog: MatDialog,
     private router : Router
 
     ) {
@@ -30,22 +31,27 @@ export class EditUsuarioService {
     return this.http.put<EditUsuario>(this.API, record)
     .subscribe(
       (response) => {
-      this.onAviso("Usuario Atualizado");
+      this.message.showSuccess("Usuario Atualizado"),
        this.router.navigate(['/pages/home/list']);
     },
     (error) => {
-      this.onAviso(error.error);
+       this.message.showError(error)
+      //this.onAviso(error.error);
+
     }
   );
   }
 
 
+
+  /*
   onAviso(avisoMsg: string)
   {
    this.dialog.open(ErrorDialogComponent, {
     data: avisoMsg
    });
   }
+  */
 
 
   }
