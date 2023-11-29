@@ -14,12 +14,12 @@ import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
 
-import padawan_api.repository.UsuarioRepository;
+
 import padawan_api.service.UsuarioService;
 
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @RestController
@@ -101,7 +101,7 @@ public class UsuarioController {
     public  ResponseEntity<?> atualizar(@RequestBody @Valid DadosAtualizaUsuarioDTO dados) {
 
         try{
-           DadosAtualizaUsuarioDTO atualizarUsuario = this.usuarioService.atualizar(dados);
+           this.usuarioService.atualizar(dados);
            return ResponseEntity.ok(dados);
         }
         catch(Exception e){
