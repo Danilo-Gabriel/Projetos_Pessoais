@@ -21,7 +21,7 @@ export class EditUsuarioComponent implements OnInit {
   constructor(
     private router : Router,
     private formBuilder : FormBuilder,
-    private editService : EditUsuarioService,
+    private service : EditUsuarioService,
     private route: ActivatedRoute,
     private location : Location
   )
@@ -38,7 +38,7 @@ export class EditUsuarioComponent implements OnInit {
 
     this.routeSub = this.route.params.subscribe(params => {
       this.idUsuario = params['idUsuario']
-      this.editService.buscarID(params['idUsuario']).subscribe(
+      this.service.buscarID(params['idUsuario']).subscribe(
         dados => {
           this.usuario = dados;
           this.form.patchValue({
@@ -53,8 +53,8 @@ export class EditUsuarioComponent implements OnInit {
 
     if(this.form.valid){
 
-      this.editService.atualizar({
-        _id : this.idUsuario,
+      this.service.atualizar({
+        id : this.idUsuario,
         login : this.form.value.login,
         senha : this.form.value.senha,
       });

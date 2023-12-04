@@ -17,7 +17,7 @@ export class AddUsuarioComponent implements OnInit {
   constructor(
     //private router : Router,
     private formBuilder : FormBuilder,
-    private addService : AddUsuarioService,
+    private service : AddUsuarioService,
     private location : Location)
 
     {
@@ -36,7 +36,7 @@ export class AddUsuarioComponent implements OnInit {
   onSubmit(){
 
     if(this.form.valid){
-      this.addService.save(this.form.value);
+      this.service.save(this.form.value);
     }else{
       console.log("ERRO, TRATAR DEPOIS")
     }

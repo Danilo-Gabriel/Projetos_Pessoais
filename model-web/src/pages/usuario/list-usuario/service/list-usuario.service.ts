@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
 
 import { first, tap } from 'rxjs';
-import { ListUsuario } from '../../dto/list-usuario';
+import { Usuario } from '../../dto/detalhamentoUsuario';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ constructor(public http: HttpClient) { }
 
 list() {
 
-  return this.http.get<ListUsuario[]>(this.API)
+  return this.http.get<Usuario[]>(this.API)
   .pipe(
     first(),
     tap(usuarios => console.log(usuarios))
@@ -31,6 +31,6 @@ list() {
 
 
     obterUsuario() {
-        return this.http.get<ListUsuario[]>(this.API)
+        return this.http.get<Usuario[]>(this.API)
     }
 }

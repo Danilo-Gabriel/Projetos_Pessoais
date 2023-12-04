@@ -8,6 +8,7 @@ import padawan_api.domain.usuario.dto.DadosAtualizaUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
+import padawan_api.domain.usuario.dto.DadosLoginUsuarioDTO;
 import padawan_api.repository.UsuarioRepository;
 
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repository;
 
-    public void validarLogin(DadosCadastroUsuarioDTO dados) throws Exception{
+    public void validarLogin(DadosLoginUsuarioDTO dados) throws Exception{
 
         Optional<Usuario> usuarioOptional = repository.findByLogin(dados.login());
 

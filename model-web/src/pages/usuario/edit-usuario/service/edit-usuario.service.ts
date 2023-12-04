@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
-import { EditUsuario } from '../../dto/edit-usuario';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
+import { Usuario } from '../../dto/detalhamentoUsuario';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,6 @@ export class EditUsuarioService {
 
     private http : HttpClient,
     private message : AppMessageService,
-    //private dialog: MatDialog,
     private router : Router
 
     ) {
@@ -26,9 +24,9 @@ export class EditUsuarioService {
   private backendURL = environment.endPoint;
   private readonly API = `${this.backendURL}/usuarios/atualizar`
 
-  atualizar(record: EditUsuario ){
+  atualizar(record: Usuario ){
 
-    return this.http.put<EditUsuario>(this.API, record)
+    return this.http.put<Usuario>(this.API, record)
     .subscribe(
       (response) => {
       this.message.showSuccess("Usuario Atualizado");
@@ -44,7 +42,7 @@ export class EditUsuarioService {
 
   buscarID(id : string){
 
-    return this.http.get<EditUsuario>(`${this.API}/${id}`)
+    return this.http.get<Usuario>(`${this.API}/${id}`)
   }
 
 

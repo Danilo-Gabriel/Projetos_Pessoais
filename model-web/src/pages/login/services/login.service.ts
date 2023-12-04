@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
-import { AddUsuario } from 'src/pages/usuario/dto/add-usuario';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
+import { Login } from '../dto/detalhamentoLogin';
 
 
 
@@ -20,8 +20,6 @@ export class LoginService {
   constructor(
     private http : HttpClient,
     private router : Router,
-    private route : ActivatedRoute,
-    //private dialog : MatDialog,
     private messageService : AppMessageService
 
   )
@@ -41,7 +39,7 @@ export class LoginService {
 
 
 
-  login(record : AddUsuario){
+  login(record : Login){
 
     this.http.post<any>(this.apiUrl, record, { responseType: 'text' as 'json'})
     .subscribe(

@@ -42,7 +42,7 @@ public class Usuario {
    
     private String senha;
     
-   private Boolean ativo;
+    private Boolean ativo;
 
     public Usuario(DadosCadastroUsuarioDTO dados) {
         this.login = dados.login();

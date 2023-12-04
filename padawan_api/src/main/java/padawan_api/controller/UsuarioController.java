@@ -33,7 +33,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository repository;
 
-    @PostMapping("/cadastrar")
+    @PostMapping("cadastrar")
     @Transactional
     public ResponseEntity<?> cadastrar(@RequestBody @Valid DadosCadastroUsuarioDTO dados){
 
@@ -52,7 +52,7 @@ public class UsuarioController {
     }
 
 
-    @GetMapping("/list")
+    @GetMapping("list")
     public ResponseEntity<List<DadosListagemUsuarioDTO>> list(){
 
         try {
@@ -118,11 +118,22 @@ public class UsuarioController {
     @DeleteMapping("deletar/{id}")
     public ResponseEntity<?> deletarID(@PathVariable Long id){
 
-        this.usuarioService.deletar(id);
+        try{
 
-        return ResponseEntity.ok().body(id);
+            this.usuarioService.deletar(id);
+            return ResponseEntity.ok().body("usuario deletado");
+
+        }catch(Exception e){
+
+             return ResponseEntity.badRequest().body(e.getMessage());
+        }
+      
+
+      
     }
 
+
+    /* 
     @DeleteMapping("inativar/{login}")
     @Transactional
     public ResponseEntity<?> inativo(@PathVariable DadosInativarUsuarioDTO login) {
@@ -137,6 +148,7 @@ public class UsuarioController {
 
         }
     }
+    */
 
 
 }

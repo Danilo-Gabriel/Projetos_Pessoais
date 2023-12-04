@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
-import { AddUsuario} from '../../dto/add-usuario';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
+import { Usuario } from '../../dto/detalhamentoUsuario';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +25,9 @@ constructor(
 private backendURL = environment.endPoint;
 private readonly API = `${this.backendURL}/usuarios/cadastrar`
 
-save(record: AddUsuario ){
+save(record: Usuario ){
 
-  return this.http.post<AddUsuario>(this.API, record)
+  return this.http.post<Usuario>(this.API, record)
   .subscribe(
     (response) => {
       this.message.showSuccess(`Usuario: ${response.login} cadastrado`),

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
+import padawan_api.domain.usuario.dto.DadosLoginUsuarioDTO;
 import padawan_api.service.UsuarioService;
 
 @RestController
@@ -25,7 +26,7 @@ public class LoginController {
     UsuarioService usuarioService;
     @PostMapping("/login")
 
-   public ResponseEntity<?> login(@RequestBody @Valid DadosCadastroUsuarioDTO dados){
+   public ResponseEntity<?> login(@RequestBody @Valid DadosLoginUsuarioDTO dados){
         
        try{
 

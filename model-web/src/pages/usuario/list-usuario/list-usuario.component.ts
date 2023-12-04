@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
-import { ListUsuario } from '../dto/list-usuario';
+import {  Usuario } from '../dto/detalhamentoUsuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListUsuarioService } from './service/list-usuario.service';
 import { LoginService } from 'src/pages/login/services/login.service';
@@ -13,23 +13,23 @@ import { AppMessageService } from 'src/shared/components/app-message/app-message
 })
 export class ListUsuarioComponent implements OnInit {
 
-  listUser! : ListUsuario[];
-  listUsuario$: Observable<ListUsuario[]>;
+  listUser! : Usuario[];
+  listUsuario$: Observable<Usuario[]>;
 
 
 constructor(
-  private listUsuarioService: ListUsuarioService,
+  private service: ListUsuarioService,
   private router: Router,
   private route : ActivatedRoute,
  //public dialog: MatDialog,
-  private loginService: LoginService,
+  private serviceLogin: LoginService,
   private message : AppMessageService){
 
 
 
 
 
-  this.listUsuario$= this.listUsuarioService.list()
+  this.listUsuario$= this.service.list()
   .pipe(
     catchError(error => {
       this.message.showError(error)
@@ -49,7 +49,7 @@ ngOnInit(): void {
 
 logout(){
 
-  this.loginService.logout(false);
+  this.serviceLogin.logout(false);
 
 }
 
@@ -59,14 +59,14 @@ onAdd(){
 
 }
 
-onEdit(usuario: ListUsuario){
+onEdit(usuario: Usuario){
 
   this.router.navigate([`edit/${usuario.id}`], {relativeTo : this.route})
 }
 
-onDelete(usuario : ListUsuario){[
+onDelete(record : Usuario){[
 
- this.router.navigate([`remover/${usuario.id}`], {relativeTo : this.route})
+ //this.router.navigate([`remover/${usuario.id}`], {relativeTo : this.route})
 ]}
 
 
@@ -81,7 +81,7 @@ onAviso(errorMsg: string)
 
 
     private obterDadosUsuario() {
-        this.listUsuarioService.obterUsuario().subscribe(
+        this.service.obterUsuario().subscribe(
             data => {
                 this.listUser = data;
             },
