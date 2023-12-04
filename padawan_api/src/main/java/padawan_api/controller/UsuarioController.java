@@ -13,8 +13,7 @@ import padawan_api.domain.usuario.dto.DadosAtualizaUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
-
-
+import padawan_api.repository.UsuarioRepository;
 import padawan_api.service.UsuarioService;
 
 
@@ -30,6 +29,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private UsuarioRepository repository;
 
     @PostMapping("/cadastrar")
     @Transactional
@@ -54,7 +56,7 @@ public class UsuarioController {
     public ResponseEntity<List<DadosListagemUsuarioDTO>> list(){
 
         try {
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
            List<DadosListagemUsuarioDTO> listarUsuario = this.usuarioService.listarUsuario();
            
            return ResponseEntity.ok().body(listarUsuario);
@@ -65,7 +67,7 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("atualizar/{id}")
     public  ResponseEntity<Usuario> listarUserID(@PathVariable Long id){
 
         return usuarioService.listID(id).map(record -> ResponseEntity.ok().body(record))
@@ -111,7 +113,17 @@ public class UsuarioController {
 
     }
 
-    @DeleteMapping("/inativar/{login}")
+
+
+    @DeleteMapping("deletar/{id}")
+    public ResponseEntity<?> deletarID(@PathVariable Long id){
+
+        this.usuarioService.deletar(id);
+
+        return ResponseEntity.ok().body(id);
+    }
+
+    @DeleteMapping("inativar/{login}")
     @Transactional
     public ResponseEntity<?> inativo(@PathVariable DadosInativarUsuarioDTO login) {
 

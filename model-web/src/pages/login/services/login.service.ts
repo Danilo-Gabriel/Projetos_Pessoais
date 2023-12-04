@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
 import { AddUsuario } from 'src/pages/usuario/dto/add-usuario';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 
 
@@ -20,6 +20,7 @@ export class LoginService {
   constructor(
     private http : HttpClient,
     private router : Router,
+    private route : ActivatedRoute,
     //private dialog : MatDialog,
     private messageService : AppMessageService
 

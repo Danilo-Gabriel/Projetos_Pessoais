@@ -8,7 +8,7 @@ const routes: Routes = [
 
   {path: '', pathMatch: 'full', redirectTo: 'pages'}
   ,
-  { path:'pages',
+  {path:'pages',
     loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule)}
 
 ];

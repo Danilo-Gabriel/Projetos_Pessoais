@@ -1,7 +1,7 @@
 import { LoginService } from './../../pages/login/services/login.service';
 
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree, ResolveFn } from '@angular/router';
 import { Observable } from 'rxjs';
 
 

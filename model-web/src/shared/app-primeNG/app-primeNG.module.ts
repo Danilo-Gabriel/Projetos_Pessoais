@@ -24,6 +24,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import { CardModule } from 'primeng/card';
 
 
 
@@ -54,7 +55,8 @@ import { MessagesModule } from 'primeng/messages';
   SplitButtonModule,
   DynamicDialogModule,
   ToastModule,
-  MessagesModule
+  MessagesModule,
+  CardModule
 
 
 

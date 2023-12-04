@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { AddUsuarioService } from './service/add-usuario.service';
 
@@ -14,9 +15,10 @@ export class AddUsuarioComponent implements OnInit {
   form!: FormGroup;
 
   constructor(
-    private router : Router,
+    //private router : Router,
     private formBuilder : FormBuilder,
-    private addService : AddUsuarioService)
+    private addService : AddUsuarioService,
+    private location : Location)
 
     {
     this.form = this.formBuilder.group({
@@ -43,7 +45,8 @@ export class AddUsuarioComponent implements OnInit {
 
   onCancel(){
 
-    this.router.navigate(['pages/home/list-usuario']);
+    this.location.back();
+    //this.router.navigate(['pages/home/list-usuario']);
 
   }
 

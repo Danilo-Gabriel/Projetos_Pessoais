@@ -1,4 +1,4 @@
-<mat-card class="tabelaCadastro">
+<mat-card class="editarUsuario">
 
   <mat-card-header>
 
@@ -6,9 +6,11 @@
 
   </mat-card-header>
   <mat-card-content>
-  <form [formGroup]="form">
+  <form [formGroup]="form" >
 
     <br>
+
+
     <mat-form-field class="full-width">
 
       <input matInput placeholder="Nome" formControlName="login">
@@ -27,7 +29,7 @@
 
 <mat-card-actions>
 
-  <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()">Salvar</button> &nbsp;
+  <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()">Atualizar</button> &nbsp;
 
   <button  mat-raised-button (click)="onCancel()">Cancelar</button>
 

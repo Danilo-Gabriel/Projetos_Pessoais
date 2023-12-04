@@ -15,6 +15,7 @@ import { LoginService } from 'src/pages/login/services/login.service';
 import { AuthGuard } from './guard/auth.guard';
 import { HeaderComponent } from 'src/pages/header/header.component';
 import { MessageService } from 'primeng/api';
+import { DeleteUsuarioComponent } from 'src/pages/usuario/delete-usuario/delete-usuario.component';
 
 
 
@@ -32,6 +33,7 @@ import { MessageService } from 'primeng/api';
     AddUsuarioComponent,
     HomeComponent,
     HeaderComponent,
+    DeleteUsuarioComponent
 
 
   ],

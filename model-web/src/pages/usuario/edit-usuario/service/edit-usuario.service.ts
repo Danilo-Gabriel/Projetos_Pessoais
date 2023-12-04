@@ -31,17 +31,21 @@ export class EditUsuarioService {
     return this.http.put<EditUsuario>(this.API, record)
     .subscribe(
       (response) => {
-      this.message.showSuccess("Usuario Atualizado"),
-       this.router.navigate(['/pages/home/list']);
+      this.message.showSuccess("Usuario Atualizado");
+     // this.router.navigate(['/pages/home/list-usuario']);
     },
     (error) => {
-       this.message.showError(error)
+       this.message.showError(error.message)
       //this.onAviso(error.error);
 
     }
   );
   }
 
+  buscarID(id : string){
+
+    return this.http.get<EditUsuario>(`${this.API}/${id}`)
+  }
 
 
   /*

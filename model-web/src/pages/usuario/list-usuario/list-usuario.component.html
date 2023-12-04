@@ -17,7 +17,7 @@
     >
         <ng-template pTemplate="header">
             <tr>
-                <th>Name</th>
+                <th>Nome</th>
                 <th>Situação</th>
                 <th>
                     <p-button (click)="onAdd()" label="Adicionar"></p-button>
@@ -38,7 +38,7 @@
 
                     </p-button> &nbsp;
 
-                    <p-button (click)="onDelete()" [rounded]="true" severity="danger">
+                    <p-button (click)="onDelete(usuario)" [rounded]="true" severity="danger">
 
                         <mat-icon>delete</mat-icon>
 

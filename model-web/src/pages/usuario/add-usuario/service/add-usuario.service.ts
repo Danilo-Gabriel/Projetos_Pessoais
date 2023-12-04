@@ -30,12 +30,12 @@ save(record: AddUsuario ){
   return this.http.post<AddUsuario>(this.API, record)
   .subscribe(
     (response) => {
-      this.message.showSuccess(response.login),
+      this.message.showSuccess(`Usuario: ${response.login} cadastrado`),
       this.router.navigate(['/pages/home/list-usuario']);
       //this.onAviso(response)
   },
   (error) => {
-    this.message.showError(error.message);
+    this.message.showError(error.error);
     //this.onAviso(error.error)
   }
 );

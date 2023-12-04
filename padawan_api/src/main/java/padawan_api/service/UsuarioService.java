@@ -121,9 +121,17 @@ public class UsuarioService {
 
     public Optional<Usuario> listID(Long id) {
 
-        return this.repository.findById(id);
+       return this.repository.findById(id);
+     
         
     }
+
+    public void deletar(Long id){
+        
+        repository.deleteById(id);
+    }
+
+ 
 }
 
 

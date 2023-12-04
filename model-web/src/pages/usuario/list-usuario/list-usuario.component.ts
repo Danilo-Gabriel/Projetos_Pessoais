@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { ListUsuario } from '../dto/list-usuario';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListUsuarioService } from './service/list-usuario.service';
 import { LoginService } from 'src/pages/login/services/login.service';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
@@ -20,6 +20,7 @@ export class ListUsuarioComponent implements OnInit {
 constructor(
   private listUsuarioService: ListUsuarioService,
   private router: Router,
+  private route : ActivatedRoute,
  //public dialog: MatDialog,
   private loginService: LoginService,
   private message : AppMessageService){
@@ -54,15 +55,18 @@ logout(){
 
 onAdd(){
 
-  this.router.navigate(['pages/home/add-usuario'])
+  this.router.navigate(['new'], {relativeTo : this.route})
+
 }
 
 onEdit(usuario: ListUsuario){
-  this.router.navigate([`pages/home/edit-usuario/${usuario.id}`])
+
+  this.router.navigate([`edit/${usuario.id}`], {relativeTo : this.route})
 }
 
-onDelete(){[
- // this.router.navigate(['pages/home/deletar-usuario'])
+onDelete(usuario : ListUsuario){[
+
+ this.router.navigate([`remover/${usuario.id}`], {relativeTo : this.route})
 ]}
 
 
