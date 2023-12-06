@@ -16,6 +16,7 @@ import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
+import padawan_api.domain.usuario.dto.DadosLoginUsuarioDTO;
 
 //import java.util.Collection;
 //import java.util.List;
@@ -56,7 +57,7 @@ public class Usuario {
         }
     }
 
-    public void validarUsuario(DadosCadastroUsuarioDTO dados) throws Exception {
+    public void validarUsuario(DadosLoginUsuarioDTO dados) throws Exception {
         
         if (dados.login() != null && dados.login().equals(this.login)) {
             if (dados.senha() != null && BCrypt.checkpw(dados.senha(), this.senha)) {

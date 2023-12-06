@@ -38,7 +38,7 @@
 
                     </p-button> &nbsp;
 
-                    <p-button (click)="onDelete(usuario)" [rounded]="true" severity="danger">
+                    <p-button (click)="confirm($event, usuario)" [rounded]="true" severity="danger">
 
                         <mat-icon>delete</mat-icon>
 
@@ -63,6 +63,12 @@
     </div>
 
 </ng-template>
+
+
+<div class="card flex justify-content-center gap-2">
+  <p-toast></p-toast>
+  <p-confirmPopup></p-confirmPopup>
+</div>
 
 
 

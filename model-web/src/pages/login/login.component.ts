@@ -14,7 +14,7 @@ import { LoginService } from './services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm!: FormGroup;
+  public form!: FormGroup;
 
 
   constructor(
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.loginForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       login: ['', Validators.required],
       senha: ['', Validators.required]
     });
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-      this.loginService.login(this.loginForm.value);
+      this.loginService.login(this.form.value);
     }
   }
 

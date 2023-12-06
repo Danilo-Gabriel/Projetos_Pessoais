@@ -5,11 +5,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ListUsuarioService } from './service/list-usuario.service';
 import { LoginService } from 'src/pages/login/services/login.service';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
+import { ConfirmationService } from 'primeng/api';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-list-usuario',
   templateUrl: './list-usuario.component.html',
-  styleUrls: ['./list-usuario.component.scss']
+  styleUrls: ['./list-usuario.component.scss'],
+  providers: [ConfirmationService]
 })
 export class ListUsuarioComponent implements OnInit {
 
@@ -23,7 +26,9 @@ constructor(
   private route : ActivatedRoute,
  //public dialog: MatDialog,
   private serviceLogin: LoginService,
-  private message : AppMessageService){
+  private message : AppMessageService,
+  private confirmationService: ConfirmationService,
+  ){
 
 
 
@@ -64,10 +69,31 @@ onEdit(usuario: Usuario){
   this.router.navigate([`edit/${usuario.id}`], {relativeTo : this.route})
 }
 
-onDelete(record : Usuario){[
+/*
+onDelete(usuario : Usuario){[
 
  //this.router.navigate([`remover/${usuario.id}`], {relativeTo : this.route})
+   this.service.deletarUsuario(`${usuario.id}`)
 ]}
+
+*/
+
+
+confirm(event: Event, usuario : Usuario) {
+  this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Tem certeza que deseja Excluir usuario? ',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+          this.service.deletarUsuario(`${usuario.id}`)
+          this.message.showInfo("Usuario Excluido")
+          window.location.reload();
+      },
+      reject: () => {
+          //this.message.showError("You have rejected")
+      }
+})
+}
 
 
 /*

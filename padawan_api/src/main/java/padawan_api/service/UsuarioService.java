@@ -120,7 +120,7 @@ public class UsuarioService {
     }
 
 
-    public Optional<Usuario> listID(Long id) {
+    public Optional<Usuario> buscarDadosIdUsuario(Long id) {
 
        return this.repository.findById(id);
      

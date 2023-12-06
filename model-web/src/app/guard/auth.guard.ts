@@ -1,16 +1,19 @@
 import { LoginService } from './../../pages/login/services/login.service';
 
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree, ResolveFn } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import { Observable } from 'rxjs';
+import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
   constructor(
-    private authService : LoginService,
-    private route : Router){
+    private loginService : LoginService,
+    private route : Router,
+    private message : AppMessageService,
+  ){
 
   }
 
@@ -19,14 +22,18 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
     ): Observable<boolean> | boolean {
 
-      if (this.authService.isAutenticado()){
+      if (this.loginService.isAutenticado()){
 
         return true;
 
+      }else{
+
+        this.route.navigate(['pages']);
+        this.message.showInfo("Usuario não autenticado")
+        return false;
+
       }
 
-       this.route.navigate(['pages']);
-       return false;
   }
 
 };

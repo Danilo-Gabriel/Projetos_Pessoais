@@ -4,6 +4,7 @@ import { environment } from 'src/environment/environment';
 
 import { first, tap } from 'rxjs';
 import { Usuario } from '../../dto/detalhamentoUsuario';
+import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,11 @@ backendURL = environment.endPoint;
 
 private readonly API = `${this.backendURL}/usuarios/list;`
 
-constructor(public http: HttpClient) { }
+private readonly DEL = `${this.backendURL}/usuarios/deletar`
+
+constructor(
+  private http: HttpClient,
+  private message : AppMessageService) { }
 
 list() {
 
@@ -24,6 +29,7 @@ list() {
   .pipe(
     first(),
     tap(usuarios => console.log(usuarios))
+    //tap(usuarios => this.message.showInfo(`${usuarios.length} usuarios listados`))
   );
 
 
@@ -33,4 +39,20 @@ list() {
     obterUsuario() {
         return this.http.get<Usuario[]>(this.API)
     }
+
+
+  deletarUsuario(id : string){
+
+      this.http.delete(`${this.DEL}/${id}`)
+      .subscribe(
+        (response) => {
+
+         // this.message.showWarn(`Usuario: ${response} deletado`)
+
+        },
+        (error) => {
+          this.message.showError(`${error.error}`)
+        }
+      )
+  }
 }

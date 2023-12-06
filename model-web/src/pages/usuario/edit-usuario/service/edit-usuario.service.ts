@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 import { Usuario } from '../../dto/detalhamentoUsuario';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class EditUsuarioService {
 
     private http : HttpClient,
     private message : AppMessageService,
-    private router : Router
+    private router : Router,
+    private location : Location
 
     ) {
 
@@ -23,6 +25,7 @@ export class EditUsuarioService {
 
   private backendURL = environment.endPoint;
   private readonly API = `${this.backendURL}/usuarios/atualizar`
+  private readonly buscardDadosUsuarioID = `${this.backendURL}/usuarios`
 
   atualizar(record: Usuario ){
 
@@ -31,6 +34,7 @@ export class EditUsuarioService {
       (response) => {
       this.message.showSuccess("Usuario Atualizado");
      // this.router.navigate(['/pages/home/list-usuario']);
+      this.location.back();
     },
     (error) => {
        this.message.showError(error.message)
@@ -42,7 +46,7 @@ export class EditUsuarioService {
 
   buscarID(id : string){
 
-    return this.http.get<Usuario>(`${this.API}/${id}`)
+    return this.http.get<Usuario>(`${this.buscardDadosUsuarioID}/${id}`)
   }
 
 

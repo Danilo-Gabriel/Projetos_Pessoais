@@ -18,6 +18,11 @@ import padawan_api.service.UsuarioService;
 
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+
 
 
 
@@ -30,8 +35,27 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @Autowired
-    private UsuarioRepository repository;
+    @GetMapping("{id}")
+    public ResponseEntity<?> dadosUsuario(@PathVariable Long id){
+
+        try{
+             Optional<Usuario> usuario = usuarioService.buscarDadosIdUsuario(id);
+
+             return ResponseEntity.ok().body(usuario);
+
+        }catch(Exception e){
+
+            return ResponseEntity.badRequest().build();
+
+        }
+
+        /*
+         return usuarioService.buscarDadosIdUsuario(id).map(record -> ResponseEntity.ok().body(record))
+        .orElse(ResponseEntity.notFound().build());
+       */
+        
+
+    }
 
     @PostMapping("cadastrar")
     @Transactional
@@ -66,16 +90,6 @@ public class UsuarioController {
         }
 
     }
-
-    @GetMapping("atualizar/{id}")
-    public  ResponseEntity<Usuario> listarUserID(@PathVariable Long id){
-
-        return usuarioService.listID(id).map(record -> ResponseEntity.ok().body(record))
-        .orElse(ResponseEntity.notFound().build());
-
-    }
-
-
 
     /*
     public ResponseEntity<Page<DadosListagemUsuarioDTO>> listUsuario(Pageable paginacao){
@@ -121,7 +135,7 @@ public class UsuarioController {
         try{
 
             this.usuarioService.deletar(id);
-            return ResponseEntity.ok().body("usuario deletado");
+            return ResponseEntity.ok().body(id);
 
         }catch(Exception e){
 
@@ -133,13 +147,12 @@ public class UsuarioController {
     }
 
 
-    /* 
-    @DeleteMapping("inativar/{login}")
+    @DeleteMapping("inativar/{id}")
     @Transactional
-    public ResponseEntity<?> inativo(@PathVariable DadosInativarUsuarioDTO login) {
+    public ResponseEntity<?> inativo(@PathVariable DadosInativarUsuarioDTO id) {
 
         try{
-            DadosInativarUsuarioDTO inativar = this.usuarioService.inativar(login);
+            DadosInativarUsuarioDTO inativar = this.usuarioService.inativar(id);
             return ResponseEntity.ok().body(inativar);
             
         }catch (Exception e){
@@ -148,7 +161,7 @@ public class UsuarioController {
 
         }
     }
-    */
+    
 
 
 }

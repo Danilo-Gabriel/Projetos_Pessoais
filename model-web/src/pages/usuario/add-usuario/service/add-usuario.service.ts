@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 import { Usuario } from '../../dto/detalhamentoUsuario';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ constructor(
   private http : HttpClient,
   //private dialog: MatDialog,
   private router : Router,
-  private message : AppMessageService
+  private message : AppMessageService,
+  private location : Location
 
   ) {
 
@@ -31,7 +33,8 @@ save(record: Usuario ){
   .subscribe(
     (response) => {
       this.message.showSuccess(`Usuario: ${response.login} cadastrado`),
-      this.router.navigate(['/pages/home/list-usuario']);
+      this.location.back();
+     // this.router.navigate(['/pages/home/list-usuario']);
       //this.onAviso(response)
   },
   (error) => {

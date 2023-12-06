@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditUsuarioService } from './service/edit-usuario.service';
 import { Subscription } from 'rxjs';
+import { Usuario } from '../dto/detalhamentoUsuario';
+import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 
 @Component({
   selector: 'app-edit-usuario',
@@ -16,14 +18,14 @@ export class EditUsuarioComponent implements OnInit {
 
   private routeSub!: Subscription;
   private idUsuario!: string;
-  private usuario! : any;
+  private usuario! : Usuario;
 
   constructor(
-    private router : Router,
     private formBuilder : FormBuilder,
     private service : EditUsuarioService,
     private route: ActivatedRoute,
-    private location : Location
+    private location : Location,
+    private message : AppMessageService
   )
 
     {
@@ -40,7 +42,7 @@ export class EditUsuarioComponent implements OnInit {
       this.idUsuario = params['idUsuario']
       this.service.buscarID(params['idUsuario']).subscribe(
         dados => {
-          this.usuario = dados;
+          this.usuario = dados
           this.form.patchValue({
           login: this.usuario.login
         });
@@ -60,7 +62,7 @@ export class EditUsuarioComponent implements OnInit {
       });
 
     }else{
-      console.log("ERRO, TRATAR DEPOIS")
+      this.message.showError("ERROR EM ATUALIZAR O USUARIO")
     }
 
   }

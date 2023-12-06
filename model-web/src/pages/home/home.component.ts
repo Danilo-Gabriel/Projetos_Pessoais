@@ -1,9 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
-import { LoginService } from '../login/services/login.service';
-
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-home',

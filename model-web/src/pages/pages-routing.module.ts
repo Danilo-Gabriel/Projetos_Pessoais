@@ -7,7 +7,6 @@ import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
-import { DeleteUsuarioComponent } from './usuario/delete-usuario/delete-usuario.component';
 
 
 const routes: Routes = [
@@ -16,32 +15,25 @@ const routes: Routes = [
 
   {
     path:'home', component:HomeComponent,
-   // canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   },
 
 
   {
     path:'home/usuario', component: ListUsuarioComponent,
-    // canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   },
 
   {
     path:'home/usuario/new', component: AddUsuarioComponent,
-    // canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   },
 
 
   {
     path:'home/usuario/edit/:idUsuario', component: EditUsuarioComponent,
-    // canActivate:[AuthGuard]
-  },
-
-  {
-    path:'home/usuario/remover/:idUsuario', component: DeleteUsuarioComponent,
-    // canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   }
-
-
 
 
 ]
