@@ -7,6 +7,9 @@ import padawan_api.domain.usuario.Usuario;
 public record DadosAtualizaUsuarioDTO(
 
         @NotBlank
+        Long id,
+
+        @NotBlank
         String login,
 
         @NotBlank
@@ -14,7 +17,7 @@ public record DadosAtualizaUsuarioDTO(
 
 
         public DadosAtualizaUsuarioDTO(Usuario usuario){
-                this(usuario.getLogin(), usuario.getSenha());
+                this(usuario.getId(), usuario.getLogin(), usuario.getSenha());
         }
 
 }

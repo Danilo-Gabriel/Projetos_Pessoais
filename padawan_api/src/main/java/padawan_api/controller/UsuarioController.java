@@ -112,7 +112,7 @@ public class UsuarioController {
 
      */
 
-    @PutMapping("atualizar")
+    @PutMapping("atualizar{id}")
     @Transactional
     public  ResponseEntity<?> atualizar(@RequestBody @Valid DadosAtualizaUsuarioDTO dados) {
 

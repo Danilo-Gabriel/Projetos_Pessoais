@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
   items: MenuItem[] | undefined;
   sidebarVisible: boolean = false;
+  visible: boolean = false;
 
 
   constructor(
@@ -54,20 +55,10 @@ export class HeaderComponent implements OnInit {
   }
 
 
-
-  buscarID(){
-
-    debugger
-
-     let dados : Usuario = this.localStorageService.dadosUsuarioLogado()
-
-
-  }
-
-  visible: boolean = false;
-
     showDialog() {
         this.visible = true;
+        let dados : Usuario = this.localStorageService.dadosUsuarioLogado() // BUSCAR ID DO USUARIO
+        return this.router.navigate([`inat/${dados.id}`], {relativeTo : this.route})
     }
 
 }
