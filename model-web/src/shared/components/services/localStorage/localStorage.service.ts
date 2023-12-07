@@ -29,4 +29,11 @@ removerDadosLogin(){
   localStorage.clear;
 }
 
+dadosUsuarioLogado(){
+
+  let usuario : any = localStorage.getItem('usuario-logado')
+
+  return usuario;
+}
+
 }

@@ -26,6 +26,22 @@
       <span>Usuario</span>
   </button>
 
+  <mat-divider></mat-divider>
+
+  <button (click)="showDialog()" (click)="buscarID()" mat-button class="menu-button" >
+    <mat-icon>lock</mat-icon>
+    <span>Trocar Senha</span>
+</button>
+
+<p-dialog header="Editar Usuario" [(visible)]="visible" [style]="{width: '50vw'}">
+  <p>
+
+      <app-inat-usuario></app-inat-usuario>
+
+  </p>
+</p-dialog>
+
+
 
   <mat-divider></mat-divider>
 

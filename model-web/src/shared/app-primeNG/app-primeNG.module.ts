@@ -26,6 +26,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { CardModule } from 'primeng/card';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -58,7 +59,8 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
   ToastModule,
   MessagesModule,
   CardModule,
-  ConfirmPopupModule
+  ConfirmPopupModule,
+  DialogModule
 
 
 

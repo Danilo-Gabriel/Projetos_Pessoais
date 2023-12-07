@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { LoginService } from '../login/services/login.service';
+import { LocalStorageService } from 'src/shared/components/services/localStorage/localStorage.service';
+import { Usuario } from '../usuario/dto/detalhamentoUsuario';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +18,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router : Router,
-    private service : LoginService
+    private route : ActivatedRoute,
+    private service : LoginService,
+    private localStorageService : LocalStorageService
   ){
 
   }
@@ -49,5 +53,21 @@ export class HeaderComponent implements OnInit {
     this.service.logout(false);
   }
 
+
+
+  buscarID(){
+
+    debugger
+
+     let dados : Usuario = this.localStorageService.dadosUsuarioLogado()
+
+
+  }
+
+  visible: boolean = false;
+
+    showDialog() {
+        this.visible = true;
+    }
 
 }

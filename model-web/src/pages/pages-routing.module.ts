@@ -11,7 +11,9 @@ import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.compon
 
 const routes: Routes = [
 
-  {path:'', component:LoginComponent},
+  {path:'', component:LoginComponent,
+
+  },
 
   {
     path:'home', component:HomeComponent,

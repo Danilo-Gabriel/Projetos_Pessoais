@@ -1,3 +1,29 @@
-<p>
-  inat-usuario works!
-</p>
+<mat-card>
+<mat-card-header>
+
+  <mat-toolbar color="primary">Editar Usuario</mat-toolbar>
+
+  </mat-card-header>
+  <mat-card-content>
+  <form >
+
+    <br>
+
+
+    <mat-form-field class="full-width">
+
+      <input matInput placeholder="Nome" formControlName="login">
+
+    </mat-form-field> &nbsp;
+
+    <mat-form-field class="full-width">
+
+      <input minlength="4" maxlength="8" matInput type="password" placeholder="Senha" formControlName="senha">
+
+    </mat-form-field>
+
+  </form>
+
+</mat-card-content>
+
+</mat-card>

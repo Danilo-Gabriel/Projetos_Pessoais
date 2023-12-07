@@ -5,11 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './inat-usuario.component.html',
   styleUrls: ['./inat-usuario.component.css']
 })
-export class InatUsuarioComponent implements OnInit {
+export class InatUsuarioComponent  {
 
-  constructor() { }
+  
+  visible: boolean = false;
 
-  ngOnInit() {
+  showDialog() {
+      this.visible = true;
   }
-
 }
