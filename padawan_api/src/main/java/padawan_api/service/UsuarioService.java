@@ -9,6 +9,7 @@ import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosLoginUsuarioDTO;
+import padawan_api.domain.usuario.dto.TrocarSenhaLoginDTO;
 import padawan_api.repository.UsuarioRepository;
 
 import java.util.Optional;
@@ -42,6 +43,28 @@ public class UsuarioService {
             throw new Exception("USUARIO NÃO CADASTRADO");
           }
 
+    }
+
+    public void trocarSenha(TrocarSenhaLoginDTO dados) throws Exception{
+
+        Optional<Usuario> usuarioOptional = repository.findById(dados.id());
+
+
+        if(usuarioOptional.isPresent()){
+
+            Usuario usuario = usuarioOptional.get();
+
+            if(usuario.isAtivo()){
+                
+                usuario.validarETrocarSenha(dados);
+                 repository.save(usuario);
+            }
+
+        }
+      
+       
+        
+        
     }
 
 

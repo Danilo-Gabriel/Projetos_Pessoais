@@ -1,24 +1,19 @@
-<mat-card>
-<mat-card-header>
+<mat-card >
 
-  <mat-toolbar color="primary">Editar Usuario</mat-toolbar>
 
-  </mat-card-header>
   <mat-card-content>
-  <form >
-
-    <br>
+  <form [formGroup]="form">
 
 
     <mat-form-field class="full-width">
 
-      <input matInput placeholder="Nome" formControlName="login">
+      <input matInput placeholder="senha antiga" formControlName="senhaAntiga">
 
     </mat-form-field> &nbsp;
 
     <mat-form-field class="full-width">
 
-      <input minlength="4" maxlength="8" matInput type="password" placeholder="Senha" formControlName="senha">
+      <input minlength="4" maxlength="8" matInput type="password" placeholder="nova senha" formControlName="senhaNova">
 
     </mat-form-field>
 
@@ -26,4 +21,13 @@
 
 </mat-card-content>
 
+<mat-card-actions>
+
+  <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()" >Atualizar</button> &nbsp;
+
+  <button  mat-raised-button (click)="onCancel()">Cancelar</button>
+
+</mat-card-actions>
 </mat-card>
+
+

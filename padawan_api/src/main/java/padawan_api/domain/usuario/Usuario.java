@@ -17,6 +17,7 @@ import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
 import padawan_api.domain.usuario.dto.DadosLoginUsuarioDTO;
+import padawan_api.domain.usuario.dto.TrocarSenhaLoginDTO;
 
 //import java.util.Collection;
 //import java.util.List;
@@ -55,6 +56,26 @@ public class Usuario {
         if(dados.senha() != null){
             this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
         }
+    }
+
+
+    public void validarETrocarSenha(TrocarSenhaLoginDTO dados) throws Exception {
+
+            if (dados.senhaAntiga() != null && BCrypt.checkpw(dados.senhaAntiga(), this.senha)) {
+                 if(dados.senhaNova() != null){
+                    this.senha = BCrypt.hashpw(dados.senhaNova(), BCrypt.gensalt());
+                    }
+
+            }
+
+            else{
+
+                throw new Exception("ERROR");
+            }
+
+        
+         
+        
     }
 
     public void validarUsuario(DadosLoginUsuarioDTO dados) throws Exception {

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+
 import { MenuItem } from 'primeng/api';
 import { LoginService } from '../login/services/login.service';
-import { LocalStorageService } from 'src/shared/components/services/localStorage/localStorage.service';
-import { Usuario } from '../usuario/dto/detalhamentoUsuario';
+
 
 @Component({
   selector: 'app-header',
@@ -18,10 +17,8 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(
-    private router : Router,
-    private route : ActivatedRoute,
     private service : LoginService,
-    private localStorageService : LocalStorageService
+
   ){
 
   }
@@ -57,8 +54,6 @@ export class HeaderComponent implements OnInit {
 
     showDialog() {
         this.visible = true;
-        let dados : Usuario = this.localStorageService.dadosUsuarioLogado() // BUSCAR ID DO USUARIO
-        return this.router.navigate([`inat/${dados.id}`], {relativeTo : this.route})
     }
 
 }
