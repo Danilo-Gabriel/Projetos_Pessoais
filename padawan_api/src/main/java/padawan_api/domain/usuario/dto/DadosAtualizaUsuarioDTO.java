@@ -6,14 +6,15 @@ import padawan_api.domain.usuario.Usuario;
 
 public record DadosAtualizaUsuarioDTO(
 
-        @NotBlank
+        // @NotBlank
         Long id,
 
         @NotBlank
         String login,
 
         @NotBlank
-        String senha) {
+        String senha
+) {
 
 
         public DadosAtualizaUsuarioDTO(Usuario usuario){

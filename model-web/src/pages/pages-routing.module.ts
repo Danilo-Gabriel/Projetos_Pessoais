@@ -17,24 +17,24 @@ const routes: Routes = [
 
   {
     path:'home', component:HomeComponent,
-  //  canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   },
 
 
   {
     path:'home/usuario', component: ListUsuarioComponent,
-   // canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   },
 
   {
     path:'home/usuario/new', component: AddUsuarioComponent,
-   // canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   },
 
 
   {
     path:'home/usuario/edit/:idUsuario', component: EditUsuarioComponent,
-  //  canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   }
 
 

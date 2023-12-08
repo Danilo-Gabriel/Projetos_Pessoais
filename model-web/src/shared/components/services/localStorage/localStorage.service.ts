@@ -6,32 +6,38 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
 
-constructor() { }
+  private storage: any = localStorage;
+  // private storage: any = sessionStorage;
+
+constructor(
+) {
+
+}
 
 
 
 guardaDadosLogin(dados : string){
 
-  localStorage.setItem('usuario-logado', dados);
+  this.storage.setItem('usuario-logado', dados);
 
 
 }
 
 ckeckUser(dados : string) {
 
-  let isUsuarioLogado = localStorage.getItem(dados)
+  let isUsuarioLogado = this.storage.getItem(dados)
 
   return isUsuarioLogado!=null;
 }
 
 removerDadosLogin(){
-  localStorage.removeItem('usuario-logado')
-  localStorage.clear;
+  this.storage.removeItem('usuario-logado')
+  this.storage.clear();
 }
 
 dadosUsuarioLogado(){
 
-  let usuario : any = localStorage.getItem('usuario-logado')
+  let usuario : any = this.storage.getItem('usuario-logado')
 
   return usuario;
 }
