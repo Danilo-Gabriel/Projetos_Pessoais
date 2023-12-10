@@ -5,6 +5,7 @@ import { environment } from 'src/environment/environment';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 import { Usuario } from '../../dto/detalhamentoUsuario';
 import { Location } from '@angular/common';
+import { EditUsuario } from '../../dto/edit-usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -27,18 +28,18 @@ export class EditUsuarioService {
   private readonly API = `${this.backendURL}/usuarios/atualizar`
   private readonly buscardDadosUsuarioID = `${this.backendURL}/usuarios`
 
-  atualizar(record: Usuario ){
+  atualizar(record: EditUsuario ){
 
     return this.http.put<Usuario>(this.API, record)
     .subscribe(
       (response) => {
-      this.message.showSuccess("Usuario Atualizado");
-     // this.router.navigate(['/pages/home/list-usuario']);
+      this.message.showSuccess("Login Alterado com Sucesso");
+
       this.location.back();
     },
     (error) => {
-       this.message.showError(error.message)
-      //this.onAviso(error.error);
+       this.message.showError(error.error)
+
 
     }
   );

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import padawan_api.domain.usuario.Usuario;
-import padawan_api.domain.usuario.dto.DadosAtualizaUsuarioDTO;
+import padawan_api.domain.usuario.dto.DadosAtualizaLoginUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
@@ -112,10 +112,12 @@ public class UsuarioService {
     }
      */
 
-    public DadosAtualizaUsuarioDTO atualizar(DadosAtualizaUsuarioDTO dados) throws Exception {
+    public DadosAtualizaLoginUsuarioDTO atualizar(DadosAtualizaLoginUsuarioDTO dados) throws Exception {
 
-        Optional<Usuario> usuariosOptional = this.repository.findByLogin(dados.login());
 
+        System.out.println(dados);
+        Optional<Usuario> usuariosOptional = this.repository.findById(dados.id());
+   
         if (usuariosOptional.isPresent()) {
             Usuario usuario = usuariosOptional.get();
             if (usuario.isAtivo()) {

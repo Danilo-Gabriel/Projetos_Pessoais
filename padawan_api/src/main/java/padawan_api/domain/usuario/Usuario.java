@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import padawan_api.domain.usuario.dto.DadosAtualizaUsuarioDTO;
+import padawan_api.domain.usuario.dto.DadosAtualizaLoginUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -52,9 +52,21 @@ public class Usuario {
         this.ativo = true;
     }
 
-    public void atualizarInformacao(DadosAtualizaUsuarioDTO dados) {
-        if(dados.senha() != null){
-            this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
+    public void atualizarInformacao(DadosAtualizaLoginUsuarioDTO dados) throws Exception {
+        
+
+    
+        if(dados.loginAtual() != null && dados.loginAtual().equals(this.login)){
+            if(dados.novoLogin() != null && !dados.novoLogin().equals(dados.loginAtual()))
+                
+            this.login = dados.novoLogin();
+            else{
+                throw new Exception("Login mesmo que Atual, por favor escolhar outro nome");
+            }
+    
+        }else{
+           
+            throw new Exception("Login Atual incorreto");
         }
     }
 

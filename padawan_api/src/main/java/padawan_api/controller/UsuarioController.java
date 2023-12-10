@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import padawan_api.domain.usuario.Usuario;
-import padawan_api.domain.usuario.dto.DadosAtualizaUsuarioDTO;
+import padawan_api.domain.usuario.dto.DadosAtualizaLoginUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
@@ -112,13 +112,17 @@ public class UsuarioController {
 
      */
 
-    @PutMapping("atualizar{id}")
+    @PutMapping("atualizar")
+     //@PutMapping("atualizar/{id}") PARA OS TESTES NO INSOMINIA
     @Transactional
-    public  ResponseEntity<?> atualizar(@RequestBody @Valid DadosAtualizaUsuarioDTO dados) {
+    public  ResponseEntity<?> atualizar(@RequestBody DadosAtualizaLoginUsuarioDTO dados) {
 
         try{
-           this.usuarioService.atualizar(dados);
-           return ResponseEntity.ok(dados);
+         
+          //  dados = new DadosAtualizaLoginUsuarioDTO(id, dados.loginAtual(), dados.novoLogin()); acrescentar o pathVariale e Lon id
+       
+            this.usuarioService.atualizar(dados);
+            return ResponseEntity.ok(dados);
         }
         catch(Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());

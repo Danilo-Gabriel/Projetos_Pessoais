@@ -31,8 +31,8 @@ export class EditUsuarioComponent implements OnInit {
 
     {
     this.form = this.formBuilder.group({
-      login: ['', Validators.required],
-      senha: ['', Validators.required]
+      loginAtual: ['', Validators.required],
+      novoLogin: ['', Validators.required]
     });
 
   }
@@ -45,7 +45,7 @@ export class EditUsuarioComponent implements OnInit {
         dados => {
           this.usuario = dados
           this.form.patchValue({
-          login: this.usuario.login
+          loginAtual: this.usuario.login
         });
     });
     });
@@ -58,8 +58,8 @@ export class EditUsuarioComponent implements OnInit {
 
       this.service.atualizar({
         id : this.idUsuario,
-        login : this.form.value.login,
-        senha : this.form.value.senha,
+        loginAtual : this.form.value.loginAtual,
+        novoLogin : this.form.value.novoLogin,
       });
 
     }else{
