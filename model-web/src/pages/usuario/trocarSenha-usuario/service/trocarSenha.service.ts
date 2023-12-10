@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
-import { Usuario } from '../../dto/detalhamentoUsuario';
 import { TrocarSenhaUsuario } from '../../dto/trocarSenhaUsuario';
-import { MessageService } from 'primeng/api';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class InatService {
+export class TrocarSenhaService {
 
   private backendURL = environment.endPoint;
+  private readonly buscardDadosUsuarioID = `${this.backendURL}/usuarios`
   private readonly API = `${this.backendURL}/auth/atualizarSenha`
 
 
@@ -42,23 +42,21 @@ export class InatService {
     ) { }
 
 
-    trocarSenha(record : TrocarSenhaUsuario){
+    trocarSenha(record : TrocarSenhaUsuario) {
 
+      debugger
+      console.log(record);
       this.http.put<TrocarSenhaUsuario>(this.API, record)
       .subscribe(
         (response => {
-          this.message.showSuccess(`${response}`)
+          this.message.showSuccess(`Usuário Atualizado`)
         }),
         (error => {
-          this.message.showError(`${error}`)
+          this.message.showError(`${error.error}`)
         })
       )
 
     }
-
-
-
-
 
 
 }

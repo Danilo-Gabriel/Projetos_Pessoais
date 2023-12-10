@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { InatUsuarioComponent } from './inat-usuario.component';
+import {TrocarSenhaUsuarioComponent } from './trocarSenha-usuario.component';
 
-describe('InatUsuarioComponent', () => {
-  let component: InatUsuarioComponent;
-  let fixture: ComponentFixture<InatUsuarioComponent>;
+describe('TrocarSenhaUsuarioComponent', () => {
+  let component: TrocarSenhaUsuarioComponent;
+  let fixture: ComponentFixture<TrocarSenhaUsuarioComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InatUsuarioComponent ]
+      declarations: [ TrocarSenhaUsuarioComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InatUsuarioComponent);
+    fixture = TestBed.createComponent(TrocarSenhaUsuarioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

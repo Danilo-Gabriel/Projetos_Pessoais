@@ -25,7 +25,8 @@ export class EditUsuarioComponent implements OnInit {
     private service : EditUsuarioService,
     private route: ActivatedRoute,
     private location : Location,
-    private message : AppMessageService
+    private message : AppMessageService,
+
   )
 
     {

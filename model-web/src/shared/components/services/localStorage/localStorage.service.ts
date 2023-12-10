@@ -1,5 +1,9 @@
 
 import { Injectable } from '@angular/core';
+import { DadosUsuarioLogado } from 'src/pages/usuario/dto/dadosUsuarioLogado';
+import { Usuario } from 'src/pages/usuario/dto/detalhamentoUsuario';
+import { TrocarSenhaUsuario } from 'src/pages/usuario/dto/trocarSenhaUsuario';
+import { __values } from 'tslib';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +22,7 @@ constructor(
 
 guardaDadosLogin(dados : string){
 
-  this.storage.setItem('usuario-logado', dados);
+ this.storage.setItem('usuario-logado', dados);
 
 
 }
@@ -35,11 +39,13 @@ removerDadosLogin(){
   this.storage.clear();
 }
 
-dadosUsuarioLogado(){
+dadosUsuarioLogado() : string{
 
   let usuario : any = this.storage.getItem('usuario-logado')
-
-  return usuario;
+  return JSON.parse(usuario);
 }
+
+
+
 
 }

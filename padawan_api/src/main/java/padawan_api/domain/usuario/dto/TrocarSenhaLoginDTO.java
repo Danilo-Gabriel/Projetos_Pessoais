@@ -8,11 +8,12 @@ public record TrocarSenhaLoginDTO(
 
         @NotBlank
         Long id,
-        String senhaAntiga,
-        String senhaNova
+        String senhaAtual,
+        String novaSenha,
+        String confirmarSenha
 
        ) {
-    
+
 
 }
 

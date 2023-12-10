@@ -1,8 +1,9 @@
 export interface TrocarSenhaUsuario {
 
   id?: string;
-  senhaAntiga?: string;
-  senhaNova: string;
+  senhaAtual?: string;
+  novaSenha?: string;
+  confirmarSenha? : string;
 
 
 }

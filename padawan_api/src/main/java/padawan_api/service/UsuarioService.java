@@ -9,6 +9,7 @@ import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosLoginUsuarioDTO;
+import padawan_api.domain.usuario.dto.DetalhesLoginUsuarioDTO;
 import padawan_api.domain.usuario.dto.TrocarSenhaLoginDTO;
 import padawan_api.repository.UsuarioRepository;
 
@@ -22,16 +23,23 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repository;
 
-    public void validarLogin(DadosLoginUsuarioDTO dados) throws Exception{
+    public DetalhesLoginUsuarioDTO validarLogin(DadosLoginUsuarioDTO dados) throws Exception{
+
+
+        DetalhesLoginUsuarioDTO usuarioDTO;
 
         Optional<Usuario> usuarioOptional = repository.findByLogin(dados.login());
-
 
         if(usuarioOptional.isPresent()){
 
             Usuario usuario = usuarioOptional.get();
+
             if(usuario.isAtivo()){
+
                 usuarioOptional.get().validarUsuario(dados);
+
+                return usuarioDTO = new DetalhesLoginUsuarioDTO(usuario.getId(), usuario.getLogin());
+
             }else{
 
                 throw new Exception("USUARIO ESTÁ INATIVO");
@@ -49,16 +57,22 @@ public class UsuarioService {
 
         Optional<Usuario> usuarioOptional = repository.findById(dados.id());
 
-
         if(usuarioOptional.isPresent()){
 
             Usuario usuario = usuarioOptional.get();
 
             if(usuario.isAtivo()){
                 
-                usuario.validarETrocarSenha(dados);
+                 usuario.validarETrocarSenha(dados);
                  repository.save(usuario);
+                 
+            }else{
+                throw new Exception("Usuario inativo");
             }
+
+        }else {
+
+            throw new Exception("Usuario não encontrado");
 
         }
       

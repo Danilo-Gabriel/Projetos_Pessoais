@@ -1,3 +1,4 @@
+import { TrocarSenhaUsuario } from 'src/pages/usuario/dto/trocarSenhaUsuario';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,7 +16,7 @@ import { LoginService } from 'src/pages/login/services/login.service';
 import { AuthGuard } from './guard/auth.guard';
 import { HeaderComponent } from 'src/pages/header/header.component';
 import { MessageService } from 'primeng/api';
-import { InatUsuarioComponent } from 'src/pages/usuario/inat-usuario/inat-usuario.component';
+import { TrocarSenhaUsuarioComponent } from 'src/pages/usuario/trocarSenha-usuario/trocarSenha-usuario.component';
 
 
 
@@ -33,7 +34,7 @@ import { InatUsuarioComponent } from 'src/pages/usuario/inat-usuario/inat-usuari
     AddUsuarioComponent,
     HomeComponent,
     HeaderComponent,
-    InatUsuarioComponent
+    TrocarSenhaUsuarioComponent
 
   ],
   imports: [

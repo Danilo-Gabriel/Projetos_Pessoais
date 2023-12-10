@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.domain.usuario.dto.DadosLoginUsuarioDTO;
+import padawan_api.domain.usuario.dto.DetalhesLoginUsuarioDTO;
 import padawan_api.domain.usuario.dto.TrocarSenhaLoginDTO;
 import padawan_api.service.UsuarioService;
 
@@ -32,8 +33,10 @@ public class LoginController {
         
        try{
 
-          this.usuarioService.validarLogin(dados);
-          return ResponseEntity.ok(dados);
+          DetalhesLoginUsuarioDTO usuario; 
+          usuario =  this.usuarioService.validarLogin(dados);
+
+          return ResponseEntity.ok(usuario);
   
        } catch(Exception e){
 
@@ -49,8 +52,10 @@ public class LoginController {
 
     try{
 
-      this.usuarioService.trocarSenha(dados);
 
+
+     this.usuarioService.trocarSenha(dados);
+      
       return ResponseEntity.ok().build();
     }catch(Exception e){
 

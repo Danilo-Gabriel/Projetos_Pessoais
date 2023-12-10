@@ -60,17 +60,23 @@ public class Usuario {
 
 
     public void validarETrocarSenha(TrocarSenhaLoginDTO dados) throws Exception {
+        
 
-            if (dados.senhaAntiga() != null && BCrypt.checkpw(dados.senhaAntiga(), this.senha)) {
-                 if(dados.senhaNova() != null){
-                    this.senha = BCrypt.hashpw(dados.senhaNova(), BCrypt.gensalt());
-                    }
+            if (dados.senhaAtual() != null && BCrypt.checkpw(dados.senhaAtual(), this.senha)) {
+                
+                if(dados.novaSenha() != null && dados.confirmarSenha() != null && dados.novaSenha().equals(dados.confirmarSenha())){
 
+                     this.senha = BCrypt.hashpw(dados.novaSenha(), BCrypt.gensalt());
+
+                }else{
+
+                    throw new Exception("Divergencias nas senhas digitas");
+                }
             }
 
             else{
 
-                throw new Exception("ERROR");
+                throw new Exception("Senha Atual incorreta");
             }
 
         
@@ -80,8 +86,11 @@ public class Usuario {
 
     public void validarUsuario(DadosLoginUsuarioDTO dados) throws Exception {
         
+      
         if (dados.login() != null && dados.login().equals(this.login)) {
             if (dados.senha() != null && BCrypt.checkpw(dados.senha(), this.senha)) {
+
+        
                 System.out.println("LOGIN CORRETO");
             }
 

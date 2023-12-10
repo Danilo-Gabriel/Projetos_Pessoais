@@ -26,6 +26,7 @@ constructor(
 
 private backendURL = environment.endPoint;
 private readonly API = `${this.backendURL}/usuarios/cadastrar`
+private readonly buscardDadosUsuarioID = `${this.backendURL}/usuarios`
 
 save(record: Usuario ){
 
@@ -42,6 +43,12 @@ save(record: Usuario ){
     //this.onAviso(error.error)
   }
 );
+}
+
+
+buscarID(id : string){
+
+  return this.http.get<Usuario>(`${this.buscardDadosUsuarioID}/${id}`)
 }
 
 

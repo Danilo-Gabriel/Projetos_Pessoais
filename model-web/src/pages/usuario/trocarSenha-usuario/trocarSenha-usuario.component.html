@@ -1,0 +1,40 @@
+
+<mat-card class="trocarSenha">
+  <form [formGroup]="form">
+
+
+
+
+      <mat-form-field class="full-width">
+
+        <input matInput placeholder="Senha Atual" formControlName="senhaAtual">
+
+      </mat-form-field>
+
+        <mat-form-field class="full-width">
+
+          <input minlength="4" maxlength="8" matInput type="password" placeholder="Nova Senha" formControlName="novaSenha">
+
+        </mat-form-field>
+
+
+        <mat-form-field class="full-width">
+
+          <input minlength="4" maxlength="8" matInput type="password" placeholder="Confirmar Senha" formControlName="confirmarSenha">
+
+        </mat-form-field>
+
+
+  </form>
+
+<mat-card-actions>
+
+  <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()" >Atualizar</button> &nbsp;
+
+  <button  mat-raised-button (click)="onCancel()">Cancelar</button>
+
+</mat-card-actions>
+</mat-card>
+
+
+
