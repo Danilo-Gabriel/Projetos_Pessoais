@@ -1,16 +1,17 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { TrocarSenhaService } from './trocarSenha.service';
+import { AlterarSenhaService } from './alterar-senha.service';
+
 
 describe('Service: Trocar', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TrocarSenhaService]
+      providers: [AlterarSenhaService]
     });
   });
 
-  it('should ...', inject([TrocarSenhaService], (service: TrocarSenhaService) => {
+  it('should ...', inject([AlterarSenhaService], (service: AlterarSenhaService) => {
     expect(service).toBeTruthy();
   }));
 });

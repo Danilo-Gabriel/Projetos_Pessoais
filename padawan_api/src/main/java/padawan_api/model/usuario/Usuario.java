@@ -1,4 +1,4 @@
-package padawan_api.domain.usuario;
+package padawan_api.model.usuario;
 
 
 import jakarta.persistence.*;
@@ -8,16 +8,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import padawan_api.model.usuario.dto.DadosAtualizaLoginDTO;
+import padawan_api.model.usuario.dto.DadosCadastroUsuarioDTO;
+import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
+import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
 
 import org.mindrot.jbcrypt.BCrypt;
-
-import padawan_api.domain.usuario.dto.DadosAtualizaLoginUsuarioDTO;
-import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
-import padawan_api.domain.usuario.dto.DadosLoginUsuarioDTO;
-import padawan_api.domain.usuario.dto.TrocarSenhaLoginDTO;
 
 //import java.util.Collection;
 //import java.util.List;
@@ -52,7 +48,7 @@ public class Usuario {
         this.ativo = true;
     }
 
-    public void atualizarInformacao(DadosAtualizaLoginUsuarioDTO dados) throws Exception {
+    public void atualizarUsuarioClassUsuarioJPA(DadosAtualizaLoginDTO dados) throws Exception {
         
 
     
@@ -61,17 +57,17 @@ public class Usuario {
                 
             this.login = dados.novoLogin();
             else{
-                throw new Exception("Login mesmo que Atual, por favor escolhar outro nome");
+                throw new Exception(" LOGIN DEVE SER DIFERENTE QUE ATUAL, POR FAVOR PREENCHER OUTRO NOME");
             }
     
         }else{
            
-            throw new Exception("Login Atual incorreto");
+            throw new Exception("LOGIN ATUAL INCORRETO");
         }
     }
 
 
-    public void validarETrocarSenha(TrocarSenhaLoginDTO dados) throws Exception {
+    public void alterarSenhaClassUsuarioJPA(DadosAtualizaSenhaDTO dados) throws Exception {
         
 
             if (dados.senhaAtual() != null && BCrypt.checkpw(dados.senhaAtual(), this.senha)) {
@@ -82,13 +78,13 @@ public class Usuario {
 
                 }else{
 
-                    throw new Exception("Divergencias nas senhas digitas");
+                    throw new Exception("DIVERGENCIAS NA NOVA SENHA E CONFIRMAÇÃO DE SENHA");
                 }
             }
 
             else{
 
-                throw new Exception("Senha Atual incorreta");
+                throw new Exception("SENHA ATUAL INCORRETA");
             }
 
         
@@ -96,9 +92,8 @@ public class Usuario {
         
     }
 
-    public void validarUsuario(DadosLoginUsuarioDTO dados) throws Exception {
+    public void efetuarLoginClassUsuarioJPA(DadosEfetuarLoginDTO dados) throws Exception {
         
-      
         if (dados.login() != null && dados.login().equals(this.login)) {
             if (dados.senha() != null && BCrypt.checkpw(dados.senha(), this.senha)) {
 
@@ -116,11 +111,19 @@ public class Usuario {
     }
 
 
-    public void inativo(){
+
+
+
+    public void inativar(){
         this.ativo = false;
     }
 
-    public boolean isAtivo() {
+
+    public void ativar(){
+        this.ativo = true;
+    }
+
+    public boolean isSituacao(){
         return this.ativo;
     }
 

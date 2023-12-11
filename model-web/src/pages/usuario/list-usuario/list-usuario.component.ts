@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
-import {  Usuario } from '../dto/detalhamentoUsuario';
+import {  Usuario } from '../dto/DadosUsuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListUsuarioService } from './service/list-usuario.service';
 import { LoginService } from 'src/pages/login/services/login.service';
@@ -82,7 +82,7 @@ onDelete(usuario : Usuario){[
 confirm(event: Event, usuario : Usuario) {
   this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: 'Tem certeza que deseja Excluir usuario? ',
+      message: 'Tem certeza que deseja excluir usuário? ',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
           this.service.deletarUsuario(`${usuario.id}`)

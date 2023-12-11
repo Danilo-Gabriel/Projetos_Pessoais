@@ -7,7 +7,7 @@
 <!--  INSERINDO COLUNAS NA TABELA USUARIO -->
 
    
-   <changeSet author="daniloGabriel" id="1"> 
+   <changeSet author="daniloGabriel" id="V4.alter_table_usuario"> 
     <addColumn tableName="usuarios">
 
         <column name="nome_login" type="varchar(255)"></column>
@@ -20,11 +20,11 @@
 
 <!--  RENOMEANDO COLUNA -->
 
-<changeSet  author="daniloGabriel"  id="2">  
+<changeSet  author="daniloGabriel"  id="V4.alter_table_usuario_rename">  
     <renameColumn
             newColumnName="nome_completo"  
             oldColumnName="login"    
-            tableName="person"/>  
+            tableName="usuarios"/>  
 </changeSet>
 
 

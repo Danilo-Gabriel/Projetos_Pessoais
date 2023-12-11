@@ -6,14 +6,14 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 
-<changeSet id="1" author="daniloGabriel">
+<changeSet id="V2.add_column_usuario" author="daniloGabriel">
         <addColumn tableName="usuarios">
             <column name="ativo" type="boolean"/>
         </addColumn>
     </changeSet>
 
 
-    <changeSet id="2" author="daniloGabriel">
+    <changeSet id="V2.add_column_usuario_update" author="daniloGabriel">
         <update tableName="usuarios">
             <column name="ativo">true</column>
         </update>

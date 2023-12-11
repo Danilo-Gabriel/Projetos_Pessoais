@@ -3,7 +3,7 @@ import { environment } from 'src/environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
-import { Login } from '../dto/detalhamentoLogin';
+import { Login } from '../dto/DadosLogin';
 import { LocalStorageService } from 'src/shared/components/services/localStorage/localStorage.service';
 
 

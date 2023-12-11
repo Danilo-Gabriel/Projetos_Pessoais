@@ -1,8 +1,5 @@
 
 import { Injectable } from '@angular/core';
-import { DadosUsuarioLogado } from 'src/pages/usuario/dto/dadosUsuarioLogado';
-import { Usuario } from 'src/pages/usuario/dto/detalhamentoUsuario';
-import { TrocarSenhaUsuario } from 'src/pages/usuario/dto/trocarSenhaUsuario';
 import { __values } from 'tslib';
 
 @Injectable({

@@ -1,4 +1,4 @@
-package padawan_api.service;
+package padawan_api.service.security;
 /*package padawan_api.domain.usuario;
 
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import padawan_api.domain.usuario.UsuarioRepository;
 
 @Service
-public class AutenticacaoService implements UserDetailsService {
+public class AuthService implements UserDetailsService {
 
 
     @Autowired

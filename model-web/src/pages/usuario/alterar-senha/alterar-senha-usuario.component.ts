@@ -2,18 +2,18 @@
 import { LocalStorageService } from '../../../shared/components/services/localStorage/localStorage.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { TrocarSenhaService } from './service/trocarSenha.service';
+import { AlterarSenhaService } from './service/alterar-senha.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-inat-usuario',
-  templateUrl: './trocarSenha-usuario.component.html',
-  styleUrls: ['./trocarSenha-usuario.component.scss']
+  selector: 'app-alterSenha-usuario',
+  templateUrl: './alterar-senha-usuario.component.html',
+  styleUrls: ['./alterar-senha-usuario.component.scss']
 })
-export class TrocarSenhaUsuarioComponent implements OnInit {
+export class AlterarSenhaComponent implements OnInit {
 
   form!: FormGroup;
 
@@ -24,7 +24,7 @@ export class TrocarSenhaUsuarioComponent implements OnInit {
 
   constructor(
     private localstorageService : LocalStorageService,
-    private service : TrocarSenhaService,
+    private service : AlterarSenhaService,
     private message : AppMessageService,
     private formBuilder : FormBuilder,
     private router : Router
@@ -84,7 +84,7 @@ export class TrocarSenhaUsuarioComponent implements OnInit {
 
     onCancel(){
 
-      this.router.navigate(['home']);
+      window.location.reload();
     }
 
 

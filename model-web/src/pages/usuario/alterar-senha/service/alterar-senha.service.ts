@@ -1,18 +1,19 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
-import { TrocarSenhaUsuario } from '../../dto/trocarSenhaUsuario';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
+import { AlterarSenhaUsuario } from '../../dto/DadosAtualizaSenha';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class TrocarSenhaService {
+export class AlterarSenhaService {
 
   private backendURL = environment.endPoint;
   private readonly buscardDadosUsuarioID = `${this.backendURL}/usuarios`
-  private readonly API = `${this.backendURL}/auth/atualizarSenha`
+  private readonly API = `${this.backendURL}/auth/alterarSenha`
 
 
   /*
@@ -42,11 +43,11 @@ export class TrocarSenhaService {
     ) { }
 
 
-    trocarSenha(record : TrocarSenhaUsuario) {
+    trocarSenha(record : AlterarSenhaUsuario) {
 
       debugger
       console.log(record);
-      this.http.put<TrocarSenhaUsuario>(this.API, record)
+      this.http.put<AlterarSenhaUsuario>(this.API, record)
       .subscribe(
         (response => {
           this.message.showSuccess(`Usuário Atualizado`)

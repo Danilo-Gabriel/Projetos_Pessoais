@@ -1,4 +1,4 @@
-export interface TrocarSenhaUsuario {
+export interface AlterarSenhaUsuario {
 
   id?: string;
   senhaAtual?: string;

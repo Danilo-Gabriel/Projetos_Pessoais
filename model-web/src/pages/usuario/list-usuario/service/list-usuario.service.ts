@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
 
 import { first, tap } from 'rxjs';
-import { Usuario } from '../../dto/detalhamentoUsuario';
+import { Usuario } from '../../dto/DadosUsuario';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 
 @Injectable({

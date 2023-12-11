@@ -1,18 +1,17 @@
-package padawan_api.domain.usuario.dto;
+package padawan_api.model.usuario.dto;
 
 
 import jakarta.validation.constraints.NotBlank;
 
 
-public record DadosAtualizaLoginUsuarioDTO(
+public record DadosAtualizaLoginDTO(
 
-         @NotBlank
+       
         Long id,
 
-        @NotBlank
         String loginAtual,
 
-        @NotBlank
+      
         String novoLogin
 ) {
 

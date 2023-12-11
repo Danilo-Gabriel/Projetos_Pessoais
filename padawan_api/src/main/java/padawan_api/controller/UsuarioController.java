@@ -1,21 +1,18 @@
 package padawan_api.controller;
 
 
-import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import padawan_api.domain.usuario.Usuario;
-import padawan_api.domain.usuario.dto.DadosAtualizaLoginUsuarioDTO;
-import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
-import padawan_api.domain.usuario.dto.DadosInativarUsuarioDTO;
-import padawan_api.domain.usuario.dto.DadosListagemUsuarioDTO;
-import padawan_api.repository.UsuarioRepository;
-import padawan_api.service.UsuarioService;
 
+import padawan_api.model.usuario.Usuario;
+import padawan_api.model.usuario.dto.DadosAtualizaLoginDTO;
+import padawan_api.model.usuario.dto.DadosCadastroUsuarioDTO;
+import padawan_api.model.usuario.dto.DadosListarUsuarioDTO;
+import padawan_api.model.usuario.dto.ReturnCadastroUsuarioDTO;
+import padawan_api.service.usuario.UsuarioService;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,11 +32,121 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("{id}")
-    public ResponseEntity<?> dadosUsuario(@PathVariable Long id){
+
+    @PostMapping("cadastrar")
+    @Transactional
+    public ResponseEntity<?> cadastrarUsuarioClassController(@RequestBody DadosCadastroUsuarioDTO dados){
 
         try{
-             Optional<Usuario> usuario = usuarioService.buscarDadosIdUsuario(id);
+
+            
+            ReturnCadastroUsuarioDTO usuarioDTO;
+
+            usuarioDTO = this.usuarioService.cadastrarUsuarioClassService(dados);
+           
+            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioDTO);
+        }
+
+        catch(Exception e){
+        
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+
+    }
+
+
+    @GetMapping("list")
+    public ResponseEntity<List<DadosListarUsuarioDTO>> listUsuarioClassController(){
+
+        try {
+            //Thread.sleep(2000);
+           List<DadosListarUsuarioDTO> listarUsuario = this.usuarioService.listarUsuarioClassService();
+           
+           return ResponseEntity.ok().body(listarUsuario);
+
+        }catch (Exception e){
+
+            return ResponseEntity.badRequest().build();
+        }
+
+    }
+
+
+    @PutMapping("atualizar")
+    @Transactional
+    public  ResponseEntity<?> atualizarUsuarioClassController(@RequestBody DadosAtualizaLoginDTO dados) {
+
+        try{
+         
+            this.usuarioService.atualizarUsuarioClassService(dados);
+
+            return ResponseEntity.ok(dados);
+        }
+        catch(Exception e){
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+
+    }
+
+    @PutMapping("inativar/{id}")
+    @Transactional
+    public ResponseEntity<?> inativaUsuarioClassController(@PathVariable Long id) {
+
+        try{
+             this.usuarioService.inativarUsuarioClassService(id);
+            return ResponseEntity.ok().body("INATIVO");
+            
+        }catch (Exception e){
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        }
+    }
+
+    @PutMapping("ativar/{id}")
+    @Transactional
+    public ResponseEntity<?> ativarUsuarioClassController(@PathVariable Long id) {
+
+        try{ 
+
+            this.usuarioService.ativarUsuarioClassService(id);
+
+            return ResponseEntity.ok().body("ATIVO");
+            
+        }catch (Exception e){
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        }
+    }
+
+
+    @DeleteMapping("deletar/{id}")
+    public ResponseEntity<?> deletarUsuarioClassController(@PathVariable Long id){
+
+        try{
+
+            this.usuarioService.deletarUsuarioClassService(id);
+            return ResponseEntity.ok().body(id);
+
+        }catch(Exception e){
+
+             return ResponseEntity.badRequest().body(e.getMessage());
+        }
+      
+
+      
+    }
+
+    @GetMapping("{id}")
+    @Transactional
+    public ResponseEntity<?> detalhesDadosUsuarioClassController(@PathVariable Long id){
+
+        try{
+             Optional<Usuario> usuario = usuarioService.detalhesDadosUsuarioClassService(id);
 
              return ResponseEntity.ok().body(usuario);
 
@@ -56,40 +163,14 @@ public class UsuarioController {
         
 
     }
-
-    @PostMapping("cadastrar")
-    @Transactional
-    public ResponseEntity<?> cadastrar(@RequestBody @Valid DadosCadastroUsuarioDTO dados){
-
-        try{
-            DadosCadastroUsuarioDTO usuarioCadastrado = this.usuarioService.cadastrar(dados);
-           // System.out.println(usuarioCadastrado);
-            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioCadastrado);
-        }
-
-        catch(Exception e){
-          //  System.out.println(e.getMessage());
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    
 
 
-    }
+}
 
 
-    @GetMapping("list")
-    public ResponseEntity<List<DadosListagemUsuarioDTO>> list(){
+        /*METODOS PARA FUTURAS ATUALIZAÇÕES */
 
-        try {
-            //Thread.sleep(2000);
-           List<DadosListagemUsuarioDTO> listarUsuario = this.usuarioService.listarUsuario();
-           
-           return ResponseEntity.ok().body(listarUsuario);
-        }catch (Exception e){
-
-            return ResponseEntity.badRequest().build();
-        }
-
-    }
 
     /*
     public ResponseEntity<Page<DadosListagemUsuarioDTO>> listUsuario(Pageable paginacao){
@@ -110,62 +191,6 @@ public class UsuarioController {
         return null;
     }
 
+
+
      */
-
-    @PutMapping("atualizar")
-     //@PutMapping("atualizar/{id}") PARA OS TESTES NO INSOMINIA
-    @Transactional
-    public  ResponseEntity<?> atualizar(@RequestBody DadosAtualizaLoginUsuarioDTO dados) {
-
-        try{
-         
-          //  dados = new DadosAtualizaLoginUsuarioDTO(id, dados.loginAtual(), dados.novoLogin()); acrescentar o pathVariale e Lon id
-       
-            this.usuarioService.atualizar(dados);
-            return ResponseEntity.ok(dados);
-        }
-        catch(Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-
-
-    }
-
-
-
-    @DeleteMapping("deletar/{id}")
-    public ResponseEntity<?> deletarID(@PathVariable Long id){
-
-        try{
-
-            this.usuarioService.deletar(id);
-            return ResponseEntity.ok().body(id);
-
-        }catch(Exception e){
-
-             return ResponseEntity.badRequest().body(e.getMessage());
-        }
-      
-
-      
-    }
-
-
-    @DeleteMapping("inativar/{id}")
-    @Transactional
-    public ResponseEntity<?> inativo(@PathVariable DadosInativarUsuarioDTO id) {
-
-        try{
-            DadosInativarUsuarioDTO inativar = this.usuarioService.inativar(id);
-            return ResponseEntity.ok().body(inativar);
-            
-        }catch (Exception e){
-
-            return ResponseEntity.badRequest().body(e.getMessage());
-
-        }
-    }
-    
-
-
-}

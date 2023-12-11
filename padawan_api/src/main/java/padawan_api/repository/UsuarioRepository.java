@@ -5,8 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import padawan_api.model.usuario.Usuario;
 
-import padawan_api.domain.usuario.Usuario;
 import java.util.List;
 
 

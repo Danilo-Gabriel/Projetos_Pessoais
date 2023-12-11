@@ -1,4 +1,4 @@
-import { TrocarSenhaUsuario } from 'src/pages/usuario/dto/trocarSenhaUsuario';
+
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,8 +16,7 @@ import { LoginService } from 'src/pages/login/services/login.service';
 import { AuthGuard } from './guard/auth.guard';
 import { HeaderComponent } from 'src/pages/header/header.component';
 import { MessageService } from 'primeng/api';
-import { TrocarSenhaUsuarioComponent } from 'src/pages/usuario/trocarSenha-usuario/trocarSenha-usuario.component';
-
+import { AlterarSenhaComponent } from 'src/pages/usuario/alterar-senha/alterar-senha-usuario.component';
 
 
 
@@ -34,7 +33,7 @@ import { TrocarSenhaUsuarioComponent } from 'src/pages/usuario/trocarSenha-usuar
     AddUsuarioComponent,
     HomeComponent,
     HeaderComponent,
-    TrocarSenhaUsuarioComponent
+    AlterarSenhaComponent
 
   ],
   imports: [

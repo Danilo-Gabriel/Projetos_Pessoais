@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EditUsuarioService } from './service/edit-usuario.service';
 import { Subscription } from 'rxjs';
-import { Usuario } from '../dto/detalhamentoUsuario';
+import { Usuario } from '../dto/DadosUsuario';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 
 @Component({

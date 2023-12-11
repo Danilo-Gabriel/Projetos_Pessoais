@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import padawan_api.domain.usuario.dto.DadosCadastroUsuarioDTO;
-import padawan_api.domain.usuario.dto.DadosLoginUsuarioDTO;
-import padawan_api.domain.usuario.dto.DetalhesLoginUsuarioDTO;
-import padawan_api.domain.usuario.dto.TrocarSenhaLoginDTO;
-import padawan_api.service.UsuarioService;
+
+
+import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
+import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
+import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
+import padawan_api.service.usuario.UsuarioService;
 
 @RestController
 @CrossOrigin(origins = ("*"))
@@ -29,14 +30,15 @@ public class LoginController {
     UsuarioService usuarioService;
 
   @PostMapping("/login")
-   public ResponseEntity<?> login(@RequestBody @Valid DadosLoginUsuarioDTO dados){
+   public ResponseEntity<?> efetuarLoginClassController(@RequestBody DadosEfetuarLoginDTO dados){
         
        try{
 
-          DetalhesLoginUsuarioDTO usuario; 
-          usuario =  this.usuarioService.validarLogin(dados);
+          ReturnEfetuarLoginDTO usuarioDTO; 
 
-          return ResponseEntity.ok(usuario);
+          usuarioDTO =  this.usuarioService.efetuarLoginClassService(dados);
+
+          return ResponseEntity.ok().body(usuarioDTO);
   
        } catch(Exception e){
 
@@ -47,14 +49,13 @@ public class LoginController {
       }
     
 
-  @PutMapping("/atualizarSenha")
-  public ResponseEntity<?> trocarSenha(@RequestBody TrocarSenhaLoginDTO dados){
+  @PutMapping("/alterarSenha")
+  public ResponseEntity<?> alterarSenhaClassController(@RequestBody DadosAtualizaSenhaDTO dados){
 
     try{
 
 
-
-     this.usuarioService.trocarSenha(dados);
+     this.usuarioService.alterarSenhaClassService(dados);
       
       return ResponseEntity.ok().build();
     }catch(Exception e){

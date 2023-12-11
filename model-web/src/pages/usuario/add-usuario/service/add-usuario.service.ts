@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
-import { Usuario } from '../../dto/detalhamentoUsuario';
+import { Usuario } from '../../dto/DadosUsuario';
 import { Location } from '@angular/common';
 
 @Injectable({

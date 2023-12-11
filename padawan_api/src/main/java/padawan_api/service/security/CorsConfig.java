@@ -1,3 +1,4 @@
+package padawan_api.service.security;
 /*package padawan_api.infra.security;
 
 import org.springframework.context.annotation.Configuration;
