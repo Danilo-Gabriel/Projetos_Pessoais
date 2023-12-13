@@ -23,7 +23,7 @@ export class AlterarSenhaComponent implements OnInit {
 
 
   constructor(
-    private localstorageService : LocalStorageService,
+    private storage : LocalStorageService,
     private service : AlterarSenhaService,
     private message : AppMessageService,
     private formBuilder : FormBuilder,
@@ -46,7 +46,7 @@ export class AlterarSenhaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.idUsuario = this.localstorageService.dadosUsuarioLogado();
+    this.idUsuario = this.storage.returnLoginUser();
 
   }
 

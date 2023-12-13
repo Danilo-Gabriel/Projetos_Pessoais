@@ -26,9 +26,9 @@ export class EditUsuarioService {
 
   private backendURL = environment.endPoint;
   private readonly API = `${this.backendURL}/usuarios/atualizar`
-  private readonly buscardDadosUsuarioID = `${this.backendURL}/usuarios`
+  private readonly buscarDadosUsuario = `${this.backendURL}/usuarios`
 
-  atualizar(record: EditUsuario ){
+  atualizarLoginUser(record: EditUsuario ){
 
     return this.http.put<Usuario>(this.API, record)
     .subscribe(
@@ -45,20 +45,10 @@ export class EditUsuarioService {
   );
   }
 
-  buscarID(id : string){
+  buscarDadosUser(id : string){
 
-    return this.http.get<Usuario>(`${this.buscardDadosUsuarioID}/${id}`)
+    return this.http.get<Usuario>(`${this.buscarDadosUser}/${id}`)
   }
-
-
-  /*
-  onAviso(avisoMsg: string)
-  {
-   this.dialog.open(ErrorDialogComponent, {
-    data: avisoMsg
-   });
-  }
-  */
 
 
   }

@@ -46,13 +46,13 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  logout(){
+  efetuarlogoutTsHeader(){
 
-    this.service.logout(false);
+    this.service.efetuarLogout();
   }
 
 
-    showDialog() {
+    showDialogTrocarSenha() {
         this.visible = true;
     }
 

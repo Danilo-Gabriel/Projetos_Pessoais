@@ -1,5 +1,6 @@
 
 import { Injectable } from '@angular/core';
+import { DadosLogin } from 'src/pages/login/dto/DadosLogin';
 import { __values } from 'tslib';
 
 @Injectable({
@@ -8,35 +9,33 @@ import { __values } from 'tslib';
 export class LocalStorageService {
 
   private storage: any = localStorage;
-  // private storage: any = sessionStorage;
+  //private storage: any = sessionStorage;
 
-constructor(
-) {
-
-}
+constructor() { }
 
 
 
-guardaDadosLogin(dados : string){
+armazenarLoginUser(dados : DadosLogin){
 
  this.storage.setItem('usuario-logado', dados);
 
 
 }
 
-ckeckUser(dados : string) {
+validarLoginUser(key : string) {
 
-  let isUsuarioLogado = this.storage.getItem(dados)
+  let isUsuarioLogado = this.storage.getItem(key)
 
   return isUsuarioLogado!=null;
 }
 
-removerDadosLogin(){
+removerLoginUser(){
+
   this.storage.removeItem('usuario-logado')
   this.storage.clear();
 }
 
-dadosUsuarioLogado() : string{
+returnLoginUser(){
 
   let usuario : any = this.storage.getItem('usuario-logado')
   return JSON.parse(usuario);

@@ -12,7 +12,7 @@ import { AlterarSenhaUsuario } from '../../dto/DadosAtualizaSenha';
 export class AlterarSenhaService {
 
   private backendURL = environment.endPoint;
-  private readonly buscardDadosUsuarioID = `${this.backendURL}/usuarios`
+
   private readonly API = `${this.backendURL}/auth/alterarSenha`
 
 

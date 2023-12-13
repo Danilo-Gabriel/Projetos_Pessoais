@@ -41,7 +41,7 @@ export class EditUsuarioComponent implements OnInit {
 
     this.routeSub = this.route.params.subscribe(params => {
       this.idUsuario = params['idUsuario']
-      this.service.buscarID(params['idUsuario']).subscribe(
+      this.service.buscarDadosUser(params['idUsuario']).subscribe(
         dados => {
           this.usuario = dados
           this.form.patchValue({
@@ -56,7 +56,7 @@ export class EditUsuarioComponent implements OnInit {
 
     if(this.form.valid){
 
-      this.service.atualizar({
+      this.service.atualizarLoginUser({
         id : this.idUsuario,
         loginAtual : this.form.value.loginAtual,
         novoLogin : this.form.value.novoLogin,

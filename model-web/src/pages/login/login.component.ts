@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-      this.loginService.login(this.form.value);
+      this.loginService.efetuarLogin(this.form.value);
     }
   }
 

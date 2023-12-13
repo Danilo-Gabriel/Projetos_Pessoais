@@ -6,7 +6,7 @@ import { ListUsuarioService } from './service/list-usuario.service';
 import { LoginService } from 'src/pages/login/services/login.service';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
 import { ConfirmationService } from 'primeng/api';
-import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-list-usuario',
@@ -24,8 +24,6 @@ constructor(
   private service: ListUsuarioService,
   private router: Router,
   private route : ActivatedRoute,
- //public dialog: MatDialog,
-  private serviceLogin: LoginService,
   private message : AppMessageService,
   private confirmationService: ConfirmationService,
   ){
@@ -52,11 +50,6 @@ ngOnInit(): void {
 
 }
 
-logout(){
-
-  this.serviceLogin.logout(false);
-
-}
 
 onAdd(){
 
@@ -79,7 +72,7 @@ onDelete(usuario : Usuario){[
 */
 
 
-confirm(event: Event, usuario : Usuario) {
+confirmDeleteUser(event: Event, usuario : Usuario) {
   this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Tem certeza que deseja excluir usuário? ',
@@ -94,16 +87,6 @@ confirm(event: Event, usuario : Usuario) {
       }
 })
 }
-
-
-/*
-onAviso(errorMsg: string)
-{
- this.dialog.open(ErrorDialogComponent, {
-  data: errorMsg
- });
-}
-*/
 
 
     private obterDadosUsuario() {
