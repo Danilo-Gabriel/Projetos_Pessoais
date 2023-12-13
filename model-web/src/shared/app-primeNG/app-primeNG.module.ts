@@ -27,7 +27,7 @@ import { MessagesModule } from 'primeng/messages';
 import { CardModule } from 'primeng/card';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
-
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 
 
@@ -60,7 +60,8 @@ import { DialogModule } from 'primeng/dialog';
   MessagesModule,
   CardModule,
   ConfirmPopupModule,
-  DialogModule
+  DialogModule,
+  InputSwitchModule
 
 
 

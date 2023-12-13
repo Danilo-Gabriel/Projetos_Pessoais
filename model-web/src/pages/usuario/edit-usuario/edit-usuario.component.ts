@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EditUsuarioService } from './service/edit-usuario.service';
 import { Subscription } from 'rxjs';
@@ -15,6 +15,8 @@ import { AppMessageService } from 'src/shared/components/app-message/app-message
 export class EditUsuarioComponent implements OnInit {
 
   form!: FormGroup;
+
+  situacao!: FormGroup;
 
   private routeSub!: Subscription;
   private idUsuario!: string;
@@ -35,6 +37,8 @@ export class EditUsuarioComponent implements OnInit {
       novoLogin: ['', Validators.required]
     });
 
+
+
   }
 
   ngOnInit(): void {
@@ -48,7 +52,12 @@ export class EditUsuarioComponent implements OnInit {
           loginAtual: this.usuario.login
         });
     });
+
     });
+
+    this.situacao = new FormGroup ({
+      checkend : new FormControl<boolean>(false)
+    })
 
   }
 
@@ -61,6 +70,7 @@ export class EditUsuarioComponent implements OnInit {
         loginAtual : this.form.value.loginAtual,
         novoLogin : this.form.value.novoLogin,
       });
+
 
     }else{
       this.message.showError("ERROR EM ATUALIZAR O USUARIO")

@@ -47,7 +47,7 @@ export class EditUsuarioService {
 
   buscarDadosUser(id : string){
 
-    return this.http.get<Usuario>(`${this.buscarDadosUser}/${id}`)
+    return this.http.get<Usuario>(`${this.buscarDadosUsuario}/${id}`)
   }
 
 
