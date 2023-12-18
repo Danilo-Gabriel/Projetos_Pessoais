@@ -146,9 +146,11 @@ public class UsuarioController {
     public ResponseEntity<?> detalhesDadosUsuarioClassController(@PathVariable Long id){
 
         try{
+
              Optional<Usuario> usuario = usuarioService.detalhesDadosUsuarioClassService(id);
 
-             return ResponseEntity.ok().body(usuario);
+             System.out.println(usuario);
+                 return ResponseEntity.ok().body(usuario);
 
         }catch(Exception e){
 

@@ -15,8 +15,6 @@ import { InatAtivUsuarioComponent } from './inat-ativ-usuario/inat-ativ-usuario.
   ],
   declarations: [
 
-  
-    InatAtivUsuarioComponent
   ]
 })
 export class UsuarioModule { }

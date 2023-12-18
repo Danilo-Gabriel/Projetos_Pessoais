@@ -16,7 +16,11 @@ export class EditUsuarioComponent implements OnInit {
 
   form!: FormGroup;
 
-  situacao!: FormGroup;
+  teste! : FormGroup;
+
+  situacao!: boolean | undefined;
+
+
 
   private routeSub!: Subscription;
   private idUsuario!: string;
@@ -32,11 +36,13 @@ export class EditUsuarioComponent implements OnInit {
   )
 
     {
-    this.form = this.formBuilder.group({
-      loginAtual: ['', Validators.required],
-      novoLogin: ['', Validators.required]
-    });
 
+
+
+      this.form = this.formBuilder.group({
+      loginAtual: null,
+      novoLogin: null,
+     });
 
 
   }
@@ -47,39 +53,41 @@ export class EditUsuarioComponent implements OnInit {
       this.idUsuario = params['idUsuario']
       this.service.buscarDadosUser(params['idUsuario']).subscribe(
         dados => {
-          this.usuario = dados
+          this.usuario = dados;
+          this.situacao = this.usuario.ativo
           this.form.patchValue({
-          loginAtual: this.usuario.login
+          loginAtual: this.usuario.login,
         });
     });
 
     });
 
-    this.situacao = new FormGroup ({
-      checkend : new FormControl<boolean>(false)
-    })
 
   }
 
   onSubmit(){
 
-    if(this.form.valid){
+    if(this.form.value){
 
       this.service.atualizarLoginUser({
         id : this.idUsuario,
         loginAtual : this.form.value.loginAtual,
-        novoLogin : this.form.value.novoLogin,
+        novoLogin : this.form.value.novoLogin
       });
 
+
+    if(this.teste.value){
+
+
+
+
+    }
 
     }else{
       this.message.showError("ERROR EM ATUALIZAR O USUARIO")
     }
 
   }
-
-
-
 
   onCancel(){
 

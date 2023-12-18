@@ -4,4 +4,5 @@ export interface EditUsuario {
   loginAtual? : string;
   novoLogin? : string;
 
+
 }

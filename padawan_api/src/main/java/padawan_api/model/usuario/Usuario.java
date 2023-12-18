@@ -53,11 +53,15 @@ public class Usuario {
 
     
         if(dados.loginAtual() != null && dados.loginAtual().equals(this.login)){
-            if(dados.novoLogin() != null && !dados.novoLogin().equals(dados.loginAtual()))
+            
+            
+            if(dados.novoLogin() == null){
                 
+            this.login = dados.loginAtual();
+            }
+            if(dados.novoLogin() != null){
+
             this.login = dados.novoLogin();
-            else{
-                throw new Exception(" LOGIN DEVE SER DIFERENTE QUE ATUAL, POR FAVOR PREENCHER OUTRO NOME");
             }
     
         }else{
