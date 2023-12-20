@@ -33,11 +33,11 @@
   <form>
 
 
-    <p-radioButton  name="situacao" value="Ativo" [(ngModel)]="situacao" inputId="true"></p-radioButton>
+    <p-radioButton  name="situacao" [value]="ativoLabel" [(ngModel)]="situacao" inputId="true"></p-radioButton>
     <label for="true" class="ml-2">Ativo</label>
 
 
-    <p-radioButton name="situacao" value="Inativo" [(ngModel)]="situacao" inputId="false"></p-radioButton>
+    <p-radioButton name="situacao" [value]="inativoLabel" [(ngModel)]="situacao" inputId="false"></p-radioButton>
     <label for="false" class="ml-2">Inativo</label>
 
 

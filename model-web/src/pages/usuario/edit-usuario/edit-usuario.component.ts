@@ -18,7 +18,10 @@ export class EditUsuarioComponent implements OnInit {
 
   teste! : FormGroup;
 
-  situacao!: boolean | undefined;
+  situacao!: string | undefined;
+
+  ativoLabel!: string
+  inativoLabel!: string
 
 
 
@@ -37,7 +40,8 @@ export class EditUsuarioComponent implements OnInit {
 
     {
 
-
+      this.ativoLabel = 'Ativo'
+      this.inativoLabel = 'Inativo'
 
       this.form = this.formBuilder.group({
       loginAtual: null,
@@ -54,7 +58,7 @@ export class EditUsuarioComponent implements OnInit {
       this.service.buscarDadosUser(params['idUsuario']).subscribe(
         dados => {
           this.usuario = dados;
-          this.situacao = this.usuario.ativo
+          this.situacao = this.usuario.ativo ? this.ativoLabel : this.inativoLabel
           this.form.patchValue({
           loginAtual: this.usuario.login,
         });
@@ -67,25 +71,27 @@ export class EditUsuarioComponent implements OnInit {
 
   onSubmit(){
 
-    if(this.form.value){
+    console.log("situacao: ", this.situacao)
 
-      this.service.atualizarLoginUser({
-        id : this.idUsuario,
-        loginAtual : this.form.value.loginAtual,
-        novoLogin : this.form.value.novoLogin
-      });
+    // if(this.form.value){
 
-
-    if(this.teste.value){
-
+    //   this.service.atualizarLoginUser({
+    //     id : this.idUsuario,
+    //     loginAtual : this.form.value.loginAtual,
+    //     novoLogin : this.form.value.novoLogin
+    //   });
 
 
+    // if(this.teste.value){
 
-    }
 
-    }else{
-      this.message.showError("ERROR EM ATUALIZAR O USUARIO")
-    }
+
+
+    // }
+
+    // }else{
+    //   this.message.showError("ERROR EM ATUALIZAR O USUARIO")
+    // }
 
   }
 

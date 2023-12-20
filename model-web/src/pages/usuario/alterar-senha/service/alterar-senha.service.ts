@@ -45,8 +45,7 @@ export class AlterarSenhaService {
 
     trocarSenha(record : AlterarSenhaUsuario) {
 
-      debugger
-      console.log(record);
+  
       this.http.put<AlterarSenhaUsuario>(this.API, record)
       .subscribe(
         (response => {
