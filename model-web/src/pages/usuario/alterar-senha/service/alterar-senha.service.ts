@@ -45,11 +45,12 @@ export class AlterarSenhaService {
 
     trocarSenha(record : AlterarSenhaUsuario) {
 
-  
+
       this.http.put<AlterarSenhaUsuario>(this.API, record)
       .subscribe(
         (response => {
-          this.message.showSuccess(`Usuário Atualizado`)
+          this.message.showSuccess(`Usuário Atualizado`),
+          window.location.reload();
         }),
         (error => {
           this.message.showError(`${error.error}`)

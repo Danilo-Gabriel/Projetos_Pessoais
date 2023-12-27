@@ -51,23 +51,43 @@ public class Usuario {
     public void atualizarUsuarioClassUsuarioJPA(DadosAtualizaLoginDTO dados) throws Exception {
         
 
-    
-        if(dados.loginAtual() != null && dados.loginAtual().equals(this.login)){
-            
-            
-            if(dados.novoLogin() == null){
-                
-            this.login = dados.loginAtual();
-            }
-            if(dados.novoLogin() != null){
 
-            this.login = dados.novoLogin();
+      
+
+
+        if(this.ativo == true){
+
+            if(dados.novoLogin() != null){
+                 this.login = dados.novoLogin();
+                 this.ativo = dados.ativo();
             }
-    
-        }else{
-           
-            throw new Exception("LOGIN ATUAL INCORRETO");
+            else {
+                throw new Exception("Campo 'novo login' não deve ser nulo");
+            }
+
         }
+
+        else if(this.ativo == false && dados.ativo() == true){
+
+           if(dados.novoLogin() != null){
+            
+            this.login = dados.novoLogin();
+            this.ativo = dados.ativo();
+
+           }
+           else{
+
+            throw new Exception("Campo 'novo login' não deve ser nulo");
+
+           }
+        
+        }
+        else{
+
+            throw new Exception("Usuário inativo");
+        }
+        
+    
     }
 
 
@@ -82,13 +102,13 @@ public class Usuario {
 
                 }else{
 
-                    throw new Exception("DIVERGENCIAS NA NOVA SENHA E CONFIRMAÇÃO DE SENHA");
+                    throw new Exception("Divergências na nova senha e confirmação de senha");
                 }
             }
 
             else{
 
-                throw new Exception("SENHA ATUAL INCORRETA");
+                throw new Exception("Senha atual incorreta");
             }
 
         
@@ -102,12 +122,12 @@ public class Usuario {
             if (dados.senha() != null && BCrypt.checkpw(dados.senha(), this.senha)) {
 
         
-                System.out.println("LOGIN CORRETO");
+                System.out.println("Login correto");
             }
 
             else{
 
-                throw new Exception("SENHA INCORRETA");
+                throw new Exception("Senha incorreta");
             }
 
         }

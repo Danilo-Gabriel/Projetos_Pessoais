@@ -33,7 +33,8 @@ export class EditUsuarioService {
     return this.http.put<Usuario>(this.API, record)
     .subscribe(
       (response) => {
-      this.message.showSuccess("Login Alterado com Sucesso");
+
+      this.message.showSuccess("Usuário alterado com sucesso");
 
       this.location.back();
     },

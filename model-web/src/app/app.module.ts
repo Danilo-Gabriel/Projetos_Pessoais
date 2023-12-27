@@ -17,7 +17,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { HeaderComponent } from 'src/pages/header/header.component';
 import { MessageService } from 'primeng/api';
 import { AlterarSenhaComponent } from 'src/pages/usuario/alterar-senha/alterar-senha-usuario.component';
-import { InatAtivUsuarioComponent } from 'src/pages/usuario/inat-ativ-usuario/inat-ativ-usuario.component';
+
 
 
 
@@ -35,7 +35,6 @@ import { InatAtivUsuarioComponent } from 'src/pages/usuario/inat-ativ-usuario/in
     HomeComponent,
     HeaderComponent,
     AlterarSenhaComponent,
-    InatAtivUsuarioComponent
 
   ],
   imports: [

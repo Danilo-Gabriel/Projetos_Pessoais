@@ -11,6 +11,7 @@ import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
 import padawan_api.model.usuario.dto.ReturnCadastroUsuarioDTO;
+import padawan_api.model.usuario.dto.ReturnDetalhesUsuarioDTO;
 import padawan_api.repository.UsuarioRepository;
 
 import java.util.Optional;
@@ -42,13 +43,13 @@ public class UsuarioService {
 
             }else{
 
-                throw new Exception("USUARIO ESTÁ INATIVO");
+                throw new Exception("Usuário está inativo");
             }
 
             
           }else{
 
-            throw new Exception("USUARIO NÃO CADASTRADO");
+            throw new Exception("Usuário não cadastrado");
           }
 
     }
@@ -67,12 +68,12 @@ public class UsuarioService {
                  repository.save(usuario);
                  
             }else{
-                throw new Exception("USUÁRIO INATIVO");
+                throw new Exception("Usuário inativo");
             }
 
         }else {
 
-            throw new Exception("USUÁRIO NÃO ECONTRADO OU NÃO CADASTRADO");
+            throw new Exception("Usuário não encontrado ou não cadastrado");
 
         }
       
@@ -90,7 +91,7 @@ public class UsuarioService {
         
         if(usuariOptional.isPresent()){
 
-            throw new Exception("USUARIO JÁ CADASTRADO");
+            throw new Exception("Usuário já cadastrado");
         }
         else {
 
@@ -109,7 +110,7 @@ public class UsuarioService {
 
     public List<DadosListarUsuarioDTO> listarUsuarioClassService(){
 
-        return repository.findAllByAtivoTrue().stream().map(DadosListarUsuarioDTO::new).toList();
+        return repository.findAll().stream().map(DadosListarUsuarioDTO::new).toList();
     }
 
  
@@ -123,20 +124,13 @@ public class UsuarioService {
 
             Usuario usuario = usuariosOptional.get();
 
-            if (usuario.isSituacao()) {
+            usuario.atualizarUsuarioClassUsuarioJPA(dados);
 
-                usuario.atualizarUsuarioClassUsuarioJPA(dados);
-
-                repository.save(usuario);
-
-            } else {
-
-                throw new Exception("USUÁRIO NÃO ESTÁ ATIVO, APENAS USUÁRIOS ATIVOS PODEM SER ATUALIZADOS ");
-            }
+            repository.save(usuario);
 
         } else {
 
-            throw new Exception("USUÁRIO NÃO CADASTRADO");
+            throw new Exception("Usuário não cadastrado ");
         }
 
         return dados;
@@ -158,12 +152,13 @@ public class UsuarioService {
             }
             else{
 
-                throw new Exception("USUARIO JÁ ESTÁ INATIVO");
+                throw new Exception("Usuário já está inativo");
             }
+            
            
         } else {
 
-            throw new Exception("USUARIO NÃO CADASTRADO");
+            throw new Exception("Usuário não cadastrado");
         }
 
     }
@@ -184,21 +179,28 @@ public class UsuarioService {
             }
             else{
 
-                throw new Exception("USUARIO JÁ ESTÁ ATIVO");
+                throw new Exception("Usuário já está ativo");
             }
            
         } else {
 
-            throw new Exception("USUARIO NÃO CADASTRADO");
+            throw new Exception("Usuário não cadastrado");
         }
 
     }
 
 
-    public Optional<Usuario> detalhesDadosUsuarioClassService(Long id) {
+    public ReturnDetalhesUsuarioDTO detalhesDadosUsuarioClassService(Long id) {
 
-       return this.repository.findById(id);
-     
+        Optional<Usuario> usuarioOptional = this.repository.findById(id);
+
+        Usuario usuario = usuarioOptional.get();
+
+        ReturnDetalhesUsuarioDTO usuarioDTO;
+
+        usuarioDTO = new ReturnDetalhesUsuarioDTO(usuario.getId(), usuario.getLogin(), usuario.isSituacao());
+        
+        return usuarioDTO;
         
     }
 

@@ -12,6 +12,7 @@ import padawan_api.model.usuario.dto.DadosAtualizaLoginDTO;
 import padawan_api.model.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.model.usuario.dto.DadosListarUsuarioDTO;
 import padawan_api.model.usuario.dto.ReturnCadastroUsuarioDTO;
+import padawan_api.model.usuario.dto.ReturnDetalhesUsuarioDTO;
 import padawan_api.service.usuario.UsuarioService;
 
 import java.util.List;
@@ -91,13 +92,17 @@ public class UsuarioController {
 
     }
 
+  
+
+    /*
     @PutMapping("inativar/{id}")
     @Transactional
     public ResponseEntity<?> inativaUsuarioClassController(@PathVariable Long id) {
 
         try{
+
              this.usuarioService.inativarUsuarioClassService(id);
-            return ResponseEntity.ok().body("INATIVO");
+            return ResponseEntity.ok().body("Usuário inativo");
             
         }catch (Exception e){
 
@@ -106,6 +111,7 @@ public class UsuarioController {
         }
     }
 
+   
     @PutMapping("ativar/{id}")
     @Transactional
     public ResponseEntity<?> ativarUsuarioClassController(@PathVariable Long id) {
@@ -114,7 +120,7 @@ public class UsuarioController {
 
             this.usuarioService.ativarUsuarioClassService(id);
 
-            return ResponseEntity.ok().body("ATIVO");
+            return ResponseEntity.ok().body("Usuário ativo");
             
         }catch (Exception e){
 
@@ -122,6 +128,9 @@ public class UsuarioController {
 
         }
     }
+     */
+
+ 
 
 
     @DeleteMapping("deletar/{id}")
@@ -130,7 +139,7 @@ public class UsuarioController {
         try{
 
             this.usuarioService.deletarUsuarioClassService(id);
-            return ResponseEntity.ok().body(id);
+            return ResponseEntity.ok().body("Usuário deletado");
 
         }catch(Exception e){
 
@@ -147,10 +156,12 @@ public class UsuarioController {
 
         try{
 
-             Optional<Usuario> usuario = usuarioService.detalhesDadosUsuarioClassService(id);
+            ReturnDetalhesUsuarioDTO usuarioDTO;
 
-             System.out.println(usuario);
-                 return ResponseEntity.ok().body(usuario);
+             usuarioDTO = usuarioService.detalhesDadosUsuarioClassService(id);
+            
+
+             return ResponseEntity.ok().body(usuarioDTO);
 
         }catch(Exception e){
 

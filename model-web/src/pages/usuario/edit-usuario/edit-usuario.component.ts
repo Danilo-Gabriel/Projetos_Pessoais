@@ -16,8 +16,6 @@ export class EditUsuarioComponent implements OnInit {
 
   form!: FormGroup;
 
-  teste! : FormGroup;
-
   situacao!: string | undefined;
 
   ativoLabel!: string
@@ -44,8 +42,7 @@ export class EditUsuarioComponent implements OnInit {
       this.inativoLabel = 'Inativo'
 
       this.form = this.formBuilder.group({
-      loginAtual: null,
-      novoLogin: null,
+      novoLogin: ['', Validators.required]
      });
 
 
@@ -60,7 +57,7 @@ export class EditUsuarioComponent implements OnInit {
           this.usuario = dados;
           this.situacao = this.usuario.ativo ? this.ativoLabel : this.inativoLabel
           this.form.patchValue({
-          loginAtual: this.usuario.login,
+          novoLogin: this.usuario.login,
         });
     });
 
@@ -71,7 +68,32 @@ export class EditUsuarioComponent implements OnInit {
 
   onSubmit(){
 
-    console.log("situacao: ", this.situacao)
+    if(this.form.value){
+
+        if(this.situacao === 'Ativo'){
+
+          this.service.atualizarLoginUser({
+                id : this.idUsuario,
+                novoLogin : this.form.value.novoLogin,
+                ativo : true
+              });
+
+          }
+
+        if(this.situacao === 'Inativo'){
+
+          this.service.atualizarLoginUser({
+            id : this.idUsuario,
+            novoLogin : this.form.value.novoLogin,
+            ativo : false
+          });
+
+      }
+
+     }
+
+    }
+
 
     // if(this.form.value){
 
@@ -93,7 +115,7 @@ export class EditUsuarioComponent implements OnInit {
     //   this.message.showError("ERROR EM ATUALIZAR O USUARIO")
     // }
 
-  }
+
 
   onCancel(){
 

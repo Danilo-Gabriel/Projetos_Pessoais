@@ -13,12 +13,6 @@
 
     <mat-form-field class="full-width">
 
-      <input matInput placeholder="Login Atual" formControlName="loginAtual">
-
-    </mat-form-field> &nbsp;
-
-    <mat-form-field class="full-width">
-
       <input minlength="4" maxlength="8" matInput  placeholder="Novo Login" formControlName="novoLogin">
 
     </mat-form-field>
@@ -33,11 +27,13 @@
   <form>
 
 
-    <p-radioButton  name="situacao" [value]="ativoLabel" [(ngModel)]="situacao" inputId="true"></p-radioButton>
+    <p-radioButton  name="situacao" [value]="ativoLabel" [(ngModel)]="situacao" ></p-radioButton>
     <label for="true" class="ml-2">Ativo</label>
 
 
-    <p-radioButton name="situacao" [value]="inativoLabel" [(ngModel)]="situacao" inputId="false"></p-radioButton>
+    &nbsp;
+
+    <p-radioButton name="situacao" [value]="inativoLabel" [(ngModel)]="situacao" ></p-radioButton>
     <label for="false" class="ml-2">Inativo</label>
 
 

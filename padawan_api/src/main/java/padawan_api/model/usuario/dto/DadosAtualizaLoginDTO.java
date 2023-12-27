@@ -8,11 +8,11 @@ public record DadosAtualizaLoginDTO(
 
        
         Long id,
+        
+        String novoLogin,
 
-        String loginAtual,
+        boolean ativo
 
-      
-        String novoLogin
 ) {
 
 
