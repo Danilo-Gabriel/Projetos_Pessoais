@@ -10,25 +10,11 @@
    <changeSet author="daniloGabriel" id="V4.alter_table_usuario"> 
     <addColumn tableName="usuarios">
 
-        <column name="nome_login" type="varchar(255)"></column>
+        <column name="nome_completo" type="varchar(255)"></column>
         <column name="email" type="varchar(255)"></column>  
-        <column name="cpf" type="char(11)"></column>
+        <column name="cpf" type="varchar(25)"></column>
         <column name="telefone" type="varchar(255)"></column>  
     </addColumn>  
 </changeSet>
-
-
-<!--  RENOMEANDO COLUNA -->
-
-<changeSet  author="daniloGabriel"  id="V4.alter_table_usuario_rename">  
-    <renameColumn
-            newColumnName="nome_completo"  
-            oldColumnName="login"    
-            tableName="usuarios"/>  
-</changeSet>
-
-
-
-
 
 </databaseChangeLog>

@@ -23,7 +23,11 @@ export class AddUsuarioComponent implements OnInit {
     {
     this.form = this.formBuilder.group({
       login: ['', Validators.required],
-      senha: ['', Validators.required]
+      senha: ['', Validators.required],
+      nome_completo: ['', Validators.required],
+      cpf: ['', Validators.required],
+      email: ['', Validators.required],
+      telefone: ''
     });
 
   }
@@ -36,7 +40,9 @@ export class AddUsuarioComponent implements OnInit {
   onSubmit(){
 
     if(this.form.valid){
+      
       this.service.save(this.form.value);
+
     }else{
       console.log("ERRO, TRATAR DEPOIS")
     }

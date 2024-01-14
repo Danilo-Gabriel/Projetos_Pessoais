@@ -43,6 +43,10 @@ constructor(
 
 }
 
+traduzirSituacao(situacao : boolean) : string{
+
+  return situacao ? 'ativo' : 'inativo';
+}
 
 ngOnInit(): void {
 

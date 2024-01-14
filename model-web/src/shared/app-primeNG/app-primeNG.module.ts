@@ -29,8 +29,9 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { RadioButtonModule } from 'primeng/radiobutton';
-
-
+import { InputTextModule } from 'primeng/inputtext';
+import { PanelModule } from 'primeng/panel';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @NgModule({
  exports:[
@@ -64,7 +65,11 @@ import { RadioButtonModule } from 'primeng/radiobutton';
   DialogModule,
   InputSwitchModule,
   FormsModule,
-  RadioButtonModule
+  RadioButtonModule,
+  InputTextModule,
+  PanelModule,
+  FieldsetModule
+
 
 
 

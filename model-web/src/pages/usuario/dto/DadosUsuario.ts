@@ -4,6 +4,13 @@ export interface Usuario {
   login?: string;
   senha?: string;
   ativo?: boolean;
+  nome_completo?: string;
+  email?: string;
+  cpf?: string;
+  telefone?: string;
+
+
+
 
 
 }

@@ -1,26 +1,67 @@
 <app-header></app-header>
+
 <mat-card class="tabelaCadastro">
 
-  <mat-card-header>
-
-  <mat-toolbar color="primary">Cadastrar Usuario</mat-toolbar>
-
-  </mat-card-header>
   <mat-card-content>
   <form [formGroup]="form">
 
-    <br>
+    <p-fieldset legend="DADOS PESSOAIS">
+
+      <mat-form-field class="full-width">
+
+        <input matInput placeholder="NOME COMPLETO" formControlName="nome_completo">
+
+      </mat-form-field>
+
+
+      &nbsp;
+
+      <mat-form-field class="full-width">
+
+        <input matInput pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="CPF" formControlName="cpf">
+
+      </mat-form-field>
+
+      &nbsp;
+
+      <mat-form-field class="full-width">
+
+        <input matInput placeholder="E-MAIL" formControlName="email">
+
+      </mat-form-field>
+
+      &nbsp;
+
+      <mat-form-field class="full-width">
+
+        <input matInput placeholder="TELEFONE" formControlName="telefone">
+
+      </mat-form-field>
+
+
+  </p-fieldset>
+
+  <br>
+
+  <p-fieldset legend="DADOS LOGIN">
+
     <mat-form-field class="full-width">
 
-      <input matInput placeholder="Nome" formControlName="login">
+      <input matInput placeholder="NOME LOGIN" formControlName="login">
 
     </mat-form-field>
 
+    &nbsp;
+
     <mat-form-field class="full-width">
 
-      <input matInput  minlength="4" maxlength="8" type="password" placeholder="Senha" formControlName="senha">
+      <input matInput minlength="4" maxlength="8" type="password" placeholder="SENHA" formControlName="senha">
 
     </mat-form-field>
+
+  </p-fieldset>
+
+  <br>
 
   </form>
 

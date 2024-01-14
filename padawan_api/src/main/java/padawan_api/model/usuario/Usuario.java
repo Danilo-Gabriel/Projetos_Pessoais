@@ -32,17 +32,30 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Long id;
     
+    private String nome_completo;
+
+    private String email;
+
+    private String cpf;
+
+    private String telefone;
     
     private String login;
 
-   
     private String senha;
     
     private Boolean ativo;
 
+
+
     public Usuario(DadosCadastroUsuarioDTO dados) {
+        this.nome_completo = dados.nome_completo();
+        this.email = dados.email();
+        this.cpf = dados.cpf();
+        this.telefone = dados.telefone();
         this.login = dados.login();
         this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
         this.ativo = true;

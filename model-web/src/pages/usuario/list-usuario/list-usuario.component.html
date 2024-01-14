@@ -29,7 +29,7 @@
             <tr>
 
                 <td>{{ usuario.login }}</td>
-                <td>{{ usuario.ativo }}</td>
+                <td>{{ traduzirSituacao(usuario.ativo)}}</td>
 
                 <td>
                     <p-button (click)="onEdit(usuario)" [rounded]="true" severity="secondary">
