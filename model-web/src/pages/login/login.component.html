@@ -8,14 +8,16 @@
 </p>
 <div class="conteudo-login">
 
-  <form class="conteudo-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form class="conteudo-form" [formGroup]="form">
+
+      <div *ngIf="!esqueciSenhaAtivo; else esqueciSenhaTemplate">
+
 
       <div class="Logo">
 
-               PADAWAN_API
+        PADAWAN_API
       </div>
 
-      <div>
           <div>
               <input class="input-login" type="text" placeholder="login" formControlName="login" id="login"/>
           </div>
@@ -42,15 +44,58 @@
 
           </div>
       -->
-
+          <br>
           <div>
-              <button class="input-submit" type="submit" [disabled]="!form.valid">
-                  LOGAR
+              <button class="input-submit" (click)="onSubmit()">
+                  ENTRAR
               </button>
+              &nbsp;&nbsp;&nbsp;
+
+              <button (click)="mostrarRecuperarSenha()"  class="input-esqueciSenha">
+                ESQUECI MINHA SENHA
+            </button>
+
           </div>
 
       </div>
 
+
+    <ng-template #esqueciSenhaTemplate>
+
+      <div class="LogoEsqueciSenha">
+
+        RECUPERAR SENHA
+      </div>
+
+      <div>
+
+
+      <input style="border: none;" readonly formControlName="nome do login">
+
+
+      <p>
+        <label>EMAIL:</label>
+        <input class="input-loginEsqueciSenha" type="email" placeholder="Digite seu Email" formControlName="emailRecuperacao" />
+      </p>
+
+
+
+
+
+        <br>
+        <div>
+
+          <button  class="input-submit" (click)="recuperarSenha()">
+            Recuperar Senha
+          </button>
+          &nbsp;&nbsp;&nbsp;
+
+          <button (click)="cancelarRecuperacaoSenha()" class="input-esqueciSenha">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </ng-template>
 
   </form>
 

@@ -15,7 +15,8 @@ import { LoginService } from './services/login.service';
 export class LoginComponent implements OnInit {
 
   public form!: FormGroup;
-
+  visible: boolean = false;
+  esqueciSenhaAtivo: boolean = false;
 
   constructor(
     private loginService : LoginService,
@@ -24,6 +25,19 @@ export class LoginComponent implements OnInit {
 
   ) {
 
+  }
+
+  mostrarRecuperarSenha() {
+    this.esqueciSenhaAtivo = true;
+  }
+
+  recuperarSenha() {
+    // Lógica para enviar e-mail de recuperação de senha
+    this.esqueciSenhaAtivo = false;
+  }
+
+  cancelarRecuperacaoSenha() {
+    this.esqueciSenhaAtivo = false;
   }
 
 
@@ -43,5 +57,10 @@ export class LoginComponent implements OnInit {
 
       this.loginService.efetuarLogin(this.form.value);
     }
+
+    showDialogEsqueciSenha() {
+      this.visible = true;
+  }
+
   }
 

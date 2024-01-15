@@ -33,6 +33,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { FieldsetModule } from 'primeng/fieldset';
 
+
 @NgModule({
  exports:[
   ButtonModule,
@@ -68,7 +69,7 @@ import { FieldsetModule } from 'primeng/fieldset';
   RadioButtonModule,
   InputTextModule,
   PanelModule,
-  FieldsetModule
+  FieldsetModule,
 
 
 

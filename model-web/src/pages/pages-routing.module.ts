@@ -9,6 +9,7 @@ import { AuthGuard } from 'src/app/guard/auth.guard';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
 
 
+
 const routes: Routes = [
 
   {path:'', component:LoginComponent,
