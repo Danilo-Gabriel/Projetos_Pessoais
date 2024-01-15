@@ -17,6 +17,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { HeaderComponent } from 'src/pages/header/header.component';
 import { MessageService } from 'primeng/api';
 import { AlterarSenhaComponent } from 'src/pages/usuario/alterar-senha/alterar-senha-usuario.component';
+import { LoginComponent } from 'src/pages/login/login.component';
 
 
 
@@ -35,6 +36,7 @@ import { AlterarSenhaComponent } from 'src/pages/usuario/alterar-senha/alterar-s
     HomeComponent,
     HeaderComponent,
     AlterarSenhaComponent,
+    LoginComponent
 
   ],
   imports: [

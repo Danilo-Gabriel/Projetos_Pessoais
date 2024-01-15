@@ -40,7 +40,7 @@ export class AddUsuarioComponent implements OnInit {
   onSubmit(){
 
     if(this.form.valid){
-      
+
       this.service.save(this.form.value);
 
     }else{
