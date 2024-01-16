@@ -7,12 +7,17 @@ import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
+import { AlterarSenhaComponent } from './usuario/alterar-senha/alterar-senha-usuario.component';
 
 
 
 const routes: Routes = [
 
   {path:'', component:LoginComponent,
+
+  },
+
+  {path:'recuperar-senha', component:AlterarSenhaComponent,
 
   },
 

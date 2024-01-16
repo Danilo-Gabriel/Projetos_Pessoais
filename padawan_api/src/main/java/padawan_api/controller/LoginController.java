@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
+import padawan_api.model.email.DadosEmailDTO;
 import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
+import padawan_api.service.email.EmailService;
 import padawan_api.service.usuario.UsuarioService;
 
 @RestController
@@ -28,6 +30,14 @@ public class LoginController {
 
     @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    private EmailService emailService;
+
+
+    public LoginController(EmailService emailService){
+      this.emailService = emailService;
+    }
 
   @PostMapping("/login")
    public ResponseEntity<?> efetuarLoginClassController(@RequestBody DadosEfetuarLoginDTO dados){
@@ -64,6 +74,12 @@ public class LoginController {
     }
     
   }
+
+  @PostMapping("email/recuperar-senha")
+    public void sendEmail(@RequestBody DadosEmailDTO email){
+        emailService.sendEmail(email);
+    }
+
 
 
    }
