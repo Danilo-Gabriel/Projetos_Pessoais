@@ -20,7 +20,7 @@ public class EmailService {
         var message = new SimpleMailMessage();
         message.setFrom("danilonascimento.dr@gmail.com");
         message.setTo(email.to());
-        message.setSubject(email.subjec());
+        message.setSubject(email.subject());
         message.setText(email.body());
         mailSender.send(message);
     }

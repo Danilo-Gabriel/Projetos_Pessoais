@@ -4,7 +4,7 @@ public record DadosEmailDTO(
 
     String to,
 
-    String subjec,
+    String subject,
 
     String body
 

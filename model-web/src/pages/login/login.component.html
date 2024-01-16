@@ -10,7 +10,7 @@
 
   <form class="conteudo-form" [formGroup]="form">
 
-      <div *ngIf="!esqueciSenhaAtivo; else esqueciSenhaTemplate">
+      <div *ngIf="!visibleRecuperarSenha; else esqueciSenhaTemplate">
 
 
       <div class="Logo">
@@ -70,12 +70,14 @@
       <div>
 
 
-      <input style="border: none;" readonly formControlName="nome do login">
+      <!--<input style="border: none;" readonly formControlName="nome do login">-->
 
 
       <p>
         <label>EMAIL:</label>
-        <input class="input-loginEsqueciSenha" type="email" placeholder="Digite seu Email" formControlName="emailRecuperacao" />
+        &nbsp;
+        &nbsp;
+        <input class="input-loginEsqueciSenha" type="email" placeholder="EMAIL" formControlName="emailRecuperacao" />
       </p>
 
 
