@@ -13,6 +13,8 @@ import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
 import padawan_api.model.usuario.dto.ReturnCadastroUsuarioDTO;
 import padawan_api.model.usuario.dto.ReturnDetalhesUsuarioDTO;
 import padawan_api.repository.UsuarioRepository;
+import padawan_api.service.email.EmailService;
+
 
 import java.util.Optional;
 import java.util.List;
@@ -23,6 +25,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository repository;
+
+    @Autowired
+    private EmailService emailService;
 
     public ReturnEfetuarLoginDTO efetuarLoginClassService(DadosEfetuarLoginDTO dados) throws Exception{
 
@@ -208,6 +213,9 @@ public class UsuarioService {
         
         repository.deleteById(id);
     }
+
+
+   
 
  
 }

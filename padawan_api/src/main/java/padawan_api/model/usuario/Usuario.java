@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import padawan_api.model.email.dto.DadosAtualizaUsuarioEmailDTO;
 import padawan_api.model.usuario.dto.DadosAtualizaLoginDTO;
 import padawan_api.model.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
@@ -49,6 +50,8 @@ public class Usuario {
     
     private Boolean ativo;
 
+    private String hash;
+
 
 
     public Usuario(DadosCadastroUsuarioDTO dados) {
@@ -58,16 +61,12 @@ public class Usuario {
         this.telefone = dados.telefone();
         this.login = dados.login();
         this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
+        this.hash = null;
         this.ativo = true;
     }
 
     public void atualizarUsuarioClassUsuarioJPA(DadosAtualizaLoginDTO dados) throws Exception {
         
-
-
-      
-
-
         if(this.ativo == true){
 
             if(dados.novoLogin() != null){
@@ -164,6 +163,17 @@ public class Usuario {
         return this.ativo;
     }
 
+
+
+
+    /*METODOS REFERENTES A ALTERAÇÕES DO EMAIL */
+
+
+
+      public void atualizarDadosUsuarioEmailClassUsuarioJPA(DadosAtualizaUsuarioEmailDTO dados){
+
+        
+    }
 
 
 

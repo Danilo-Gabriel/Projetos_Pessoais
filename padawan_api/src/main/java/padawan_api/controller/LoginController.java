@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
-import padawan_api.model.email.DadosEmailDTO;
+import padawan_api.model.email.dto.DadosEmailDTO;
 import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
-import padawan_api.service.email.EmailService;
+import padawan_api.service.email.*;
 import padawan_api.service.usuario.UsuarioService;
 
 @RestController
@@ -75,11 +75,29 @@ public class LoginController {
     
   }
 
-  @PostMapping("email/recuperar-senha")
+  @PostMapping("/recuperar-senha")
+    public ResponseEntity<?> recuperarSenhaPorEmailClassController(@RequestBody DadosEmailDTO email){
+
+        try {
+
+          this.emailService.enviarNovaSenhaPorEmailClassService(email);
+
+          return ResponseEntity.ok().build();
+         
+        } catch (Exception e) {
+          System.out.println(e.getMessage());
+          return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+    
+    }
+
+    /* 
+    @PostMapping("email/recuperar-senha")
     public void sendEmail(@RequestBody DadosEmailDTO email){
         emailService.sendEmail(email);
     }
-
+    */
 
 
    }
