@@ -2,15 +2,20 @@ package padawan_api.service.email;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 import java.util.Optional;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import padawan_api.model.email.dto.DadosAtualizaUsuarioEmailDTO;
 import padawan_api.model.email.dto.DadosEmailDTO;
+import padawan_api.model.email.dto.MensagemRecuperarSenha;
 import padawan_api.model.usuario.Usuario;
 import padawan_api.repository.UsuarioRepository;
 
@@ -78,11 +83,22 @@ public class EmailService {
 
             if(usuario.isSituacao()){
 
-                String novaSenha = gerarSenha();
                 
-                String hash = Criptmd5(novaSenha);
+                Date dataAtual = new Date();
+                SimpleDateFormat formatoHora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            
+                String hash = formatoHora.format(dataAtual+usuario.getLogin());
+                hash = Criptmd5(hash);
 
-        
+                MensagemRecuperarSenha mensagem = new MensagemRecuperarSenha();
+                var enviarEmail = new SimpleMailMessage();
+
+                enviarEmail.setFrom(mensagem.getFrom());
+                enviarEmail.setTo(email.email());
+                enviarEmail.setSubject(mensagem.getSubject());
+                enviarEmail.setText(mensagem.getBody());
+                mailSender.send(enviarEmail);
+
             }
             else{
                 throw new Exception("Usuário inativo, contate o administrador do sistema!");
