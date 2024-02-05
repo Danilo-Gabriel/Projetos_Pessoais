@@ -7,9 +7,6 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <include file="/db/changelog/db.migracao/V1.create_table_usuario.xml"/>
-    <include file="/db/changelog/db.migracao/V2.add_column_usuario.xml"/>
-    <include file="/db/changelog/db.migracao/V3.add_usuario_root.xml"/>
-    <include file="/db/changelog/db.migracao/V4.alter_table_usuario.xml"/>
-    <include file="/db/changelog/db.migracao/V5.alter_table_usuario.xml"/>
+    <include file="/db/changelog/db.migracao/V2.alter_table_usuario.xml"/>
 
 </databaseChangeLog>

@@ -6,18 +6,26 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 
-    <changeSet id="V1.create_table_usuario" author="daniloGabriel">
+    <changeSet id="V1.0_create_table_usuario" author="daniloGabriel">
         <createTable tableName="usuarios">
             <column name="id" type="smallserial" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="login" type="varchar(255)">
-                <constraints nullable="false"/>
             </column>
             <column name="senha" type="varchar(255)">
-                <constraints nullable="false" />
             </column>
+            <column name="ativo" type="boolean"/>
         </createTable>
+    </changeSet>
+
+    <changeSet id="V1.2_add_usuario_root" author="daniloGabriel">
+        <insert tableName="usuarios">
+            <column name="login" value="root"/>
+            <column name="senha" value="$2a$12$gCUHEKn5rx4NYXcMoB/J1ObLBYDerKe1JpFse1QFkTQlWtYR0tzPK"/>
+            <column name="ativo" value="true"/>
+            
+        </insert>
     </changeSet>
 
 

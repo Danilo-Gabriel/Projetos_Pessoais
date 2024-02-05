@@ -1,4 +1,4 @@
-package padawan_api.controller;
+package padawan_api.controller.email;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import padawan_api.service.email.EmailService;
 import padawan_api.model.email.dto.DadosEmailDTO;
-import padawan_api.service.email.*;;;
+import padawan_api.model.email.services.EmailService;
 
 @RestController
 @RequestMapping("/email")

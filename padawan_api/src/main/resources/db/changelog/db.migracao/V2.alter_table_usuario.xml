@@ -7,8 +7,11 @@
 <!--  INSERINDO COLUNAS NA TABELA USUARIO -->
 
    
-   <changeSet author="daniloGabriel" id="V5.alter_table_usuario"> 
+   <changeSet id="V2_alter_table_usuario" author="daniloGabriel"> 
     <addColumn tableName="usuarios">
+        <column name="nome_completo" type="varchar(255)"></column>
+        <column name="email" type="varchar(255)"></column>  
+        <column name="cpf" type="char(11)"> </column>
         <column name="hash" type="varchar(255)"></column>
     </addColumn>  
 </changeSet>

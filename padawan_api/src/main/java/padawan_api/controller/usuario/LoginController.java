@@ -1,7 +1,4 @@
-package padawan_api.controller;
-
-
-import jakarta.validation.Valid;
+package padawan_api.controller.usuario;
 
 
 
@@ -17,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
+import padawan_api.model.usuario.services.UsuarioService;
 import padawan_api.model.email.dto.DadosEmailDTO;
+import padawan_api.model.email.services.EmailService;
 import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
-import padawan_api.service.email.*;
-import padawan_api.service.usuario.UsuarioService;
 
 @RestController
 @CrossOrigin(origins = ("*"))

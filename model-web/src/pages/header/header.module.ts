@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'primeng/api';
-import { AppPrimeNGModule } from 'src/shared/app-primeNG/app-primeNG.module';
+import { PrimeNGModule } from 'src/shared/primeNG/primeNG.module';
 
 
 
@@ -13,7 +13,7 @@ import { AppPrimeNGModule } from 'src/shared/app-primeNG/app-primeNG.module';
   imports: [
     CommonModule,
     SharedModule,
-    AppPrimeNGModule
+    PrimeNGModule
   ]
 })
 export class HeaderModule { }

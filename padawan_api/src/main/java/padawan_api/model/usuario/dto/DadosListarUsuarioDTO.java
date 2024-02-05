@@ -1,6 +1,6 @@
 package padawan_api.model.usuario.dto;
 
-import padawan_api.model.usuario.Usuario;
+import padawan_api.model.usuario.repository.Usuario;
 
 public record DadosListarUsuarioDTO(
 
