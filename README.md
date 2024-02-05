@@ -6,9 +6,11 @@ DESCRIÇÃO:
 
 
 TECNOLOGIAS UTILIZADAS
-- Spring (Backend)
+- Spring Boot (Backend)
 - Angular (Frontend)
-- Docker (Container)
+- Docker (Container - Postgres)
+- JWT
+- Email
 - Postgres 
 - Liquibase
 
