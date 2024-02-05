@@ -1,4 +1,4 @@
-package padawan_api.model.usuario;
+package padawan_api.model.usuario.repository;
 
 
 import jakarta.persistence.*;
@@ -41,8 +41,6 @@ public class Usuario {
     private String email;
 
     private String cpf;
-
-    private String telefone;
     
     private String login;
 
@@ -58,7 +56,6 @@ public class Usuario {
         this.nome_completo = dados.nome_completo();
         this.email = dados.email();
         this.cpf = dados.cpf();
-        this.telefone = dados.telefone();
         this.login = dados.login();
         this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
         this.hash = null;

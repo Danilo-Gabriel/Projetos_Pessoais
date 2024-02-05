@@ -1,4 +1,4 @@
-package padawan_api.controller;
+package padawan_api.controller.usuario;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,16 +7,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import padawan_api.model.usuario.Usuario;
 import padawan_api.model.usuario.dto.DadosAtualizaLoginDTO;
 import padawan_api.model.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.model.usuario.dto.DadosListarUsuarioDTO;
 import padawan_api.model.usuario.dto.ReturnCadastroUsuarioDTO;
 import padawan_api.model.usuario.dto.ReturnDetalhesUsuarioDTO;
-import padawan_api.service.usuario.UsuarioService;
+
+import padawan_api.model.usuario.services.UsuarioService;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.web.bind.annotation.GetMapping;
 

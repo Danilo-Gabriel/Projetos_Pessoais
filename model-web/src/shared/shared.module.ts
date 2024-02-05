@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AppPrimeNGModule } from './app-primeNG/app-primeNG.module';
+import { PrimeNGModule } from './primeNG/primeNG.module';
 
 
 
@@ -13,7 +13,7 @@ import { AppPrimeNGModule } from './app-primeNG/app-primeNG.module';
   ],
   imports: [
     CommonModule,
-    AppPrimeNGModule
+    PrimeNGModule
   ],
   exports:[
     //ErrorDialogComponent

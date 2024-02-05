@@ -76,4 +76,4 @@ import { FieldsetModule } from 'primeng/fieldset';
 
  ]
 })
-export class AppPrimeNGModule { }
+export class PrimeNGModule { }

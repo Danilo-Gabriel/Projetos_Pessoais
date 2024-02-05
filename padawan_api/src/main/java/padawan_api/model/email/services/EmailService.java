@@ -1,4 +1,4 @@
-package padawan_api.service.email;
+package padawan_api.model.email.services;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 
 import padawan_api.model.email.dto.DadosEmailDTO;
 import padawan_api.model.email.dto.MensagemRecuperarSenha;
-import padawan_api.model.usuario.Usuario;
-import padawan_api.repository.UsuarioRepository;
+import padawan_api.model.usuario.repository.Usuario;
+import padawan_api.model.usuario.repository.UsuarioRepository;
 
 @Service
 public class EmailService {

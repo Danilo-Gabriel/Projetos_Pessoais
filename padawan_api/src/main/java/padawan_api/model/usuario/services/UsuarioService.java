@@ -1,20 +1,19 @@
-package padawan_api.service.usuario;
+package padawan_api.model.usuario.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import padawan_api.model.usuario.Usuario;
+import padawan_api.model.email.services.EmailService;
 import padawan_api.model.usuario.dto.DadosAtualizaLoginDTO;
 import padawan_api.model.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.model.usuario.dto.DadosListarUsuarioDTO;
 import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
+import padawan_api.model.usuario.repository.Usuario;
+import padawan_api.model.usuario.repository.UsuarioRepository;
 import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
 import padawan_api.model.usuario.dto.ReturnCadastroUsuarioDTO;
 import padawan_api.model.usuario.dto.ReturnDetalhesUsuarioDTO;
-import padawan_api.repository.UsuarioRepository;
-import padawan_api.service.email.EmailService;
-
 
 import java.util.Optional;
 import java.util.List;

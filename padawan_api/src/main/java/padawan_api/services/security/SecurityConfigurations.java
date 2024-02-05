@@ -1,4 +1,4 @@
-package padawan_api.service.security;
+package padawan_api.services.security;
 /*package padawan_api.infra.security;
 
 
