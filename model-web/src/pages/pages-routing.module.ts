@@ -1,13 +1,14 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './login/login/login.component';
 import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
 import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
 import { AlterarSenhaComponent } from './usuario/alterar-senha/alterar-senha-usuario.component';
+import { RecuperarSenhaComponent } from './login/recuperar-senha/recuperar-senha.component';
 
 
 
@@ -17,7 +18,8 @@ const routes: Routes = [
 
   },
 
-  {path:'recuperar-senha', component:AlterarSenhaComponent,
+  {
+    path:'recuperar-senha', component: RecuperarSenhaComponent,
 
   },
 
@@ -42,6 +44,7 @@ const routes: Routes = [
     path:'home/usuario/edit/:idUsuario', component: EditUsuarioComponent,
     canActivate:[AuthGuard]
   }
+
 
 
 ]

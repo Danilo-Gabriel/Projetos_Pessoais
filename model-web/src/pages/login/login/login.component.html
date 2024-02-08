@@ -8,7 +8,7 @@
 </p>
 <div class="conteudo-login">
 
-  <form class="conteudo-form" [formGroup]="form">
+  <form class="conteudo-form" [formGroup]="formLogin">
 
       <div *ngIf="!visibleRecuperarSenha; else esqueciSenhaTemplate">
 
@@ -19,7 +19,7 @@
       </div>
 
           <div>
-              <input class="input-login" type="text" placeholder="login" formControlName="login" id="login"/>
+              <input class="input-login" type="text" placeholder="LOGIN" formControlName="login" id="login"/>
           </div>
 
           <!---
@@ -33,7 +33,7 @@
 
 
           <div>
-              <input class="input-login" type="password" placeholder="senha"  autocomplete="current-password" formControlName="senha" id="senha"/>
+              <input class="input-login" type="password" placeholder="SENHA"  autocomplete="current-password" formControlName="senha" id="senha"/>
           </div>
 
           <!---
@@ -60,7 +60,7 @@
       </div>
 
 
-    <ng-template #esqueciSenhaTemplate>
+    <ng-template  [formGroup]="formRecuperarSenha" #esqueciSenhaTemplate>
 
       <div class="LogoEsqueciSenha">
 
@@ -77,7 +77,7 @@
         <label>EMAIL:</label>
         &nbsp;
         &nbsp;
-        <input class="input-loginEsqueciSenha" type="email" placeholder="EMAIL" formControlName="emailRecuperacao" />
+        <input class="input-loginEsqueciSenha" type="email" placeholder="EMAIL" formControlName="email" />
       </p>
 
 
@@ -87,7 +87,7 @@
         <br>
         <div>
 
-          <button  class="input-submit" (click)="recuperarSenha()">
+          <button class="input-submit" (click)="recuperarSenha()">
             Recuperar Senha
           </button>
           &nbsp;&nbsp;&nbsp;

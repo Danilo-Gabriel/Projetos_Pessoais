@@ -3,8 +3,10 @@ import { environment } from 'src/environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
-import { DadosLogin } from '../dto/DadosLogin';
 import { LocalStorageService } from 'src/shared/components/services/localStorage/localStorage.service';
+import { DadosLogin } from '../dto/DadosLogin';
+import { DadosRecuperarSenha } from '../dto/DadosRecuperarSenha';
+import { delay } from 'rxjs';
 
 
 
@@ -17,6 +19,8 @@ export class LoginService {
   private backendUrl = environment.endPoint;
 
   private readonly apiUrl = `${this.backendUrl}/auth/login`;
+
+  private readonly urlRecuperarSenha = `${this.backendUrl}/auth/recuperar-senha`;
 
   constructor(
     private http : HttpClient,
@@ -63,6 +67,24 @@ export class LoginService {
 
       }
     );
+}
+
+recuperarSenha(record : DadosRecuperarSenha){
+
+    this.http.post<DadosRecuperarSenha>(this.urlRecuperarSenha, record)
+    .subscribe(
+      (response) => {
+
+        this.message.showSuccess("enviado");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000)
+      },
+      (error) => {
+        this.message.showError(error.error);
+      }
+    )
+
 }
 
 

@@ -1,4 +1,4 @@
-import { LoginService } from './../../pages/login/services/login.service';
+import { LoginService } from '../../pages/login/login/services/login.service';
 
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';

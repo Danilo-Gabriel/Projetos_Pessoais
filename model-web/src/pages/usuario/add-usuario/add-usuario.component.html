@@ -1,8 +1,20 @@
-<app-header></app-header>
+<div>
+  <div>
+    <app-header></app-header>
+  </div>
+ <br>
+ <br>
+ <br>
+ <br>
+ <p>
+  
+ </p>
 
-<mat-card class="tabelaCadastro">
+  <div>
 
-  <mat-card-content>
+<p-card class="tabelaCadastro" header="" [style]="{ width: '60%'}">
+
+
   <form [formGroup]="form">
 
     <p-fieldset legend="DADOS PESSOAIS">
@@ -63,17 +75,20 @@
 
   </form>
 
-</mat-card-content>
+<ng-template pTemplate="footer">
+  <p-button [disabled]="!form.valid" label="Save" icon="pi pi-check" (Click)="onSubmit()"></p-button>
+  <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" (onClick)="onCancel()" [style]="{ 'margin-left': '.5em' }"></p-button>
+</ng-template>
 
-<mat-card-actions>
+</p-card>
 
-  <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()">Salvar</button> &nbsp;
+  </div>
 
-  <button  mat-raised-button (click)="onCancel()">Cancelar</button>
+</div>
 
-</mat-card-actions>
-</mat-card>
 
+
+      <router-outlet></router-outlet>
 
 
 
@@ -87,5 +102,3 @@
         <mat-option value="Back-end">Backe-end</mat-option>
       </mat-select>
       -->
-
-      <router-outlet></router-outlet>
