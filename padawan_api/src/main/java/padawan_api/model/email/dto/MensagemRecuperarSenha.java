@@ -43,9 +43,10 @@ public void setHash(String hash){
 }
 
 public MensagemRecuperarSenha(){
-    this.from = "danilonascimento.dr@gmail.com";
+    //this.from = "danilonascimento.dr@gmail.com";
     this.subject = "LINK PARA RECUPERAÇÃO DE SENHA";
-    this.body = "ACESSO PARA RECUPERAÇÃO DE SENHA: ";
+    this.body = "ACESSO PARA RECUPERAÇÃO DE SENHA: "+
+    "";
    }
 
    

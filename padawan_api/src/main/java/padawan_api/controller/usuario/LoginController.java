@@ -89,6 +89,13 @@ public class LoginController {
     
     }
 
+
+    @PostMapping("/verificarHash")
+    public ResponseEntity<?> verificarHashUsuarioClassController(){
+
+      return ResponseEntity.ok().build();
+    }
+
     /* 
     @PostMapping("email/recuperar-senha")
     public void sendEmail(@RequestBody DadosEmailDTO email){

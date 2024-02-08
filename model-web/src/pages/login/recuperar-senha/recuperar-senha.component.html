@@ -1,0 +1,62 @@
+<mat-toolbar>
+  <p>
+    PROJETO PADAWAN
+  </p>
+</mat-toolbar>
+
+<div>
+
+  <form [formGroup]="form!">
+
+    <p-card class="recuperarSenha" header="" [style]="{ width: '30%'}">
+      <ng-template pTemplate="header">
+        <div class="avatar-container">
+          <img class="avatar" src="https://images7.alphacoders.com/131/1319607.jpeg"/>
+          <h4 class="nome">Mandaloriano</h4>
+          <p class="funcao">Caçador: Como deve ser!</p>
+        </div>
+    </ng-template>
+
+    <mat-form-field class="full-width">
+
+      <input matInput placeholder="Codigo" type="text" formControlName="codigo">
+
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+
+      <input matInput placeholder="Nova Senha" type="password" formControlName="novaSenha">
+
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+
+      <input matInput placeholder="Confirme nova senha" type="password" formControlName="confirmarSenha">
+
+    </mat-form-field>
+
+
+
+
+      <ng-template pTemplate="footer">
+        <p-button label="Save" icon="pi pi-check"></p-button>
+       <!--- <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>-->
+      </ng-template>
+    </p-card>
+
+
+  </form>
+
+
+
+</div>
+
+
+
+<footer class="footer">
+
+  <mat-toolbar color="primary">
+    <span></span>
+  </mat-toolbar>
+
+</footer>

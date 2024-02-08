@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
-import { LoginService } from '../login/services/login.service';
+import { LoginService } from '../login/login/services/login.service';
 
 
 @Component({

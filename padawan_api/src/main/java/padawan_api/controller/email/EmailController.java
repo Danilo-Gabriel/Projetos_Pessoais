@@ -1,4 +1,4 @@
-package padawan_api.controller.email;
+/*package padawan_api.controller.email;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,3 +29,4 @@ public class EmailController {
 
     
 }
+*/

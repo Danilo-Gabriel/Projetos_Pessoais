@@ -1,0 +1,48 @@
+.footer{
+  position: fixed; /* Define a posição fixa para o rodapé */
+  bottom: 0; /* Coloca o rodapé na parte inferior da página */
+
+  width: 100%; /* Largura total do rodapé */
+
+
+
+}
+
+mat-toolbar{
+  background: #3f51b5;
+  color: white;
+}
+
+.recuperarSenha {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Isso centralizará verticalmente o conteúdo também, se desejar */
+
+
+}
+
+.full-width{
+  width: 100%;
+}
+
+
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.nome, .funcao {
+  margin-top: 8px;
+  font-weight: normal;
+}
+
+

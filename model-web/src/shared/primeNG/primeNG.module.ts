@@ -32,6 +32,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { FieldsetModule } from 'primeng/fieldset';
+import { PasswordModule } from 'primeng/password';
+
 
 
 @NgModule({
@@ -70,6 +72,8 @@ import { FieldsetModule } from 'primeng/fieldset';
   InputTextModule,
   PanelModule,
   FieldsetModule,
+  PasswordModule
+
 
 
 

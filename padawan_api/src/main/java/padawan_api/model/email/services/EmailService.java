@@ -26,11 +26,14 @@ public class EmailService {
     @Autowired
     private UsuarioRepository repository;
 
-    private JavaMailSender mailSender;
 
-    public EmailService(JavaMailSender mailSender){
-        this.mailSender = mailSender;
+   
+    private JavaMailSender emailSender;
+
+    public EmailService(JavaMailSender emailSender){
+        this.emailSender = emailSender;
     }
+     /* 
 
     public void sendEmail(DadosEmailDTO email){
         
@@ -41,8 +44,13 @@ public class EmailService {
        // message.setText(email.body());
        // mailSender.send(message);
     }
+    */
 
-    public static String gerarSenha(){
+
+    /*  VALIDAÇÃO PELO HASH, MAS CASO QUEIRA TROCAR POR UM CODIGO SERÁ ESSE
+     
+
+       public static String gerarSenha(){
 
         String[] LetrasMaius = {"A", "B", "C", "D", "E"};
         String[] LetrasMinus = {"a", "b", "c", "d", "e"};
@@ -62,6 +70,9 @@ public class EmailService {
         return LetrasMaius[rand1] + Numeros[rand3] + LetrasMinus[rand2]  + Especiais[rand4];
     }
 
+     
+     */
+   
 
 
 
@@ -87,17 +98,23 @@ public class EmailService {
                 Date dataAtual = new Date();
                 SimpleDateFormat formatoHora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             
-                String hash = formatoHora.format(dataAtual+usuario.getLogin());
-                hash = Criptmd5(hash);
+                String hash = formatoHora.format(dataAtual);
+
+                
+                hash = Criptmd5(hash+usuario.getLogin());
+
+                // CADASTRAR ESSE HASH NO BANCO DE DADOS
 
                 MensagemRecuperarSenha mensagem = new MensagemRecuperarSenha();
+                mensagem.setHash(hash);
+
                 var enviarEmail = new SimpleMailMessage();
 
                 enviarEmail.setFrom(mensagem.getFrom());
                 enviarEmail.setTo(email.email());
                 enviarEmail.setSubject(mensagem.getSubject());
-                enviarEmail.setText(mensagem.getBody());
-                mailSender.send(enviarEmail);
+                enviarEmail.setText(mensagem.getBody()+email.url()+"/"+hash);
+                emailSender.send(enviarEmail);
 
             }
             else{

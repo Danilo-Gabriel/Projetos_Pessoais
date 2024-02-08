@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -14,9 +15,12 @@ import { LoginService } from './services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  public form!: FormGroup;
+  public formLogin!: FormGroup;
+  public formRecuperarSenha! : FormGroup
+
   visible: boolean = false;
   visibleRecuperarSenha: boolean = false;
+
 
   constructor(
     private loginService : LoginService,
@@ -32,8 +36,9 @@ export class LoginComponent implements OnInit {
   }
 
   recuperarSenha() {
-    // Lógica para enviar e-mail de recuperação de senha
-    this.visibleRecuperarSenha = false;
+
+    this.loginService.recuperarSenha(this.formRecuperarSenha.value);
+
   }
 
   cancelarRecuperacaoSenha() {
@@ -45,17 +50,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.form = this.formBuilder.group({
+    this.formLogin = this.formBuilder.group({
       login: ['', Validators.required],
       senha: ['', Validators.required]
     });
 
+    this.formRecuperarSenha = this.formBuilder.group({
+      email: ['', Validators.required],
+      url: "http://localhost:4200/pages/recuperar-senha"
+    });
 
   }
 
   onSubmit() {
 
-      this.loginService.efetuarLogin(this.form.value);
+      this.loginService.efetuarLogin(this.formLogin.value);
     }
 
     showDialogEsqueciSenha() {
