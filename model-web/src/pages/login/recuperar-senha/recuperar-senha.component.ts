@@ -1,5 +1,10 @@
+import { Usuario } from './../../usuario/dto/DadosUsuario';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
+import { RecuperarSenhaService } from './services/recuperar-senha.service';
 
 @Component({
   selector: 'app-recuperar-senha',
@@ -9,11 +14,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RecuperarSenhaComponent implements OnInit {
 
   form!: FormGroup;
-
   value!: string;
+  private routeSub!: Subscription;
+  private hashUsuario!: string;
+  usuario! : Usuario;
+
 
   constructor(
-    private formBuilder : FormBuilder
+    private formBuilder : FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private message : AppMessageService,
+    private recuperarSenhaService : RecuperarSenhaService
   ) {
 
     this.form = this.formBuilder.group({
@@ -25,6 +37,23 @@ export class RecuperarSenhaComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.routeSub = this.route.params
+    .subscribe(params => {
+      this.hashUsuario = params['hashUsuario']
+      this.recuperarSenhaService.validarHashUsuario(params['hashUsuario'])
+      .subscribe(
+        dados => {
+          this.usuario = dados;
+          this.form.patchValue({
+        });
+        },
+        error => {
+          this.message.showError(error.error);
+          
+        }
+      );
+    });
   }
 
 }

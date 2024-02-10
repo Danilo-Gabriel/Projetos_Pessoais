@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import padawan_api.model.email.dto.DadosAtualizaUsuarioEmailDTO;
 import padawan_api.model.usuario.dto.DadosAtualizaLoginDTO;
@@ -22,6 +23,7 @@ import org.mindrot.jbcrypt.BCrypt;
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -145,6 +147,11 @@ public class Usuario {
 
 
 
+    public void salvaHash(String hash){
+
+        this.hash = hash;
+
+    }
 
 
     public void inativar(){

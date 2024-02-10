@@ -7,7 +7,7 @@ export interface Usuario {
   nome_completo?: string;
   email?: string;
   cpf?: string;
-  telefone?: string;
+  hash?: string;
 
 
 
