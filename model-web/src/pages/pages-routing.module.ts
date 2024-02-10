@@ -19,7 +19,7 @@ const routes: Routes = [
   },
 
   {
-    path:'recuperar-senha', component: RecuperarSenhaComponent,
+    path:'recuperar-senha/:hashUsuario', component: RecuperarSenhaComponent,
 
   },
 

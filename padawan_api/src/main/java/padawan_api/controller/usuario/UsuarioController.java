@@ -156,7 +156,7 @@ public class UsuarioController {
 
         try{
 
-            ReturnDetalhesUsuarioDTO usuarioDTO;
+             ReturnDetalhesUsuarioDTO usuarioDTO;
 
              usuarioDTO = usuarioService.detalhesDadosUsuarioClassService(id);
             

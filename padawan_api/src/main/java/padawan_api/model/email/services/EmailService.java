@@ -103,6 +103,9 @@ public class EmailService {
                 
                 hash = Criptmd5(hash+usuario.getLogin());
 
+                usuario.setHash(hash);
+                repository.save(usuario);
+            
                 // CADASTRAR ESSE HASH NO BANCO DE DADOS
 
                 MensagemRecuperarSenha mensagem = new MensagemRecuperarSenha();
@@ -126,6 +129,29 @@ public class EmailService {
             throw new Exception("Email não cadastrado, ou usuário não encontrado");
         }
 
+    }
+
+    public Usuario validarHashUsuarioClassService(String hash) throws Exception{
+
+        Optional<Usuario> usuarioOptional = this.repository.findByHash(hash);
+
+        if(usuarioOptional.isPresent()){
+
+            Usuario usuario = usuarioOptional.get();
+            if(usuario.isSituacao()){
+
+            return usuario;
+
+            }else{
+
+                throw new Exception("Usuário inativo, contate o administrador do sistema!");
+            }
+
+
+        }
+        else{
+            throw new Exception("Hash não encontrado");
+        }
     }
 
 }

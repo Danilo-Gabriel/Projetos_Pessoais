@@ -5,15 +5,19 @@ package padawan_api.controller.usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
+import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.services.UsuarioService;
 import padawan_api.model.email.dto.DadosEmailDTO;
 import padawan_api.model.email.services.EmailService;
@@ -90,11 +94,23 @@ public class LoginController {
     }
 
 
-    @PostMapping("/verificarHash")
-    public ResponseEntity<?> verificarHashUsuarioClassController(){
+    @GetMapping("{hash}")
+    public ResponseEntity<?> validarHashUsuarioClassController(@PathVariable String hash){
 
-      return ResponseEntity.ok().build();
+      try {
+        
+       Usuario usuario = this.emailService.validarHashUsuarioClassService(hash);
+
+        return ResponseEntity.ok().body(usuario);
+
+      } catch (Exception e) {
+          return ResponseEntity.badRequest().body(e.getMessage());
+      }
+     
+      
     }
+
+   
 
     /* 
     @PostMapping("email/recuperar-senha")
