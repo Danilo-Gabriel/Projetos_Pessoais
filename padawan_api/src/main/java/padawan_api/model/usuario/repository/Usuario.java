@@ -145,11 +145,18 @@ public class Usuario {
          
     }
 
+    public void atualizarSenhaViaEmailClassJPA(DadosAtualizaUsuarioEmailDTO dados) throws Exception{
 
+        if(dados.novaSenha() != null && dados.confirmarSenha() != null && dados.novaSenha().equals(dados.confirmarSenha())){
 
-    public void salvaHash(String hash){
+              this.senha = BCrypt.hashpw(dados.novaSenha(), BCrypt.gensalt());
+              this.hash = null;
+         }
+         else{
 
-        this.hash = hash;
+                throw new Exception("Divergências na nova senha e confirmação de senha");
+            }
+        
 
     }
 
