@@ -18,18 +18,20 @@ export class RecuperarSenhaComponent implements OnInit {
   private routeSub!: Subscription;
   private hashUsuario!: string;
   usuario! : Usuario;
-
+  id! : string
 
   constructor(
     private formBuilder : FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private message : AppMessageService,
-    private recuperarSenhaService : RecuperarSenhaService
+    private recuperarSenhaService : RecuperarSenhaService,
+
   ) {
 
     this.form = this.formBuilder.group({
-      codigo: ['', Validators.required],
+     // codigo: ['', Validators.required],
+      id : '',
       novaSenha: ['', Validators.required],
       confirmarSenha:['', Validators.required]
     });
@@ -45,15 +47,24 @@ export class RecuperarSenhaComponent implements OnInit {
       .subscribe(
         dados => {
           this.usuario = dados;
+          this.id = dados.id;
           this.form.patchValue({
         });
         },
         error => {
-          this.message.showError(error.error);
-          
+          //this.message.showError(error.error);
+
         }
       );
     });
+
+
+  }
+
+  OnSubmit(){
+
+    this.form.value.id = this.id
+    this.recuperarSenhaService.alterarSenhaUsuario(this.form.value);
   }
 
 }

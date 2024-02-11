@@ -14,6 +14,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import padawan_api.model.email.dto.DadosAtualizaUsuarioEmailDTO;
 import padawan_api.model.email.dto.DadosEmailDTO;
 import padawan_api.model.email.dto.MensagemRecuperarSenha;
 import padawan_api.model.usuario.repository.Usuario;
@@ -153,5 +154,26 @@ public class EmailService {
             throw new Exception("Hash não encontrado");
         }
     }
+
+    public void atualizarSenhaViaEmailClassService(DadosAtualizaUsuarioEmailDTO dados) throws Exception{
+
+        Optional<Usuario> usuarioOptional = this.repository.findById(dados.id());
+    
+
+        if(usuarioOptional.isPresent()){
+
+            Usuario usuario = usuarioOptional.get();
+
+            usuario.atualizarSenhaViaEmailClassJPA(dados);
+
+            repository.save(usuario);
+
+        }
+        else{
+            throw new Exception("Usuário não cadastrado, contate um administrador");
+        }
+    }
+
+    
 
 }

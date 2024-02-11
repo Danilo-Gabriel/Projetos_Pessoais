@@ -17,12 +17,14 @@
         </div>
     </ng-template>
 
+    <!--
     <mat-form-field class="full-width">
 
       <input matInput placeholder="Codigo" type="text" formControlName="codigo">
 
     </mat-form-field>
 
+    -->
     <mat-form-field class="full-width">
 
       <input matInput placeholder="Nova Senha" type="password" formControlName="novaSenha">
@@ -39,7 +41,7 @@
 
 
       <ng-template pTemplate="footer">
-        <p-button label="Save" icon="pi pi-check"></p-button>
+        <p-button (onClick)="OnSubmit()" label="Salvar"></p-button>
        <!--- <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>-->
       </ng-template>
     </p-card>

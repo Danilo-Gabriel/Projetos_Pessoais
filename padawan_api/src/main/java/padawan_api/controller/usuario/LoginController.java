@@ -19,6 +19,7 @@ import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.services.UsuarioService;
+import padawan_api.model.email.dto.DadosAtualizaUsuarioEmailDTO;
 import padawan_api.model.email.dto.DadosEmailDTO;
 import padawan_api.model.email.services.EmailService;
 import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
@@ -108,6 +109,21 @@ public class LoginController {
       }
      
       
+    }
+
+
+    @PutMapping("/recuperarSenha")
+    public ResponseEntity<?> atualizarSenhaViaEmailClassController(@RequestBody DadosAtualizaUsuarioEmailDTO dados){
+      
+      try {
+        
+        this.emailService.atualizarSenhaViaEmailClassService(dados);
+
+        return ResponseEntity.ok().build();
+      } catch (Exception e) {
+       
+        return ResponseEntity.badRequest().body(e.getMessage());
+      }
     }
 
    
