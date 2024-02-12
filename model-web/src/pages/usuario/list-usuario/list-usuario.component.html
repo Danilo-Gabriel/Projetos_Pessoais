@@ -1,9 +1,9 @@
 <app-header></app-header>
 <p-toast></p-toast>
-<mat-card class="tabelaCadastro">
 
 
-    <mat-toolbar color="primary">Usuarios Cadastrado</mat-toolbar>
+<div class="tabelaCadastro">
+  <mat-toolbar color="primary">Usuarios Cadastrado</mat-toolbar>
 
 
   <div class="card" *ngIf="listUsuario$ | async as cursos; else loading">
@@ -12,12 +12,15 @@
      [paginator]="true"
     [rows]="5"
     [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': '10rem' }"
-    currentPageReportTemplate="usuarios {first} to {last} of {totalRecords} usuarios"
+    [tableStyle]="{ 'min-width': '2rem' }"
+    currentPageReportTemplate="Usuário {first} a {last} de {totalRecords} Usuários"
     >
         <ng-template pTemplate="header">
             <tr>
-                <th>Nome</th>
+                <th>Login</th>
+                <th>Nome_completo</th>
+                <th>Email</th>
+                <th>CPF</th>
                 <th>Situação</th>
                 <th>
                     <p-button (click)="onAdd()" label="Adicionar"></p-button>
@@ -29,6 +32,10 @@
             <tr>
 
                 <td>{{ usuario.login }}</td>
+                <td>{{ usuario.nome_completo }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.cpf }}</td>
+
                 <td>{{ traduzirSituacao(usuario.ativo)}}</td>
 
                 <td>
@@ -52,6 +59,9 @@
 
     </p-table>
 </div>
+
+</div>
+
 
 
 <ng-template #loading>

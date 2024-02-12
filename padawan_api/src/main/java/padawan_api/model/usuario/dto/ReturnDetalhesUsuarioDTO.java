@@ -6,6 +6,12 @@ public record ReturnDetalhesUsuarioDTO(
 
         String login,
 
+        String nome_completo,
+        
+        String email,
+
+        String cpf,
+
         boolean ativo
 
 ) {

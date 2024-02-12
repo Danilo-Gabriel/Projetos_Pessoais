@@ -1,6 +1,6 @@
 export interface DadosAlterarSenha {
 
-  id : String,
+  hash : String,
   novaSenha: string,
   confirmarSenha : string
 

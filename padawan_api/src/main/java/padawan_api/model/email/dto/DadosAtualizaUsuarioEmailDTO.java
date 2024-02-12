@@ -2,7 +2,7 @@ package padawan_api.model.email.dto;
    
 public record DadosAtualizaUsuarioEmailDTO(
 
-        Long id,
+        String hash,
         String novaSenha,
         String confirmarSenha
       

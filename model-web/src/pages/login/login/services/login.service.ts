@@ -75,7 +75,7 @@ recuperarSenha(record : DadosRecuperarSenha){
     .subscribe(
       (response) => {
 
-        this.message.showSuccess("enviado");
+        this.message.showSuccess("Email enviado");
         setTimeout(() => {
           window.location.reload();
         }, 2000)

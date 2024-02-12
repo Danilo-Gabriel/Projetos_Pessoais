@@ -7,11 +7,18 @@ import jakarta.validation.constraints.NotBlank;
 public record DadosAtualizaLoginDTO(
 
        
-        Long id,
-        
-        String novoLogin,
+       
+Long id,
 
-        boolean ativo
+String login,
+
+String nome_completo,
+
+String email,
+
+String cpf,
+
+boolean ativo
 
 ) {
 

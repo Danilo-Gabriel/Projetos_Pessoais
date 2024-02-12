@@ -157,7 +157,7 @@ public class EmailService {
 
     public void atualizarSenhaViaEmailClassService(DadosAtualizaUsuarioEmailDTO dados) throws Exception{
 
-        Optional<Usuario> usuarioOptional = this.repository.findById(dados.id());
+        Optional<Usuario> usuarioOptional = this.repository.findByHash(dados.hash());
     
 
         if(usuarioOptional.isPresent()){

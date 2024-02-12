@@ -8,21 +8,26 @@
   justify-content: center;
 
 }
-.tabelaCadastro{
-  max-width: 80%;
-  margin: 2em auto; /* centralize o card com margin auto */
+.tabelaCadastro {
+  // max-width: 50%; // Comente esta linha para reduzir a largura da tabela
+  position: relative;
+  margin: 2em auto; /* Centralize a tabela com margin auto */
   text-align: center;
   overflow-y: auto; /* Adicione esta linha para rolagem vertical */
 }
 
 .card {
+  position: relative;
+  margin: 2em auto; /* Centralize a tabela com margin auto */
+  text-align: center;
+  overflow-y: auto;
   overflow-x: auto; /* Adicione esta linha para rolagem horizontal se necessário */
 }
 
 
 
 .full-width{
-  width: 80%;
+  width: 30%;
 }
 
 .min-width{
