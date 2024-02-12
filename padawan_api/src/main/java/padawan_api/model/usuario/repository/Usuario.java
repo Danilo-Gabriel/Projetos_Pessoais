@@ -68,8 +68,11 @@ public class Usuario {
         
         if(this.ativo == true){
 
-            if(dados.novoLogin() != null){
-                 this.login = dados.novoLogin();
+            if(dados != null){
+                 this.login = dados.login();
+                 this.nome_completo = dados.nome_completo();
+                 this.email = dados.email();
+                 this.cpf = dados.cpf();
                  this.ativo = dados.ativo();
             }
             else {
@@ -80,9 +83,12 @@ public class Usuario {
 
         else if(this.ativo == false && dados.ativo() == true){
 
-           if(dados.novoLogin() != null){
+           if(dados != null){
             
-            this.login = dados.novoLogin();
+            this.login = dados.login();
+            this.nome_completo = dados.nome_completo();
+            this.email = dados.email();
+            this.cpf = dados.cpf();
             this.ativo = dados.ativo();
 
            }

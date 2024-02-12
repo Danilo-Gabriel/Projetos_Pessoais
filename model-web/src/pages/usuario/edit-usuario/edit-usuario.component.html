@@ -1,59 +1,86 @@
-<mat-card class="editarUsuario">
+<app-header></app-header>
 
-  <mat-card-header>
+<br>
+  <div class="editarUsuario">
+    <form [formGroup]="form!">
 
-  <mat-toolbar color="primary">Editar Usuário</mat-toolbar>
+      <p-fieldset legend="DADOS PESSOAIS">
 
-  </mat-card-header>
-  <mat-card-content>
-  <form [formGroup]="form">
+        <mat-form-field class="full-width">
 
-    <br>
+          <input matInput placeholder="NOME COMPLETO" formControlName="nome_completo">
 
-    <mat-form-field class="full-width">
-
-      <input minlength="4" maxlength="8" matInput  placeholder="Novo Login" formControlName="novoLogin">
-
-    </mat-form-field>
-
-  </form>
-
-</mat-card-content>
+        </mat-form-field>
+<br>
 
 
+        <mat-form-field class="full-width">
+
+          <input matInput placeholder="E-MAIL" formControlName="email">
+
+        </mat-form-field>
 
 
-  <form>
+<br>
 
+        <mat-form-field class="full-width">
 
-    <p-radioButton  name="situacao" [value]="ativoLabel" [(ngModel)]="situacao" ></p-radioButton>
-    <label for="true" class="ml-2">Ativo</label>
+          <input matInput placeholder="CPF" formControlName="cpf">
 
-
-    &nbsp;
-
-    <p-radioButton name="situacao" [value]="inativoLabel" [(ngModel)]="situacao" ></p-radioButton>
-    <label for="false" class="ml-2">Inativo</label>
+        </mat-form-field>
 
 
 
-  </form>
+    </p-fieldset>
+
+      <br>
+      <p-fieldset legend="DADOS LOGIN">
+
+        <mat-form-field class="full-width">
+
+          <input matInput placeholder="NOME LOGIN" formControlName="login">
+
+        </mat-form-field>
+
+        <br>
+
+        <form>
+          <p-radioButton  name="situacao" [value]="ativoLabel" [(ngModel)]="situacao" ></p-radioButton>
+        <label for="true" class="ml-2">Ativo</label>
+        &nbsp;
+        <p-radioButton name="situacao" [value]="inativoLabel" [(ngModel)]="situacao" ></p-radioButton>
+        <label for="false" class="ml-2">Inativo</label>
+        </form>
+
+      </p-fieldset>
+
+      <br>
+
+      <mat-card-actions>
+
+        <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()">Atualizar</button> &nbsp;
+
+        <button  mat-raised-button (click)="onCancel()">Cancelar</button>
+
+      </mat-card-actions>
+
+    </form>
+
+
+  </div>
 
 
 
 
 
-<mat-card-actions>
-
-  <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()">Atualizar</button> &nbsp;
-
-  <button  mat-raised-button (click)="onCancel()">Cancelar</button>
-
-</mat-card-actions>
 
 
 
 
+
+      <div>
+        <router-outlet></router-outlet>
+      </div>
 
       <!-- ADICIOANR OPÇÕES SELECIONAVES
 
@@ -65,5 +92,3 @@
         <mat-option value="Back-end">Backe-end</mat-option>
       </mat-select>
       -->
-
-      <router-outlet></router-outlet>

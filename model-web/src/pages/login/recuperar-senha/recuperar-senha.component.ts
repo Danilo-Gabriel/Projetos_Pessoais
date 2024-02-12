@@ -18,7 +18,6 @@ export class RecuperarSenhaComponent implements OnInit {
   private routeSub!: Subscription;
   private hashUsuario!: string;
   usuario! : Usuario;
-  id! : string
 
   constructor(
     private formBuilder : FormBuilder,
@@ -28,10 +27,9 @@ export class RecuperarSenhaComponent implements OnInit {
     private recuperarSenhaService : RecuperarSenhaService,
 
   ) {
-
     this.form = this.formBuilder.group({
      // codigo: ['', Validators.required],
-      id : '',
+      hash : "",
       novaSenha: ['', Validators.required],
       confirmarSenha:['', Validators.required]
     });
@@ -47,8 +45,8 @@ export class RecuperarSenhaComponent implements OnInit {
       .subscribe(
         dados => {
           this.usuario = dados;
-          this.id = dados.id;
           this.form.patchValue({
+
         });
         },
         error => {
@@ -63,7 +61,7 @@ export class RecuperarSenhaComponent implements OnInit {
 
   OnSubmit(){
 
-    this.form.value.id = this.id
+    this.form.value.hash = this.hashUsuario;
     this.recuperarSenhaService.alterarSenhaUsuario(this.form.value);
   }
 

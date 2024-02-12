@@ -1,23 +1,23 @@
-/*
 .tabelaCadastro{
 
 
-  display: flex;
   justify-content: center;
   align-items: center;
+  height: 50%;
+  width: 100%;
+  max-width: 100%;
+  display: contents;
+  //justify-content: center;
   position: relative;
-  height: 100;
-   Isso centralizará verticalmente o conteúdo também, se desejar 
-
-
+  //height: 100vh;
+  // Isso centralizará verticalmente o conteúdo também, se desejar
   //max-width: 80%;
-  //margin: 2em;
-  //text-align: center;
+  margin: 2em;
+  text-align: center;
 }
 
-
 .full-width{
-  width: 45%;
+  width: 50%;
 
 }
 
@@ -26,6 +26,6 @@
   min-width: 150px;
 }
 
-*/
+
 
 

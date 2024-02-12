@@ -8,8 +8,6 @@ public record DadosCadastroUsuarioDTO(
 
         String cpf,
 
-        String telefone,
-
         String login,
 
         String senha) {

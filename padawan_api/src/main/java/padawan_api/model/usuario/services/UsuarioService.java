@@ -202,7 +202,7 @@ public class UsuarioService {
 
         ReturnDetalhesUsuarioDTO usuarioDTO;
 
-        usuarioDTO = new ReturnDetalhesUsuarioDTO(usuario.getId(), usuario.getLogin(), usuario.isSituacao());
+        usuarioDTO = new ReturnDetalhesUsuarioDTO(usuario.getId(), usuario.getLogin(), usuario.getNome_completo(), usuario.getEmail(), usuario.getCpf(), usuario.getAtivo());
         
         return usuarioDTO;
         

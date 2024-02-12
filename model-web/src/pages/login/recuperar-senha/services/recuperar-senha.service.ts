@@ -52,7 +52,7 @@ alterarSenhaUsuario(record : DadosAlterarSenha){
       this.router.navigate(['pages']);
     },
     (error) => {
-      this.messagem.showError("Error em alterar Senha");
+      this.messagem.showError(`${error.error}`);
     }
   )
 

@@ -1,8 +1,11 @@
 export interface EditUsuario {
 
   id?: string;
-  novoLogin? : string;
   ativo? : boolean;
+  login?: string;
+  nome_completo?: string;
+  email?: string;
+  cpf?: string;
 
 
 }

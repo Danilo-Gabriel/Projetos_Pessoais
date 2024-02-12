@@ -1,8 +1,7 @@
 <app-header></app-header>
 
-<mat-card class="tabelaCadastro">
-
-  <mat-card-content>
+  <br>
+<div class="tabelaCadastro">
   <form [formGroup]="form">
 
     <p-fieldset legend="DADOS PESSOAIS">
@@ -13,8 +12,7 @@
 
       </mat-form-field>
 
-
-      &nbsp;
+      <br>
 
       <mat-form-field class="full-width">
 
@@ -22,7 +20,7 @@
 
       </mat-form-field>
 
-      &nbsp;
+      <br>
 
       <mat-form-field class="full-width">
 
@@ -30,10 +28,7 @@
 
       </mat-form-field>
 
-      &nbsp;
-
   </p-fieldset>
-
   <br>
 
   <p-fieldset legend="DADOS LOGIN">
@@ -44,7 +39,7 @@
 
     </mat-form-field>
 
-    &nbsp;
+    <br>
 
     <mat-form-field class="full-width">
 
@@ -54,11 +49,6 @@
 
   </p-fieldset>
 
-  <br>
-
-  </form>
-
-</mat-card-content>
 
 <mat-card-actions>
 
@@ -67,7 +57,10 @@
   <button  mat-raised-button (click)="onCancel()">Cancelar</button>
 
 </mat-card-actions>
-</mat-card>
+
+  </form>
+
+</div>
 
 
 

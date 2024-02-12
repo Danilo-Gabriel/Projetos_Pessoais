@@ -26,8 +26,7 @@ export class AddUsuarioComponent implements OnInit {
       senha: ['', Validators.required],
       nome_completo: ['', Validators.required],
       cpf: ['', Validators.required],
-      email: ['', Validators.required],
-      telefone: ''
+      email: ['', Validators.required]
     });
 
   }

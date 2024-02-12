@@ -42,10 +42,11 @@ export class EditUsuarioComponent implements OnInit {
       this.inativoLabel = 'Inativo'
 
       this.form = this.formBuilder.group({
-      novoLogin: ['', Validators.required]
-     });
-
-
+        login: ['', Validators.required],
+        nome_completo: ['', Validators.required],
+        cpf: ['', Validators.required],
+        email: ['', Validators.required]
+      });
   }
 
   ngOnInit(): void {
@@ -57,7 +58,10 @@ export class EditUsuarioComponent implements OnInit {
           this.usuario = dados;
           this.situacao = this.usuario.ativo ? this.ativoLabel : this.inativoLabel
           this.form.patchValue({
-          novoLogin: this.usuario.login,
+          login: this.usuario.login,
+          nome_completo: this.usuario.nome_completo,
+          cpf: this.usuario.cpf,
+          email: this.usuario.email,
         });
     });
 
@@ -74,7 +78,10 @@ export class EditUsuarioComponent implements OnInit {
 
           this.service.atualizarLoginUser({
                 id : this.idUsuario,
-                novoLogin : this.form.value.novoLogin,
+                login : this.form.value.login,
+                nome_completo : this.form.value.nome_completo,
+                cpf : this.form.value.cpf,
+                email : this.form.value.email,
                 ativo : true
               });
 
@@ -84,7 +91,10 @@ export class EditUsuarioComponent implements OnInit {
 
           this.service.atualizarLoginUser({
             id : this.idUsuario,
-            novoLogin : this.form.value.novoLogin,
+            login : this.form.value.login,
+            nome_completo : this.form.value.nome_completo,
+            cpf : this.form.value.cpf,
+            email : this.form.value.email,
             ativo : false
           });
 

@@ -99,7 +99,7 @@
 
 
       <p>
-        <input class="input-loginEsqueciSenha" type="email" placeholder="DIGITE SEU EMAIL" formControlName="email" />
+        <input class="input-loginEsqueciSenha" type="email" placeholder="INFORME SEU EMAIL" formControlName="email" />
         <input class="input-loginEsqueciSenha" type="email" placeholder="CONFIRMAR EMAIL" formControlName="confirmarEmail" />
       </p>
 
@@ -113,7 +113,7 @@
         <br>
         <div>
 
-          <button class="input-submit" (click)="recuperarSenha()">
+          <button [disabled]="!formRecuperarSenha.valid" class="input-submit" (click)="recuperarSenha()">
             Recuperar Senha
           </button>
           &nbsp;&nbsp;&nbsp;
