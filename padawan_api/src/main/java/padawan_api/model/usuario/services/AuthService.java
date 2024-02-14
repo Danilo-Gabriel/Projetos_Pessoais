@@ -1,4 +1,4 @@
-package padawan_api.services.security;
+package padawan_api.model.usuario.services;
 /*package padawan_api.domain.usuario;
 
 

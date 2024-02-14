@@ -17,25 +17,39 @@ import java.util.Date;
 
 @Service
 public class TokenService {
+ @Value("${api.security.token.secret}")
+    private String secret;
 
     public String gerarToken(Usuario usuario){
-      try {
-          var algoritmo = Algorithm.HMAC256("admin");
-          return JWT.create()
-                  .withIssuer("API Padawan_api") //informação de quem está gerando o token
-                  .withSubject(usuario.getLogin())
-                  .withExpiresAt(dataExpiracao())
-                  .sign(algoritmo);
-
-      }catch (JWTCreationException exception){
-          throw new RuntimeException("error ao gerar o token jwt", exception);
-      }
+        try{
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            String token = JWT.create()
+                    .withIssuer("api")
+                    .withSubject(usuario.getLogin())
+                    .withExpiresAt(genExpirationDate())
+                    .sign(algorithm);
+            return token;
+        } catch (JWTCreationException exception) {
+            throw new RuntimeException("error ao gerar o token jwt", exception);
+        }
     }
 
-    private Instant dataExpiracao() {
-        return LocalDateTime .now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+    public String validarToken(String token){
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            return JWT.require(algorithm)
+                    .withIssuer("api")
+                    .build()
+                    .verify(token)
+                    .getSubject();
+        } catch (JWTVerificationException exception){
+            return "";
+        }
     }
 
+    private Instant genExpirationDate(){
+        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+    }
 }
 
 
