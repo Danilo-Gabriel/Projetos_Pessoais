@@ -21,13 +21,16 @@
       <span>Sistema</span>
     </button>
 
+
     <ng-container *ngIf="showSubmenu">
       <div style="text-align: left;">
-        <button mat-button class="submenu-button" (click)="navigateTo('pages/usuario')">
+        &nbsp;
+        <button mat-button class="submenu-button" href="https://" (click)="navigateTo('pages/usuario')">
           <mat-icon>menu</mat-icon>
           <span>Usuário</span>
         </button>
         <br>
+        &nbsp;
         <button mat-button class="submenu-button" (click)="navigateTo('pages/conta')">
           <mat-icon>menu</mat-icon>
           <span>Conta</span>
