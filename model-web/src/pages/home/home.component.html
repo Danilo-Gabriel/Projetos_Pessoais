@@ -1,10 +1,29 @@
+<mat-toolbar class="mat-elevation-z3">
+  <button mat-icon-button (click)="collapsed.set(!collapsed())">
+    <mat-icon>menu</mat-icon>
+  </button>
+  &nbsp;
+  <h1>PADAWAN</h1>
+</mat-toolbar>
 
-<app-header></app-header>
+<mat-toolbar class="app-footer">
 
 
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
 
-<router-outlet></router-outlet>
+      <app-header-footer-content [collapsed]="collapsed()"></app-header-footer-content>
 
+    </mat-sidenav>
+
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
 
 
 

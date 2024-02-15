@@ -50,7 +50,7 @@ export class AlterarSenhaService {
       .subscribe(
         (response => {
           this.message.showSuccess(`Usuário Atualizado`)
-          //window.location.reload();
+          window.location.reload();
         }),
         (error => {
           this.message.showError(`${error.error}`)

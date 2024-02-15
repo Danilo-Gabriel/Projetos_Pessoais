@@ -1,0 +1,57 @@
+<div class="sidenav-header">
+  <img width="100" height="100" src="https://images7.alphacoders.com/131/1319607.jpeg"/>
+  <div class="header-text">
+    <h4 class="nome">Mandaloriano</h4>
+    <p class="funcao">Caçador: Como deve ser!</p>
+  </div>
+
+  <div>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" (click)="navigateTo('pages/home')">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" (click)="toggleSubmenu()">
+      <mat-icon>menu</mat-icon>
+      <span>Sistema</span>
+    </button>
+
+    <ng-container *ngIf="showSubmenu">
+      <div style="text-align: left;">
+        <button mat-button class="submenu-button" (click)="navigateTo('pages/usuario')">
+          <mat-icon>menu</mat-icon>
+          <span>Usuário</span>
+        </button>
+        <br>
+        <button mat-button class="submenu-button" (click)="navigateTo('pages/conta')">
+          <mat-icon>menu</mat-icon>
+          <span>Conta</span>
+        </button>
+      </div>
+    </ng-container>
+
+    <mat-divider></mat-divider>
+
+    <button (click)="showDialogTrocarSenha()" mat-button class="menu-button" >
+      <mat-icon>lock</mat-icon>
+      <span>Trocar Senha</span>
+    </button>
+
+    <p-dialog header="Esqueci Senha" [(visible)]="visible" [style]="{width: '50vw'}" [modal]="true">
+      <app-alterSenha-usuario></app-alterSenha-usuario>
+    </p-dialog>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" (click)="efetuarlogoutTsHeader()" >
+      <mat-icon>logout</mat-icon>
+      <span>Sair</span>
+    </button>
+
+  </div>
+</div>

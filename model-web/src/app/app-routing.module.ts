@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from 'src/pages/login/login/login.component';
+import { RecuperarSenhaComponent } from 'src/pages/login/recuperar-senha/recuperar-senha.component';
 
 
 const routes: Routes = [
 
 
-
-  {path: '', pathMatch: 'full', redirectTo: 'pages'}
-  ,
+  {path: '', pathMatch: 'full', redirectTo: 'login'},
+  {path: 'login', component: LoginComponent },
+  {path : 'recuperar-senha/:hashUsuario', component: RecuperarSenhaComponent },
   {path:'pages',
     loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule)}
 
