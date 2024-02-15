@@ -31,7 +31,7 @@ validarHashUsuario(hash: string){
   return this.http.get<Usuario>(`${this.validarHash}/${hash}`).pipe(
     catchError(error => {
       console.error('Erro ao validar hash de usuário:', error);
-      this.router.navigate(['pages']);
+      this.router.navigate(['login']);
       setTimeout(() => {
         this.messagem.showError("Hash inválido")
       }, 2000)

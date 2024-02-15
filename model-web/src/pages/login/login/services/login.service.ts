@@ -34,7 +34,7 @@ export class LoginService {
 
   efetuarLogout(){
 
-    this.router.navigate([ '/pages']),
+    this.router.navigate([ '/login']),
     this.storage.removerLoginUser();
 
 

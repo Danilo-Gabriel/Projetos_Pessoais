@@ -1,53 +1,37 @@
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
-import { LoginComponent } from './login/login/login.component';
+import { HomeComponent } from './home/home.component';
 import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
 import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component';
-import { HomeComponent } from './home/home.component';
-import { AuthGuard } from 'src/app/guard/auth.guard';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
-import { AlterarSenhaComponent } from './usuario/alterar-senha/alterar-senha-usuario.component';
+import { MainComponent } from './main/main.component';
 import { RecuperarSenhaComponent } from './login/recuperar-senha/recuperar-senha.component';
-
-
+import { AuthGuard } from 'src/app/guard/auth.guard';
 
 const routes: Routes = [
-
-  {path:'', component:LoginComponent,
-
-  },
-
   {
-    path:'recuperar-senha/:hashUsuario', component: RecuperarSenhaComponent,
+    path: '',
+    component: HomeComponent,
+    canActivate : [AuthGuard],
+    children: [
+      { path: 'home',
+       component: MainComponent,
+       canActivate : [AuthGuard]},
+      { path: 'usuario',
+       component: ListUsuarioComponent,
+       canActivate : [AuthGuard]},
+      { path: 'usuario/new',
+       component: AddUsuarioComponent,
+       canActivate : [AuthGuard]},
+      { path: 'usuario/edit/:idUsuario',
+       component: EditUsuarioComponent,
+       canActivate : [AuthGuard], }
 
-  },
-
-  {
-    path:'home', component:HomeComponent,
-    canActivate:[AuthGuard]
-  },
-
-
-  {
-    path:'home/usuario', component: ListUsuarioComponent,
-    canActivate:[AuthGuard]
-  },
-
-  {
-    path:'home/usuario/new', component: AddUsuarioComponent,
-    canActivate:[AuthGuard]
-  },
-
-
-  {
-    path:'home/usuario/edit/:idUsuario', component: EditUsuarioComponent,
-    canActivate:[AuthGuard]
+    ]
   }
 
 
-
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
 
       this.loginService.recuperarSenha(this.formRecuperarSenha.value);
     }
-    
+
   }
 
   cancelarRecuperacaoSenha() {
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
     this.formRecuperarSenha = this.formBuilder.group({
       email: ['', Validators.required],
       confirmarEmail: ['', Validators.required],
-      url: "http://localhost:4200/pages/recuperar-senha"
+      url: "http://localhost:4200/recuperar-senha"
     });
 
   }

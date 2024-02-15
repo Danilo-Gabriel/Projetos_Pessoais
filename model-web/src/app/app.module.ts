@@ -13,13 +13,13 @@ import {AddUsuarioComponent} from "../pages/usuario/add-usuario/add-usuario.comp
 import {HomeComponent} from "../pages/home/home.component";
 import { LoginService } from 'src/pages/login/login/services/login.service';
 import { AuthGuard } from './guard/auth.guard';
-import { HeaderComponent } from 'src/pages/header/header.component';
 import { MessageService } from 'primeng/api';
 import { AlterarSenhaComponent } from 'src/pages/usuario/alterar-senha/alterar-senha-usuario.component';
 import { LoginComponent } from 'src/pages/login/login/login.component';
 import { PrimeNGModule } from 'src/shared/primeNG/primeNG.module';
 import { RecuperarSenhaComponent } from 'src/pages/login/recuperar-senha/recuperar-senha.component';
-
+import { HeaderFooterContentComponent } from 'src/pages/header-footer-content/header-footer-content.component';
+import { MainComponent } from 'src/pages/main/main.component';
 
 
 
@@ -35,10 +35,11 @@ import { RecuperarSenhaComponent } from 'src/pages/login/recuperar-senha/recuper
     EditUsuarioComponent,
     AddUsuarioComponent,
     HomeComponent,
-    HeaderComponent,
     AlterarSenhaComponent,
     LoginComponent,
-    RecuperarSenhaComponent
+    RecuperarSenhaComponent,
+    HeaderFooterContentComponent,
+    MainComponent
 
   ],
   imports: [
