@@ -20,6 +20,8 @@ import { PrimeNGModule } from 'src/shared/primeNG/primeNG.module';
 import { RecuperarSenhaComponent } from 'src/pages/login/recuperar-senha/recuperar-senha.component';
 import { HeaderFooterContentComponent } from 'src/pages/header-footer-content/header-footer-content.component';
 import { MainComponent } from 'src/pages/main/main.component';
+import { ContaModule } from 'src/pages/conta/conta.module';
+
 
 
 
@@ -39,8 +41,7 @@ import { MainComponent } from 'src/pages/main/main.component';
     LoginComponent,
     RecuperarSenhaComponent,
     HeaderFooterContentComponent,
-    MainComponent
-
+    MainComponent,
   ],
   imports: [
     BrowserModule,
