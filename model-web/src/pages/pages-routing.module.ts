@@ -7,6 +7,9 @@ import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.compon
 import { MainComponent } from './main/main.component';
 import { RecuperarSenhaComponent } from './login/recuperar-senha/recuperar-senha.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
+import { ListContaComponent } from './conta/list-conta/list-conta.component';
+import { AddContaComponent } from './conta/add-conta/add-conta.component';
+import { EditContaComponent } from './conta/edit-conta/edit-conta.component';
 
 const routes: Routes = [
   {
@@ -25,6 +28,15 @@ const routes: Routes = [
        canActivate : [AuthGuard]},
       { path: 'usuario/edit/:idUsuario',
        component: EditUsuarioComponent,
+       canActivate : [AuthGuard], },
+       { path: 'conta',
+       component: ListContaComponent,
+       canActivate : [AuthGuard]},
+      { path: 'conta-add',
+       component: AddContaComponent,
+       canActivate : [AuthGuard]},
+      { path: 'conta-edit',
+       component: EditContaComponent,
        canActivate : [AuthGuard], }
 
     ]

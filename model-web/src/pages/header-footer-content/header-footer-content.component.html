@@ -1,13 +1,17 @@
 <div class="sidenav-header">
   <img width="100" height="100" src="https://images7.alphacoders.com/131/1319607.jpeg"/>
   <div class="header-text">
-    <h4 class="nome">Mandaloriano</h4>
-    <p class="funcao">Caçador: Como deve ser!</p>
-  </div>
+    <h4 >Mandaloriano</h4>
+    <p>Conta:</p>
 
+    <form [formGroup]="formGroup">
+      <p-dropdown formControlName="conta" [options]="cities" placeholder="Administrador" optionLabel="perfil"></p-dropdown>
+    </form>
+  </div>
+      <br>
   <div>
 
-    <mat-divider></mat-divider>
+
 
     <button mat-button class="menu-button" (click)="navigateTo('pages/home')">
       <mat-icon>home</mat-icon>
@@ -25,7 +29,7 @@
     <ng-container *ngIf="showSubmenu">
       <div style="text-align: left;">
         &nbsp;
-        <button mat-button class="submenu-button" href="https://" (click)="navigateTo('pages/usuario')">
+        <button mat-button class="submenu-button" (click)="navigateTo('pages/usuario')">
           <mat-icon>menu</mat-icon>
           <span>Usuário</span>
         </button>
