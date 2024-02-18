@@ -9,10 +9,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import padawan_api.model.email.dto.DadosAtualizaUsuarioEmailDTO;
 import padawan_api.model.usuario.dto.DadosAtualizaLoginDTO;
 import padawan_api.model.usuario.dto.DadosCadastroUsuarioDTO;
 import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
+import padawan_api.services.email.dto.DadosAtualizaUsuarioEmailDTO;
 import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
 
 import org.mindrot.jbcrypt.BCrypt;

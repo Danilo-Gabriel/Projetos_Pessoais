@@ -1,4 +1,4 @@
-package padawan_api.model.email.services;
+package padawan_api.services.email.services;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -14,11 +14,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import padawan_api.model.email.dto.DadosAtualizaUsuarioEmailDTO;
-import padawan_api.model.email.dto.DadosEmailDTO;
-import padawan_api.model.email.dto.MensagemRecuperarSenha;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
+import padawan_api.services.email.dto.DadosAtualizaUsuarioEmailDTO;
+import padawan_api.services.email.dto.DadosEmailDTO;
+import padawan_api.services.email.dto.MensagemRecuperarSenha;
 
 @Service
 public class EmailService {
