@@ -1,3 +1,21 @@
-<p>
-  main works!
-</p>
+<div>
+  <input type="file" (change)="onFileSelected($event)">
+  <button (click)="onUpload()">Enviar Arquivo</button>
+</div>
+
+<br>
+
+
+<h2>Lista de Arquivos</h2>
+
+<ul>
+  <li *ngFor="let file of fileList" (click)="onSelectFile(file)">
+    {{ file }} <!-- Exibir o nome do arquivo -->
+  </li>
+</ul>
+
+<h2>Conteúdo do Arquivo Selecionado</h2>
+
+<div *ngIf="selectedFileContent">
+  <iframe [src]="getBlobUrl(selectedFileContent)" width="100%" height="600"></iframe>
+</div>

@@ -15,6 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { TagModule } from 'primeng/tag';
 import { TableModule } from 'primeng/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -33,6 +34,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { FieldsetModule } from 'primeng/fieldset';
 import { PasswordModule } from 'primeng/password';
+import { ToolbarModule } from 'primeng/toolbar';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 
@@ -73,7 +77,11 @@ import { PasswordModule } from 'primeng/password';
   InputTextModule,
   PanelModule,
   FieldsetModule,
-  PasswordModule
+  PasswordModule,
+  ToolbarModule,
+  FileUploadModule,
+  ConfirmDialogModule,
+  TagModule
 
 
 

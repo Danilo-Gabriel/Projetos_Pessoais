@@ -19,9 +19,9 @@ import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.services.UsuarioService;
-import padawan_api.model.email.dto.DadosAtualizaUsuarioEmailDTO;
-import padawan_api.model.email.dto.DadosEmailDTO;
-import padawan_api.model.email.services.EmailService;
+import padawan_api.services.email.dto.DadosAtualizaUsuarioEmailDTO;
+import padawan_api.services.email.dto.DadosEmailDTO;
+import padawan_api.services.email.services.EmailService;
 import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
 
 @RestController
