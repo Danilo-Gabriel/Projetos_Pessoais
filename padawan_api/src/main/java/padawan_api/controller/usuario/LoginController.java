@@ -11,18 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
+
+import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.services.UsuarioService;
-import padawan_api.services.email.dto.DadosAtualizaUsuarioEmailDTO;
-import padawan_api.services.email.dto.DadosEmailDTO;
+
+import padawan_api.services.email.dto.EmailDTO;
+import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
 import padawan_api.services.email.services.EmailService;
-import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
+
+import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
+
 
 @RestController
 @CrossOrigin(origins = ("*"))
@@ -42,7 +45,7 @@ public class LoginController {
     }
 
   @PostMapping("/login")
-   public ResponseEntity<?> efetuarLoginClassController(@RequestBody DadosEfetuarLoginDTO dados){
+   public ResponseEntity<?> efetuarLoginClassController(@RequestBody EfetuarLoginDTO dados){
         
        try{
 
@@ -62,7 +65,7 @@ public class LoginController {
     
 
   @PutMapping("/alterarSenha")
-  public ResponseEntity<?> alterarSenhaClassController(@RequestBody DadosAtualizaSenhaDTO dados){
+  public ResponseEntity<?> alterarSenhaClassController(@RequestBody AlterarSenhaUsuarioLogadoDTO dados){
 
     try{
 
@@ -78,7 +81,7 @@ public class LoginController {
   }
 
   @PostMapping("/recuperar-senha")
-    public ResponseEntity<?> recuperarSenhaPorEmailClassController(@RequestBody DadosEmailDTO email){
+    public ResponseEntity<?> recuperarSenhaPorEmailClassController(@RequestBody EmailDTO email){
 
         try {
 
@@ -113,7 +116,7 @@ public class LoginController {
 
 
     @PutMapping("/recuperarSenha")
-    public ResponseEntity<?> atualizarSenhaViaEmailClassController(@RequestBody DadosAtualizaUsuarioEmailDTO dados){
+    public ResponseEntity<?> atualizarSenhaViaEmailClassController(@RequestBody RecupararSenhaPorEmailDTO dados){
       
       try {
         

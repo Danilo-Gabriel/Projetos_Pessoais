@@ -33,7 +33,7 @@ save(record: Usuario ){
   return this.http.post<Usuario>(this.API, record)
   .subscribe(
     (response) => {
-      this.message.showSuccess(`Usuario: ${response.login} cadastrado`),
+      this.message.showSuccess(`Usuario: ${response.nomeLogin} cadastrado`),
       this.location.back();
      // this.router.navigate(['/pages/home/list-usuario']);
       //this.onAviso(response)

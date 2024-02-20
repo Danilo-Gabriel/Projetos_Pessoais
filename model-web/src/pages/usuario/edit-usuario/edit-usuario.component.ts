@@ -42,9 +42,8 @@ export class EditUsuarioComponent implements OnInit {
       this.inativoLabel = 'Inativo'
 
       this.form = this.formBuilder.group({
-        login: ['', Validators.required],
-        nome_completo: ['', Validators.required],
-        cpf: ['', Validators.required],
+        nomeLogin: ['', Validators.required],
+        nomeCompleto: ['', Validators.required],
         email: ['', Validators.required]
       });
   }
@@ -58,9 +57,8 @@ export class EditUsuarioComponent implements OnInit {
           this.usuario = dados;
           this.situacao = this.usuario.ativo ? this.ativoLabel : this.inativoLabel
           this.form.patchValue({
-          login: this.usuario.login,
-          nome_completo: this.usuario.nome_completo,
-          cpf: this.usuario.cpf,
+          nomeLogin: this.usuario.nomeLogin,
+          nomeCompleto: this.usuario.nomeCompleto,
           email: this.usuario.email,
         });
     });
@@ -78,9 +76,8 @@ export class EditUsuarioComponent implements OnInit {
 
           this.service.atualizarLoginUser({
                 id : this.idUsuario,
-                login : this.form.value.login,
-                nome_completo : this.form.value.nome_completo,
-                cpf : this.form.value.cpf,
+                nomeLogin : this.form.value.nomeLogin,
+                nomeCompleto : this.form.value.nomeCompleto,
                 email : this.form.value.email,
                 ativo : true
               });
@@ -91,9 +88,8 @@ export class EditUsuarioComponent implements OnInit {
 
           this.service.atualizarLoginUser({
             id : this.idUsuario,
-            login : this.form.value.login,
-            nome_completo : this.form.value.nome_completo,
-            cpf : this.form.value.cpf,
+            nomeLogin : this.form.value.nomeLogin,
+            nomeCompleto : this.form.value.nomeCompleto,
             email : this.form.value.email,
             ativo : false
           });

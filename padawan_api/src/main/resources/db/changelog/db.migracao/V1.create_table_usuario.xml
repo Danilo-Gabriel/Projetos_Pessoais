@@ -6,27 +6,42 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 
-    <changeSet id="V1.0_create_table_usuario" author="daniloGabriel">
+    <changeSet id="V1.1.create_table_usuario" author="daniloGabriel">
         <createTable tableName="usuarios">
             <column name="id" type="smallserial" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="login" type="varchar(255)">
+            <column name="nome_login" type="varchar(80)">
+                <constraints unique="true"/>
             </column>
-            <column name="senha" type="varchar(255)">
+            <column name="senha" type="varchar(100)">
             </column>
-            <column name="ativo" type="boolean"/>
+            <column name="nome_completo" type="varchar(100)">
+            </column>
+            <column name="email" type="varchar(50)">
+            </column>
+            <column name="situacao" type="varchar(10)"/>
+            <column name="hash" type="varchar(255)" ></column>
         </createTable>
     </changeSet>
 
-    <changeSet id="V1.2_add_usuario_root" author="daniloGabriel">
-        <insert tableName="usuarios">
-            <column name="login" value="root"/>
-            <column name="senha" value="$2a$12$gCUHEKn5rx4NYXcMoB/J1ObLBYDerKe1JpFse1QFkTQlWtYR0tzPK"/>
-            <column name="ativo" value="true"/>
-            
-        </insert>
+
+    <changeSet id="V1.2.create_table_conta" author="daniloGabriel">
+        <createTable tableName="contas">
+            <column name="id" type="smallserial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nome_conta" type="varchar(80)">
+                <constraints unique="true"/>
+            </column>
+            <column name="pessoa" type="varchar(100)">
+            </column>
+            <column name="situacao_conta" type="varchar(10)"/>
+            <column name="perfil_conta" type="varchar(30)" ></column>
+          
+        </createTable>
     </changeSet>
 
+    
 
 </databaseChangeLog>

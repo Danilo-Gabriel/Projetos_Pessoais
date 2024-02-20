@@ -1,29 +1,21 @@
 package padawan_api.model.usuario.repository;
 
 import java.util.Optional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import padawan_api.model.conta.dto.AssociarUsuarioAContaDTO;
 
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-
-    Page<Usuario> findAllByAtivoTrue(Pageable paginacao);
-
-    List<Usuario> findAllByAtivoTrue();// Paginação
-
-    Optional<Usuario> findByLogin(String login); //Tratamento de Login atraves de usuario do tipo optional (pode ser nulo ou não)
+    Optional<Usuario> findByNomeLogin(String nomeLogin); //Tratamento de Login atraves de usuario do tipo optional (pode ser nulo ou não)
 
     Optional<Usuario> findByEmail(String email);
 
     Optional<Usuario> findByHash(String hash);
 
+    Optional<Usuario> findByNomeCompleto(AssociarUsuarioAContaDTO dados);
 
-   //      UserDetails findByLogin(String login);
+    Optional<Usuario> findByNomeCompleto(String nomeCompleto);
 
 }

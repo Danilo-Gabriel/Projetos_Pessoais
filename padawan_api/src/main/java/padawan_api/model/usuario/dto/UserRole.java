@@ -1,12 +1,10 @@
 package padawan_api.model.usuario.dto;
 
-
 public enum UserRole {
-
+    
     ADMIN("admin"),
 
     USER("user");
-
 
     private String role;
 
@@ -15,8 +13,8 @@ public enum UserRole {
     }
 
     public String getRole(){
-         return role;
+        return role;
     }
 
-
+ 
 }

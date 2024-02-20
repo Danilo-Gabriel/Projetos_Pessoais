@@ -96,6 +96,7 @@ confirmDeleteUser(event: Event, usuario : Usuario) {
     private obterDadosUsuario() {
         this.service.obterUsuario().subscribe(
             data => {
+              console.log(this.listUser)
                 this.listUser = data;
             },
             error =>{

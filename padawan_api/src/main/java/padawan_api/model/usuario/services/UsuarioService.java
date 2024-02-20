@@ -3,17 +3,19 @@ package padawan_api.model.usuario.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import padawan_api.model.usuario.dto.DadosAtualizaLoginDTO;
-import padawan_api.model.usuario.dto.DadosCadastroUsuarioDTO;
-import padawan_api.model.usuario.dto.DadosListarUsuarioDTO;
-import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
+import padawan_api.model.conta.dto.AssociarUsuarioAContaDTO;
+import padawan_api.model.conta.repository.Conta;
+import padawan_api.model.conta.repository.ContaRepository;
+import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
+import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
+import padawan_api.model.usuario.dto.EfetuarLoginDTO;
+import padawan_api.model.usuario.dto.ListarUsuarioDTO;
+import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
 import padawan_api.services.email.services.EmailService;
-import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
-import padawan_api.model.usuario.dto.ReturnCadastroUsuarioDTO;
-import padawan_api.model.usuario.dto.ReturnDetalhesUsuarioDTO;
+
 
 import java.util.Optional;
 import java.util.List;
@@ -26,14 +28,17 @@ public class UsuarioService {
     private UsuarioRepository repository;
 
     @Autowired
+    private ContaRepository contaRepository;
+
+    @Autowired
     private EmailService emailService;
 
-    public ReturnEfetuarLoginDTO efetuarLoginClassService(DadosEfetuarLoginDTO dados) throws Exception{
+    public ReturnEfetuarLoginDTO efetuarLoginClassService(EfetuarLoginDTO dados) throws Exception{
 
 
         ReturnEfetuarLoginDTO usuarioDTO;
 
-        Optional<Usuario> usuarioOptional = repository.findByLogin(dados.login());
+        Optional<Usuario> usuarioOptional = repository.findByNomeLogin(dados.login());
 
         if(usuarioOptional.isPresent()){
 
@@ -43,7 +48,7 @@ public class UsuarioService {
 
                 usuarioOptional.get().efetuarLoginClassUsuarioJPA(dados);
 
-                return usuarioDTO = new ReturnEfetuarLoginDTO(usuario.getId(), usuario.getLogin());
+                return usuarioDTO = new ReturnEfetuarLoginDTO(usuario.getId(), usuario.getNomeLogin());
 
             }else{
 
@@ -58,7 +63,7 @@ public class UsuarioService {
 
     }
 
-    public void alterarSenhaClassService(DadosAtualizaSenhaDTO dados) throws Exception{
+    public void alterarSenhaClassService(AlterarSenhaUsuarioLogadoDTO dados) throws Exception{
 
         Optional<Usuario> usuarioOptional = repository.findById(dados.id());
 
@@ -87,12 +92,10 @@ public class UsuarioService {
     }
 
 
-    public ReturnCadastroUsuarioDTO cadastrarUsuarioClassService(DadosCadastroUsuarioDTO dados) throws Exception {
+    public void cadastrarUsuarioClassService(RegistrarUsuarioDTO dados) throws Exception {
 
-        Optional<Usuario> usuariOptional = repository.findByLogin(dados.login());
+        Optional<Usuario> usuariOptional = repository.findByNomeLogin(dados.nomeLogin());
 
-        ReturnCadastroUsuarioDTO usuarioDTO;
-        
         if(usuariOptional.isPresent()){
 
             throw new Exception("Usuário já cadastrado");
@@ -103,23 +106,17 @@ public class UsuarioService {
 
         repository.save(usuario);
 
-        usuarioDTO = new ReturnCadastroUsuarioDTO(usuario.getId(), usuario.getLogin());
-
-        return usuarioDTO;
-
         }
 
      
     }
 
-    public List<DadosListarUsuarioDTO> listarUsuarioClassService(){
+        public List<ListarUsuarioDTO> listarUsuarioClassService(){
+            return repository.findAll().stream().map(ListarUsuarioDTO::new).toList();
+        }
+  
 
-        return repository.findAll().stream().map(DadosListarUsuarioDTO::new).toList();
-    }
-
- 
-
-    public DadosAtualizaLoginDTO atualizarUsuarioClassService(DadosAtualizaLoginDTO dados) throws Exception {
+    public AlterarRegistroDeUsuariosDTO atualizarUsuarioClassService(AlterarRegistroDeUsuariosDTO dados) throws Exception {
 
 
         Optional<Usuario> usuariosOptional = this.repository.findById(dados.id());
@@ -194,17 +191,13 @@ public class UsuarioService {
     }
 
 
-    public ReturnDetalhesUsuarioDTO detalhesDadosUsuarioClassService(Long id) {
+    public Usuario detalhesDadosUsuarioClassService(Long id) {
 
         Optional<Usuario> usuarioOptional = this.repository.findById(id);
 
         Usuario usuario = usuarioOptional.get();
-
-        ReturnDetalhesUsuarioDTO usuarioDTO;
-
-        usuarioDTO = new ReturnDetalhesUsuarioDTO(usuario.getId(), usuario.getLogin(), usuario.getNome_completo(), usuario.getEmail(), usuario.getCpf(), usuario.getAtivo());
         
-        return usuarioDTO;
+        return usuario;
         
     }
 
@@ -214,6 +207,34 @@ public class UsuarioService {
     }
 
 
+      public void associarUsuarioAContaClassService(AssociarUsuarioAContaDTO dados) throws Exception {
+
+        Optional<Usuario> usuarioOptional = repository.findByNomeCompleto(dados.nomeCompleto());
+
+        Optional<Conta> contaOptional =  contaRepository.findById(dados.conta_id());
+
+        if(usuarioOptional.isPresent() && contaOptional.isPresent()){
+
+            Usuario usuario = usuarioOptional.get();
+
+            Conta conta = contaOptional.get();
+
+            if(usuario.isSituacao() && conta.isSituacao()){
+                
+                conta.setUsuario(usuario);
+
+                contaRepository.save(conta);
+
+            }
+            else{
+                throw new Exception("Usuário ou Conta inativa, contate o administrador do sistema");
+            }
+
+        }
+        else {
+            throw new Exception("Usuário ou Conta não cadastrado, contate o administrador do sistema");
+        }
+    }
    
 
  

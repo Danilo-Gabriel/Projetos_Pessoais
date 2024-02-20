@@ -2,6 +2,8 @@ package padawan_api.model.usuario.repository;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -9,11 +11,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import padawan_api.model.usuario.dto.DadosAtualizaLoginDTO;
-import padawan_api.model.usuario.dto.DadosCadastroUsuarioDTO;
-import padawan_api.model.usuario.dto.DadosEfetuarLoginDTO;
-import padawan_api.services.email.dto.DadosAtualizaUsuarioEmailDTO;
-import padawan_api.model.usuario.dto.DadosAtualizaSenhaDTO;
+import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
+import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
+import padawan_api.model.usuario.dto.EfetuarLoginDTO;
+import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
+import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
+
+
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -35,44 +39,54 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private Long id;
     
-    private String nome_completo;
 
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "nome_completo")
+    private String nomeCompleto;
+
+   
+    @Size(max = 50)
+    @Column(name = "email")
     private String email;
 
-    private String cpf;
-    
-    private String login;
+    @NotNull
+    @Size(min = 1, max = 80)
+    @Column(name = "nome_login")
+    private String nomeLogin;
 
+    @Column(name = "senha")
+    @Size(max = 100)
     private String senha;
     
+    @NotNull
+    @Column(name = "situacao")
     private Boolean ativo;
 
+    @Column(name = "hash")
     private String hash;
 
 
 
-    public Usuario(DadosCadastroUsuarioDTO dados) {
-        this.nome_completo = dados.nome_completo();
+    public Usuario(RegistrarUsuarioDTO dados) {
+        this.nomeCompleto = dados.nomeCompleto();
         this.email = dados.email();
-        this.cpf = dados.cpf();
-        this.login = dados.login();
+        this.nomeLogin = dados.nomeLogin();
         this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
         this.hash = null;
         this.ativo = true;
     }
 
-    public void atualizarUsuarioClassUsuarioJPA(DadosAtualizaLoginDTO dados) throws Exception {
+    public void atualizarUsuarioClassUsuarioJPA(AlterarRegistroDeUsuariosDTO dados) throws Exception {
         
         if(this.ativo == true){
 
             if(dados != null){
-                 this.login = dados.login();
-                 this.nome_completo = dados.nome_completo();
+                 this.nomeLogin = dados.nomeLogin();
+                 this.nomeCompleto = dados.nomeCompleto();
                  this.email = dados.email();
-                 this.cpf = dados.cpf();
                  this.ativo = dados.ativo();
             }
             else {
@@ -85,10 +99,9 @@ public class Usuario {
 
            if(dados != null){
             
-            this.login = dados.login();
-            this.nome_completo = dados.nome_completo();
+            this.nomeLogin = dados.nomeLogin();
+            this.nomeCompleto = dados.nomeCompleto();
             this.email = dados.email();
-            this.cpf = dados.cpf();
             this.ativo = dados.ativo();
 
            }
@@ -108,7 +121,7 @@ public class Usuario {
     }
 
 
-    public void alterarSenhaClassUsuarioJPA(DadosAtualizaSenhaDTO dados) throws Exception {
+    public void alterarSenhaClassUsuarioJPA(AlterarSenhaUsuarioLogadoDTO dados) throws Exception {
         
 
             if (dados.senhaAtual() != null && BCrypt.checkpw(dados.senhaAtual(), this.senha)) {
@@ -133,9 +146,9 @@ public class Usuario {
         
     }
 
-    public void efetuarLoginClassUsuarioJPA(DadosEfetuarLoginDTO dados) throws Exception {
+    public void efetuarLoginClassUsuarioJPA(EfetuarLoginDTO dados) throws Exception {
         
-        if (dados.login() != null && dados.login().equals(this.login)) {
+        if (dados.login() != null && dados.login().equals(this.nomeLogin)) {
             if (dados.senha() != null && BCrypt.checkpw(dados.senha(), this.senha)) {
 
         
@@ -151,7 +164,7 @@ public class Usuario {
          
     }
 
-    public void atualizarSenhaViaEmailClassJPA(DadosAtualizaUsuarioEmailDTO dados) throws Exception{
+    public void atualizarSenhaViaEmailClassJPA(RecupararSenhaPorEmailDTO dados) throws Exception{
 
         if(dados.novaSenha() != null && dados.confirmarSenha() != null && dados.novaSenha().equals(dados.confirmarSenha())){
 
@@ -178,18 +191,6 @@ public class Usuario {
 
     public boolean isSituacao(){
         return this.ativo;
-    }
-
-
-
-
-    /*METODOS REFERENTES A ALTERAÇÕES DO EMAIL */
-
-
-
-      public void atualizarDadosUsuarioEmailClassUsuarioJPA(DadosAtualizaUsuarioEmailDTO dados){
-
-        
     }
 
 
@@ -234,3 +235,5 @@ public class Usuario {
      */
 
 }
+
+

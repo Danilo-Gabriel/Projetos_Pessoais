@@ -1,6 +1,6 @@
 package padawan_api.services.email.dto;
 
-public class MensagemRecuperarSenha {
+public class MensagemEmailDTO {
 
    public String from;
 
@@ -42,7 +42,7 @@ public void setHash(String hash){
     this.hash = hash;
 }
 
-public MensagemRecuperarSenha(){
+public MensagemEmailDTO(){
     this.from = "danilonascimento.dr@gmail.com";
     this.subject = "LINK PARA RECUPERAÇÃO DE SENHA";
     this.body = "ACESSO PARA RECUPERAÇÃO DE SENHA: "+

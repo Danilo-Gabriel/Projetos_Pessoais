@@ -6,7 +6,7 @@
     logLevel: 'debug'
   }
 ];
-*/
+
 
 
 module.exports = PROXY_CONFIG;
