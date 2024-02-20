@@ -1,6 +1,6 @@
 package padawan_api.model.usuario.dto;
 
-public record DadosEfetuarLoginDTO(
+public record EfetuarLoginDTO(
 
         String login,
 

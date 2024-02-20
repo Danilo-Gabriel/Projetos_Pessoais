@@ -22,10 +22,9 @@ export class AddUsuarioComponent implements OnInit {
 
     {
     this.form = this.formBuilder.group({
-      login: ['', Validators.required],
+      nomeLogin: ['', Validators.required],
       senha: ['', Validators.required],
-      nome_completo: ['', Validators.required],
-      cpf: ['', Validators.required],
+      nomeCompleto: ['', Validators.required],
       email: ['', Validators.required]
     });
 

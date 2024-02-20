@@ -20,7 +20,6 @@
                 <th>Login</th>
                 <th>Nome_completo</th>
                 <th>Email</th>
-                <th>CPF</th>
                 <th>Situação</th>
                 <th>
                     <p-button (click)="onAdd()" label="Adicionar"></p-button>
@@ -31,11 +30,9 @@
         <ng-template pTemplate="body" let-usuario>
             <tr>
 
-                <td>{{ usuario.login }}</td>
-                <td>{{ usuario.nome_completo }}</td>
+                <td>{{ usuario.nomeLogin }}</td>
+                <td>{{ usuario.nomeCompleto }}</td>
                 <td>{{ usuario.email }}</td>
-                <td>{{ usuario.cpf }}</td>
-
                 <td>{{ traduzirSituacao(usuario.ativo)}}</td>
 
                 <td>

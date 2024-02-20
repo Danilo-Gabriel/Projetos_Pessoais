@@ -7,18 +7,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import padawan_api.model.usuario.dto.DadosAtualizaLoginDTO;
-import padawan_api.model.usuario.dto.DadosCadastroUsuarioDTO;
-import padawan_api.model.usuario.dto.DadosListarUsuarioDTO;
-import padawan_api.model.usuario.dto.ReturnCadastroUsuarioDTO;
-import padawan_api.model.usuario.dto.ReturnDetalhesUsuarioDTO;
+import padawan_api.model.conta.dto.AssociarUsuarioAContaDTO;
+import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
+import padawan_api.model.usuario.dto.ListarUsuarioDTO;
+import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 
+import padawan_api.model.usuario.repository.Usuario;
+import padawan_api.model.usuario.dto.ReturnDTO;
 import padawan_api.model.usuario.services.UsuarioService;
 
 import java.util.List;
-
-
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 
@@ -36,16 +34,15 @@ public class UsuarioController {
 
     @PostMapping("cadastrar")
     @Transactional
-    public ResponseEntity<?> cadastrarUsuarioClassController(@RequestBody DadosCadastroUsuarioDTO dados){
+    public ResponseEntity<?> cadastrarUsuarioClassController(@RequestBody RegistrarUsuarioDTO dados){
 
         try{
 
+            ReturnDTO resp = new ReturnDTO("Criado com sucesso!");
             
-            ReturnCadastroUsuarioDTO usuarioDTO;
-
-            usuarioDTO = this.usuarioService.cadastrarUsuarioClassService(dados);
+            this.usuarioService.cadastrarUsuarioClassService(dados);
            
-            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(resp);
         }
 
         catch(Exception e){
@@ -58,16 +55,17 @@ public class UsuarioController {
 
 
     @GetMapping("list")
-    public ResponseEntity<List<DadosListarUsuarioDTO>> listUsuarioClassController(){
+    public ResponseEntity<List<ListarUsuarioDTO>> listUsuarioClassController(){
 
         try {
             //Thread.sleep(2000);
-           List<DadosListarUsuarioDTO> listarUsuario = this.usuarioService.listarUsuarioClassService();
+           List<ListarUsuarioDTO> listarUsuario = this.usuarioService.listarUsuarioClassService();
            
            return ResponseEntity.ok().body(listarUsuario);
 
         }catch (Exception e){
 
+            System.out.println(e.getMessage());
             return ResponseEntity.badRequest().build();
         }
 
@@ -76,7 +74,7 @@ public class UsuarioController {
 
     @PutMapping("atualizar")
     @Transactional
-    public  ResponseEntity<?> atualizarUsuarioClassController(@RequestBody DadosAtualizaLoginDTO dados) {
+    public  ResponseEntity<?> atualizarUsuarioClassController(@RequestBody AlterarRegistroDeUsuariosDTO  dados) {
 
         try{
          
@@ -156,9 +154,9 @@ public class UsuarioController {
 
         try{
 
-             ReturnDetalhesUsuarioDTO usuarioDTO;
+      
 
-             usuarioDTO = usuarioService.detalhesDadosUsuarioClassService(id);
+            Usuario usuarioDTO =  usuarioService.detalhesDadosUsuarioClassService(id);
             
 
              return ResponseEntity.ok().body(usuarioDTO);
@@ -174,6 +172,24 @@ public class UsuarioController {
         .orElse(ResponseEntity.notFound().build());
        */
         
+
+    }
+
+
+    @PostMapping("associar")
+    public ResponseEntity<?> associarUsuarioAContaClassController(@RequestBody AssociarUsuarioAContaDTO dados){
+
+        try {
+            ReturnDTO resp = new ReturnDTO("Usuário associado com sucesso");
+
+            this.usuarioService.associarUsuarioAContaClassService(dados);
+
+            return ResponseEntity.ok().body(resp);
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
 
     }
     

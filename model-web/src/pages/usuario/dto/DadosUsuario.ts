@@ -1,11 +1,11 @@
 export interface Usuario {
 
   id?: string;
-  login?: string;
+  nomeLogin?: string;
   ativo?: boolean;
-  nome_completo?: string;
+  nomeCompleto?: string;
   email?: string;
-  cpf?: string;
+
 
 
 

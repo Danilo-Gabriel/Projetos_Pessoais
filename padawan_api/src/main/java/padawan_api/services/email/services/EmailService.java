@@ -16,9 +16,10 @@ import org.springframework.stereotype.Service;
 
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
-import padawan_api.services.email.dto.DadosAtualizaUsuarioEmailDTO;
-import padawan_api.services.email.dto.DadosEmailDTO;
-import padawan_api.services.email.dto.MensagemRecuperarSenha;
+import padawan_api.services.email.dto.EmailDTO;
+import padawan_api.services.email.dto.MensagemEmailDTO;
+import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
+
 
 @Service
 public class EmailService {
@@ -34,6 +35,8 @@ public class EmailService {
     public EmailService(JavaMailSender emailSender){
         this.emailSender = emailSender;
     }
+
+
      /* 
 
     public void sendEmail(DadosEmailDTO email){
@@ -85,7 +88,7 @@ public class EmailService {
         return new BigInteger(1,m.digest()).toString(16);
     }
 
-     public void enviarNovaSenhaPorEmailClassService(DadosEmailDTO email) throws Exception{
+     public void enviarNovaSenhaPorEmailClassService(EmailDTO email) throws Exception{
 
         Optional<Usuario> usuarioOptional = this.repository.findByEmail(email.email());
 
@@ -102,14 +105,14 @@ public class EmailService {
                 String hash = formatoHora.format(dataAtual);
 
                 
-                hash = Criptmd5(hash+usuario.getLogin());
+                hash = Criptmd5(hash+usuario.getNomeLogin());
 
                 usuario.setHash(hash);
                 repository.save(usuario);
             
                 // CADASTRAR ESSE HASH NO BANCO DE DADOS
 
-                MensagemRecuperarSenha mensagem = new MensagemRecuperarSenha();
+                MensagemEmailDTO mensagem = new MensagemEmailDTO();
                 mensagem.setHash(hash);
 
                 var enviarEmail = new SimpleMailMessage();
@@ -155,7 +158,7 @@ public class EmailService {
         }
     }
 
-    public void atualizarSenhaViaEmailClassService(DadosAtualizaUsuarioEmailDTO dados) throws Exception{
+    public void atualizarSenhaViaEmailClassService(RecupararSenhaPorEmailDTO dados) throws Exception{
 
         Optional<Usuario> usuarioOptional = this.repository.findByHash(dados.hash());
     

@@ -1,6 +1,6 @@
 package padawan_api.services.email.dto;
    
-public record DadosAtualizaUsuarioEmailDTO(
+public record RecupararSenhaPorEmailDTO(
 
         String hash,
         String novaSenha,

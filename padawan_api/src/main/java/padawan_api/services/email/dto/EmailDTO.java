@@ -1,6 +1,6 @@
 package padawan_api.services.email.dto;
 
-public record DadosEmailDTO(
+public record EmailDTO(
 
     //String to, 
     //String subject, 
