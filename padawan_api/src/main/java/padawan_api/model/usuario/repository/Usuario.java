@@ -11,15 +11,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import padawan_api.model.conta.repository.Conta;
 import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
 
-
-
 import org.mindrot.jbcrypt.BCrypt;
+
 
 //import java.util.Collection;
 //import java.util.List;
@@ -36,9 +36,11 @@ import org.mindrot.jbcrypt.BCrypt;
 public class Usuario {
 
 //public class Usuario implements UserDetails {
+    private static final String CAMPO_ID = "id";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = CAMPO_ID)
     private Long id;
     
 
@@ -67,7 +69,10 @@ public class Usuario {
 
     @Column(name = "hash")
     private String hash;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "conta", referencedColumnName = "nome_conta")
+    private Conta conta;
 
 
     public Usuario(RegistrarUsuarioDTO dados) {
@@ -79,6 +84,14 @@ public class Usuario {
         this.ativo = true;
     }
 
+    /* 
+        @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if(this.conta.getRole() == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    
+    } 
+    */
     public void atualizarUsuarioClassUsuarioJPA(AlterarRegistroDeUsuariosDTO dados) throws Exception {
         
         if(this.ativo == true){
@@ -193,32 +206,22 @@ public class Usuario {
         return this.ativo;
     }
 
-
-
-    /*
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    @Override
-    public String getPassword() {
-        return senha;
-    }
-
+/* 
     @Override
     public String getUsername() {
-        return login;
+        
+        return nomeLogin;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {
         return true;
+        
     }
 
     @Override
     public boolean isAccountNonLocked() {
+        
         return true;
     }
 
@@ -232,8 +235,13 @@ public class Usuario {
         return true;
     }
 
-     */
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
 
+*/
+    
 }
 
 

@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
-import padawan_api.model.usuario.dto.EfetuarLoginDTO;
-import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.services.UsuarioService;
 
@@ -25,6 +21,8 @@ import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
 import padawan_api.services.email.services.EmailService;
 
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
+import padawan_api.model.usuario.dto.EfetuarLoginDTO;
+import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 
 
 @RestController
@@ -44,6 +42,8 @@ public class LoginController {
       this.emailService = emailService;
     }
 
+
+
   @PostMapping("/login")
    public ResponseEntity<?> efetuarLoginClassController(@RequestBody EfetuarLoginDTO dados){
         
@@ -62,6 +62,7 @@ public class LoginController {
        }
 
       }
+ 
     
 
   @PutMapping("/alterarSenha")

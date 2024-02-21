@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import padawan_api.model.conta.dto.RegistrarContaDTO;
-import padawan_api.model.usuario.dto.UserRole;
+import padawan_api.model.conta.dto.UserRole;
 import padawan_api.model.usuario.repository.Usuario;
 
 @Entity(name = "Conta")
@@ -35,8 +36,11 @@ import padawan_api.model.usuario.repository.Usuario;
 @EqualsAndHashCode(of = "id")
 public class Conta {
 
+    private static final String CAMPO_ID = "id";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = CAMPO_ID)
     private Long id;
 
     @NotNull
@@ -49,7 +53,7 @@ public class Conta {
     private UserRole role;
 
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "pessoa", referencedColumnName = "nome_completo")
     private Usuario usuario;
 
