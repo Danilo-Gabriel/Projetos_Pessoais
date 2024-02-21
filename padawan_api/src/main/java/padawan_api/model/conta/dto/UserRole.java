@@ -1,4 +1,4 @@
-package padawan_api.model.usuario.dto;
+package padawan_api.model.conta.dto;
 
 public enum UserRole {
     

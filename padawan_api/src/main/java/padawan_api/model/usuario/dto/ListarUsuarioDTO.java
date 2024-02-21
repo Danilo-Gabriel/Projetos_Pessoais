@@ -12,14 +12,14 @@ public record ListarUsuarioDTO(
 
         String email,
 
-        boolean ativo
+        boolean ativo,
 
+        String conta
 
-       
 
 ) {
 
     public ListarUsuarioDTO(Usuario usuario){
-        this(usuario.getId(), usuario.getNomeLogin(),usuario.getNomeCompleto(), usuario.getEmail(), usuario.getAtivo());
+        this(usuario.getId(), usuario.getNomeLogin(),usuario.getNomeCompleto(), usuario.getEmail(), usuario.getAtivo(), (usuario.getConta() != null) ? usuario.getConta().getNomeConta() : null);
     }
 }

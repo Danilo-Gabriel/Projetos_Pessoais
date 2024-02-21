@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import padawan_api.model.conta.dto.AssociarUsuarioAContaDTO;
 import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.ListarUsuarioDTO;
@@ -32,15 +33,16 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
 
+ 
     @PostMapping("cadastrar")
     @Transactional
-    public ResponseEntity<?> cadastrarUsuarioClassController(@RequestBody RegistrarUsuarioDTO dados){
+    public ResponseEntity<?> cadastrarUsuarioClassController(@RequestBody @Valid RegistrarUsuarioDTO dados){
 
         try{
 
             ReturnDTO resp = new ReturnDTO("Criado com sucesso!");
             
-            this.usuarioService.cadastrarUsuarioClassService(dados);
+            this.usuarioService.registrarUsuarioClassService(dados);
            
             return ResponseEntity.status(HttpStatus.CREATED).body(resp);
         }
@@ -52,6 +54,7 @@ public class UsuarioController {
 
 
     }
+
 
 
     @GetMapping("list")

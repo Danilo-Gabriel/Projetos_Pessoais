@@ -22,6 +22,7 @@
             </column>
             <column name="situacao" type="varchar(10)"/>
             <column name="hash" type="varchar(255)" ></column>
+            <column name="conta" type="varchar(255)" ></column>
         </createTable>
     </changeSet>
 

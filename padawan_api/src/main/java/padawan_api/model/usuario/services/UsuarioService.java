@@ -33,6 +33,26 @@ public class UsuarioService {
     @Autowired
     private EmailService emailService;
 
+    public RegistrarUsuarioDTO registrarUsuarioClassService(RegistrarUsuarioDTO dados) throws Exception{
+
+        Optional<Usuario> usuarioOptional = this.repository.findByNomeLogin(dados.nomeLogin());
+
+        if(usuarioOptional.isPresent()){
+            throw new Exception("Usuário já cadastrado");
+        }
+        else {
+
+            Usuario novoUsuario = new Usuario(dados);
+
+            this.repository.save(novoUsuario);
+    
+            return dados;
+        }
+   
+
+    }
+
+
     public ReturnEfetuarLoginDTO efetuarLoginClassService(EfetuarLoginDTO dados) throws Exception{
 
 
@@ -63,6 +83,7 @@ public class UsuarioService {
 
     }
 
+
     public void alterarSenhaClassService(AlterarSenhaUsuarioLogadoDTO dados) throws Exception{
 
         Optional<Usuario> usuarioOptional = repository.findById(dados.id());
@@ -92,6 +113,7 @@ public class UsuarioService {
     }
 
 
+    /* 
     public void cadastrarUsuarioClassService(RegistrarUsuarioDTO dados) throws Exception {
 
         Optional<Usuario> usuariOptional = repository.findByNomeLogin(dados.nomeLogin());
@@ -110,6 +132,7 @@ public class UsuarioService {
 
      
     }
+    */
 
         public List<ListarUsuarioDTO> listarUsuarioClassService(){
             return repository.findAll().stream().map(ListarUsuarioDTO::new).toList();
@@ -224,6 +247,10 @@ public class UsuarioService {
                 conta.setUsuario(usuario);
 
                 contaRepository.save(conta);
+
+                usuario.setConta(conta);
+
+                repository.save(usuario);
 
             }
             else{

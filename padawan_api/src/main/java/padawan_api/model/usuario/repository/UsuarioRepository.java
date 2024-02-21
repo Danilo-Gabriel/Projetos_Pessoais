@@ -8,7 +8,6 @@ import padawan_api.model.conta.dto.AssociarUsuarioAContaDTO;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    Optional<Usuario> findByNomeLogin(String nomeLogin); //Tratamento de Login atraves de usuario do tipo optional (pode ser nulo ou não)
 
     Optional<Usuario> findByEmail(String email);
 
@@ -17,5 +16,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByNomeCompleto(AssociarUsuarioAContaDTO dados);
 
     Optional<Usuario> findByNomeCompleto(String nomeCompleto);
+
+    Optional<Usuario> findByNomeLogin(String login);
+   // UserDetails findByNomeLogin(String login);
+
+
 
 }

@@ -1,7 +1,6 @@
 package padawan_api.model.conta.dto;
 
 import padawan_api.model.conta.repository.Conta;
-import padawan_api.model.usuario.dto.UserRole;
 
 public record ListarContaDTO(
 

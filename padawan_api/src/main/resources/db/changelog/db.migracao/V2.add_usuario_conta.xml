@@ -17,6 +17,7 @@
             <column name="email" value="danilonascimento.dr@gmail.com"></column>
             <column name="situacao" value="true"/>
             <column name="hash" value="" ></column>
+            <column name="conta" value="Administrador Padrão" ></column>
         </insert>
          <addUniqueConstraint
         columnNames="nome_completo"
