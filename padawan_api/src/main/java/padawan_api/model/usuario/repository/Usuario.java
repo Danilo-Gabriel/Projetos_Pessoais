@@ -71,7 +71,7 @@ public class Usuario {
     private String hash;
     
     @ManyToOne
-    @JoinColumn(name = "conta", referencedColumnName = "nome_conta")
+    @JoinColumn(name = "conta_id", referencedColumnName = CAMPO_ID)
     private Conta conta;
 
 

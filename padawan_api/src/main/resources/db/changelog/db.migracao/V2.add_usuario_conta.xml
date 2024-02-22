@@ -1,44 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog
+<databaseChangeLog  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
+ <changeSet id="V2.2.add_conta_root" author="daniloGabriel">
+        <insert tableName="contas">
+            <column name="nome_conta" value="Administrador Padrão"/>
+            <column name="perfil_conta" value="ADMIN"/>
+            <column name="situacao_conta" value="true"/>
+            <column name="usuario_id" valueNumeric="1"/>
 
-
+        </insert>
+    </changeSet>
 
     <changeSet id="V2.1.add_usuario_root" author="daniloGabriel">
         <insert tableName="usuarios">
             <column name="nome_login" value="root"/>
             <column name="senha" value="$2a$12$gCUHEKn5rx4NYXcMoB/J1ObLBYDerKe1JpFse1QFkTQlWtYR0tzPK"/>
-            <column name="nome_completo" value="Usuário-padrão">
-            </column>
-            <column name="email" value="danilonascimento.dr@gmail.com"></column>
+            <column name="nome_completo" value="Usuário-padrão"/>
+            <column name="email" value="danilonascimento.dr@gmail.com"/>
             <column name="situacao" value="true"/>
-            <column name="hash" value="" ></column>
-            <column name="conta" value="Administrador Padrão" ></column>
+            <column name="conta_id" valueNumeric="1"/>
         </insert>
-         <addUniqueConstraint
-        columnNames="nome_completo"
-        constraintName="unique_nome_completo_usuarios"
-        tableName="usuarios"/>
     </changeSet>
 
-    <changeSet id="V2.2.add_conta_root" author="daniloGabriel">
-        <insert tableName="contas">
-            <column name="nome_conta" value="Administrador Padrão"/>
-            <column name="pessoa" value="Usuário-padrão"></column>
-            <column name="perfil_conta" value="ADMIN"></column>
-            <column name="situacao_conta" value="true"/>
-        </insert>
-     <addForeignKeyConstraint baseTableName="contas"
-                             baseColumnNames="pessoa"
-                             referencedTableName="usuarios"
-                             referencedColumnNames="nome_completo"
-                             constraintName="fk_conta_usuario"/>
-        </changeSet>
-
-
+   
 
 </databaseChangeLog>

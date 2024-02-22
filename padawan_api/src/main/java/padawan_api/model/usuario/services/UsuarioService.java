@@ -232,7 +232,7 @@ public class UsuarioService {
 
       public void associarUsuarioAContaClassService(AssociarUsuarioAContaDTO dados) throws Exception {
 
-        Optional<Usuario> usuarioOptional = repository.findByNomeCompleto(dados.nomeCompleto());
+        Optional<Usuario> usuarioOptional = repository.findById(dados.usuario_id());
 
         Optional<Conta> contaOptional =  contaRepository.findById(dados.conta_id());
 
