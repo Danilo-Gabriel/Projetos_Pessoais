@@ -2,6 +2,8 @@
 package padawan_api.model.conta.repository;
 
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -53,8 +55,8 @@ public class Conta {
     private UserRole role;
 
 
-    @OneToOne
-    @JoinColumn(name = "pessoa", referencedColumnName = "nome_completo")
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = CAMPO_ID)
     private Usuario usuario;
 
     @NotNull

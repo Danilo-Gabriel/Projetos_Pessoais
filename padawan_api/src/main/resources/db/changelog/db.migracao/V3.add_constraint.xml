@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+  
+
+    <!--RESTRIÇÃO PARA O USUARIO TER APENAS UMA CONTA-->
+
+        <changeSet id="V2.3.add_foreign_key_to_usuario" author="daniloGabriel">
+                <addForeignKeyConstraint
+                    baseTableName="usuarios"
+                    baseColumnNames="conta_id"
+                    constraintName="FK_usuario_conta"
+                    referencedTableName="contas"
+                    referencedColumnNames="id"
+                    onDelete="CASCADE"
+                    onUpdate="CASCADE"
+                />
+</changeSet>
+
+<changeSet id="V2.4.add_foreign_key_to_conta" author="daniloGabriel">
+                <addForeignKeyConstraint
+                    baseTableName="contas"
+                    baseColumnNames="usuario_id"
+                    constraintName="FK_conta_usuario"
+                    referencedTableName="usuarios"
+                    referencedColumnNames="id"
+                    onDelete="CASCADE"
+                    onUpdate="CASCADE"
+                />
+</changeSet>
+
+
+
+
+
+
+</databaseChangeLog>

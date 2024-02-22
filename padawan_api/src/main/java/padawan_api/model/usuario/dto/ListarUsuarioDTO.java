@@ -14,6 +14,7 @@ public record ListarUsuarioDTO(
 
         boolean ativo,
 
+        
         String conta
 
 

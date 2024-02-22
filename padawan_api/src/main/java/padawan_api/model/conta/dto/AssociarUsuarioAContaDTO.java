@@ -5,7 +5,7 @@ public record AssociarUsuarioAContaDTO(
 
     Long conta_id,
     
-    String nomeCompleto
+    Long usuario_id
 
 ) {
 }

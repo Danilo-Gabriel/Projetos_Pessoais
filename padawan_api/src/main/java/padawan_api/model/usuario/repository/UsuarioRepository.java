@@ -13,10 +13,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Optional<Usuario> findByHash(String hash);
 
-    Optional<Usuario> findByNomeCompleto(AssociarUsuarioAContaDTO dados);
-
-    Optional<Usuario> findByNomeCompleto(String nomeCompleto);
-
     Optional<Usuario> findByNomeLogin(String login);
    // UserDetails findByNomeLogin(String login);
 
