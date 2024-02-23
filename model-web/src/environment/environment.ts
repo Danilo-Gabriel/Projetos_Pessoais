@@ -1,4 +1,4 @@
-import { Product } from './../pages/conta/list-conta/dto/product';
+
 
 export const environment = {
 

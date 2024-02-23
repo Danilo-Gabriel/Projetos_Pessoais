@@ -1,9 +1,9 @@
-import { LoginService } from '../../pages/login/login/services/login.service';
+import { LoginService } from '../../pages/services/login/login/services/login.service';
 
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import { Observable } from 'rxjs';
-import { AppMessageService } from 'src/shared/components/app-message/app-message.service';
+import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
 
 
 @Injectable()

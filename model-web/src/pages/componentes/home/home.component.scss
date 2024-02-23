@@ -1,0 +1,27 @@
+.content{
+  padding: 24px;
+}
+
+mat-toolbar{
+  position: relative;
+  z-index: 5;
+  color: white;
+  background-color: #3f51b5;
+
+}
+
+mat-sidenav-container{
+  height: calc(100vh - 64px);
+}
+
+.app-footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  background-color: #3f51b5;
+}
+
+
+

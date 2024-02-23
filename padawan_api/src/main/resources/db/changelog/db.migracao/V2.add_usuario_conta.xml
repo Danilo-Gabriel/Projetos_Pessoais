@@ -24,7 +24,6 @@
             <column name="nome_login" value="root"/>
             <column name="senha" value="$2a$12$gCUHEKn5rx4NYXcMoB/J1ObLBYDerKe1JpFse1QFkTQlWtYR0tzPK"/>
             <column name="nome_completo" value="Usuário-padrão"/>
-            <column name="email" value="danilonascimento.dr@gmail.com"/>
             <column name="situacao" value="true"/>
             <column name="conta_id" valueNumeric="1"/>
         </insert>

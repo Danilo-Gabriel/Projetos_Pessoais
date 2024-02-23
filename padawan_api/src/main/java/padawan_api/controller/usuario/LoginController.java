@@ -99,7 +99,7 @@ public class LoginController {
     }
 
 
-    @GetMapping("{hash}")
+    @PostMapping("{hash}")
     public ResponseEntity<?> validarHashUsuarioClassController(@PathVariable String hash){
 
       try {
