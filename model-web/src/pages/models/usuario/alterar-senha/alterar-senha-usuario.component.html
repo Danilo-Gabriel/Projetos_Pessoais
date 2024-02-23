@@ -1,31 +1,25 @@
+<p-card header="ALTERAR SENHA">
 
-<mat-card class="trocarSenha">
   <form [formGroup]="form">
 
+    <span class="p-float-label">
+      <input class="full-width"  minlength="4" maxlength="8" matInput type="password"  pInputText id="username" formControlName="senhaAtual"/>
+      <label for="username">Senha atual</label>
+    </span>
+    <br>
+    <span class="p-float-label">
+      <input class="full-width"  minlength="4" maxlength="8" matInput type="password"  pInputText id="username" formControlName="novaSenha"/>
+      <label for="username">Nova senha</label>
+    </span>
 
-
-
-      <mat-form-field class="full-width">
-
-        <input matInput placeholder="Senha Atual" type="password" formControlName="senhaAtual">
-
-      </mat-form-field>
-
-        <mat-form-field class="full-width">
-
-          <input minlength="4" maxlength="8" matInput type="password" placeholder="Nova Senha" formControlName="novaSenha">
-
-        </mat-form-field>
-
-
-        <mat-form-field class="full-width">
-
-          <input minlength="4" maxlength="8" matInput type="password" placeholder="Confirmar Senha" formControlName="confirmarSenha">
-
-        </mat-form-field>
-
+    <br>
+    <span class="p-float-label">
+      <input class="full-width"  minlength="4" maxlength="8" matInput type="password"  pInputText id="username" formControlName="confirmarSenha"/>
+      <label for="username">Confimar senha</label>
+    </span>
 
   </form>
+  <br>
 
 <mat-card-actions>
 
@@ -34,7 +28,10 @@
   <button  mat-raised-button (click)="onCancel()">Cancelar</button>
 
 </mat-card-actions>
-</mat-card>
+
+</p-card>
+
+
 
 
 

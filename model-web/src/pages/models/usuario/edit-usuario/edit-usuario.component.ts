@@ -6,6 +6,7 @@ import { EditUsuarioService } from './service/edit-usuario.service';
 import { Subscription } from 'rxjs';
 import { Usuario } from '../dto/DadosUsuario';
 import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
+import { LocalStorageService } from 'src/shared/components-services/services/localStorage/localStorage.service';
 
 @Component({
   selector: 'app-edit-usuario',
@@ -17,6 +18,7 @@ export class EditUsuarioComponent implements OnInit {
   form!: FormGroup;
 
   situacao!: string | undefined;
+  ativo! : boolean;
 
   ativoLabel!: string
   inativoLabel!: string
@@ -32,7 +34,8 @@ export class EditUsuarioComponent implements OnInit {
     private service : EditUsuarioService,
     private route: ActivatedRoute,
     private location : Location,
-    private message : AppMessageService
+    private message : AppMessageService,
+    localstorage : LocalStorageService
 
   )
 
@@ -59,7 +62,7 @@ export class EditUsuarioComponent implements OnInit {
           this.form.patchValue({
           nomeLogin: this.usuario.nomeLogin,
           nomeCompleto: this.usuario.nomeCompleto,
-          email: this.usuario.email,
+          email: this.usuario.email
         });
     });
 
@@ -70,33 +73,17 @@ export class EditUsuarioComponent implements OnInit {
 
   onSubmit(){
 
+
     if(this.form.value){
 
-        if(this.situacao === 'Ativo'){
-
-          this.service.atualizarLoginUser({
-                id : this.idUsuario,
-                nomeLogin : this.form.value.nomeLogin,
-                nomeCompleto : this.form.value.nomeCompleto,
-                email : this.form.value.email,
-                ativo : true
-              });
-
-          }
-
-        if(this.situacao === 'Inativo'){
-
-          this.service.atualizarLoginUser({
-            id : this.idUsuario,
-            nomeLogin : this.form.value.nomeLogin,
-            nomeCompleto : this.form.value.nomeCompleto,
-            email : this.form.value.email,
-            ativo : false
-          });
-
-      }
-
-     }
+      this.service.atualizarLoginUser({
+        id: this.idUsuario,
+        nomeLogin: this.form.value.nomeLogin,
+        nomeCompleto: this.form.value.nomeCompleto,
+        email: this.form.value.email,
+        ativo: this.ativo
+      });
+    }
 
     }
 
@@ -121,7 +108,12 @@ export class EditUsuarioComponent implements OnInit {
     //   this.message.showError("ERROR EM ATUALIZAR O USUARIO")
     // }
 
-
+  ativar(){
+    this.ativo = true
+  }
+  inativar(){
+    this.ativo = false
+  }
 
   onCancel(){
 

@@ -1,47 +1,43 @@
+<p-card header="EDITAR USUÁRIO">
 
-<br>
-  <div class="editarUsuario">
+
+
     <form [formGroup]="form!">
-
       <p-fieldset legend="DADOS PESSOAIS">
 
-        <mat-form-field class="full-width">
-
-          <input matInput placeholder="NOME COMPLETO" formControlName="nomeCompleto">
-
-        </mat-form-field>
-<br>
-
-
-        <mat-form-field class="full-width">
-
-          <input matInput placeholder="E-MAIL" formControlName="email">
-
-        </mat-form-field>
-
+        <span class="p-float-label">
+          <input pInputText id="username" formControlName="nomeCompleto"/>
+          <label for="username">Nome completo</label>
+        </span>
+        <br>
+        <br>
+        <span class="p-float-label">
+          <input pInputText id="username" formControlName="email"/>
+          <label for="username">E-mail</label>
+        </span>
 
     </p-fieldset>
-
       <br>
       <p-fieldset legend="DADOS LOGIN">
 
-        <mat-form-field class="full-width">
-
-          <input matInput placeholder="NOME LOGIN" formControlName="nomeLogin">
-
-        </mat-form-field>
+           <span class="p-float-label">
+            <input pInputText id="username" formControlName="nomeLogin"/>
+            <label for="username">E-mail</label>
+          </span>
 
         <br>
 
         <form>
-          <p-radioButton  name="situacao" [value]="ativoLabel" [ngModel]="situacao" ></p-radioButton>
+          <p-radioButton  name="situacao" [value]="ativoLabel" [ngModel]="situacao" (click)="ativar()" ></p-radioButton>
         <label for="true" class="ml-2">Ativo</label>
         &nbsp;
-        <p-radioButton name="situacao" [value]="inativoLabel" [ngModel]="situacao" ></p-radioButton>
+        <p-radioButton name="situacao" [value]="inativoLabel" [ngModel]="situacao" (click)="inativar()" ></p-radioButton>
         <label for="false" class="ml-2">Inativo</label>
         </form>
 
       </p-fieldset>
+
+    </form>
 
       <br>
 
@@ -53,11 +49,7 @@
 
       </mat-card-actions>
 
-    </form>
-
-
-  </div>
-
+    </p-card>
 
 
 

@@ -1,5 +1,7 @@
-<div class="">
-
+<p-card header="ADICIONAR USUÁRIO">
+  <mat-divider></mat-divider>
+  <br>
+  <br>
   <form [formGroup]="form">
     <p-fieldset legend="DADOS PESSOAIS">
         <span class="p-float-label">
@@ -18,8 +20,8 @@
 
     <br>
     <br>
-    
-    <div class="">
+
+
       <p-fieldset legend="DADOS LOGIN" >
 
         <span class="p-float-label">
@@ -36,10 +38,10 @@
       </span>
      </p-fieldset>
 
-    </div>
-
   </form>
 
+  <br>
+  <br>
 <mat-card-actions>
 
   <button [disabled]="!form.valid" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Salvar</button> &nbsp;
@@ -47,9 +49,12 @@
   <button  mat-raised-button (click)="onCancel()">Cancelar</button>
 
 </mat-card-actions>
+</p-card>
 
 
-</div>
+
+
+
 
 
 
