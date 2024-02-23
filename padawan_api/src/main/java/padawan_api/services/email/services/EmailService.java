@@ -14,6 +14,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
 import padawan_api.services.email.dto.EmailDTO;
@@ -135,16 +136,17 @@ public class EmailService {
 
     }
 
-    public Usuario validarHashUsuarioClassService(String hash) throws Exception{
+    public UsuarioDTO validarHashUsuarioClassService(String hash) throws Exception{
 
         Optional<Usuario> usuarioOptional = this.repository.findByHash(hash);
 
         if(usuarioOptional.isPresent()){
 
             Usuario usuario = usuarioOptional.get();
-            if(usuario.isSituacao()){
 
-            return usuario;
+            if(usuario.getAtivo()){
+            
+            return new UsuarioDTO(usuario);
 
             }else{
 

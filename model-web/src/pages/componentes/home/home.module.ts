@@ -2,7 +2,7 @@ import { NgModule, OnInit, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'primeng/api';
 import { PrimeNGModule } from 'src/shared/biblioteca-angular/primeNG.module';
-import { LoginService } from '../../services/login/login/services/login.service';
+import { LoginService } from '../login/login/services/login.service';
 
 @NgModule({
   imports: [

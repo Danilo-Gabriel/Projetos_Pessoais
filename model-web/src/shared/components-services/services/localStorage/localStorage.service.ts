@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { DadosLogin } from 'src/pages/services/login/login/dto/DadosLogin';
+import { DadosLogin } from 'src/pages/componentes/login/login/dto/DadosLogin';
 import { __values } from 'tslib';
 
 @Injectable({

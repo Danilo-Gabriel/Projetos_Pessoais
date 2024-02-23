@@ -3,7 +3,7 @@ import { Observable, catchError, of } from 'rxjs';
 import {  Usuario } from '../dto/DadosUsuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListUsuarioService } from './service/list-usuario.service';
-import { LoginService } from 'src/pages/services/login/login/services/login.service';
+import { LoginService } from 'src/pages/componentes/login/login/services/login.service';
 import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
 import { ConfirmationService } from 'primeng/api';
 

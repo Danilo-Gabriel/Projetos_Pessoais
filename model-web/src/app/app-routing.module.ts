@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from 'src/pages/services/login/login/login.component';
+import { LoginComponent } from 'src/pages/componentes/login/login/login.component';
 import { AuthGuard } from './guard/auth.guard';
-import { RecuperarSenhaComponent } from 'src/pages/services/login/recuperar-senha/recuperar-senha.component';
+import { RecuperarSenhaComponent } from 'src/pages/componentes/login/recuperar-senha/recuperar-senha.component';
 
 
 

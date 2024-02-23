@@ -15,6 +15,7 @@ import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.dto.ReturnDTO;
+import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.services.UsuarioService;
 
 import java.util.List;
@@ -157,9 +158,7 @@ public class UsuarioController {
 
         try{
 
-      
-
-            Usuario usuarioDTO =  usuarioService.detalhesDadosUsuarioClassService(id);
+            UsuarioDTO usuarioDTO =  usuarioService.detalhesDadosUsuarioClassService(id);
             
 
              return ResponseEntity.ok().body(usuarioDTO);

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, computed, signal } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/pages/services/login/login/services/login.service';
+import { LoginService } from 'src/pages/componentes/login/login/services/login.service';
 
 interface City {
   perfil: string;
