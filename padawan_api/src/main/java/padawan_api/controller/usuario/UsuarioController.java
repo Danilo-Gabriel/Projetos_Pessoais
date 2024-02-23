@@ -13,7 +13,6 @@ import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.ListarUsuarioDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 
-import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.dto.ReturnDTO;
 import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.services.UsuarioService;
