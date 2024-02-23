@@ -36,7 +36,8 @@ export class EditUsuarioService {
       (response) => {
 
       this.message.showSuccess("Usuário alterado com sucesso");
-      
+      this.location.back()
+
     },
     (error) => {
        this.message.showError(error.error)
