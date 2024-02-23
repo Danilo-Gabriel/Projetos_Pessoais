@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import padawan_api.model.conta.dto.AssociarUsuarioAContaDTO;
 import padawan_api.model.conta.repository.Conta;
 import padawan_api.model.conta.repository.ContaRepository;
+import padawan_api.model.email.services.EmailService;
 import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.EfetuarLoginDTO;
@@ -15,8 +16,6 @@ import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
-import padawan_api.services.email.services.EmailService;
-
 
 import java.util.Optional;
 import java.util.List;

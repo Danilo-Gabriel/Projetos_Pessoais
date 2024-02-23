@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import padawan_api.model.conta.repository.Conta;
+import padawan_api.model.email.dto.RecupararSenhaPorEmailDTO;
 import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
-import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
 
 import org.mindrot.jbcrypt.BCrypt;
 

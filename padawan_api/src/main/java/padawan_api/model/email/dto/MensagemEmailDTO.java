@@ -1,4 +1,4 @@
-package padawan_api.services.email.dto;
+package padawan_api.model.email.dto;
 
 public class MensagemEmailDTO {
 
