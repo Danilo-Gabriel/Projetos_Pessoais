@@ -49,7 +49,7 @@ alterarSenhaUsuario(record : DadosAlterarSenha){
     (response) => {
       debugger
       this.messagem.showSuccess("Senhas alteradas com sucesso!");
-      this.router.navigate(['pages']);
+      this.router.navigate(['login']);
     },
     (error) => {
       this.messagem.showError(`${error.error}`);

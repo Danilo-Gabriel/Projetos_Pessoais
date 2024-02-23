@@ -6,6 +6,7 @@ import { AppMessageService } from 'src/shared/components-services/app-message/ap
 import { Usuario } from '../../dto/DadosUsuario';
 import { Location } from '@angular/common';
 import { EditUsuario } from '../../dto/DadosAtualizarLogin';
+import { window } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,7 @@ export class EditUsuarioService {
       (response) => {
 
       this.message.showSuccess("Usuário alterado com sucesso");
-
-      this.location.back();
+      
     },
     (error) => {
        this.message.showError(error.error)

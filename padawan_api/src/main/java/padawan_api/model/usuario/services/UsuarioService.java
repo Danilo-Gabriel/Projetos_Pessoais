@@ -12,6 +12,7 @@ import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ListarUsuarioDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
+import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
 import padawan_api.services.email.services.EmailService;
@@ -214,13 +215,15 @@ public class UsuarioService {
     }
 
 
-    public Usuario detalhesDadosUsuarioClassService(Long id) {
+    public UsuarioDTO detalhesDadosUsuarioClassService(Long id) {
 
         Optional<Usuario> usuarioOptional = this.repository.findById(id);
 
         Usuario usuario = usuarioOptional.get();
+
+        UsuarioDTO usuarioDTO;
         
-        return usuario;
+        return new UsuarioDTO(usuario);
         
     }
 

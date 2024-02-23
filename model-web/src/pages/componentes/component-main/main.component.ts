@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, computed, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoginService } from 'src/pages/services/login/login/services/login.service';
+import { LoginService } from 'src/pages/componentes/login/login/services/login.service';
 
 
 @Component({

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { HomeComponent } from './componentes/home/home.component';
-import { RecuperarSenhaComponent } from './services/login/recuperar-senha/recuperar-senha.component';
+import { RecuperarSenhaComponent } from './componentes/login/recuperar-senha/recuperar-senha.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 import { ListContaComponent } from './models/conta/list-conta/list-conta.component';
 import { AddContaComponent } from './models/conta/add-conta/add-conta.component';

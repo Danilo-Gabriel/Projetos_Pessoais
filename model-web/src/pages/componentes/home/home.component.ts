@@ -1,6 +1,6 @@
 
 import { Component, OnInit, computed, signal} from '@angular/core';
-import { LoginService } from '../../services/login/login/services/login.service';
+import { LoginService } from '../login/login/services/login.service';
 
 
 @Component({

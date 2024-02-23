@@ -23,6 +23,7 @@ import padawan_api.services.email.services.EmailService;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
+import padawan_api.model.usuario.dto.UsuarioDTO;
 
 
 @RestController
@@ -99,14 +100,14 @@ public class LoginController {
     }
 
 
-    @PostMapping("{hash}")
+    @GetMapping("{hash}")
     public ResponseEntity<?> validarHashUsuarioClassController(@PathVariable String hash){
 
       try {
         
-       Usuario usuario = this.emailService.validarHashUsuarioClassService(hash);
+       UsuarioDTO usuarioDTO = this.emailService.validarHashUsuarioClassService(hash);
 
-        return ResponseEntity.ok().body(usuario);
+        return ResponseEntity.ok().body(usuarioDTO);
 
       } catch (Exception e) {
           return ResponseEntity.badRequest().body(e.getMessage());
