@@ -20,7 +20,9 @@
             </column>
             <column name="senha" type="varchar(100)"/>
             <column name="nome_completo" type="varchar(100)"/>
-            <column name="email" type="varchar(50)"/>
+            <column name="email" type="varchar(50)">
+                <constraints unique="true"/>
+            </column>
             <column name="situacao" type="varchar(10)"/>
             <column name="hash" type="varchar(255)"/>
             <column name="conta_id" type="bigint"/>

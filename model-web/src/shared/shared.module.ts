@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { PrimeNGModule } from './primeNG/primeNG.module';
+import { PrimeNGModule } from './biblioteca-angular/primeNG.module';
 
 
 
