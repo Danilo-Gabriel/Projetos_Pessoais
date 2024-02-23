@@ -5,6 +5,7 @@ import { environment } from 'src/environment/environment';
 import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
 import { Usuario } from '../../dto/DadosUsuario';
 import { Location } from '@angular/common';
+import { ReturnCadastroUser } from '../../dto/ReturnCadastroUser';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +31,10 @@ private readonly buscardDadosUsuarioID = `${this.backendURL}/usuarios`
 
 save(record: Usuario ){
 
-  return this.http.post<Usuario>(this.API, record)
+  return this.http.post<ReturnCadastroUser>(this.API, record)
   .subscribe(
     (response) => {
-      this.message.showSuccess(`Usuario: ${response.nomeLogin} cadastrado`),
+      this.message.showSuccess(`${response.Resp}`),
       this.location.back();
      // this.router.navigate(['/pages/home/list-usuario']);
       //this.onAviso(response)

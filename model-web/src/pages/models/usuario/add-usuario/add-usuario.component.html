@@ -1,55 +1,53 @@
+<div class="">
 
-  <br>
-<div class="tabelaCadastro">
   <form [formGroup]="form">
-
     <p-fieldset legend="DADOS PESSOAIS">
-
-      <mat-form-field class="full-width">
-
-        <input matInput placeholder="NOME COMPLETO" formControlName="nomeCompleto">
-
-      </mat-form-field>
-
-      <br>
-
-      <mat-form-field class="full-width">
-
-        <input matInput placeholder="E-MAIL" formControlName="email">
-
-      </mat-form-field>
-
-  </p-fieldset>
-  <br>
-
-  <p-fieldset legend="DADOS LOGIN">
-
-    <mat-form-field class="full-width">
-
-      <input matInput placeholder="NOME LOGIN" formControlName="nomeLogin">
-
-    </mat-form-field>
-
+        <span class="p-float-label">
+          <input pInputText id="username" formControlName="nomeCompleto" />
+          <label for="username">Nome completo</label>
+        </span>
+    <br>
     <br>
 
-    <mat-form-field class="full-width">
+        <span class="p-float-label">
+          <input pInputText id="username" formControlName="email" />
+          <label for="username">E-mail</label>
+        </span>
 
-      <input matInput minlength="4" maxlength="8" type="password" placeholder="SENHA" formControlName="senha">
+    </p-fieldset>
 
-    </mat-form-field>
+    <br>
+    <br>
+    
+    <div class="">
+      <p-fieldset legend="DADOS LOGIN" >
 
-  </p-fieldset>
+        <span class="p-float-label">
+          <input pInputText id="username" formControlName="nomeLogin" />
+          <label for="username">Nome login</label>
+      </span>
 
+      <br>
+      <br>
+
+      <span class="p-float-label">
+        <input pInputText id="username" formControlName="senha" />
+        <label for="username">Senha</label>
+      </span>
+     </p-fieldset>
+
+    </div>
+
+  </form>
 
 <mat-card-actions>
 
-  <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()">Salvar</button> &nbsp;
+  <button [disabled]="!form.valid" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Salvar</button> &nbsp;
 
   <button  mat-raised-button (click)="onCancel()">Cancelar</button>
 
 </mat-card-actions>
 
-  </form>
 
 </div>
 
