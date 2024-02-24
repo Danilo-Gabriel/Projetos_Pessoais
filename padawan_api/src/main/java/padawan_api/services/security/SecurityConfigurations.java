@@ -22,17 +22,17 @@ public class SecurityConfigurations {
     @Autowired
     SecurityFilter securityFilter;
 
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return  http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize 
-                .   requestMatchers("/**").permitAll()
-               
+             //   .   requestMatchers("/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/registrar").permitAll()
-                      //  .requestMatchers(HttpMethod.GET, "/usuarios/listar").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/usuarios/list").hasRole("ADMIN")
 
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
@@ -49,4 +49,3 @@ public class SecurityConfigurations {
         return new BCryptPasswordEncoder();
     }
 }
-

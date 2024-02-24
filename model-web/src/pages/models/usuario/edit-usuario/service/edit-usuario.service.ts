@@ -7,6 +7,7 @@ import { Usuario } from '../../dto/DadosUsuario';
 import { Location } from '@angular/common';
 import { EditUsuario } from '../../dto/DadosAtualizarLogin';
 import { window } from 'rxjs';
+import { LocalStorageService } from 'src/shared/components-services/services/localStorage/localStorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class EditUsuarioService {
     private http : HttpClient,
     private message : AppMessageService,
     private router : Router,
-    private location : Location
+    private location : Location,
+
 
     ) {
 

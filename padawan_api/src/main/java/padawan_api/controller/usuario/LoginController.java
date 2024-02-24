@@ -19,8 +19,6 @@ import padawan_api.model.email.dto.EmailDTO;
 import padawan_api.model.email.dto.RecupararSenhaPorEmailDTO;
 import padawan_api.model.email.services.EmailService;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
-import padawan_api.model.usuario.dto.EfetuarLoginDTO;
-import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.UsuarioDTO;
 
 

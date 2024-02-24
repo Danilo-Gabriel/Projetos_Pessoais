@@ -22,6 +22,8 @@ armazenarLoginUser(dados : DadosLogin){
 
 }
 
+
+
 validarLoginUser(key : string) {
 
   let isUsuarioLogado = this.storage.getItem(key)

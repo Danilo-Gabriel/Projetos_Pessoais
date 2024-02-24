@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
 
 import { first, tap } from 'rxjs';
 import { Usuario } from '../../dto/DadosUsuario';
 import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
+import { LocalStorageService } from 'src/shared/components-services/services/localStorage/localStorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,11 @@ import { AppMessageService } from 'src/shared/components-services/app-message/ap
 export class ListUsuarioService {
 
 // private readonly API = '/assets/cursos.json';
+
+//  JWT
+
+
+private readonly token : any = localStorage.getItem('usuario-logado');
 
 backendURL = environment.endPoint;
 
@@ -21,11 +27,14 @@ private readonly DEL = `${this.backendURL}/usuarios/deletar`
 
 constructor(
   private http: HttpClient,
-  private message : AppMessageService) { }
+  private message : AppMessageService,
+  private storage : LocalStorageService) { }
 
 list() {
 
-  return this.http.get<Usuario[]>(this.API)
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+
+  return this.http.get<Usuario[]>(this.API, { headers })
   .pipe(
     first(),
     tap(usuarios => console.log(usuarios))
