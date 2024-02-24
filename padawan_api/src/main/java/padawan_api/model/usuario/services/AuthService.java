@@ -1,4 +1,4 @@
-/*package padawan_api.model.usuario.services;
+package padawan_api.model.usuario.services;
 
 
 
@@ -22,4 +22,3 @@ public class AuthService implements UserDetailsService {
     }
 }
 
-*/

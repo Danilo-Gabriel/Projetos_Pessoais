@@ -1,4 +1,4 @@
-/*package padawan_api.services.security;
+package padawan_api.services.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,4 +50,3 @@ public class SecurityConfigurations {
     }
 }
 
-*/

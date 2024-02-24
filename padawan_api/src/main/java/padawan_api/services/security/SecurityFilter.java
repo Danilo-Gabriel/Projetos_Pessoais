@@ -1,4 +1,4 @@
-/*package padawan_api.services.security;
+package padawan_api.services.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -42,4 +42,3 @@ public class SecurityFilter extends OncePerRequestFilter {
         return authHeader.replace("Bearer ", "");
     }
 }
-*/

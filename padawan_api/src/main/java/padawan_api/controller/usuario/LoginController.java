@@ -41,7 +41,7 @@ public class LoginController {
       this.emailService = emailService;
     }
 
-
+/*
 
   @PostMapping("/login")
    public ResponseEntity<?> efetuarLoginClassController(@RequestBody EfetuarLoginDTO dados){
@@ -62,7 +62,7 @@ public class LoginController {
 
       }
  
-    
+   */
 
   @PutMapping("/alterarSenha")
   public ResponseEntity<?> alterarSenhaClassController(@RequestBody AlterarSenhaUsuarioLogadoDTO dados){

@@ -1,4 +1,4 @@
-/*package padawan_api.services.security;
+package padawan_api.services.security;
 
 
 import com.auth0.jwt.JWT;
@@ -55,4 +55,3 @@ public class TokenService {
 }
 
 
-*/

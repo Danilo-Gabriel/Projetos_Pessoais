@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import padawan_api.model.conta.dto.UserRole;
 import padawan_api.model.conta.repository.Conta;
 import padawan_api.model.email.dto.RecupararSenhaPorEmailDTO;
 import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
@@ -18,7 +19,14 @@ import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 //import java.util.Collection;
@@ -33,9 +41,7 @@ import org.mindrot.jbcrypt.BCrypt;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @EqualsAndHashCode(of = "id")
 
-public class Usuario {
-
-//public class Usuario implements UserDetails {
+public class Usuario implements UserDetails {
     private static final String CAMPO_ID = "id";
 
     @Id
@@ -79,19 +85,20 @@ public class Usuario {
         this.nomeCompleto = dados.nomeCompleto();
         this.email = dados.email();
         this.nomeLogin = dados.nomeLogin();
-        this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
+        this.senha = new BCryptPasswordEncoder().encode(dados.senha());
+       // this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
         this.hash = null;
         this.ativo = true;
     }
 
-    /* 
+   
         @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.conta.getRole() == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     
     } 
-    */
+
     public void atualizarUsuarioClassUsuarioJPA(AlterarRegistroDeUsuariosDTO dados) throws Exception {
         
         if(this.ativo == true){
@@ -206,7 +213,6 @@ public class Usuario {
         return this.ativo;
     }
 
-/* 
     @Override
     public String getUsername() {
         
@@ -240,7 +246,6 @@ public class Usuario {
         return this.senha;
     }
 
-*/
     
 }
 

@@ -33,6 +33,8 @@ public class UsuarioService {
     @Autowired
     private EmailService emailService;
 
+    /* 
+    SEM JWT
     public RegistrarUsuarioDTO registrarUsuarioClassService(RegistrarUsuarioDTO dados) throws Exception{
 
         Optional<Usuario> usuarioOptional = this.repository.findByNomeLogin(dados.nomeLogin());
@@ -51,6 +53,7 @@ public class UsuarioService {
    
 
     }
+
 
 
     public ReturnEfetuarLoginDTO efetuarLoginClassService(EfetuarLoginDTO dados) throws Exception{
@@ -82,6 +85,8 @@ public class UsuarioService {
           }
 
     }
+
+        */
 
 
     public void alterarSenhaClassService(AlterarSenhaUsuarioLogadoDTO dados) throws Exception{

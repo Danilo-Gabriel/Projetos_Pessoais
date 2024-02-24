@@ -33,6 +33,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
 
+    /* 
  
     @PostMapping("cadastrar")
     @Transactional
@@ -55,7 +56,7 @@ public class UsuarioController {
 
     }
 
-
+*/
 
     @GetMapping("list")
     public ResponseEntity<List<ListarUsuarioDTO>> listUsuarioClassController(){
