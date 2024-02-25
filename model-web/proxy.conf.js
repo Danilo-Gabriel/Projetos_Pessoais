@@ -1,4 +1,4 @@
-/*const PROXY_CONFIG = [
+const PROXY_CONFIG = [
   {
     context: ['/api'],
     target: 'http://localhost:8080/',
@@ -7,15 +7,6 @@
   }
 ];
 
-
-
 module.exports = PROXY_CONFIG;
 
 
-/*
-  adicionar o script para ser inicializado,
-
-  "start": "ng serve --proxy-config proxy.conf.js",
-
-  npm run start
-*/

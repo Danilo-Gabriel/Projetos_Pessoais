@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
     this.visibleRecuperarSenha = true;
   }
 
+  /*
+
   recuperarSenha() {
 
 
@@ -46,6 +48,7 @@ export class LoginComponent implements OnInit {
     }
 
   }
+  */
 
   cancelarRecuperacaoSenha() {
     this.visibleRecuperarSenha = false;

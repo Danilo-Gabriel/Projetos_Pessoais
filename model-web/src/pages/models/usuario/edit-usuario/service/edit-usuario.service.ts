@@ -28,8 +28,8 @@ export class EditUsuarioService {
   }
 
   private backendURL = environment.endPoint;
-  private readonly API = `${this.backendURL}/usuarios/atualizar`
-  private readonly buscarDadosUsuario = `${this.backendURL}/usuarios`
+  private readonly API = `${this.backendURL}/usuario/atualizar`
+  private readonly buscarDadosUsuario = `${this.backendURL}/usuario`
 
   atualizarLoginUser(record: EditUsuario ){
 

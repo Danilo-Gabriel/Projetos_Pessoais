@@ -19,11 +19,12 @@ export class ListUsuarioService {
 
 private readonly token : any = localStorage.getItem('usuario-logado');
 
+
 backendURL = environment.endPoint;
 
-private readonly API = `${this.backendURL}/usuarios/list`
+private readonly API = `${this.backendURL}/usuario/list`
 
-private readonly DEL = `${this.backendURL}/usuarios/deletar`
+private readonly DEL = `${this.backendURL}/usuario/deletar`
 
 constructor(
   private http: HttpClient,

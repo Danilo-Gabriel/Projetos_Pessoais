@@ -26,8 +26,8 @@ constructor(
 }
 
 private backendURL = environment.endPoint;
-private readonly API = `${this.backendURL}/usuarios/cadastrar`
-private readonly buscardDadosUsuarioID = `${this.backendURL}/usuarios`
+private readonly API = `${this.backendURL}/usuario/cadastrar`
+private readonly buscardDadosUsuarioID = `${this.backendURL}/usuario`
 
 save(record: Usuario ){
 

@@ -1,3 +1,4 @@
+/*
 package padawan_api.controller.usuario;
 
 
@@ -23,8 +24,8 @@ import padawan_api.model.usuario.dto.UsuarioDTO;
 
 
 @RestController
-@CrossOrigin(origins = ("*"))
-@RequestMapping("/auth")
+//@CrossOrigin(origins = ("*"))
+@RequestMapping("api/autenticacao")
 public class LoginController {
 
 
@@ -39,7 +40,7 @@ public class LoginController {
       this.emailService = emailService;
     }
 
-/*
+
 
   @PostMapping("/login")
    public ResponseEntity<?> efetuarLoginClassController(@RequestBody EfetuarLoginDTO dados){
@@ -60,7 +61,7 @@ public class LoginController {
 
       }
  
-   */
+
 
   @PutMapping("/alterarSenha")
   public ResponseEntity<?> alterarSenhaClassController(@RequestBody AlterarSenhaUsuarioLogadoDTO dados){
@@ -134,7 +135,6 @@ public class LoginController {
     public void sendEmail(@RequestBody DadosEmailDTO email){
         emailService.sendEmail(email);
     }
-    */
 
 
    }
@@ -142,4 +142,4 @@ public class LoginController {
 
     
 
-
+   */

@@ -19,8 +19,8 @@ import padawan_api.model.conta.services.ContaService;
 import padawan_api.model.usuario.dto.ReturnDTO;
 
 @RestController
-@CrossOrigin(origins = ("*"))
-@RequestMapping("/conta")
+//@CrossOrigin(origins = ("*"))
+@RequestMapping("/api/conta")
 public class ContaController {
 
     
@@ -46,7 +46,7 @@ public class ContaController {
 
     }
 
-    @GetMapping("listar")
+    @GetMapping("list")
     public ResponseEntity<List<ListarContaDTO>> listarContaClassController(){
       
         try {

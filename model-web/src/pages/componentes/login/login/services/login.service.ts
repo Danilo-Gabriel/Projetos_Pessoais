@@ -16,11 +16,11 @@ import { delay } from 'rxjs';
 })
 export class LoginService {
 
-  private backendUrl = environment.endPoint;
+ private backendUrl = environment.endPoint;
 
-  private readonly apiUrl = `${this.backendUrl}/auth/login`;
+ private readonly apiUrl = `${this.backendUrl}/auth/login`;
 
-  private readonly urlRecuperarSenha = `${this.backendUrl}/auth/recuperar-senha`;
+ private readonly urlRecuperarSenha = `${this.backendUrl}/auth/recuperar-senha`;
 
   constructor(
     private http : HttpClient,
@@ -52,7 +52,7 @@ export class LoginService {
 
   efetuarLogin(record : DadosLogin){
 
-    this.http.post<DadosLogin>(this.apiUrl, record, { responseType: 'text' as 'json'})
+    this.http.post<DadosLogin>(this.apiUrl, record, {responseType: 'json'})
     .subscribe(
       (response) => {
 
@@ -68,6 +68,8 @@ export class LoginService {
       }
     );
 }
+
+
 
 recuperarSenha(record : DadosRecuperarSenha){
 
