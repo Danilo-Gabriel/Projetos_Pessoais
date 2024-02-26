@@ -1,5 +1,8 @@
 export interface  DadosLogin {
 
-  jwt: string
+  id : string,
+  login: string,
+  conta: string,
+  jwt: string;
 
 }

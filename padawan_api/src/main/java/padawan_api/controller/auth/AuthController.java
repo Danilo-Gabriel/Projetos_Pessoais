@@ -11,6 +11,7 @@ import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.LoginResponseDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 import padawan_api.model.usuario.dto.ReturnDTO;
+import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
@@ -76,8 +77,10 @@ public class AuthController {
         var auth =  manager.authenticate(usernamePassword);
 
         var token = tokenService.gerarToken((Usuario) auth.getPrincipal());
+        var usuario = (Usuario) auth.getPrincipal();
 
-        return ResponseEntity.ok(new LoginResponseDTO(token));
+      
+        return ResponseEntity.ok(new ReturnEfetuarLoginDTO(usuario.getId(), usuario.getNomeLogin(), usuario.getConta().getNomeConta(), token));
 
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

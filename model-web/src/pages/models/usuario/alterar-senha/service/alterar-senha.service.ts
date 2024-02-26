@@ -13,7 +13,7 @@ export class AlterarSenhaService {
 
   private backendURL = environment.endPoint;
 
-  private readonly API = `${this.backendURL}/alterarSenha`
+  private readonly API = `${this.backendURL}/auth/alterarSenha`
 
 
   /*

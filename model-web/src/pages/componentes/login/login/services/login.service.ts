@@ -56,6 +56,7 @@ export class LoginService {
     .subscribe(
       (response) => {
 
+        console.log(response)
         this.storage.armazenarLoginUser(response),
         this.message.showSuccess("Login Correto"),
         this.router.navigate(['/pages/home']);

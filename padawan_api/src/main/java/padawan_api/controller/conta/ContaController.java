@@ -27,7 +27,7 @@ public class ContaController {
     @Autowired
     private ContaService contaService;
 
-    @PostMapping("registrar")
+    @PostMapping("/registrar")
     @Transactional
     public ResponseEntity<?> registrarContaClassController(@RequestBody RegistrarContaDTO dados){
 
@@ -46,7 +46,7 @@ public class ContaController {
 
     }
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public ResponseEntity<List<ListarContaDTO>> listarContaClassController(){
       
         try {

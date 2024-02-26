@@ -17,7 +17,13 @@ constructor() { }
 
 armazenarLoginUser(dados : DadosLogin){
 
- this.storage.setItem('usuario-logado', dados);
+  const usuarioLogado = {
+    id: dados.id,
+    login : dados.login,
+    conta: dados.conta,
+    jwt: dados.jwt
+  }
+ this.storage.setItem('usuario-logado', JSON.stringify(usuarioLogado));
 
 
 }
@@ -37,10 +43,13 @@ removerLoginUser(){
   this.storage.clear();
 }
 
-returnLoginUser(){
-
-  let usuario : any = this.storage.getItem('usuario-logado')
-  return JSON.parse(usuario);
+returnLoginUser() : DadosLogin | null{
+  const usuarioLogadoStr = localStorage.getItem('usuario-logado');
+  if (usuarioLogadoStr) {
+    return JSON.parse(usuarioLogadoStr) as DadosLogin;
+  } else {
+    return null;
+  }
 }
 
 

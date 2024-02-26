@@ -17,11 +17,11 @@ export class EditUsuarioComponent implements OnInit {
 
   form!: FormGroup;
 
-  situacao!: string | undefined;
-  ativo! : boolean;
+  situacao?: string;
+  ativo? : boolean;
 
-  ativoLabel!: string
-  inativoLabel!: string
+  ativoLabel?: string
+  inativoLabel?: string
 
 
 
@@ -73,18 +73,39 @@ export class EditUsuarioComponent implements OnInit {
 
   onSubmit(){
 
-
     if(this.form.value){
 
-      this.service.atualizarLoginUser({
-        id: this.idUsuario,
-        nomeLogin: this.form.value.nomeLogin,
-        nomeCompleto: this.form.value.nomeCompleto,
-        email: this.form.value.email,
-        ativo: this.ativo
-      });
+      if(this.ativo === true || this.situacao === 'Ativo'){
+        this.service.atualizarLoginUser({
+          id: this.idUsuario,
+          nomeLogin: this.form.value.nomeLogin,
+          nomeCompleto: this.form.value.nomeCompleto,
+          email: this.form.value.email,
+          ativo: true
+        });
+      }
+
+      if(this.ativo === false || this.situacao === 'Inativo'){
+
+        this.service.atualizarLoginUser({
+          id : this.idUsuario,
+          nomeLogin : this.form.value.nomeLogin,
+          nomeCompleto : this.form.value.nomeCompleto,
+          email : this.form.value.email,
+          ativo : false
+        });
+
     }
 
+    }
+
+    }
+
+    ativar(){
+      this.ativo = true
+    }
+    inativar(){
+      this.ativo = false
     }
 
 
@@ -108,12 +129,7 @@ export class EditUsuarioComponent implements OnInit {
     //   this.message.showError("ERROR EM ATUALIZAR O USUARIO")
     // }
 
-  ativar(){
-    this.ativo = true
-  }
-  inativar(){
-    this.ativo = false
-  }
+
 
   onCancel(){
 
