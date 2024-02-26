@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from './dto/product';
+import { ListConta, } from './dto/listarConta';
+import { Observable, catchError, of } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Conta } from './dto/Conta';
+import { ListContaService } from './service/list-conta.service';
+import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
 
 @Component({
   selector: 'app-list-conta',
@@ -7,8 +12,67 @@ import { Product } from './dto/product';
   styleUrls: ['./list-conta.component.scss']
 })
 export class ListContaComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
+  listCont! : ListConta[];
+  listConta$ : Observable<ListConta[]>;
+
+  constructor(
+    private router : Router,
+    private route : ActivatedRoute,
+    private service : ListContaService,
+    private message : AppMessageService
+  ){
+
+    this.listConta$= this.service.list()
+      .pipe(
+        catchError(error => {
+          this.message.showError(error)
+          return of([])
+    })
+  );
+
   }
+
+
+
+  ngOnInit(): void {
+    
+    this.obterDadosUsuario();
+  }
+
+  /*
+
+
+  onAdd(){
+
+    this.router.navigate(['new'], {relativeTo : this.route})
+
+  }
+
+  onEdit(conta: Conta){
+
+    this.router.navigate([`edit/${conta.id}`], {relativeTo : this.route})
+  }
+
+  */
+
+  traduzirSituacao(situacao : boolean) : string{
+
+    return situacao ? 'ativo' : 'inativo';
+  }
+
+  private obterDadosUsuario() {
+    this.service.obterUsuario().subscribe(
+        data => {
+          console.log(this.listCont)
+            this.listCont = data;
+        },
+        error =>{
+            console.error('ERROR', error);
+        }
+    )
+}
+
+
 
 }

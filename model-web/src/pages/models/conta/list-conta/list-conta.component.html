@@ -1,0 +1,85 @@
+
+<p-toast></p-toast>
+
+<div class="tabelaConta">
+  <mat-toolbar color="primary">Lista de contas</mat-toolbar>
+
+
+  <div class="card" *ngIf="listConta$">
+    <p-table
+     [value]="listCont"
+     [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '2rem' }"
+    currentPageReportTemplate="Conta {first} a {last} de {totalRecords} Conta"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nome</th>
+                <th>Perfil</th>
+                <th>Situação</th>
+                <th>Pessoa</th>
+                <th>
+                  <!--  <p-button (click)="onAdd()" label="Adicionar"></p-button> -->
+                </th>
+                <!--<th>Quantity</th>-->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-conta>
+            <tr>
+
+
+                <td>{{ conta.nomeConta }}</td>
+                <td>{{ conta.role }}</td>
+                <td>{{ conta.ativo}}</td>
+                <td>{{ conta.pessoa }}</td>
+
+
+
+
+                <td>
+                     <!--
+                    <p-button  (click)="onEdit(conta)" [rounded]="true" severity="secondary">
+
+                        <mat-icon >edit</mat-icon>
+
+                    </p-button> &nbsp;
+
+
+                          <p-button (click)="confirmDeleteUser($event, conta)" [rounded]="true" severity="danger">
+
+                        <mat-icon>delete</mat-icon>
+
+                    </p-button>
+                    -->
+
+                </td>
+
+
+
+            </tr>
+        </ng-template>
+
+    </p-table>
+</div>
+
+</div>
+
+
+    <router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
