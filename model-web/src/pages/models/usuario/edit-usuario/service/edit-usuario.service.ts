@@ -33,7 +33,7 @@ export class EditUsuarioService {
 
   atualizarLoginUser(record: EditUsuario ){
 
-    return this.http.put<Usuario>(this.API, record)
+    return this.http.put<Usuario>(this.API, record, {responseType: 'json'})
     .subscribe(
       (response) => {
 

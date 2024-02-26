@@ -26,11 +26,12 @@ constructor(
 }
 
 private backendURL = environment.endPoint;
-private readonly API = `${this.backendURL}/usuario/cadastrar`
+private readonly API = `${this.backendURL}/auth/registrar`
 private readonly buscardDadosUsuarioID = `${this.backendURL}/usuario`
 
 save(record: Usuario ){
 
+  debugger
   return this.http.post<ReturnCadastroUser>(this.API, record)
   .subscribe(
     (response) => {

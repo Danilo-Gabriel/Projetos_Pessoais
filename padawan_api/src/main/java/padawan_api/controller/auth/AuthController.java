@@ -10,9 +10,11 @@ import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.LoginResponseDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
+import padawan_api.model.usuario.dto.ReturnDTO;
 import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
+import padawan_api.model.usuario.services.AuthService;
 import padawan_api.model.usuario.services.UsuarioService;
 import padawan_api.services.security.TokenService;
 
@@ -51,6 +53,9 @@ public class AuthController {
     @Autowired
     private AuthenticationManager manager;
 
+    @Autowired
+    private AuthService authService;
+
    // @Autowired JWT
    // private UsuarioService usuarioService;
 
@@ -82,21 +87,25 @@ public class AuthController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity register(@RequestBody @Valid RegistrarUsuarioDTO dados){
+    public ResponseEntity<?> register(@RequestBody @Valid RegistrarUsuarioDTO dados){
         
-        if(this.repository.findByNomeLogin(dados.nomeLogin()) != null) return ResponseEntity.badRequest().build();
+        try {
 
-        String encryptedPassword = new BCryptPasswordEncoder().encode(dados.senha());
+            ReturnDTO resp = new ReturnDTO("Usuário Criado com sucesso!");
+
+            this.authService.registrarUsuarioClassService(dados);
+           
+            return ResponseEntity.status(HttpStatus.CREATED).body(resp);
+
+        } catch (Exception e) {
         
-        Usuario newUser = new Usuario(dados);
-
-        this.repository.save(newUser);
-
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+          return ResponseEntity.badRequest().body(e.getMessage());
+        }
+       
     }
 
-      @PutMapping("/alterarSenha")
-  public ResponseEntity<?> alterarSenhaClassController(@RequestBody AlterarSenhaUsuarioLogadoDTO dados){
+    @PutMapping("/alterarSenha")
+    public ResponseEntity<?> alterarSenhaClassController(@RequestBody AlterarSenhaUsuarioLogadoDTO dados){
 
     try{
 

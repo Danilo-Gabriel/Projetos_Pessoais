@@ -87,7 +87,7 @@ confirmDeleteUser(event: Event, usuario : Usuario) {
           window.location.reload();
       },
       reject: () => {
-          //this.message.showError("You have rejected")
+          this.message.showError("You have rejected")
       }
 })
 }

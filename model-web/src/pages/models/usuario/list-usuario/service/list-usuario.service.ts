@@ -33,9 +33,9 @@ constructor(
 
 list() {
 
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+ // const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`); { headers }
 
-  return this.http.get<Usuario[]>(this.API, { headers })
+  return this.http.get<Usuario[]>(this.API, )
   .pipe(
     first(),
     tap(usuarios => console.log(usuarios))
