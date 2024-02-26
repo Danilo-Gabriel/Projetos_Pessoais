@@ -25,6 +25,8 @@ import { FooterComponent } from 'src/pages/componentes/footer/footer.component';
 import { HeaderComponent } from 'src/pages/componentes/header/header.component';
 import { MenuComponent } from 'src/pages/componentes/menu/menu.component';
 import { MainComponent } from 'src/pages/componentes/component-main/main.component';
+import { AllFilesComponent } from 'src/pages/componentes/files/all-files/all-files.component';
+import { UploadFilesComponent } from 'src/pages/componentes/files/upload-files/upload-files.component';
 
 
 
@@ -53,7 +55,9 @@ import { MainComponent } from 'src/pages/componentes/component-main/main.compone
     FooterComponent,
     HeaderComponent,
     MenuComponent,
-    MainComponent
+    MainComponent,
+    AllFilesComponent,
+    UploadFilesComponent
   ],
   imports: [
     BrowserModule,
