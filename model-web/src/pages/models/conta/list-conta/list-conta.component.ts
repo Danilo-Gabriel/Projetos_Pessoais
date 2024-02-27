@@ -36,7 +36,7 @@ export class ListContaComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+
     this.obterDadosUsuario();
   }
 
@@ -65,6 +65,7 @@ export class ListContaComponent implements OnInit {
     this.service.obterUsuario().subscribe(
         data => {
           console.log(this.listCont)
+          debugger
             this.listCont = data;
         },
         error =>{
