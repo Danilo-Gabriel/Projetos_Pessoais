@@ -27,6 +27,7 @@ import { MenuComponent } from 'src/pages/componentes/menu/menu.component';
 import { MainComponent } from 'src/pages/componentes/component-main/main.component';
 import { AllFilesComponent } from 'src/pages/componentes/files/all-files/all-files.component';
 import { UploadFilesComponent } from 'src/pages/componentes/files/upload-files/upload-files.component';
+import { AddContaComponent } from 'src/pages/models/conta/add-conta/add-conta.component';
 
 
 
@@ -57,7 +58,9 @@ import { UploadFilesComponent } from 'src/pages/componentes/files/upload-files/u
     MenuComponent,
     MainComponent,
     AllFilesComponent,
-    UploadFilesComponent
+    UploadFilesComponent,
+    AddContaComponent,
+    EditContaComponent
   ],
   imports: [
     BrowserModule,

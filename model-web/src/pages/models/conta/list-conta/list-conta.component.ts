@@ -40,7 +40,7 @@ export class ListContaComponent implements OnInit {
     this.obterDadosUsuario();
   }
 
-  /*
+
 
 
   onAdd(){
@@ -49,6 +49,7 @@ export class ListContaComponent implements OnInit {
 
   }
 
+  /*
   onEdit(conta: Conta){
 
     this.router.navigate([`edit/${conta.id}`], {relativeTo : this.route})

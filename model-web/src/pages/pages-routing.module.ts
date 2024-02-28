@@ -33,7 +33,7 @@ const routes: Routes = [
      { path: 'conta',
      component: ListContaComponent,
      canActivate : [AuthGuard]},
-    { path: 'conta-add',
+    { path: 'conta/new',
      component: AddContaComponent,
      canActivate : [AuthGuard]},
     { path: 'conta-edit',

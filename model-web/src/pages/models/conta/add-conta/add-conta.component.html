@@ -1,3 +1,71 @@
-<p>
-  add-conta works!
-</p>
+<p-card header="ADICIONAR CONTA">
+  <mat-divider></mat-divider>
+  <br>
+  <br>
+  <form [formGroup]="form">
+    <p-fieldset legend="DADOS DA CONTA">
+        <span class="p-float-label">
+          <input pInputText id="username" formControlName="nomeConta" />
+          <label for="username">Nome da Conta</label>
+        </span>
+    <br>
+    <br>
+
+
+        <span class="p-float-label">
+          <p-dropdown [options]="roles" (onChange)="onRoleChange($event)" [ngModel]="selectedRole" optionLabel="name" ></p-dropdown>
+          <label for="username">Perfil</label>
+        </span>
+
+    </p-fieldset>
+
+    <br>
+    <br>
+
+<!--
+   <p-fieldset legend="ASSOCIAR USUÁRIO">
+
+        <span class="p-float-label">
+          <input pInputText id="username" formControlName="nomeLogin" />
+          <label for="username">Nome login</label>
+      </span>
+
+
+     </p-fieldset>
+
+
+-->
+
+  </form>
+
+  <br>
+  <br>
+<mat-card-actions>
+
+  <button [disabled]="!form.valid" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Salvar</button> &nbsp;
+
+  <button  mat-raised-button (click)="onCancel()">Cancelar</button>
+
+</mat-card-actions>
+</p-card>
+
+
+
+
+
+
+
+
+
+      <!-- ADICIOANR OPÇÕES SELECIONAVES
+
+
+      <mat-label>Senha</mat-label>
+      <mat-select formControlName="senha">
+        <mat-option value="null"></mat-option>
+        <mat-option value="Front-end">Front-end</mat-option>
+        <mat-option value="Back-end">Backe-end</mat-option>
+      </mat-select>
+      -->
+
+      <router-outlet></router-outlet>
