@@ -26,7 +26,7 @@ constructor(
 }
 
 private backendURL = environment.endPoint;
-private readonly API = `${this.backendURL}/auth/registrar`
+private readonly API = `${this.backendURL}/usuario/registrar`
 private readonly buscardDadosUsuarioID = `${this.backendURL}/usuario`
 
 save(record: Usuario ){

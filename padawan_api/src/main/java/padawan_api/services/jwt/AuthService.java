@@ -1,4 +1,4 @@
-package padawan_api.model.usuario.services;
+package padawan_api.services.jwt;
 
 
 
@@ -25,16 +25,6 @@ public class AuthService implements UserDetailsService {
         return repository.findByNomeLogin(username);
     }
 
-      public void registrarUsuarioClassService(RegistrarUsuarioDTO dados) throws Exception{
-
-       if(this.repository.findByNomeLogin(dados.nomeLogin()) != null) throw new Exception("Login já se encontra em uso, escolha outro");
-
-        String encryptedPassword = new BCryptPasswordEncoder().encode(dados.senha());
-        
-        Usuario newUser = new Usuario(dados);
-
-        this.repository.save(newUser);
-
-    }
+     
 }
 

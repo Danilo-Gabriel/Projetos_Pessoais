@@ -1,4 +1,4 @@
-package padawan_api.model.conta.dto;
+package padawan_api.model.usuario.dto;
 
 public record AssociarUsuarioAContaDTO(
 

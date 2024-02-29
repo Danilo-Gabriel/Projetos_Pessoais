@@ -4,7 +4,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import padawan_api.model.conta.dto.AssociarUsuarioAContaDTO;
+import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
 
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {

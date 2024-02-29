@@ -14,8 +14,8 @@ import { Usuario } from 'src/pages/models/usuario/dto/DadosUsuario';
 export class RecuperarSenhaService {
 
   private backendURL = environment.endPoint;
-  private readonly validarHash = `${this.backendURL}/auth`
-  private readonly alterarSenhaHash = `${this.backendURL}/auth/recuperarSenha`
+  private readonly validarHash = `${this.backendURL}/email`
+  private readonly alterarSenhaHash = `${this.backendURL}/email/alterarSenha`
 
 
 constructor(

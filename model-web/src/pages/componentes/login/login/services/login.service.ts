@@ -20,7 +20,7 @@ export class LoginService {
 
  private readonly apiUrl = `${this.backendUrl}/auth/login`;
 
- private readonly urlRecuperarSenha = `${this.backendUrl}/auth/recuperar-senha`;
+ private readonly urlRecuperarSenha = `${this.backendUrl}/email/mensagem`;
 
   constructor(
     private http : HttpClient,

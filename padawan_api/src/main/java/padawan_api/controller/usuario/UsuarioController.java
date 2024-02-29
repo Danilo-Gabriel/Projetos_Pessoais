@@ -8,8 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
-import padawan_api.model.conta.dto.AssociarUsuarioAContaDTO;
 import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
+import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
+import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
 import padawan_api.model.usuario.dto.ListarUsuarioDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 
@@ -32,31 +33,24 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @PostMapping("/registrar")
+    public ResponseEntity<?> register(@RequestBody @Valid RegistrarUsuarioDTO dados){
+        
+        try {
 
-    /* 
- 
-    @PostMapping("cadastrar")
-    @Transactional
-    public ResponseEntity<?> cadastrarUsuarioClassController(@RequestBody @Valid RegistrarUsuarioDTO dados){
+            ReturnDTO resp = new ReturnDTO("Usuário Criado com sucesso!");
 
-        try{
-
-            ReturnDTO resp = new ReturnDTO("Criado com sucesso!");
-            
             this.usuarioService.registrarUsuarioClassService(dados);
            
             return ResponseEntity.status(HttpStatus.CREATED).body(resp);
-        }
 
-        catch(Exception e){
+        } catch (Exception e) {
         
-            return ResponseEntity.badRequest().body(e.getMessage());
+          return ResponseEntity.badRequest().body(e.getMessage());
         }
-
-
+       
     }
 
-*/
 
     @GetMapping("list")
     public ResponseEntity<List<ListarUsuarioDTO>> listUsuarioClassController(){
@@ -94,45 +88,23 @@ public class UsuarioController {
 
     }
 
-  
+    
+    @PutMapping("/alterarSenha")
+    public ResponseEntity<?> alterarSenhaClassController(@RequestBody AlterarSenhaUsuarioLogadoDTO dados){
 
-    /*
-    @PutMapping("inativar/{id}")
-    @Transactional
-    public ResponseEntity<?> inativaUsuarioClassController(@PathVariable Long id) {
+    try{
 
-        try{
 
-             this.usuarioService.inativarUsuarioClassService(id);
-            return ResponseEntity.ok().body("Usuário inativo");
-            
-        }catch (Exception e){
+     this.usuarioService.alterarSenhaClassService(dados);
+      
+      return ResponseEntity.ok().build();
+    }catch(Exception e){
 
-            return ResponseEntity.badRequest().body(e.getMessage());
-
-        }
+      return ResponseEntity.badRequest().body(e.getMessage());
     }
+    
+  }
 
-   
-    @PutMapping("ativar/{id}")
-    @Transactional
-    public ResponseEntity<?> ativarUsuarioClassController(@PathVariable Long id) {
-
-        try{ 
-
-            this.usuarioService.ativarUsuarioClassService(id);
-
-            return ResponseEntity.ok().body("Usuário ativo");
-            
-        }catch (Exception e){
-
-            return ResponseEntity.badRequest().body(e.getMessage());
-
-        }
-    }
-     */
-
- 
 
 
     @DeleteMapping("deletar/{id}")
@@ -169,16 +141,13 @@ public class UsuarioController {
 
         }
 
-        /*
-         return usuarioService.buscarDadosIdUsuario(id).map(record -> ResponseEntity.ok().body(record))
-        .orElse(ResponseEntity.notFound().build());
-       */
         
 
     }
 
 
-    @PostMapping("associar")
+
+    @PostMapping("associarConta")
     public ResponseEntity<?> associarUsuarioAContaClassController(@RequestBody AssociarUsuarioAContaDTO dados){
 
         try {

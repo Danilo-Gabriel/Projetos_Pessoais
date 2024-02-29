@@ -2,14 +2,14 @@ package padawan_api.model.usuario.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import padawan_api.model.conta.dto.AssociarUsuarioAContaDTO;
 import padawan_api.model.conta.repository.Conta;
 import padawan_api.model.conta.repository.ContaRepository;
-import padawan_api.model.email.services.EmailService;
 import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
+import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
 import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ListarUsuarioDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
@@ -17,6 +17,7 @@ import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
+import padawan_api.services.email.services.EmailService;
 
 import java.util.Optional;
 import java.util.List;
@@ -33,6 +34,19 @@ public class UsuarioService {
 
     @Autowired
     private EmailService emailService;
+
+
+     public void registrarUsuarioClassService(RegistrarUsuarioDTO dados) throws Exception{
+
+       if(this.repository.findByNomeLogin(dados.nomeLogin()) != null) throw new Exception("Login já se encontra em uso, escolha outro");
+
+        String encryptedPassword = new BCryptPasswordEncoder().encode(dados.senha());
+        
+        Usuario newUser = new Usuario(dados);
+
+        this.repository.save(newUser);
+
+    }
 
     /* 
     SEM JWT
