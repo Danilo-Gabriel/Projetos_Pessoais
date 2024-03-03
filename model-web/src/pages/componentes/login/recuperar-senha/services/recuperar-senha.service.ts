@@ -15,7 +15,7 @@ export class RecuperarSenhaService {
 
   private backendURL = environment.endPoint;
   private readonly validarHash = `${this.backendURL}/email`
-  private readonly alterarSenhaHash = `${this.backendURL}/email/alterarSenha`
+  private readonly alterarSenhaHash = `${this.backendURL}/email/recuperarSenha`
 
 
 constructor(

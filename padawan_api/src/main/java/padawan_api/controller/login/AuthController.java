@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,11 +38,11 @@ public class AuthController {
 
         try {
 
-        var usernamePassword = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-        var auth =  manager.authenticate(usernamePassword);
+        UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+        Authentication auth =  manager.authenticate(usernamePassword);
 
-        var token = tokenService.gerarToken((Usuario) auth.getPrincipal());
-        var usuario = (Usuario) auth.getPrincipal();
+        String token = tokenService.gerarToken((Usuario) auth.getPrincipal());
+        Usuario usuario = (Usuario) auth.getPrincipal();
 
       
         return ResponseEntity.ok(new ReturnEfetuarLoginDTO(usuario.getId(), usuario.getNomeLogin(), usuario.getConta().getNomeConta(), token));

@@ -123,6 +123,14 @@
 					</excludes>
 				</configuration>
 			</plugin>
+				<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<!-- <version>4.25.1</version> -->
+                <configuration>
+                    <propertyFile>src/main/resources/db/changelog/liquibase/liquibase.properties</propertyFile>
+                </configuration>				
+			</plugin>
 		</plugins>
 	</build>
 

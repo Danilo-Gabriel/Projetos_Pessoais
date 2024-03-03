@@ -28,7 +28,7 @@ public class EmailController {
     }
 
     @PostMapping("/mensagem")
-    public ResponseEntity<?> recuperarSenhaPorEmailClassController(@RequestBody EmailDTO email){
+    public ResponseEntity<?> enviarHashPorEmailClassController(@RequestBody EmailDTO email){
 
         try {
 
@@ -62,7 +62,7 @@ public class EmailController {
     }
 
 
-    @PutMapping("/alterarSenha")
+    @PutMapping("/recuperarSenha")
     public ResponseEntity<?> atualizarSenhaViaEmailClassController(@RequestBody RecupararSenhaPorEmailDTO dados){
       
       try {
