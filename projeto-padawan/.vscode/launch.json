@@ -2,13 +2,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "teste",
-            "request": "launch",
-            "mainClass": "padawan_api.controller.teste",
-            "projectName": "api"
-        },
-        {
-            "type": "java",
             "name": "Spring Boot-PadawanApiApplication<api>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
