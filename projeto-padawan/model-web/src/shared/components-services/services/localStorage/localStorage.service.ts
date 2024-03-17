@@ -11,7 +11,10 @@ export class LocalStorageService {
   private storage: any = localStorage;
   //private storage: any = sessionStorage;
 
-constructor() { }
+
+constructor(
+  
+) { }
 
 
 
