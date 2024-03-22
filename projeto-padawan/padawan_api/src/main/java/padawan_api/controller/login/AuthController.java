@@ -5,6 +5,7 @@ import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.services.UsuarioService;
+import padawan_api.services.jwt.AuthService;
 import padawan_api.services.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,6 +38,10 @@ public class AuthController {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+
+    private AuthService authservice;
+
 
     @Value("")
     private String cookieExpiry;
@@ -47,26 +52,9 @@ public class AuthController {
 
         try {
 
-            Authentication auth =  manager.authenticate(new UsernamePasswordAuthenticationToken(dados.login(), dados.senha()));
+            ReturnEfetuarLoginDTO resp =  this.authservice.autenticacaoClassService(dados, response);
 
-            if(auth.isAuthenticated()){
-    
-                String token = tokenService.gerarToken((Usuario) auth.getPrincipal());
-                Usuario usuario = (Usuario) auth.getPrincipal();
-
-                ResponseCookie cookie = ResponseCookie.from("acessToken", token)
-                .httpOnly(true)
-                .secure(false)
-                .path("/")
-                .maxAge(1800)
-                .build();
-                response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
-
-          
-                return ResponseEntity.ok(new ReturnEfetuarLoginDTO(usuario.getId(), usuario.getNomeLogin(), usuario.getConta().getNomeConta(), token));
-            }
-         
-            return ResponseEntity.status(400).body("Error de autenticação");
+            return ResponseEntity.ok(resp);
 
         } catch (Exception e) {
             System.out.println(e);
