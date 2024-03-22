@@ -10,6 +10,7 @@ import padawan_api.services.jwt.AuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -31,14 +32,14 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
        
-        var token = this.recoverToken(request);
+        String token = this.recoverToken(request);
 
         if(token != null){
 
-            var login = tokenService.validarToken(token);
-            UserDetails user = repository.findByNomeLogin(login);
+            token = tokenService.validarToken(token);
+            UserDetails user = repository.findByNomeLogin(token);
 
-            var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+           Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         filterChain.doFilter(request, response);
@@ -71,13 +72,11 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     private String recoverToken(HttpServletRequest request){
 
-        String token = null;
-
         if (request.getCookies() != null){
             for (Cookie cookie : request.getCookies()){
                 if (cookie.getName().equals("acessToken")){
 
-                    token = cookie.getValue();
+                    String token = cookie.getValue();
                     return token;
                 }
             }

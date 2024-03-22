@@ -58,10 +58,10 @@ public class AuthController {
                 .httpOnly(true)
                 .secure(false)
                 .path("/")
-                .maxAge(1800)
+                .maxAge(-1)
                 .build();
-                response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
+                response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
           
                 return ResponseEntity.ok(new ReturnEfetuarLoginDTO(usuario.getId(), usuario.getNomeLogin(), usuario.getConta().getNomeConta(), token));
             }
