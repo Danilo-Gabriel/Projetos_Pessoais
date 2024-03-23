@@ -6,7 +6,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import padawan_api.model.usuario.repository.UsuarioRepository;
-import padawan_api.services.jwt.AuthService;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,9 +25,6 @@ public class SecurityFilter extends OncePerRequestFilter {
     
     @Autowired
     UsuarioRepository repository;
-
-    @Autowired
-    AuthService authService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

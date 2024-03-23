@@ -29,13 +29,21 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize 
-                       // .requestMatchers("/**").permitAll()
+                        .requestMatchers("/**").permitAll()
+                        
+
+                       /*
+
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/usuario/registrar").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/conta/registrar").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/usuario/associarConta").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/usuario/list").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/conta/list").hasRole("USER")
+
+
+                        */
+                      
                        
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
