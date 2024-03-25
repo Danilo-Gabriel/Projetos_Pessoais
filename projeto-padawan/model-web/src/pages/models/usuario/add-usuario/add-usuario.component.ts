@@ -18,7 +18,7 @@ export class AddUsuarioComponent implements OnInit {
     //private router : Router,
     private formBuilder : FormBuilder,
     private service : AddUsuarioService,
-    private location : Location)
+    private router : Router)
 
     {
     this.form = this.formBuilder.group({
@@ -47,11 +47,8 @@ export class AddUsuarioComponent implements OnInit {
 
   }
 
-  onCancel(){
-
-    this.location.back();
-    //this.router.navigate(['pages/home/list-usuario']);
-
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 
 

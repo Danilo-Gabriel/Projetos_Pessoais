@@ -17,15 +17,10 @@ import padawan_api.services.security.TokenService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
 
 import jakarta.servlet.http.HttpServletResponse;
-
-import jakarta.servlet.http.HttpServletResponse;
-import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.repository.UsuarioRepository;
 
 @Service

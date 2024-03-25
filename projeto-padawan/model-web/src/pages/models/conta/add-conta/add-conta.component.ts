@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddContaService } from './service/add-conta.service';
+import { Router } from '@angular/router';
 
 
 interface Role {
@@ -25,6 +26,8 @@ export class AddContaComponent implements OnInit {
     //private router : Router,
     private formBuilder : FormBuilder,
     private service : AddContaService,
+    private router : Router
+
    // private location : Location
    )
 
@@ -65,12 +68,8 @@ export class AddContaComponent implements OnInit {
     });
   }
 
-  onCancel(){
-
-    //this.location.back();
-    //this.router.navigate(['pages/home/list-usuario']);
-
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
-
 
 }

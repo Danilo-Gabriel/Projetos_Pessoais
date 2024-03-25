@@ -20,6 +20,7 @@ import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -96,7 +97,16 @@ public class Usuario implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.conta.getRole() == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+
+        /*
+              if(this.conta.getRole() == UserRole.ADMIN) {
+            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        } else {
+            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+        }
     
+         */
+      
     } 
 
     public void atualizarUsuarioClassUsuarioJPA(AlterarRegistroDeUsuariosDTO dados) throws Exception {

@@ -37,7 +37,7 @@ import { PasswordModule } from 'primeng/password';
 import { ToolbarModule } from 'primeng/toolbar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { TreeTableModule } from 'primeng/treetable';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 
 
@@ -83,7 +83,7 @@ import { TreeTableModule } from 'primeng/treetable';
   FileUploadModule,
   ConfirmDialogModule,
   TagModule,
-  TreeTableModule
+  ScrollPanelModule
 
 
 

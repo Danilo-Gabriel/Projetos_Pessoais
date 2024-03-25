@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ListConta, } from './dto/listarConta';
+import { ListConta, } from '../dto/listarConta';
 import { Observable, catchError, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Conta } from './dto/Conta';
+import { Conta } from '../dto/Conta';
 import { ListContaService } from './service/list-conta.service';
 import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
 
@@ -48,6 +48,12 @@ export class ListContaComponent implements OnInit {
     this.router.navigate(['new'], {relativeTo : this.route})
 
   }
+
+  onEdit(conta: Conta){
+
+    this.router.navigate([`edit/${conta.id}`], {relativeTo : this.route})
+  }
+
 
   /*
   onEdit(conta: Conta){

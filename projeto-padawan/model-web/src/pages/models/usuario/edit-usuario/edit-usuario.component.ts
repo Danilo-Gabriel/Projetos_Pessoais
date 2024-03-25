@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EditUsuarioService } from './service/edit-usuario.service';
 import { Subscription } from 'rxjs';
 import { Usuario } from '../dto/DadosUsuario';
@@ -33,6 +33,7 @@ export class EditUsuarioComponent implements OnInit {
     private formBuilder : FormBuilder,
     private service : EditUsuarioService,
     private route: ActivatedRoute,
+    private router : Router,
     private location : Location,
     private message : AppMessageService,
     localstorage : LocalStorageService
@@ -131,10 +132,8 @@ export class EditUsuarioComponent implements OnInit {
 
 
 
-  onCancel(){
-
-    this.location.back()
-  }
-
+    navigateTo(route: string) {
+      this.router.navigate([route]);
+    }
 
 }

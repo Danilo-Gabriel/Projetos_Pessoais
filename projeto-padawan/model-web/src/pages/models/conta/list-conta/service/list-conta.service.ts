@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Conta } from '../dto/Conta';
+import { Conta } from '../../dto/Conta';
 import { environment } from 'src/environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';

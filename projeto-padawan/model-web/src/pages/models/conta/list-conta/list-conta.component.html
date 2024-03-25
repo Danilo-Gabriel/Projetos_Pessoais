@@ -21,7 +21,7 @@
                 <th>Situação</th>
                 <th>Pessoa</th>
                 <th>
-                   <p-button (click)="onAdd()" label="Adicionar"></p-button> 
+                   <p-button (click)="onAdd()" label="Adicionar"></p-button>
                 </th>
                 <!--<th>Quantity</th>-->
             </tr>
@@ -35,28 +35,22 @@
                 <td>{{ traduzirSituacao(conta.situacao)}}</td>
                 <td>{{ conta.pessoa }}</td>
 
-
-
-
                 <td>
-                     <!--
-                    <p-button  (click)="onEdit(conta)" [rounded]="true" severity="secondary">
+
+                    <p-button (click)="onEdit(conta)" [rounded]="true" severity="secondary">
 
                         <mat-icon >edit</mat-icon>
 
                     </p-button> &nbsp;
 
-
-                          <p-button (click)="confirmDeleteUser($event, conta)" [rounded]="true" severity="danger">
+                          <p-button  [rounded]="true" severity="danger">
 
                         <mat-icon>delete</mat-icon>
 
                     </p-button>
-                    -->
+
 
                 </td>
-
-
 
             </tr>
         </ng-template>

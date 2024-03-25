@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
 import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
-import { Conta } from '../../list-conta/dto/Conta';
+import { Conta } from '../../dto/Conta';
 
 
 @Injectable({

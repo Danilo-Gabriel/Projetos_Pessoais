@@ -1,3 +1,33 @@
-<p>
-  edit-conta works!
-</p>
+<p-card header="EDITAR CONTA">
+
+  <form [formGroup]="form!">
+
+    <p-fieldset legend="DADOS DA CONTA">
+
+      <span class="p-float-label">
+        <input pInputText id="username" formControlName="nomeConta"/>
+        <label for="username">Nome da Conta</label>
+      </span>
+    </p-fieldset>
+
+    <br>
+    <p-fieldset legend="USUÁRIO ASSOCIADO">
+
+      <span class="p-float-label">
+        <input pInputText id="username" formControlName="usuarioAssociado"/>
+        <label for="username">Associado</label>
+      </span>
+    </p-fieldset>
+
+<br>
+  </form>
+
+  <mat-card-actions>
+
+    <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()">Atualizar</button> &nbsp;
+
+    <button  mat-raised-button (click)="navigateTo('pages/conta')">Cancelar</button>
+
+  </mat-card-actions>
+
+</p-card>
