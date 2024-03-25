@@ -13,7 +13,7 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import padawan_api.model.conta.dto.UserRole;
 import padawan_api.model.conta.repository.Conta;
-import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
+import padawan_api.model.usuario.dto.AtualizarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
@@ -95,21 +95,21 @@ public class Usuario implements UserDetails {
    
         @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.conta.getRole() == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+       // if(this.conta.getRole() == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+       // else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
 
-        /*
+       
               if(this.conta.getRole() == UserRole.ADMIN) {
             return Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN"));
         } else {
             return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
         }
     
-         */
+      
       
     } 
 
-    public void atualizarUsuarioClassUsuarioJPA(AlterarRegistroDeUsuariosDTO dados) throws Exception {
+    public void atualizarUsuarioClassUsuarioJPA(AtualizarRegistroDeUsuariosDTO dados) throws Exception {
         
         if(this.ativo == true){
 

@@ -43,11 +43,11 @@ validarHashUsuario(hash: string){
 
 alterarSenhaUsuario(record : DadosAlterarSenha){
 
-  debugger
+  //debugger
   console.log(record)
   this.http.put<DadosAlterarSenha>(this.alterarSenhaHash, record).subscribe(
     (response) => {
-      debugger
+      //debugger
       this.messagem.showSuccess("Senhas alteradas com sucesso!");
       this.router.navigate(['login']);
     },

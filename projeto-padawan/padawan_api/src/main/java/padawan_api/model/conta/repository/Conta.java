@@ -24,6 +24,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import padawan_api.model.conta.dto.AtualizarContaDTO;
 import padawan_api.model.conta.dto.RegistrarContaDTO;
 import padawan_api.model.conta.dto.UserRole;
 import padawan_api.model.usuario.repository.Usuario;
@@ -74,5 +75,15 @@ public class Conta {
         return this.situacao;
     }
 
+    public void atualizarContaClassJPA(AtualizarContaDTO dados) throws Exception{
+          
+            if(dados != null){
+                this.nomeConta = dados.nomeConta();
+            }
+            else{
+                throw new Exception("Dados Nulos");
+            }
+       
+    }
     
 }

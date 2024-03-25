@@ -29,30 +29,39 @@ export class EditContaComponent implements OnInit {
   ) {
 
       this.form = this.formBuilder.group({
-      nomeConta: ['', Validators.required],
-      usuarioAssociado: ''
+      nomeConta: ['', Validators.required]
+     // usuarioAssociado: ''
     });
    }
 
   ngOnInit() {
-
     this.routeSub = this.route.params.subscribe(params => {
-      this.idUsuario = params['idUsuario']
-      this.service.buscarDadosUser(params['idUsuario']).subscribe(
+      this.idUsuario = params['idConta']
+      //debugger
+      this.service.buscarDadosConta(params['idConta']).subscribe(
         dados => {
           this.conta = dados;
          // this.situacao = this.usuario.ativo ? this.ativoLabel : this.inativoLabel
           this.form.patchValue({
-          nomeLogin: this.conta.nomeConta,
+          nomeConta: this.conta.nomeConta
          
         });
-    });
-
+      },
+        error => {
+          console.error("Error", error);
+        });
     });
   }
 
 
  onSubmit(){
+
+  if(this.form.value != null){
+      this.service.atualizarDadosConta({
+        id : this.idUsuario,
+        nomeConta : this.form.value.nomeConta
+      })
+  } 
 
  }
 

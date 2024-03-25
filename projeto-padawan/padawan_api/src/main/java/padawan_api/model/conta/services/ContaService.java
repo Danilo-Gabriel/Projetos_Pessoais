@@ -7,11 +7,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import padawan_api.model.conta.dto.AtualizarContaDTO;
 import padawan_api.model.conta.dto.ListarContaDTO;
 import padawan_api.model.conta.dto.RegistrarContaDTO;
 import padawan_api.model.conta.repository.Conta;
 import padawan_api.model.conta.repository.ContaRepository;
+import padawan_api.model.usuario.dto.UsuarioDTO;
+import padawan_api.model.usuario.repository.Usuario;
 
 @Service
 public class ContaService {
@@ -42,7 +44,40 @@ public class ContaService {
         return listarContasDTO;
     }
 
+    public ListarContaDTO detalhesDadosContaClassService(Long id){
 
-  
+        Optional<Conta> contaOptional = this.repository.findById(id);
+
+        Conta conta = contaOptional.get();
+
+        return new ListarContaDTO(conta);
+
+    }
+
+    public void deletarContaClassService(Long id){
+        
+        repository.deleteById(id);
+    }
+
+    public AtualizarContaDTO atualizarContaClassService(AtualizarContaDTO dados) throws Exception{
+        
+        Optional<Conta> contaOptional = this.repository.findById(dados.id());
+
+        if(contaOptional.isPresent()){
+            
+            Conta conta = contaOptional.get();
+
+            conta.atualizarContaClassJPA(dados);
+
+            repository.save(conta);
+
+        }else{
+            throw new Exception("Usuário não cadastrado");
+        }
+
+        return dados;
+    }
+
+
   
 }

@@ -3,7 +3,6 @@ import { Observable, catchError, of } from 'rxjs';
 import {  Usuario } from '../dto/DadosUsuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListUsuarioService } from './service/list-usuario.service';
-import { LoginService } from 'src/pages/componentes/login/login/services/login.service';
 import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
 import { ConfirmationService } from 'primeng/api';
 
@@ -65,15 +64,6 @@ onEdit(usuario: Usuario){
 
   this.router.navigate([`edit/${usuario.id}`], {relativeTo : this.route})
 }
-
-/*
-onDelete(usuario : Usuario){[
-
- //this.router.navigate([`remover/${usuario.id}`], {relativeTo : this.route})
-   this.service.deletarUsuario(`${usuario.id}`)
-]}
-
-*/
 
 
 confirmDeleteUser(event: Event, usuario : Usuario) {

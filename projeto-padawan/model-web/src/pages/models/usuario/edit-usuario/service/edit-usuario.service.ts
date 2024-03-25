@@ -31,7 +31,7 @@ export class EditUsuarioService {
   private readonly API = `${this.backendURL}/usuario/atualizar`
   private readonly buscarDadosUsuario = `${this.backendURL}/usuario`
 
-  atualizarLoginUser(record: EditUsuario ){
+  atualizarDadosUser(record: EditUsuario ){
 
     return this.http.put<Usuario>(this.API, record, {responseType: 'json'})
     .subscribe(

@@ -63,7 +63,7 @@ export class RecuperarSenhaComponent implements OnInit {
   OnSubmit(){
 
     this.form.value.hash = this.hashUsuario;
-    debugger
+    //debugger
     console.log(this.hashUsuario)
     this.recuperarSenhaService.alterarSenhaUsuario(this.form.value);
   }

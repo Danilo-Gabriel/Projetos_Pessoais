@@ -65,10 +65,11 @@ export class EditUsuarioComponent implements OnInit {
           nomeCompleto: this.usuario.nomeCompleto,
           email: this.usuario.email
         });
+      },
+        error => {
+          console.error("ERROR ", error);
+        });
     });
-
-    });
-
 
   }
 
@@ -77,7 +78,7 @@ export class EditUsuarioComponent implements OnInit {
     if(this.form.value){
 
       if(this.ativo === true || this.situacao === 'Ativo'){
-        this.service.atualizarLoginUser({
+        this.service.atualizarDadosUser({
           id: this.idUsuario,
           nomeLogin: this.form.value.nomeLogin,
           nomeCompleto: this.form.value.nomeCompleto,
@@ -88,7 +89,7 @@ export class EditUsuarioComponent implements OnInit {
 
       if(this.ativo === false || this.situacao === 'Inativo'){
 
-        this.service.atualizarLoginUser({
+        this.service.atualizarDadosUser({
           id : this.idUsuario,
           nomeLogin : this.form.value.nomeLogin,
           nomeCompleto : this.form.value.nomeCompleto,

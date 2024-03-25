@@ -4,11 +4,13 @@ package padawan_api.controller.usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
-import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
+import padawan_api.model.usuario.dto.AtualizarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
 import padawan_api.model.usuario.dto.ListarUsuarioDTO;
@@ -56,6 +58,7 @@ public class UsuarioController {
     public ResponseEntity<List<ListarUsuarioDTO>> listUsuarioClassController(){
 
         try {
+            UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             //Thread.sleep(2000);
            List<ListarUsuarioDTO> listarUsuario = this.usuarioService.listarUsuarioClassService();
            
@@ -72,7 +75,7 @@ public class UsuarioController {
 
     @PutMapping("atualizar")
     @Transactional
-    public  ResponseEntity<?> atualizarUsuarioClassController(@RequestBody AlterarRegistroDeUsuariosDTO  dados) {
+    public  ResponseEntity<?> atualizarUsuarioClassController(@RequestBody AtualizarRegistroDeUsuariosDTO  dados) {
 
         try{
          
@@ -93,9 +96,9 @@ public class UsuarioController {
     public ResponseEntity<?> alterarSenhaClassController(@RequestBody AlterarSenhaUsuarioLogadoDTO dados){
 
     try{
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-
-     this.usuarioService.alterarSenhaClassService(dados);
+        this.usuarioService.alterarSenhaClassService(dados);
       
       return ResponseEntity.ok().build();
     }catch(Exception e){

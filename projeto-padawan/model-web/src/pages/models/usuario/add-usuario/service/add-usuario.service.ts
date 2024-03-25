@@ -31,7 +31,7 @@ private readonly buscardDadosUsuarioID = `${this.backendURL}/usuario`
 
 save(record: Usuario ){
 
-  debugger
+  //debugger
   return this.http.post<ReturnCadastroUser>(this.API, record)
   .subscribe(
     (response) => {

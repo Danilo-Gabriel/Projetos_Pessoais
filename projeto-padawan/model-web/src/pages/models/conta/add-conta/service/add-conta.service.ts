@@ -30,13 +30,13 @@ private readonly buscardDadosUsuarioID = `${this.backendURL}/conta`
 
 save(record: Conta ){
 
-  debugger
+  //debugger
   return this.http.post<Conta>(this.API, record)
   .subscribe(
     (response) => {
       this.message.showSuccess(`Criado com sucesso.`)
      // this.location.back();
-     // this.router.navigate(['/pages/home/list-usuario']);
+      this.router.navigate(['/pages/conta']);
       //this.onAviso(response)
   },
   (error) => {

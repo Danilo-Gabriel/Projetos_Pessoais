@@ -14,7 +14,7 @@ export class ListContaService {
 
   backendURL = environment.endPoint;
   private readonly API = `${this.backendURL}/conta/list`
-  //private readonly DEL = `${this.backendURL}/conta/deletar`
+  private readonly DEL = `${this.backendURL}/conta/deletar`
 
   constructor(
     private http: HttpClient,
@@ -40,14 +40,14 @@ export class ListContaService {
 }
 
 
-   /*
-   deletarUsuario(id : string){
+
+   deletarConta(id : string){
 
     this.http.delete(`${this.DEL}/${id}`)
     .subscribe(
       (response) => {
 
-       // this.message.showWarn(`Usuario: ${response} deletado`)
+     this.message.showWarn(`Conta: ${response} deletada`)
 
       },
       (error) => {
@@ -55,6 +55,6 @@ export class ListContaService {
       }
     )
 }
-*/
+
 
 }
