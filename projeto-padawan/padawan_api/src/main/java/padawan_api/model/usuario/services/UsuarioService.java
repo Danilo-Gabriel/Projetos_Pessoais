@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import padawan_api.model.conta.repository.Conta;
 import padawan_api.model.conta.repository.ContaRepository;
-import padawan_api.model.usuario.dto.AlterarRegistroDeUsuariosDTO;
+import padawan_api.model.usuario.dto.AtualizarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
 import padawan_api.model.usuario.dto.EfetuarLoginDTO;
@@ -159,7 +159,7 @@ public class UsuarioService {
         }
   
 
-    public AlterarRegistroDeUsuariosDTO atualizarUsuarioClassService(AlterarRegistroDeUsuariosDTO dados) throws Exception {
+    public AtualizarRegistroDeUsuariosDTO atualizarUsuarioClassService(AtualizarRegistroDeUsuariosDTO dados) throws Exception {
 
 
         Optional<Usuario> usuariosOptional = this.repository.findById(dados.id());

@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import padawan_api.model.usuario.repository.UsuarioRepository;
 
-
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,13 +31,17 @@ public class SecurityFilter extends OncePerRequestFilter {
        
         String token = this.recoverToken(request);
 
-        if(token != null){
+        if(StringUtils.isNotBlank(token)){
 
             token = tokenService.validarToken(token);
-            UserDetails user = repository.findByNomeLogin(token);
 
-           Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            if(StringUtils.isNotBlank(token)){
+                UserDetails user = repository.findByNomeLogin(token);
+                
+    
+                Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
         filterChain.doFilter(request, response);
  

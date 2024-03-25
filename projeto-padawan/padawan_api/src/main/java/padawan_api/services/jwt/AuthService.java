@@ -50,10 +50,12 @@ public class AuthService implements UserDetailsService {
             Usuario usuario = (Usuario) auth.getPrincipal();
 
             ResponseCookie cookie = ResponseCookie.from("acessToken", token)
+            // ResponseCookie cookie = ResponseCookie.from("acessToken", null)
             .httpOnly(true)
             .secure(false)
             .path("/")
             .maxAge(-1)
+            // .maxAge(0)
             .build();
             response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 

@@ -1,6 +1,6 @@
 package padawan_api.model.usuario.dto;
 
-public record AlterarRegistroDeUsuariosDTO(
+public record AtualizarRegistroDeUsuariosDTO(
     
 Long id,
 
