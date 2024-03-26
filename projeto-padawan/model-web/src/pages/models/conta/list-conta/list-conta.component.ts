@@ -4,7 +4,7 @@ import { Observable, catchError, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Conta } from '../dto/Conta';
 import { ListContaService } from './service/list-conta.service';
-import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
+import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
 import { ConfirmationService } from 'primeng/api';
 
 @Component({

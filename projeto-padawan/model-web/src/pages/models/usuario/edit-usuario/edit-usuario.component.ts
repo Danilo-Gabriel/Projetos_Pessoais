@@ -5,8 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EditUsuarioService } from './service/edit-usuario.service';
 import { Subscription } from 'rxjs';
 import { Usuario } from '../dto/DadosUsuario';
-import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
-import { LocalStorageService } from 'src/shared/components-services/services/localStorage/localStorage.service';
+import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
+import { LocalStorageService } from 'src/shared/services/localStorage/localStorage.service';
 
 @Component({
   selector: 'app-edit-usuario',

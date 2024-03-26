@@ -59,7 +59,7 @@ public class AuthService implements UserDetailsService {
             .build();
             response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
-           ReturnEfetuarLoginDTO resp = new ReturnEfetuarLoginDTO(usuario.getId(), usuario.getNomeLogin(), usuario.getConta().getNomeConta(), token);
+           ReturnEfetuarLoginDTO resp = new ReturnEfetuarLoginDTO(usuario.getId(), usuario.getNomeLogin(), usuario.getConta().getNomeConta());
             return resp;
 
         }else{
@@ -68,12 +68,5 @@ public class AuthService implements UserDetailsService {
         }
 }
 
-
-
-    public void autenticacao(EfetuarLoginDTO dados, HttpServletResponse response){
-
-    
-    }
-     
 }
 

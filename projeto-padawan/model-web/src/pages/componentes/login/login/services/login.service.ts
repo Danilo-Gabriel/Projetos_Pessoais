@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
-import { LocalStorageService } from 'src/shared/components-services/services/localStorage/localStorage.service';
+import {  Router } from '@angular/router';
+import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
+import { LocalStorageService } from 'src/shared/services/localStorage/localStorage.service';
 import { DadosLogin } from '../dto/DadosLogin';
 import { DadosRecuperarSenha } from '../dto/DadosRecuperarSenha';
 import { delay } from 'rxjs';
@@ -18,7 +18,8 @@ export class LoginService {
 
  private backendUrl = environment.endPoint;
 
- private readonly apiUrl = `${this.backendUrl}/auth/login`;
+ private readonly apiLogin = `${this.backendUrl}/auth/login`;
+ private readonly apiLogout = `${this.backendUrl}/auth/logout`;
 
  private readonly urlRecuperarSenha = `${this.backendUrl}/email/mensagem`;
 
@@ -34,8 +35,21 @@ export class LoginService {
 
   efetuarLogout(){
 
-    this.router.navigate([ '/login']),
-    this.storage.removerLoginUser();
+    this.http.head(this.apiLogout)
+    .subscribe(
+      (response) => {
+
+        this.storage.removerLoginUser();
+        this.router.navigate([ '/login']);
+      },
+      (error) => {
+
+        this.message.showError(error.error);
+      }
+    );
+
+
+
 
 
   }
@@ -47,12 +61,9 @@ export class LoginService {
 
   }
 
-
-
-
   efetuarLogin(record : DadosLogin){
 
-    this.http.post<DadosLogin>(this.apiUrl, record, {responseType: 'json'})
+    this.http.post<DadosLogin>(this.apiLogin, record, {responseType: 'json'})
     .subscribe(
       (response) => {
 

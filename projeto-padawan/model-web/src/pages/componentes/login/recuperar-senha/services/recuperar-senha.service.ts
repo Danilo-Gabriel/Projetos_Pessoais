@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { environment } from 'src/environment/environment';
-import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
+import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
 import { DadosAlterarSenha } from '../dto/DadosAlterarSenha';
 import { Usuario } from 'src/pages/models/usuario/dto/DadosUsuario';
 

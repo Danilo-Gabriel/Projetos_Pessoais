@@ -4,8 +4,8 @@ import { environment } from 'src/environment/environment';
 
 import { first, tap } from 'rxjs';
 import { Usuario } from '../../dto/DadosUsuario';
-import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
-import { LocalStorageService } from 'src/shared/components-services/services/localStorage/localStorage.service';
+import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
+import { LocalStorageService } from 'src/shared/services/localStorage/localStorage.service';
 
 @Injectable({
   providedIn: 'root'

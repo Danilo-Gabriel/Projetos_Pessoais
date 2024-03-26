@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AlterarSenhaService } from './service/alterar-senha.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
+import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
 import { Router } from '@angular/router';
-import { LocalStorageService } from 'src/shared/components-services/services/localStorage/localStorage.service';
+import { LocalStorageService } from 'src/shared/services/localStorage/localStorage.service';
 
 
 @Component({
@@ -46,7 +46,7 @@ export class AlterarSenhaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.idUsuario = this.storage.returnLoginUser();
+  //  this.idUsuario = this.storage.returnLoginUser();
 
   }
 
@@ -61,7 +61,7 @@ export class AlterarSenhaComponent implements OnInit {
         if(this.form.value.novaSenha === this.form.value.confirmarSenha){
 
           this.service.trocarSenha({
-            id: this.idUsuario.id,
+       //     id: this.idUsuario.id,
             senhaAtual: this.form.value.senhaAtual,
             novaSenha: this.form.value.novaSenha,
             confirmarSenha : this.form.value.confirmarSenha

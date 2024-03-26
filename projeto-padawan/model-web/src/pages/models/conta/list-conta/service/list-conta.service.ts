@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Conta } from '../../dto/Conta';
 import { environment } from 'src/environment/environment';
 import { HttpClient } from '@angular/common/http';
-import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
-import { LocalStorageService } from 'src/shared/components-services/services/localStorage/localStorage.service';
+import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
+import { LocalStorageService } from 'src/shared/services/localStorage/localStorage.service';
 import { first, tap } from 'rxjs';
 
 @Injectable({

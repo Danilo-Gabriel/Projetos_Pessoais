@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
-import { AppMessageService } from 'src/shared/components-services/app-message/app-message.service';
+import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
 import { Usuario } from '../../dto/DadosUsuario';
 import { Location } from '@angular/common';
 import { EditUsuario } from '../../dto/DadosAtualizarLogin';
 import { window } from 'rxjs';
-import { LocalStorageService } from 'src/shared/components-services/services/localStorage/localStorage.service';
+import { LocalStorageService } from 'src/shared/services/localStorage/localStorage.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 export interface AlterarSenhaUsuario {
 
-  id?: string;
+ // id?: string;
   senhaAtual?: string;
   novaSenha?: string;
   confirmarSenha? : string;

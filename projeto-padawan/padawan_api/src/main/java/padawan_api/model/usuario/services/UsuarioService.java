@@ -1,6 +1,7 @@
 package padawan_api.model.usuario.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -106,7 +107,9 @@ public class UsuarioService {
 
     public void alterarSenhaClassService(AlterarSenhaUsuarioLogadoDTO dados) throws Exception{
 
-        Optional<Usuario> usuarioOptional = repository.findById(dados.id());
+        Usuario user = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    
+        Optional<Usuario> usuarioOptional = repository.findById(user.getId());
 
         if(usuarioOptional.isPresent()){
 

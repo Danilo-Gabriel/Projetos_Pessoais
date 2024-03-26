@@ -96,8 +96,7 @@ public class UsuarioController {
     public ResponseEntity<?> alterarSenhaClassController(@RequestBody AlterarSenhaUsuarioLogadoDTO dados){
 
     try{
-        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+    
         this.usuarioService.alterarSenhaClassService(dados);
       
       return ResponseEntity.ok().build();
