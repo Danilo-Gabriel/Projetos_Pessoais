@@ -1,6 +1,6 @@
 
 
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'src/shared/shared.module';
@@ -28,6 +28,8 @@ import { MainComponent } from 'src/pages/componentes/component-main/main.compone
 import { AllFilesComponent } from 'src/pages/componentes/files/all-files/all-files.component';
 import { UploadFilesComponent } from 'src/pages/componentes/files/upload-files/upload-files.component';
 import { AddContaComponent } from 'src/pages/models/conta/add-conta/add-conta.component';
+import { applicationErrorHandler } from 'src/shared/services/error/applicationErrorHandler';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 
@@ -67,10 +69,16 @@ import { AddContaComponent } from 'src/pages/models/conta/add-conta/add-conta.co
     AppRoutingModule,
     BrowserAnimationsModule,
     PrimeNGModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
 
   ],
-  providers: [LoginService, AuthGuard, MessageService],
+  providers: [
+    LoginService,
+    AuthGuard,
+    MessageService,
+    { provide: HTTP_INTERCEPTORS, useClass: applicationErrorHandler, multi: true } 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
