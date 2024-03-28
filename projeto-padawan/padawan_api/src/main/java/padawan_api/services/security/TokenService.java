@@ -25,7 +25,6 @@ public class TokenService {
     public String gerarToken(Usuario usuario){
         try{
             Algorithm algorithm = Algorithm.HMAC256(secret);
-            System.out.println(secret);
             String token = JWT.create()
                     .withIssuer("api")
                     .withSubject(usuario.getNomeLogin())
@@ -51,7 +50,9 @@ public class TokenService {
     }
 
     private Instant genExpirationDate(){
+        //return LocalDateTime.now().plusSeconds().toInstant(ZoneOffset.of("-03:00"));
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+
     }
 }
 

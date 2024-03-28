@@ -1,4 +1,4 @@
-package padawan_api.model;
+package padawan_api.model.util;
 
 public final class ConstantesUtil {
 

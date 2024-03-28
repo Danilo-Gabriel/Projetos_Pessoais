@@ -1,6 +1,6 @@
 package padawan_api.controller.conta;
 
-import java.net.http.HttpResponse.ResponseInfo;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
-import padawan_api.model.ConstantesUtil;
 import padawan_api.model.conta.dto.AtualizarContaDTO;
 import padawan_api.model.conta.dto.ListarContaDTO;
 import padawan_api.model.conta.dto.RegistrarContaDTO;
@@ -27,9 +26,9 @@ import padawan_api.model.conta.repository.ContaRepository;
 import padawan_api.model.conta.services.ContaService;
 import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
 import padawan_api.model.usuario.dto.ReturnDTO;
-import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
+import padawan_api.model.util.ConstantesUtil;
 
 @RestController
 //@CrossOrigin(origins = ("*"))
@@ -47,6 +46,7 @@ public class ContaController {
     private UsuarioRepository repositoryUsuario;
 
 
+    
     @PostMapping("/registrar")
     @Transactional
     public ResponseEntity<?> registrarContaClassController(@RequestBody RegistrarContaDTO dados){
