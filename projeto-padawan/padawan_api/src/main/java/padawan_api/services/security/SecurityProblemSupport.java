@@ -25,16 +25,17 @@ public class SecurityProblemSupport implements AuthenticationEntryPoint, AccessD
            final  AuthenticationException authException) throws IOException, ServletException {
         
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Sem autorização");
+          
 
     }
-    
+
     @Override
-    public void handle(final HttpServletRequest request, final HttpServletResponse response,
-           final AccessDeniedException accessDeniedException) throws IOException, ServletException {
-       
-        
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Acesso negado");
+    public void handle(HttpServletRequest request, HttpServletResponse response,
+            AccessDeniedException accessDeniedException) throws IOException, ServletException {
+      
+        response.sendError(HttpServletResponse.SC_FORBIDDEN, "Acesso negado");
     }
-           
+    
+   
 
 }

@@ -53,8 +53,8 @@ public class SecurityConfigurations {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling(exception -> exception
+            .authenticationEntryPoint(problemSupport)
             .accessDeniedHandler(problemSupport)
-           // .authenticationEntryPoint(problemSupport)
             )
             .build();
         

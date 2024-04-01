@@ -33,11 +33,12 @@ export class applicationErrorHandler implements HttpInterceptor {
 
           case 401 :
             this.message.showError("Login expirado! Realize o login novamente");
-           // this.storage.removerLoginUser();
+            this.storage.removerLoginUser()
+            this.router.navigate(['/login'])
             break;
 
           case 403 :
-            this.message.showError("Acesso negado, sem permissão de acesso!");
+            this.message.showError("Acesso negado, contate o administrador de sistemas!");
             this.router.navigate(['/pages/home'])
             break;
           default:
@@ -49,6 +50,7 @@ export class applicationErrorHandler implements HttpInterceptor {
       })
     );
   }
+
 
 
 }
