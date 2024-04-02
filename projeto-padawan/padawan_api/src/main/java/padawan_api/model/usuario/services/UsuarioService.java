@@ -108,6 +108,7 @@ public class UsuarioService {
     public void alterarSenhaClassService(AlterarSenhaUsuarioLogadoDTO dados) throws Exception{
 
         Usuario user = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String token = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
     
         Optional<Usuario> usuarioOptional = repository.findById(user.getId());
 

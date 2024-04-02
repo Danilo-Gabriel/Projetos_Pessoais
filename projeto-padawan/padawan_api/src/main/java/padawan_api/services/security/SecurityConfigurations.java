@@ -47,14 +47,15 @@ public class SecurityConfigurations {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/auth/logout").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/email/mensagem").permitAll()
                 .requestMatchers("/api/**").authenticated()
             )
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling(exception -> exception
-            .authenticationEntryPoint(problemSupport)
             .accessDeniedHandler(problemSupport)
+            .authenticationEntryPoint(problemSupport)
             )
             .build();
         

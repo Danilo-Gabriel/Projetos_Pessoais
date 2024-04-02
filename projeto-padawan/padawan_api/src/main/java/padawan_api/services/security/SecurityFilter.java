@@ -35,7 +35,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
             token = tokenService.validarToken(token);
 
-            if(StringUtils.isNotBlank(token)){
+            if(StringUtils.isNotBlank(token)) {
                 UserDetails user = repository.findByNomeLogin(token);
                 
     

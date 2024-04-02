@@ -32,7 +32,7 @@ export class applicationErrorHandler implements HttpInterceptor {
         switch(error.status) {
 
           case 401 :
-            this.message.showError("Login expirado! Realize o login novamente");
+            this.message.showError("Error, contate o administrador de sistemas!");
             this.storage.removerLoginUser()
             this.router.navigate(['/login'])
             break;
