@@ -1,4 +1,4 @@
-package padawan_api.services.security;
+package padawan_api.services.security.jwt.config;
 
 
 import org.springframework.context.annotation.Configuration;

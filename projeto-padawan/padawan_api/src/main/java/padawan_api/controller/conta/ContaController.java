@@ -28,7 +28,8 @@ import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
 import padawan_api.model.usuario.dto.ReturnDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
-import padawan_api.model.util.ConstantesUtil;
+import padawan_api.services.config.util.ConstantesUtil;
+
 
 @RestController
 //@CrossOrigin(origins = ("*"))

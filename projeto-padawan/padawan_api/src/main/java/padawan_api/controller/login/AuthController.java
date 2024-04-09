@@ -3,9 +3,7 @@ package padawan_api.controller.login;
 
 import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
-import padawan_api.services.jwt.AuthService;
-
-
+import padawan_api.services.security.jwt.AuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

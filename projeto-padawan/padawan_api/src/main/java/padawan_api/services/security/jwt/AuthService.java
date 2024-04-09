@@ -1,4 +1,4 @@
-package padawan_api.services.jwt;
+package padawan_api.services.security.jwt;
 
 
 
@@ -11,9 +11,6 @@ import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.repository.Usuario;
 
-import padawan_api.services.jwt.AuthService;
-import padawan_api.services.security.TokenService;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 
@@ -22,6 +19,7 @@ import org.springframework.security.core.Authentication;
 
 import jakarta.servlet.http.HttpServletResponse;
 import padawan_api.model.usuario.repository.UsuarioRepository;
+
 
 @Service
 public class AuthService implements UserDetailsService {

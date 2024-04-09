@@ -1,4 +1,4 @@
-package padawan_api.services.security;
+package padawan_api.services.security.jwt.config;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -6,6 +6,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import padawan_api.model.usuario.repository.UsuarioRepository;
+import padawan_api.services.security.jwt.TokenService;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
