@@ -19,6 +19,7 @@ import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;

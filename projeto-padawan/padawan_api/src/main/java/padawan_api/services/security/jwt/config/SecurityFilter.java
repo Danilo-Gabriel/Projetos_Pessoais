@@ -6,10 +6,12 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import padawan_api.model.usuario.repository.UsuarioRepository;
+import padawan_api.services.redis.RedisConfig;
 import padawan_api.services.security.jwt.TokenService;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +29,9 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     UsuarioRepository repository;
 
+    @Autowired
+    RedisConfig config;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
        
@@ -37,10 +42,11 @@ public class SecurityFilter extends OncePerRequestFilter {
             token = tokenService.validarToken(token);
 
             if(StringUtils.isNotBlank(token)) {
-                UserDetails user = repository.findByNomeLogin(token);
-                
-    
-                Authentication authentication = new UsernamePasswordAuthenticationToken(user, token, user.getAuthorities());
+
+                String user = this.config.teste(token);
+                UserDetails userDetails = this.repository.findByNomeLogin(token);
+             
+                Authentication authentication = new UsernamePasswordAuthenticationToken(user, token, userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }
@@ -93,5 +99,6 @@ public class SecurityFilter extends OncePerRequestFilter {
         return authHeader.replace("Bearer ", "");
         */
     }
+
     
 }
