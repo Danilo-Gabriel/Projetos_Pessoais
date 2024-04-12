@@ -1,12 +1,9 @@
 package padawan_api.services.redis;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
-import padawan_api.model.usuario.repository.UsuarioRepository;
-
 
 
 
@@ -14,8 +11,7 @@ import padawan_api.model.usuario.repository.UsuarioRepository;
 @Repository
 public class RedisService {
 
-    @Autowired
-    private UsuarioRepository repository;
+
 
     public static final String HASH_KEY = "token";
 

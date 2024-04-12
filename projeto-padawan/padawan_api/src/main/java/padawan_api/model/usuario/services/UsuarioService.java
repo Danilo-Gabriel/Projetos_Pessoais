@@ -2,8 +2,7 @@ package padawan_api.model.usuario.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import padawan_api.model.conta.repository.Conta;
@@ -11,14 +10,13 @@ import padawan_api.model.conta.repository.ContaRepository;
 import padawan_api.model.usuario.dto.AtualizarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
-import padawan_api.model.usuario.dto.EfetuarLoginDTO;
+
 import padawan_api.model.usuario.dto.ListarUsuarioDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
-import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
 import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
-import padawan_api.services.email.services.EmailService;
+
 
 import java.util.Optional;
 import java.util.List;
@@ -33,16 +31,12 @@ public class UsuarioService {
     @Autowired
     private ContaRepository contaRepository;
 
-    @Autowired
-    private EmailService emailService;
 
 
      public void registrarUsuarioClassService(RegistrarUsuarioDTO dados) throws Exception{
 
        if(this.repository.findByNomeLogin(dados.nomeLogin()) != null) throw new Exception("Login já se encontra em uso, escolha outro");
 
-        String encryptedPassword = new BCryptPasswordEncoder().encode(dados.senha());
-        
         Usuario newUser = new Usuario(dados);
 
         this.repository.save(newUser);
@@ -108,7 +102,6 @@ public class UsuarioService {
     public void alterarSenhaClassService(AlterarSenhaUsuarioLogadoDTO dados) throws Exception{
 
         Usuario user = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String token = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
     
         Optional<Usuario> usuarioOptional = repository.findById(user.getId());
 
@@ -245,8 +238,6 @@ public class UsuarioService {
         Optional<Usuario> usuarioOptional = this.repository.findById(id);
 
         Usuario usuario = usuarioOptional.get();
-
-        UsuarioDTO usuarioDTO;
         
         return new UsuarioDTO(usuario);
         

@@ -19,13 +19,13 @@ import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
 
-import java.io.Serializable;
+
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+
 
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.data.redis.core.RedisHash;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

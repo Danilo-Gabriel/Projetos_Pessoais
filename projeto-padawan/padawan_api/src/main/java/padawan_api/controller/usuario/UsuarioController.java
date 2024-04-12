@@ -4,8 +4,6 @@ package padawan_api.controller.usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,7 +56,7 @@ public class UsuarioController {
     public ResponseEntity<List<ListarUsuarioDTO>> listUsuarioClassController(){
 
         try {
-            UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+          
             //Thread.sleep(2000);
            List<ListarUsuarioDTO> listarUsuario = this.usuarioService.listarUsuarioClassService();
            
