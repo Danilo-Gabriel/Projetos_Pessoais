@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.data.redis.core.RedisHash;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,6 +43,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @EqualsAndHashCode(of = "id")
+
 
 public class Usuario implements UserDetails {
     private static final String CAMPO_ID = "id";

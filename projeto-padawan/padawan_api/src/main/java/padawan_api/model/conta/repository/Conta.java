@@ -4,6 +4,8 @@ package padawan_api.model.conta.repository;
 
 
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -37,7 +39,7 @@ import padawan_api.model.usuario.repository.Usuario;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Conta {
+public class Conta implements Serializable {
 
     private static final String CAMPO_ID = "id";
 

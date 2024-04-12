@@ -1,12 +1,17 @@
 package padawan_api.services.redis;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import padawan_api.model.usuario.repository.UsuarioRepository;
+
+
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
 
 
 
@@ -14,16 +19,32 @@ import padawan_api.model.usuario.repository.UsuarioRepository;
 @EnableCaching
 public class RedisConfig {
 
-    @Autowired
-    private UsuarioRepository repository;
 
-  
-    @Cacheable("usuario")
-    public String teste(String login){
-      
-        UserDetails user = this.repository.findByNomeLogin(login);
-        return user.getUsername();
+    @Bean
+    public JedisConnectionFactory connectionFactory(){
+        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
+        configuration.setHostName("localhost");
+        configuration.setPort(6379);
+        return new JedisConnectionFactory(configuration);
+   }
+
+
+   @Bean
+    public RedisTemplate<String, Object> redisTemplate() {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(connectionFactory());
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(new JdkSerializationRedisSerializer());
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(new JdkSerializationRedisSerializer());
+        template.setEnableTransactionSupport(true);
+        template.afterPropertiesSet();
+        return template;
     }
 
+
+
+  
+    
 }
 

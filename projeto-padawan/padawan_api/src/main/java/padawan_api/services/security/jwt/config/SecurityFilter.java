@@ -5,8 +5,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import padawan_api.model.usuario.dto.DadosUser;
+import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
+import padawan_api.services.redis.DadosUserDTO;
 import padawan_api.services.redis.RedisConfig;
+import padawan_api.services.redis.RedisService;
 import padawan_api.services.security.jwt.TokenService;
 
 import org.apache.commons.lang3.StringUtils;
@@ -29,26 +33,40 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     UsuarioRepository repository;
 
+
     @Autowired
-    RedisConfig config;
+    RedisService redisService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
        
+    
         String token = this.recoverToken(request);
 
         if(StringUtils.isNotBlank(token)){
 
-            token = tokenService.validarToken(token);
+            String nome_login = tokenService.validarToken(token);
 
-            if(StringUtils.isNotBlank(token)) {
+            if(StringUtils.isNotBlank(nome_login)) {
 
-                String user = this.config.teste(token);
-                UserDetails userDetails = this.repository.findByNomeLogin(token);
-             
-                Authentication authentication = new UsernamePasswordAuthenticationToken(user, token, userDetails.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                UserDetails user = redisService.findByLogin(nome_login);
+
+                if(user != null){
+
+                    Authentication authentication = new UsernamePasswordAuthenticationToken(user, token, user.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
+
+                else{
+
+                    UserDetails userDetails = repository.findByNomeLogin(nome_login);
+                    Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, token, userDetails.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    redisService.save(userDetails);
+                }
+            
             }
+           
         }
         
         filterChain.doFilter(request, response);

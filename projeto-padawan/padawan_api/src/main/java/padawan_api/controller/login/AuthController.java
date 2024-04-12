@@ -3,6 +3,7 @@ package padawan_api.controller.login;
 
 import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.ReturnEfetuarLoginDTO;
+import padawan_api.services.redis.RedisService;
 import padawan_api.services.security.jwt.AuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class AuthController {
 
     @Autowired
     private AuthenticationManager manager;
+
+    @Autowired
+    private RedisService service;
+
+
 
 
     @PostMapping("/login")
@@ -70,6 +76,8 @@ public class AuthController {
             .maxAge(0)
             .build();
             response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+
+            this.service.deletarAllRedis();
 
             return ResponseEntity.ok().build();
         } catch (Exception e) {

@@ -67,7 +67,7 @@ public class ContaController {
 
     }
 
-    @Secured({ConstantesUtil.USER})
+   // @Secured({ConstantesUtil.USER})
     @GetMapping("/list")
     public ResponseEntity<List<ListarContaDTO>> listarContaClassController(){
       

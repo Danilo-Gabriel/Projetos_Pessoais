@@ -12,8 +12,6 @@ import padawan_api.model.conta.dto.ListarContaDTO;
 import padawan_api.model.conta.dto.RegistrarContaDTO;
 import padawan_api.model.conta.repository.Conta;
 import padawan_api.model.conta.repository.ContaRepository;
-import padawan_api.model.usuario.dto.UsuarioDTO;
-import padawan_api.model.usuario.repository.Usuario;
 
 @Service
 public class ContaService {
