@@ -2,11 +2,7 @@ import { Component, Input, OnInit, computed, signal } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/pages/componentes/login/login/services/login.service';
-
-interface City {
-  perfil: string;
-
-}
+import { LocalStorageService } from 'src/shared/services/localStorage/localStorage.service';
 
 
 @Component({
@@ -19,7 +15,10 @@ export class MenuComponent implements OnInit {
 
   //CATEGORIA CONTA DO USUARIO :
   formGroup!: FormGroup ;
-  cities: City[] | undefined;
+  private dadosUser! : any;
+  roles: string = '';
+  conta: string = '';
+  nomeUsuario : string = '';
 
   //MENU E SUBMENU
   sidebarVisible: boolean = false;
@@ -48,6 +47,7 @@ navigateTo(route: string) {
   constructor(
 
     private service : LoginService,
+    private storage : LocalStorageService,
     private router : Router
 
   ){
@@ -55,17 +55,17 @@ navigateTo(route: string) {
   }
 
   ngOnInit(): void {
-    this.cities = [
-      { perfil: 'Administrador'},
-      { perfil: 'Auditor' },
-      { perfil: 'Convencional' }
-
-  ];
+    this.dadosUser = this.storage.returnLoginUser();
+    this.roles = this.dadosUser.role
+    this.conta = this.dadosUser.conta
+    this.nomeUsuario = this.dadosUser.login
   this.formGroup = new FormGroup({
-    conta: new FormControl<City | null>(null)
+    conta: new FormControl<string | null>(null)
   });
 
   }
+
+
 
   efetuarlogoutTsHeader(){
 

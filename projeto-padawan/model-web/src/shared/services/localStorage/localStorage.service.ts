@@ -13,7 +13,7 @@ export class LocalStorageService {
 
 
 constructor(
-  
+
 ) { }
 
 
@@ -24,7 +24,8 @@ armazenarLoginUser(dados : DadosLogin){
     id: dados.id,
     login : dados.login,
     conta: dados.conta,
-    jwt: dados.jwt
+    role : dados.role
+    //jwt: dados.jwt
   }
  this.storage.setItem('usuario-logado', JSON.stringify(usuarioLogado));
 

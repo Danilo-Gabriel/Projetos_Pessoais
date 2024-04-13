@@ -4,6 +4,8 @@ package padawan_api.controller.usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +18,12 @@ import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 
 import padawan_api.model.usuario.dto.ReturnDTO;
 import padawan_api.model.usuario.dto.UsuarioDTO;
+import padawan_api.model.usuario.repository.Usuario;
+import padawan_api.model.usuario.repository.UsuarioRepository;
 import padawan_api.model.usuario.services.UsuarioService;
 
 import java.util.List;
+import java.util.Optional;
 
 
 
@@ -32,6 +37,10 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private UsuarioRepository repository;
+
 
     @PostMapping("/registrar")
     public ResponseEntity<?> register(@RequestBody @Valid RegistrarUsuarioDTO dados){
@@ -145,6 +154,27 @@ public class UsuarioController {
 
     }
 
+    
+    /*
+     * @GetMapping("roles")
+    public ResponseEntity<?> rolesUser(){
+
+        try {
+            Long id = 1L;
+            Optional<Usuario> user = repository.findById(id);
+
+            Usuario usuario = user.get();
+
+            return ResponseEntity.ok().body(usuario.getConta().getRole());
+        } catch (Exception e) {
+
+           return ResponseEntity.badRequest().build();
+    }
+    }
+
+     * 
+     */
+    
 
 
     @PostMapping("associarConta")

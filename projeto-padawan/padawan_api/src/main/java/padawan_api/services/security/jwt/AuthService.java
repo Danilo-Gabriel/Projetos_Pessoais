@@ -57,7 +57,7 @@ public class AuthService implements UserDetailsService {
             .build();
             response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
-           ReturnEfetuarLoginDTO resp = new ReturnEfetuarLoginDTO(usuario.getId(), usuario.getNomeLogin(), usuario.getConta().getNomeConta());
+           ReturnEfetuarLoginDTO resp = new ReturnEfetuarLoginDTO(usuario.getId(), usuario.getNomeLogin(), usuario.getConta().getNomeConta(), usuario.getConta().getRole());
             return resp;
 
         }else{
