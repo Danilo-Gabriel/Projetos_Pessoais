@@ -42,6 +42,7 @@ public class ContaService {
         return listarContasDTO;
     }
 
+
     public ListarContaDTO detalhesDadosContaClassService(Long id){
 
         Optional<Conta> contaOptional = this.repository.findById(id);

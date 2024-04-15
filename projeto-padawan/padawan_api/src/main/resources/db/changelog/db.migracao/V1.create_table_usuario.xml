@@ -38,6 +38,7 @@
             </column>
             <column name="situacao_conta" type="varchar(10)"/>
             <column name="perfil_conta" type="varchar(30)"/>
+            <column name="associacao_status" type="boolean"/>
             <column name="usuario_id" type="bigint"/>
         </createTable>
     </changeSet>

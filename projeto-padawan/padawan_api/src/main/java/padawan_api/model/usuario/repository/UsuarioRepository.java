@@ -16,6 +16,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
    // Optional<Usuario> findByNomeLogin(String s); SEM JWT
   
      UserDetails findByNomeLogin(String login);
+  
 
 
 

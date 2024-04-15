@@ -4,6 +4,8 @@ import { Conta } from '../../dto/Conta';
 import { environment } from 'src/environment/environment';
 import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
 import { Location } from '@angular/common';
+import { Usuario } from 'src/pages/models/usuario/dto/DadosUsuario';
+import { Observable, catchError, first, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,7 @@ export class EditContaService {
   private backendURL = environment.endPoint;
   private readonly API = `${this.backendURL}/conta/atualizar`
   private readonly buscarDados = `${this.backendURL}/conta`
+  private readonly buscarDadosUsuario = `${this.backendURL}/usuario/list`
 
 constructor(
   private http : HttpClient,
@@ -45,5 +48,18 @@ buscarDadosConta(id : string){
 }
 
 
+     obterUsuario() {
+         return this.http.get<Usuario[]>(this.buscarDadosUsuario)
+     }
+
+
+     list(): Observable<Usuario[]> {
+      return this.http.get<Usuario[]>(`${this.buscarDadosUsuario}`).pipe(
+        catchError(error => {
+          throw 'Error fetching users: ' + error; // Trate o erro conforme necessário
+        })
+      );
+
+    }
 
 }

@@ -6,6 +6,8 @@ package padawan_api.model.conta.repository;
 
 import java.io.Serializable;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -56,6 +58,9 @@ public class Conta implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "perfil_conta")
     private UserRole role;
+
+    @Column(name = "associacao_status")
+    private Boolean associacaoStatus;
 
 
     @ManyToOne

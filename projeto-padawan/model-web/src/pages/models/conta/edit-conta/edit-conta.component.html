@@ -1,39 +1,23 @@
 <p-card header="EDITAR CONTA">
-
-  <form [formGroup]="form!">
-
+  <form [formGroup]="form">
     <p-fieldset legend="DADOS DA CONTA">
-
       <span class="p-float-label">
         <input pInputText id="username" formControlName="nomeConta"/>
         <label for="username">Nome da Conta</label>
       </span>
     </p-fieldset>
-
     <br>
+    <p-fieldset legend="ASSOCIAR USUÁRIO">
 
-    <!--
 
-      <p-fieldset legend="USUÁRIO ASSOCIADO">
+          <p-dropdown [options]="listUserNames" [(ngModel)]="selectUser" optionLabel="nomeCompleto" [showClear]="true" placeholder="Selecione um usuário"></p-dropdown>
 
-      <span class="p-float-label">
-        <input pInputText id="username" formControlName="usuarioAssociado"/>
-        <label for="username">Associado</label>
-      </span>
+
     </p-fieldset>
-
-    -->
-
-
-<br>
+    <br>
   </form>
-
   <mat-card-actions>
-
     <button [disabled]="!form.valid"  mat-raised-button color="primary" type="submit" (click)="onSubmit()">Atualizar</button> &nbsp;
-
     <button  mat-raised-button (click)="navigateTo('pages/conta')">Cancelar</button>
-
   </mat-card-actions>
-
 </p-card>

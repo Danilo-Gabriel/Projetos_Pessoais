@@ -12,7 +12,7 @@ public interface ContaRepository extends JpaRepository<Conta, Long> {
 
     @Query("SELECT c FROM Conta c JOIN FETCH c.usuario")
     List<Conta> listarContasComPessoa();
-
+   
     Optional<Conta> findByNomeConta(String nomeConta);
     
 }

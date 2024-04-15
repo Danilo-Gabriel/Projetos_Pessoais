@@ -102,11 +102,10 @@ public class ContaController {
             if(usuario.isSituacao() && conta.isSituacao()){
                 
                 conta.setUsuario(usuario);
-
+                conta.setAssociacaoStatus(true);
                 repositoryConta.save(conta);
 
                 usuario.setConta(conta);
-
                 repositoryUsuario.save(usuario);
 
             }
@@ -141,6 +140,7 @@ public class ContaController {
 
     
     }
+
 
     @DeleteMapping("deletar/{id}")
     @Transactional
