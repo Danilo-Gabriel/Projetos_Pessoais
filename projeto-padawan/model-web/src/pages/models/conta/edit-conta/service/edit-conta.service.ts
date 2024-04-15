@@ -27,6 +27,9 @@ constructor(
 
 atualizarDadosConta(record: Conta ){
 
+  console.log(record);
+
+  /*
   return this.http.put<Conta>(this.API, record, {responseType: 'json'})
   .subscribe(
     (response) => {
@@ -41,6 +44,7 @@ atualizarDadosConta(record: Conta ){
 
   }
 );
+*/
 }
 
 buscarDadosConta(id : string){
@@ -56,7 +60,7 @@ buscarDadosConta(id : string){
      list(): Observable<Usuario[]> {
       return this.http.get<Usuario[]>(`${this.buscarDadosUsuario}`).pipe(
         catchError(error => {
-          throw 'Error fetching users: ' + error; // Trate o erro conforme necessário
+          throw 'Error fetching users: ' + error;
         })
       );
 

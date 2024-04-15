@@ -26,6 +26,7 @@ export class EditContaComponent implements OnInit {
 
   private routeSub!: Subscription;
   private idUsuario!: string;
+  private nomeUsuarioAssociado! : string;
   private conta! : Conta;
 
   listUserNames: Usuario[] = [];
@@ -45,7 +46,6 @@ export class EditContaComponent implements OnInit {
 
       this.form = this.formBuilder.group({
       nomeConta: ['', Validators.required]
-     // usuarioAssociado: ''
     });
 
 
@@ -58,10 +58,12 @@ export class EditContaComponent implements OnInit {
       this.service.buscarDadosConta(params['idConta']).subscribe(
         dados => {
           this.conta = dados;
+          this.nomeUsuarioAssociado = dados.pessoa
+          debugger
+          console.log(dados)
          // this.situacao = this.usuario.ativo ? this.ativoLabel : this.inativoLabel
           this.form.patchValue({
           nomeConta: this.conta.nomeConta
-
         });
       },
         error => {
@@ -72,14 +74,12 @@ export class EditContaComponent implements OnInit {
     this.service.list().subscribe(
       usuarios => {
         this.listUserNames = usuarios;
-        debugger
-        console.log(this.listUserNames)
       },
       error => {
         console.error("Error", error);
       }
     );
-    
+
 
   }
 
@@ -87,12 +87,16 @@ export class EditContaComponent implements OnInit {
  onSubmit(){
 
   if(this.form.value != null){
+
+    console.log(this.selectUser?.nomeCompleto)
       this.service.atualizarDadosConta({
         id : this.idUsuario,
-        nomeConta : this.form.value.nomeConta
-
+        nomeConta : this.form.value.nomeConta,
+        pessoa : this.nomeUsuarioAssociado
 
       })
+
+
   }
 
  }
