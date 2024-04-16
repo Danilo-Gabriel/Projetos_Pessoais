@@ -6,6 +6,7 @@ import { AppMessageService } from 'src/shared/services/app-message/app-message.s
 import { Location } from '@angular/common';
 import { Usuario } from 'src/pages/models/usuario/dto/DadosUsuario';
 import { Observable, catchError, first, map, tap } from 'rxjs';
+import { AssociarUsuario } from './associar-usuario/AssociarUsuarioDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,8 @@ export class EditContaService {
   private readonly API = `${this.backendURL}/conta/atualizar`
   private readonly buscarDados = `${this.backendURL}/conta`
   private readonly buscarDadosUsuario = `${this.backendURL}/usuario/list`
+  private readonly UrlUsuario = `${this.backendURL}/conta/associarConta`
+
 
 constructor(
   private http : HttpClient,
@@ -26,10 +29,7 @@ constructor(
 
 
 atualizarDadosConta(record: Conta ){
-
-  console.log(record);
-
-  /*
+ 
   return this.http.put<Conta>(this.API, record, {responseType: 'json'})
   .subscribe(
     (response) => {
@@ -44,7 +44,19 @@ atualizarDadosConta(record: Conta ){
 
   }
 );
-*/
+
+}
+
+associarUsuario(record : AssociarUsuario){
+console.log(record)
+ debugger
+    return this.http.put<AssociarUsuario>(this.UrlUsuario, record).pipe(
+    catchError(error => {
+      throw 'Error em associar usuário' + this.message.showError(error.error);
+    })
+  )
+
+
 }
 
 buscarDadosConta(id : string){
@@ -60,7 +72,8 @@ buscarDadosConta(id : string){
      list(): Observable<Usuario[]> {
       return this.http.get<Usuario[]>(`${this.buscarDadosUsuario}`).pipe(
         catchError(error => {
-          throw 'Error fetching users: ' + error;
+          throw 'Error fetching users: ' + 
+          this.message.showError(error.error);
         })
       );
 

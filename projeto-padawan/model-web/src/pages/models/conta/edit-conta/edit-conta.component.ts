@@ -25,13 +25,12 @@ export class EditContaComponent implements OnInit {
 
 
   private routeSub!: Subscription;
-  private idUsuario!: string;
-  private nomeUsuarioAssociado! : string;
+  private idConta!: string;
   private conta! : Conta;
-
+  private usuarioAtual! : string;
   listUserNames: Usuario[] = [];
 
-  selectUser: Usuario | undefined;
+  selectUser: Usuario[] | undefined;
 
 
 
@@ -45,7 +44,9 @@ export class EditContaComponent implements OnInit {
   ) {
 
       this.form = this.formBuilder.group({
-      nomeConta: ['', Validators.required]
+      nomeConta: ['', Validators.required],
+      usuarioAssociado : this.selectUser,
+      pessoa: ""
     });
 
 
@@ -53,17 +54,17 @@ export class EditContaComponent implements OnInit {
 
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
-      this.idUsuario = params['idConta']
-      //debugger
+      this.idConta = params['idConta']
       this.service.buscarDadosConta(params['idConta']).subscribe(
         dados => {
-          this.conta = dados;
-          this.nomeUsuarioAssociado = dados.pessoa
-          debugger
+          this.conta = dados
           console.log(dados)
-         // this.situacao = this.usuario.ativo ? this.ativoLabel : this.inativoLabel
+          this.usuarioAtual = dados.pessoa
+          console.log(this.usuarioAtual)
           this.form.patchValue({
-          nomeConta: this.conta.nomeConta
+          nomeConta: this.conta.nomeConta,
+          pessoa : this.conta.pessoa
+          
         });
       },
         error => {
@@ -83,24 +84,37 @@ export class EditContaComponent implements OnInit {
 
   }
 
-
  onSubmit(){
 
-  if(this.form.value != null){
+  if(this.form.value.usuarioAssociado != null){
+    if(this.form.value != null){
 
-    console.log(this.selectUser?.nomeCompleto)
+      debugger
+      this.service.associarUsuario({
+        conta_id : this.idConta,
+        usuario_id : this.form.value.usuarioAssociado.id,
+      }),
+
       this.service.atualizarDadosConta({
-        id : this.idUsuario,
+        id : this.idConta,
         nomeConta : this.form.value.nomeConta,
-        pessoa : this.nomeUsuarioAssociado
-
+        pessoa : this.form.value.usuarioAssociado.nomeCompleto
       })
-
-
+    }
+  }
+  else {
+    if(this.form.value != null){
+      this.service.atualizarDadosConta({
+        id : this.idConta,
+        nomeConta : this.form.value.nomeConta,
+        pessoa : this.form.value.pessoa
+      })
+    }
   }
 
  }
 
+ 
   navigateTo(route: string) {
     this.router.navigate([route]);
   }

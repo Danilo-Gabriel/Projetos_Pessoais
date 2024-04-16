@@ -4,7 +4,9 @@ public record AtualizarContaDTO(
 
         Long id,
         
-        String nomeConta
+        String nomeConta,
+
+        Long idUsuarioAssociado
 
 ) {
     

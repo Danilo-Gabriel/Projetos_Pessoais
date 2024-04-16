@@ -5,13 +5,17 @@
         <input pInputText id="username" formControlName="nomeConta"/>
         <label for="username">Nome da Conta</label>
       </span>
+      <br>
+      <br>
+      <span class="p-float-label">
+        <input  pInputText id="username" formControlName="pessoa" readonly/>
+        <label for="username">Nome do usuário associado</label>
+      </span>
     </p-fieldset>
     <br>
     <p-fieldset legend="ASSOCIAR USUÁRIO">
 
-
-          <p-dropdown [options]="listUserNames" [(ngModel)]="selectUser" optionLabel="nomeCompleto" [showClear]="true" placeholder="Selecione um usuário"></p-dropdown>
-
+      <p-dropdown [options]="listUserNames" formControlName="usuarioAssociado" [(ngModel)]="selectUser" optionLabel="nomeCompleto" placeholder="Selecione um usuário"></p-dropdown>
 
     </p-fieldset>
     <br>

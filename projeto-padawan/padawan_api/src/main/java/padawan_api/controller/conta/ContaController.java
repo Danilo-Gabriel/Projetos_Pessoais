@@ -2,7 +2,6 @@ package padawan_api.controller.conta;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +19,10 @@ import jakarta.transaction.Transactional;
 import padawan_api.model.conta.dto.AtualizarContaDTO;
 import padawan_api.model.conta.dto.ListarContaDTO;
 import padawan_api.model.conta.dto.RegistrarContaDTO;
-import padawan_api.model.conta.repository.Conta;
-import padawan_api.model.conta.repository.ContaRepository;
 import padawan_api.model.conta.services.ContaService;
 import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
 import padawan_api.model.usuario.dto.ReturnDTO;
-import padawan_api.model.usuario.repository.Usuario;
-import padawan_api.model.usuario.repository.UsuarioRepository;
+
 
 
 
@@ -38,14 +34,6 @@ public class ContaController {
     
     @Autowired
     private ContaService contaService;
-
-    @Autowired
-    private ContaRepository repositoryConta;
-
-    @Autowired
-    private UsuarioRepository repositoryUsuario;
-
-
     
     @PostMapping("/registrar")
     @Transactional
@@ -83,40 +71,22 @@ public class ContaController {
         }
     }
 
-     public void associarContaAUsuarioClassService(AssociarUsuarioAContaDTO dados) throws Exception {
 
-        /*
-         * AJUSTAR PARA ASSOCIAR CONTA AO USUARIO 
-         */
+    @PutMapping("/associarConta")
+     public ResponseEntity<?> associarUsuarioAContaClassController(@RequestBody AssociarUsuarioAContaDTO dados) throws Exception {
 
-        Optional<Usuario> usuarioOptional = repositoryUsuario.findById(dados.usuario_id());
+            try {
+                this.contaService.associarUsuarioAContaClassService(dados);
 
-        Optional<Conta> contaOptional =  repositoryConta.findById(dados.conta_id());
+                ReturnDTO resp = new ReturnDTO("Usuário associado com sucesso!");
 
-        if(usuarioOptional.isPresent() && contaOptional.isPresent()){
+                return ResponseEntity.ok().body(resp);
 
-            Usuario usuario = usuarioOptional.get();
+            } catch (Exception e) {
 
-            Conta conta = contaOptional.get();
-
-            if(usuario.isSituacao() && conta.isSituacao()){
-                
-                conta.setUsuario(usuario);
-                conta.setAssociacaoStatus(true);
-                repositoryConta.save(conta);
-
-                usuario.setConta(conta);
-                repositoryUsuario.save(usuario);
-
-            }
-            else{
-                throw new Exception("Usuário ou Conta inativa, contate o administrador do sistema");
+                return ResponseEntity.badRequest().body(e.getMessage());
             }
 
-        }
-        else {
-            throw new Exception("Usuário ou Conta não cadastrado, contate o administrador do sistema");
-        }
     }
 
 

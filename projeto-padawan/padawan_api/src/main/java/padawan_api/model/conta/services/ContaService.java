@@ -12,12 +12,18 @@ import padawan_api.model.conta.dto.ListarContaDTO;
 import padawan_api.model.conta.dto.RegistrarContaDTO;
 import padawan_api.model.conta.repository.Conta;
 import padawan_api.model.conta.repository.ContaRepository;
+import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
+import padawan_api.model.usuario.repository.Usuario;
+import padawan_api.model.usuario.repository.UsuarioRepository;
 
 @Service
 public class ContaService {
     
     @Autowired
     private ContaRepository repository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public void registrarContaClassService(RegistrarContaDTO dados) throws Exception{
 
@@ -30,6 +36,38 @@ public class ContaService {
             Conta conta = new Conta(dados);
 
             repository.save(conta);
+        }
+    }
+
+    public void associarUsuarioAContaClassService(AssociarUsuarioAContaDTO dados) throws Exception{
+
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(dados.usuario_id());
+
+        Optional<Conta> contaOptional =  repository.findById(dados.conta_id());
+
+        if(usuarioOptional.isPresent() && contaOptional.isPresent()){
+
+            Usuario usuario = usuarioOptional.get();
+
+            Conta conta = contaOptional.get();
+
+            if(usuario.isSituacao() && conta.isSituacao()){
+                
+                conta.setUsuario(usuario);
+                conta.setAssociacaoStatus(true);
+                repository.save(conta);
+
+                usuario.setConta(conta);
+                usuarioRepository.save(usuario);
+
+            }
+            else{
+                throw new Exception("Usuário ou Conta inativa, contate o administrador do sistema");
+            }
+
+        }
+        else {
+            throw new Exception("Usuário ou Conta não cadastrado, contate o administrador do sistema");
         }
     }
 
@@ -67,7 +105,7 @@ public class ContaService {
             Conta conta = contaOptional.get();
 
             conta.atualizarContaClassJPA(dados);
-
+           
             repository.save(conta);
 
         }else{
@@ -76,6 +114,8 @@ public class ContaService {
 
         return dados;
     }
+
+    
 
 
   
