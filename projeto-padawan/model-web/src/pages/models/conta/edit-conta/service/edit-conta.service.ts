@@ -29,8 +29,8 @@ constructor(
 
 
 atualizarDadosConta(record: Conta ){
- 
-  return this.http.put<Conta>(this.API, record, {responseType: 'json'})
+
+ return this.http.put<Conta>(this.API, record, {responseType: 'json'})
   .subscribe(
     (response) => {
 
@@ -48,13 +48,19 @@ atualizarDadosConta(record: Conta ){
 }
 
 associarUsuario(record : AssociarUsuario){
-console.log(record)
- debugger
-    return this.http.put<AssociarUsuario>(this.UrlUsuario, record).pipe(
-    catchError(error => {
-      throw 'Error em associar usuário' + this.message.showError(error.error);
-    })
-  )
+
+    return this.http.put<AssociarUsuario>(this.UrlUsuario, record)
+    .subscribe(
+      (Response) => {
+
+        //this.message.showSuccess("Usuário alterado com sucesso");
+  
+      },
+      (error) => {
+        this.message.showError(error.error)
+
+      }
+    )
 
 
 }
@@ -72,7 +78,7 @@ buscarDadosConta(id : string){
      list(): Observable<Usuario[]> {
       return this.http.get<Usuario[]>(`${this.buscarDadosUsuario}`).pipe(
         catchError(error => {
-          throw 'Error fetching users: ' + 
+          throw 'Error fetching users: ' +
           this.message.showError(error.error);
         })
       );

@@ -72,7 +72,8 @@ public class ContaController {
     }
 
 
-    @PutMapping("/associarConta")
+     @PutMapping("/associarConta")
+     @Transactional
      public ResponseEntity<?> associarUsuarioAContaClassController(@RequestBody AssociarUsuarioAContaDTO dados) throws Exception {
 
             try {

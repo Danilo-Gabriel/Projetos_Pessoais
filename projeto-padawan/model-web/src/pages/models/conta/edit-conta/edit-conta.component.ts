@@ -64,7 +64,7 @@ export class EditContaComponent implements OnInit {
           this.form.patchValue({
           nomeConta: this.conta.nomeConta,
           pessoa : this.conta.pessoa
-          
+
         });
       },
         error => {
@@ -89,7 +89,6 @@ export class EditContaComponent implements OnInit {
   if(this.form.value.usuarioAssociado != null){
     if(this.form.value != null){
 
-      debugger
       this.service.associarUsuario({
         conta_id : this.idConta,
         usuario_id : this.form.value.usuarioAssociado.id,
@@ -114,7 +113,7 @@ export class EditContaComponent implements OnInit {
 
  }
 
- 
+
   navigateTo(route: string) {
     this.router.navigate([route]);
   }
