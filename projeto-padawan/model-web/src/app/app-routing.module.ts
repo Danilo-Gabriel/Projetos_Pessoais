@@ -3,9 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from 'src/pages/componentes/login/login/login.component';
 import { AuthGuard } from './guard/auth.guard';
 import { RecuperarSenhaComponent } from 'src/pages/componentes/login/recuperar-senha/recuperar-senha.component';
-import { AllFilesComponent } from 'src/pages/componentes/files/all-files/all-files.component';
-import { UploadFilesComponent } from 'src/pages/componentes/files/upload-files/upload-files.component';
-
+import { BookComponent } from 'src/pages/componentes/book/book.component';
+import { ListBookComponent } from 'src/pages/componentes/list-book/list-book.component';
 
 
 const routes: Routes = [
@@ -16,9 +15,8 @@ const routes: Routes = [
    component: LoginComponent,
    canActivate : [AuthGuard]
   },
-
-  {path: 'listarImg', component: AllFilesComponent,},
-  {path: 'uploadImg', component: UploadFilesComponent,},
+  {path : 'upload', component: BookComponent },
+  {path : 'list', component: ListBookComponent },
   {path : 'recuperar-senha/:hashUsuario', component: RecuperarSenhaComponent },
   {path:'pages',
     loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule)}

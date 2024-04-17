@@ -4,6 +4,8 @@ import { SharedModule } from 'src/shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrimeNGModule } from 'src/shared/biblioteca-angular/primeNG.module';
+import { BookComponent } from './componentes/book/book.component';
+import { ListBookComponent } from './componentes/list-book/list-book.component';
 
 
 
@@ -13,6 +15,9 @@ import { PrimeNGModule } from 'src/shared/biblioteca-angular/primeNG.module';
 
 
 
+  
+    BookComponent,
+          ListBookComponent
   ],
   imports: [
     CommonModule,

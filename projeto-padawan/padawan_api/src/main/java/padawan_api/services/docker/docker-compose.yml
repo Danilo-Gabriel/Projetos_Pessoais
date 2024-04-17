@@ -1,37 +1,45 @@
-version: '3.1'
+version: '3.8'
 
 services:
+  minio:
+    image: docker.io/bitnami/minio:2022
+    container_name: minIO
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    networks:
+      - minionetwork
+    volumes:
+      - 'minio_data:/data'
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=adminadminadmin
+      - MINIO_DEFAULT_BUCKETS=book-images
 
-#    portainer:
-#        image: portainer/portainer-ce
-#        container_name: portainer
-#        restart: always
-#        ports:
-#            - "9443:9443"
-#        volumes:
-#            - /var/run/docker.sock:/var/run/docker.sock
-#            - portainer_data:/data
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: padawan_api
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbPostgres:/var/lib/postgresql/data
 
-    postgres:
-        image: postgres:latest
-        container_name: postgres
-        restart: always
-        environment:
-            POSTGRES_USER: root
-            POSTGRES_PASSWORD: admin
-            POSTGRES_DB: padawan_api
-        ports:
-            - "5432:5432"
-        volumes:
-            - dbPostgres:/var/lib/postgresql/data
+  redis: 
+    image: redis:latest
+    container_name: redis
+    ports:
+      - 6379:6379
 
-    redis: 
-        image: redis:latest
-        container_name: redis
-        ports:
-            - 6379:6379
-    
+networks:
+  minionetwork:
+    driver: bridge
+
 volumes:
-   # portainer_data:
-    dbPostgres:
-
+  minio_data:
+    driver: local
+  dbPostgres:
