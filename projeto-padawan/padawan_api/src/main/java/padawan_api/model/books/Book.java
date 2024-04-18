@@ -26,5 +26,10 @@ public class Book {
     private String description;
     private String imageUrl;
     
+    public Book(DadosBookDTO dados){
+        this.title = dados.title();
+        this.author = dados.author();
+        this.description = dados.description();
+    }
     
 }

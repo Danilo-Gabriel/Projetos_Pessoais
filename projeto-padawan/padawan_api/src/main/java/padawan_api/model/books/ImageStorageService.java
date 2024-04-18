@@ -28,21 +28,26 @@ public class ImageStorageService {
     @Value("${minio.url}")
     private String minioUrl;
 
-    public String uploadImage(MultipartFile file){
+    public String uploadImage(MultipartFile file) {
+        if (file == null) {
+            throw new IllegalArgumentException("File must not be null");
+        }
         String fileName = generateFileName(file);
         try (InputStream is = file.getInputStream()) {
-                minioClient.putObject(
-                    PutObjectArgs.builder()
-                                .bucket(bucketName)
-                                .object(fileName)
-                                .contentType(file.getContentType())
-                                .build());
+            minioClient.putObject(
+                PutObjectArgs.builder()
+                    .bucket(bucketName)
+                    .object(fileName)
+                    .contentType(file.getContentType())
+                    .stream(is, is.available(), -1)
+                    .build());
             return minioUrl + "/" + bucketName + "/" + fileName;
-
+    
         } catch (Exception e) {
             throw new RuntimeException("Failed to store image file.", e);
         }
     }
+    
 
     private String generateFileName(MultipartFile file) {
         return new Date().getTime() + "-" + Objects.requireNonNull(file.getOriginalFilename()).replace(" ", "_");
