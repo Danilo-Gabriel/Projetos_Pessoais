@@ -1,4 +1,4 @@
-package padawan_api.model.books;
+package padawan_api.model.usuario.services;
 
 import java.io.InputStream;
 import java.util.Date;

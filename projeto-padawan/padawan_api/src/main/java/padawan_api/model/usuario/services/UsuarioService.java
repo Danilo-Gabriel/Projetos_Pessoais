@@ -2,9 +2,11 @@ package padawan_api.model.usuario.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import lombok.RequiredArgsConstructor;
 import padawan_api.model.conta.repository.Conta;
 import padawan_api.model.conta.repository.ContaRepository;
 import padawan_api.model.usuario.dto.AtualizarRegistroDeUsuariosDTO;
@@ -22,6 +24,7 @@ import java.util.Optional;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService {
 
 
@@ -32,15 +35,21 @@ public class UsuarioService {
     private ContaRepository contaRepository;
 
 
+    private final ImageStorageService imageStorageService;
 
-     public void registrarUsuarioClassService(RegistrarUsuarioDTO dados) throws Exception{
 
-       if(this.repository.findByNomeLogin(dados.nomeLogin()) != null) throw new Exception("Login já se encontra em uso, escolha outro");
+     public void registrarUsuarioClassService(RegistrarUsuarioDTO dados, MultipartFile imageFile) throws Exception{
 
-        Usuario newUser = new Usuario(dados);
+        if(this.repository.findByNomeLogin(dados.nomeLogin()) != null) throw new Exception("Login já se encontra em uso, escolha outro");
 
-        this.repository.save(newUser);
+            String imageUrl = imageStorageService.uploadImage(imageFile);
+            Usuario newUser = new Usuario(dados);
+            newUser.setImageUrl(imageUrl);
+            this.repository.save(newUser);
+    
 
+
+       
     }
 
     /* 
@@ -154,7 +163,7 @@ public class UsuarioService {
         public List<ListarUsuarioDTO> listarUsuarioClassService(){
             return repository.findAll().stream().map(ListarUsuarioDTO::new).toList();
         }
-  
+        
 
     public AtualizarRegistroDeUsuariosDTO atualizarUsuarioClassService(AtualizarRegistroDeUsuariosDTO dados) throws Exception {
 

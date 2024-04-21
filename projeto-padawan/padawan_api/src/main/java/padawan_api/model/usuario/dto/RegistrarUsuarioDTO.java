@@ -19,7 +19,9 @@ public record RegistrarUsuarioDTO(
 
         @NotNull
         @NotBlank
-        String senha
+        String senha,
+
+        String imageUrl
 
         ) {
 }

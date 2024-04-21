@@ -84,13 +84,15 @@ public class Usuario implements UserDetails {
     @JoinColumn(name = "conta_id", referencedColumnName = CAMPO_ID)
     private Conta conta;
 
+    @JoinColumn(name = "image_url")
+    private String imageUrl;
+
 
     public Usuario(RegistrarUsuarioDTO dados) {
         this.nomeCompleto = dados.nomeCompleto();
         this.email = dados.email();
         this.nomeLogin = dados.nomeLogin();
         this.senha = new BCryptPasswordEncoder().encode(dados.senha());
-       // this.senha = BCrypt.hashpw(dados.senha(), BCrypt.gensalt());
         this.hash = null;
         this.ativo = true;
     }

@@ -8,7 +8,8 @@
 
     <include file="/db/changelog/db.migracao/V1.create_table_usuario.xml"/>
     <include file="/db/changelog/db.migracao/V2.add_usuario_conta.xml"/>
-    <include file="/db/changelog/db.migracao/V4.associar_usuario_conta.xml"/>
+    <!--<include file="/db/changelog/db.migracao/V3.add_constraint.xml"/>-->
+    <include file="/db/changelog/db.migracao/V4.add_column_table_usuario.xml"/>
 
 
 

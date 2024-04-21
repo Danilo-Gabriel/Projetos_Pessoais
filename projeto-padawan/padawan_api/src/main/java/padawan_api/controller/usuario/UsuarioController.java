@@ -3,11 +3,15 @@ package padawan_api.controller.usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.validation.Valid;
 import padawan_api.model.usuario.dto.AtualizarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
@@ -16,10 +20,11 @@ import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 
 import padawan_api.model.usuario.dto.ReturnDTO;
 import padawan_api.model.usuario.dto.UsuarioDTO;
-import padawan_api.model.usuario.services.ListarNomeCompleto;
+import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.services.UsuarioService;
 
 import java.util.List;
+import java.util.Optional;
 
 
 
@@ -35,14 +40,15 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
 
-    @PostMapping("/registrar")
-    public ResponseEntity<?> register(@RequestBody @Valid RegistrarUsuarioDTO dados){
+    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<?> register(@RequestPart("dados") RegistrarUsuarioDTO dados,
+                                         @RequestPart("image") MultipartFile image){
         
         try {
 
             ReturnDTO resp = new ReturnDTO("Usuário Criado com sucesso!");
 
-            this.usuarioService.registrarUsuarioClassService(dados);
+            this.usuarioService.registrarUsuarioClassService(dados, image);
            
             return ResponseEntity.status(HttpStatus.CREATED).body(resp);
 
@@ -71,6 +77,7 @@ public class UsuarioController {
         }
 
     }
+
 
 
     @PutMapping("atualizar")

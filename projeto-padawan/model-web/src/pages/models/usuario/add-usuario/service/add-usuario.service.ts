@@ -1,9 +1,10 @@
+import { Usuario } from 'src/pages/models/usuario/dto/DadosUsuario';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
 import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
-import { Usuario } from '../../dto/DadosUsuario';
 import { Location } from '@angular/common';
 import { ReturnCadastroUser } from '../../dto/ReturnCadastroUser';
 
@@ -26,13 +27,31 @@ constructor(
 }
 
 private backendURL = environment.endPoint;
-private readonly API = `${this.backendURL}/usuario/registrar`
+private readonly API = `${this.backendURL}/usuario`
 private readonly buscardDadosUsuarioID = `${this.backendURL}/usuario`
 
-save(record: Usuario ){
+saveImg(dados: Usuario, image : File ) : Observable<Usuario> {
 
-  //debugger
-  return this.http.post<ReturnCadastroUser>(this.API, record)
+  const formData : FormData = new FormData();
+  formData.append('dados', new Blob([JSON.stringify(dados)], {
+    type : 'application/json'
+  }
+  ));
+  formData.append('image', image);
+   return this.http.post<Usuario>(this.API, formData);
+}
+
+
+
+/*
+  save(jsonDados: Usuario ){
+
+  const formData : FormData = new FormData();
+  formData.append('jsonDados', new Blob([JSON.stringify(jsonDados)],
+  {
+    type : 'application/json'
+  }));
+  return this.http.post<ReturnCadastroUser>(this.API, formData)
   .subscribe(
     (response) => {
       this.message.showSuccess(`${response.Resp}`),
@@ -46,6 +65,12 @@ save(record: Usuario ){
   }
 );
 }
+
+
+
+*/
+
+
 
 
 buscarID(id : string){

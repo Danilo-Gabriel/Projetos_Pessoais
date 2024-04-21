@@ -15,6 +15,12 @@
           <input pInputText id="username" formControlName="email" />
           <label for="username">E-mail</label>
         </span>
+        <br>
+
+    <div class="card flex justify-content-center">
+      <p-toast></p-toast>
+      <input type="file" (change)="onImageSelected($event)">
+    </div>
 
     </p-fieldset>
 

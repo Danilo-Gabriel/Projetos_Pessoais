@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/pages/componentes/login/login/services/login.service';
 import { LocalStorageService } from 'src/shared/services/localStorage/localStorage.service';
+import { MenuService } from './service/menu.service';
+import { Usuario } from 'src/pages/models/usuario/dto/DadosUsuario';
 
 
 @Component({
@@ -19,11 +21,15 @@ export class MenuComponent implements OnInit {
   roles: string = '';
   conta: string = '';
   nomeUsuario : string = '';
+  imageUrl : string = '';
 
   //MENU E SUBMENU
   sidebarVisible: boolean = false;
   visible: boolean = false;
   showSubmenu: boolean = false;
+
+  //Lista de Imagens
+
 
   sideNavCollapsed = signal(false)
   @Input() set collapsed(val: boolean){
@@ -47,6 +53,7 @@ navigateTo(route: string) {
   constructor(
 
     private service : LoginService,
+    private menuService : MenuService,
     private storage : LocalStorageService,
     private router : Router
 
@@ -59,6 +66,8 @@ navigateTo(route: string) {
     this.roles = this.dadosUser.role
     this.conta = this.dadosUser.conta
     this.nomeUsuario = this.dadosUser.login
+    this.imageUrl = this.dadosUser.imageUrl ? this.dadosUser.imageUrl : 'https://images7.alphacoders.com/131/1319607.jpeg';
+    console.log(this.dadosUser)
   this.formGroup = new FormGroup({
     conta: new FormControl<string | null>(null)
   });

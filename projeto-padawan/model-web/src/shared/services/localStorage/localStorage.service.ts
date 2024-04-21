@@ -24,7 +24,8 @@ armazenarLoginUser(dados : DadosLogin){
     id: dados.id,
     login : dados.login,
     conta: dados.conta,
-    role : dados.role
+    role : dados.role,
+    imageUrl : dados.imageUrl
     //jwt: dados.jwt
   }
  this.storage.setItem('usuario-logado', JSON.stringify(usuarioLogado));
