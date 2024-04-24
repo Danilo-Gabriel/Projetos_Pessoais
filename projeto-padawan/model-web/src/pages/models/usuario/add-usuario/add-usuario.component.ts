@@ -53,7 +53,7 @@ export class AddUsuarioComponent implements OnInit {
       this.service.saveImg(this.form.value, this.selectedImage).subscribe({
         next : (dados) => {
             this.messagem.showSuccess('Usuário Cadastrado');
-            this.router.navigate(['/pages/home/list-usuario']);
+            this.router.navigate(['/pages/usuario']);
         },
         error: (err) => {
           this.messagem.showError(`${err.error}`)
