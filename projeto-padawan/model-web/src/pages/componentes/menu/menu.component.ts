@@ -22,13 +22,14 @@ export class MenuComponent implements OnInit {
   conta: string = '';
   nomeUsuario : string = '';
   imageUrl : string = '';
+  imageBase64 : string = '';
 
   //MENU E SUBMENU
   sidebarVisible: boolean = false;
   visible: boolean = false;
   showSubmenu: boolean = false;
 
-  //Lista de Imagens
+    //Lista de Imagens
 
 
   sideNavCollapsed = signal(false)
@@ -66,8 +67,10 @@ navigateTo(route: string) {
     this.roles = this.dadosUser.role
     this.conta = this.dadosUser.conta
     this.nomeUsuario = this.dadosUser.login
-    this.imageUrl = this.dadosUser.imageUrl ? this.dadosUser.imageUrl : 'https://images7.alphacoders.com/131/1319607.jpeg';
-    console.log(this.dadosUser)
+    // this.imageUrl = this.dadosUser.imageUrl ? this.dadosUser.imageUrl : 'https://images7.alphacoders.com/131/1319607.jpeg';
+    this.imageBase64 = `data:image/png;base64, ${this.dadosUser.imageBase64}` 
+    // console.log(this.dadosUser)
+    // console.log(this.imageBase64)
   this.formGroup = new FormGroup({
     conta: new FormControl<string | null>(null)
   });

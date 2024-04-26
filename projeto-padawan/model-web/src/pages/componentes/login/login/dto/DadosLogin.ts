@@ -4,7 +4,7 @@ export interface  DadosLogin {
   login: string,
   conta: string,
   role : string,
-  imageUrl : string
+  imageBase64: string,
   //jwt: string;
 
 }

@@ -6,7 +6,6 @@ export interface Usuario {
   nomeCompleto?: string;
   hash?: string;
   email?: string;
-  imageUrl? : string;
   conta?:  string;
 
 

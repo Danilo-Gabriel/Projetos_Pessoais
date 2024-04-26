@@ -19,6 +19,7 @@ import org.springframework.security.core.Authentication;
 
 import jakarta.servlet.http.HttpServletResponse;
 import padawan_api.model.usuario.repository.UsuarioRepository;
+import padawan_api.model.usuario.services.ImageStorageService;
 
 
 @Service
@@ -31,6 +32,9 @@ public class AuthService implements UserDetailsService {
  
     @Autowired
     private TokenService tokenService;
+
+    @Autowired
+    private ImageStorageService imageStorageService;
 
 
     @Override
@@ -57,7 +61,13 @@ public class AuthService implements UserDetailsService {
             .build();
             response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
-           ReturnEfetuarLoginDTO resp = new ReturnEfetuarLoginDTO(usuario.getId(), usuario.getNomeLogin(), usuario.getConta().getNomeConta(), usuario.getConta().getRole(), usuario.getImageUrl());
+           ReturnEfetuarLoginDTO resp = new ReturnEfetuarLoginDTO(
+                usuario.getId(),
+                usuario.getNomeLogin(),
+                usuario.getConta().getNomeConta(),
+                usuario.getConta().getRole(),
+                this.imageStorageService.getImage(usuario.getImageUrl().replace("http://localhost:9000/image-usuario/", ""))
+                );
             return resp;
 
         }else{

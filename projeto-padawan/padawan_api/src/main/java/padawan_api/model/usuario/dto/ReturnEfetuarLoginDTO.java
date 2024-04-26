@@ -8,7 +8,7 @@ public record ReturnEfetuarLoginDTO(
         String login,
         String conta,
         UserRole role,
-        String imageUrl
+        String imageBase64
 ) {
 
 } 

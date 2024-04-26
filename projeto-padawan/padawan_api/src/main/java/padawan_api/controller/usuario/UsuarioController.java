@@ -41,8 +41,11 @@ public class UsuarioController {
 
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<?> register(@RequestPart("dados") RegistrarUsuarioDTO dados,
-                                         @RequestPart("image") MultipartFile image){
+    public ResponseEntity<?> register(
+        @RequestPart("dados") RegistrarUsuarioDTO dados,
+        @RequestPart("image") MultipartFile image
+        )
+        {
         
         try {
 
