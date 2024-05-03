@@ -54,11 +54,11 @@ public class ImageStorageService {
             minioClient.putObject(
                 PutObjectArgs.builder()
                     .bucket(bucketName)
-                    .object(uuid.toString())
+                    .object(uuid)
                     .contentType(file.getContentType())
                     .stream(is, is.available(), -1)
                     .build());
-            return minioUrl + "/" + bucketName + "/" + uuid;
+            return uuid;
     
         } catch (Exception e) {
             throw new RuntimeException("Failed to store image file.", e);
