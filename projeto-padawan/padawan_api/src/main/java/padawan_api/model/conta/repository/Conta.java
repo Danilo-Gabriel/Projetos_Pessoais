@@ -6,7 +6,6 @@ package padawan_api.model.conta.repository;
 
 import java.io.Serializable;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

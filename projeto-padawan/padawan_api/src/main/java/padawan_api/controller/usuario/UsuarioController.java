@@ -3,11 +3,8 @@ package padawan_api.controller.usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,11 +17,10 @@ import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 
 import padawan_api.model.usuario.dto.ReturnDTO;
 import padawan_api.model.usuario.dto.UsuarioDTO;
-import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.services.UsuarioService;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 

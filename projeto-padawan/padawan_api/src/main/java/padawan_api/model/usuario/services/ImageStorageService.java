@@ -42,20 +42,23 @@ public class ImageStorageService {
     private String minioUrl;
 
     public String uploadImage(MultipartFile file) {
+
+        String uuid = UUID.randomUUID().toString();
+
         if (file == null) {
             throw new IllegalArgumentException("File must not be null");
         }
-        UUID.randomUUID();
-        String fileName = generateFileName(file);
+
+
         try (InputStream is = file.getInputStream()) {
             minioClient.putObject(
                 PutObjectArgs.builder()
                     .bucket(bucketName)
-                    .object(fileName)
+                    .object(uuid.toString())
                     .contentType(file.getContentType())
                     .stream(is, is.available(), -1)
                     .build());
-            return minioUrl + "/" + bucketName + "/" + fileName;
+            return minioUrl + "/" + bucketName + "/" + uuid;
     
         } catch (Exception e) {
             throw new RuntimeException("Failed to store image file.", e);
@@ -63,7 +66,7 @@ public class ImageStorageService {
     }
 
     public String getImage(String id) throws InvalidKeyException, ErrorResponseException, InsufficientDataException, InternalException, InvalidResponseException, NoSuchAlgorithmException, ServerException, XmlParserException, IllegalArgumentException, IOException {
-        // String uuid = UUID.randomUUID().toString();
+  
         
         try (InputStream stream = minioClient.getObject(
              GetObjectArgs.builder()
@@ -80,6 +83,8 @@ public class ImageStorageService {
             
     }
 
+
+    // METODO PARA CONVERTER INPUTSTREAM EM BASE64
     private String inputStreamToBase64(InputStream sourceStream) throws IOException {
         
         byte[] sourceBytes = IOUtils.toByteArray(sourceStream);

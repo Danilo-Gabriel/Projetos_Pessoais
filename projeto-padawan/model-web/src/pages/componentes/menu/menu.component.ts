@@ -68,7 +68,7 @@ navigateTo(route: string) {
     this.conta = this.dadosUser.conta
     this.nomeUsuario = this.dadosUser.login
     // this.imageUrl = this.dadosUser.imageUrl ? this.dadosUser.imageUrl : 'https://images7.alphacoders.com/131/1319607.jpeg';
-    this.imageBase64 = `data:image/png;base64, ${this.dadosUser.imageBase64}` 
+    this.imageBase64 = `data:image/png;base64, ${this.dadosUser.imageBase64}` ? this.dadosUser.imageUrl : 'https://images7.alphacoders.com/131/1319607.jpeg';
     // console.log(this.dadosUser)
     // console.log(this.imageBase64)
   this.formGroup = new FormGroup({

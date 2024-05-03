@@ -52,12 +52,10 @@ public class AuthService implements UserDetailsService {
             Usuario usuario = (Usuario) auth.getPrincipal();
 
             ResponseCookie cookie = ResponseCookie.from("acessToken", token)
-            // ResponseCookie cookie = ResponseCookie.from("acessToken", null)
             .httpOnly(true)
             .secure(false)
             .path("/")
             .maxAge(-1)
-            // .maxAge(0)
             .build();
             response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
@@ -66,7 +64,7 @@ public class AuthService implements UserDetailsService {
                 usuario.getNomeLogin(),
                 usuario.getConta().getNomeConta(),
                 usuario.getConta().getRole(),
-                this.imageStorageService.getImage(usuario.getImageUrl().replace("http://localhost:9000/image-usuario/", ""))
+                this.imageStorageService.getImage(usuario.getImageUrl().replace("http://localhost:9000/image-usuario/", "")) // remove o http:localhost para passar apenas o UUID gerado na hora do cadastro do usuário para retornar a imagem em base 64
                 );
             return resp;
 
