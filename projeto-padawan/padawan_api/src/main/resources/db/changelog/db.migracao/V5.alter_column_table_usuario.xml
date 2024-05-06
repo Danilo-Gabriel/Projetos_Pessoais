@@ -9,9 +9,9 @@
                        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
 
 
-    <changeSet id="V4.1.add_column_img_to_usuario" author="daniloGabriel">
+    <changeSet id="V5.1.alter_column_imgUrl_UUID_usuario" author="daniloGabriel">
     <addColumn tableName="usuarios">
-        <column name="image_url" type="varchar(500)"/>
+        <column name="uuid" type="varchar(500)"/> 
     </addColumn>
     </changeSet>
 

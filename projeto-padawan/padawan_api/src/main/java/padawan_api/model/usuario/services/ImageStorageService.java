@@ -62,7 +62,7 @@ public class ImageStorageService {
     
         } catch (Exception e) {
             throw new RuntimeException("Failed to store image file.", e);
-        }
+        } 
     }
 
     public String getImage(String id) throws InvalidKeyException, ErrorResponseException, InsufficientDataException, InternalException, InvalidResponseException, NoSuchAlgorithmException, ServerException, XmlParserException, IllegalArgumentException, IOException {
