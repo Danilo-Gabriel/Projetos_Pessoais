@@ -41,11 +41,20 @@ public class UsuarioService {
 
         if(this.repository.findByNomeLogin(dados.nomeLogin()) != null) throw new Exception("Login já se encontra em uso, escolha outro");
 
-            String imageUrl = imageStorageService.uploadImage(imageFile);
-            Usuario newUser = new Usuario(dados);
-            newUser.setImageUrl(imageUrl);
-            this.repository.save(newUser);
-    
+            if(imageFile != null){
+
+                String imageUrl = imageStorageService.uploadImage(imageFile);
+                Usuario newUser = new Usuario(dados);
+                newUser.setUuid(imageUrl);
+                this.repository.save(newUser);
+        
+            }else{
+
+                Usuario newUser = new Usuario(dados);
+                this.repository.save(newUser);
+            }
+
+           
 
 
        

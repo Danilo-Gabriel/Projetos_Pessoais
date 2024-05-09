@@ -38,6 +38,7 @@ export class AddUsuarioComponent implements OnInit {
 
 
   }
+  
   onImageSelected(event: Event): void {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
@@ -49,7 +50,6 @@ export class AddUsuarioComponent implements OnInit {
   onSubmit() : void{
 
     if(this.form.valid && this.selectedImage){
-
       this.service.saveImg(this.form.value, this.selectedImage).subscribe({
         next : (dados) => {
             this.messagem.showSuccess('Usuário Cadastrado');
@@ -70,7 +70,17 @@ export class AddUsuarioComponent implements OnInit {
     }
     */
    else{
-      this.messagem.showError("DESCOBRE O ERRO AI DEV");
+    if(this.form.valid){
+      this.service.saveUsuario(this.form.value).subscribe({
+        next : (dados) => {
+            this.messagem.showSuccess('Usuário Cadastrado');
+            this.router.navigate(['/pages/usuario']);
+        },
+        error: (err) => {
+          this.messagem.showError(`${err.error}`)
+        }
+      })
+    }
     }
 
   }

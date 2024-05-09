@@ -40,7 +40,15 @@ saveImg(dados: Usuario, image : File ) : Observable<Usuario> {
   formData.append('image', image);
    return this.http.post<Usuario>(this.API, formData);
 }
+saveUsuario(dados : Usuario) : Observable<Usuario> {
 
+  const formData : FormData = new FormData();
+  formData.append('dados', new Blob([JSON.stringify(dados)], {
+    type : 'application/json'
+  }
+  ));
+   return this.http.post<Usuario>(this.API, formData);
+}
 
 
 /*

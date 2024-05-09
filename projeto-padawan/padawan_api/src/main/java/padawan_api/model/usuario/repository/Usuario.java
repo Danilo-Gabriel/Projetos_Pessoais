@@ -84,8 +84,8 @@ public class Usuario implements UserDetails {
     @JoinColumn(name = "conta_id", referencedColumnName = CAMPO_ID)
     private Conta conta;
 
-    @JoinColumn(name = "image_url")
-    private String imageUrl;
+    @JoinColumn(name = "uuid")
+    private String uuid;
 
 
     public Usuario(RegistrarUsuarioDTO dados) {

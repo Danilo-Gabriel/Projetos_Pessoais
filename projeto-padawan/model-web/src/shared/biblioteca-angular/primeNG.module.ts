@@ -42,6 +42,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 
 
+
 @NgModule({
  exports:[
   ButtonModule,
@@ -83,7 +84,8 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
   FileUploadModule,
   ConfirmDialogModule,
   TagModule,
-  ScrollPanelModule
+  ScrollPanelModule,
+  
 
 
 

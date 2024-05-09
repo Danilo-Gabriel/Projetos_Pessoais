@@ -66,8 +66,7 @@ public class ImageStorageService {
     }
 
     public String getImage(String id) throws InvalidKeyException, ErrorResponseException, InsufficientDataException, InternalException, InvalidResponseException, NoSuchAlgorithmException, ServerException, XmlParserException, IllegalArgumentException, IOException {
-  
-        
+ 
         try (InputStream stream = minioClient.getObject(
              GetObjectArgs.builder()
             .bucket(bucketName)
@@ -80,6 +79,9 @@ public class ImageStorageService {
             return imageBase64;
 
         }
+        catch (Exception e) {
+            return null;
+        } 
             
     }
 

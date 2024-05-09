@@ -36,10 +36,10 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
 
-    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> register(
         @RequestPart("dados") RegistrarUsuarioDTO dados,
-        @RequestPart("image") MultipartFile image
+        @RequestPart(value = "image", required = false) MultipartFile image
         )
         {
         
@@ -47,6 +47,7 @@ public class UsuarioController {
 
             ReturnDTO resp = new ReturnDTO("Usuário Criado com sucesso!");
 
+            
             this.usuarioService.registrarUsuarioClassService(dados, image);
            
             return ResponseEntity.status(HttpStatus.CREATED).body(resp);
