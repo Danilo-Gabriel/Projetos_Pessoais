@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { AddUsuarioService } from './service/add-usuario.service';
 import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
-
 
 @Component({
   selector: 'app-add-usuario',
@@ -14,7 +13,9 @@ import { AppMessageService } from 'src/shared/services/app-message/app-message.s
 export class AddUsuarioComponent implements OnInit {
 
   form!: FormGroup;
-  selectedImage: File | undefined;
+  selectedImage: File | null = null;
+
+  uploadedFiles: any[] = [];
 
   constructor(
     //private router : Router,
@@ -38,17 +39,21 @@ export class AddUsuarioComponent implements OnInit {
 
 
   }
-  
-  onImageSelected(event: Event): void {
-    const element = event.currentTarget as HTMLInputElement;
-    let fileList: FileList | null = element.files;
-    if (fileList) {
+
+  onSelect(event: any) {
+
+    const fileList: FileList = event.files;
+    if (fileList.length > 0) {
       this.selectedImage = fileList[0];
+      console.log('Arquivo selecionado:', this.selectedImage);
     }
   }
 
+
   onSubmit() : void{
 
+    console.log(this.selectedImage)
+    debugger
     if(this.form.valid && this.selectedImage){
       this.service.saveImg(this.form.value, this.selectedImage).subscribe({
         next : (dados) => {
@@ -61,15 +66,8 @@ export class AddUsuarioComponent implements OnInit {
       })
 
     }
-    /*
-    else if (this.form.valid){
-
-
-      //this.service.save(this.form.value);
-
-    }
-    */
    else{
+
     if(this.form.valid){
       this.service.saveUsuario(this.form.value).subscribe({
         next : (dados) => {
@@ -91,3 +89,7 @@ export class AddUsuarioComponent implements OnInit {
 
 
 }
+function BlockUI(): (target: AddUsuarioComponent, propertyKey: "blockUI") => void {
+  throw new Error('Function not implemented.');
+}
+

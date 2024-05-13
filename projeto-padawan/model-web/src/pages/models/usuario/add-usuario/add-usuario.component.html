@@ -17,12 +17,16 @@
         </span>
         <br>
 
-        
-        
-    <div class="card flex justify-content-center">
-      <p-toast></p-toast>
-      <input type="file" (change)="onImageSelected($event)">
-    </div>
+
+  <p-fileUpload
+    name="file"
+    url="./upload.php"
+    (onSelect)="onSelect($event)"
+    accept="image/*"
+    chooseLabel="Selecionar arquivo"
+    mode="basic">
+  </p-fileUpload>
+
 
     </p-fieldset>
 

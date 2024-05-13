@@ -1,3 +1,4 @@
+import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +36,6 @@ import { PanelModule } from 'primeng/panel';
 import { FieldsetModule } from 'primeng/fieldset';
 import { PasswordModule } from 'primeng/password';
 import { ToolbarModule } from 'primeng/toolbar';
-import { FileUploadModule } from 'primeng/fileupload';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 
@@ -81,11 +81,11 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
   FieldsetModule,
   PasswordModule,
   ToolbarModule,
-  FileUploadModule,
   ConfirmDialogModule,
   TagModule,
   ScrollPanelModule,
-  
+  FileUploadModule
+
 
 
 

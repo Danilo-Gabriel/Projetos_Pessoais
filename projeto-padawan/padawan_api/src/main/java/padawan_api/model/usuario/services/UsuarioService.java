@@ -173,7 +173,7 @@ public class UsuarioService {
         }
         
 
-    public AtualizarRegistroDeUsuariosDTO atualizarUsuarioClassService(AtualizarRegistroDeUsuariosDTO dados) throws Exception {
+    public AtualizarRegistroDeUsuariosDTO atualizarUsuarioClassService(AtualizarRegistroDeUsuariosDTO dados, MultipartFile imageFile) throws Exception {
 
 
         Optional<Usuario> usuariosOptional = this.repository.findById(dados.id());

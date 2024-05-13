@@ -27,6 +27,17 @@
 
         <br>
 
+        <p-fileUpload
+        name="file"
+        url="./upload.php"
+        (onSelect)="onSelect($event)"
+        accept="image/*"
+        chooseLabel="Alterar foto de perfil"
+        mode="basic">
+      </p-fileUpload>
+
+      <br>
+
         <form>
           <p-radioButton  name="situacao" [value]="ativoLabel" [ngModel]="situacao" (click)="ativar()" ></p-radioButton>
         <label for="true" class="ml-2">Ativo</label>

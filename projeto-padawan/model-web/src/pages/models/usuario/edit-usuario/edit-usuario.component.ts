@@ -24,10 +24,23 @@ export class EditUsuarioComponent implements OnInit {
   inativoLabel?: string
 
 
+  selectedImage: File | null = null;
+  uploadedFiles: any[] = [];
+
+
 
   private routeSub!: Subscription;
   private idUsuario!: string;
   private usuario! : Usuario;
+
+  private record: Usuario = {
+    id: '',
+    nomeLogin: '',
+    nomeCompleto: '',
+    email: '',
+    ativo: true
+  };
+
 
   constructor(
     private formBuilder : FormBuilder,
@@ -73,33 +86,104 @@ export class EditUsuarioComponent implements OnInit {
 
   }
 
+  onSelect(event: any) {
+
+    const fileList: FileList = event.files;
+    if (fileList.length > 0) {
+      this.selectedImage = fileList[0];
+      console.log('Arquivo selecionado:', this.selectedImage);
+    }
+  }
+
+
   onSubmit(){
 
-    if(this.form.value){
-
+    debugger
+    if(this.form.value && this.selectedImage){
       if(this.ativo === true || this.situacao === 'Ativo'){
-        this.service.atualizarDadosUser({
-          id: this.idUsuario,
-          nomeLogin: this.form.value.nomeLogin,
-          nomeCompleto: this.form.value.nomeCompleto,
-          email: this.form.value.email,
-          ativo: true
-        });
+          this.record.id = this.usuario.id
+          this.record.nomeLogin = this.form.value.nomeLogin,
+          this.record.nomeCompleto = this.form.value.nomeCompleto,
+          this.record.email = this.form.value.email,
+          this.record.ativo = true
+          console.log(this.record)
+        this.service.atualizarDados(this.record, this.selectedImage).subscribe({
+          next : (dados) => {
+            this.message.showSuccess('Usuário alterado com sucesso ');
+            this.location.back()
+          },
+          error : (err) => {
+            this.message.showError(`${err.error}`)
+          }
+        })
       }
 
       if(this.ativo === false || this.situacao === 'Inativo'){
 
-        this.service.atualizarDadosUser({
-          id : this.idUsuario,
-          nomeLogin : this.form.value.nomeLogin,
-          nomeCompleto : this.form.value.nomeCompleto,
-          email : this.form.value.email,
-          ativo : false
-        });
+        this.record.id = this.usuario.id
+          this.record.nomeLogin = this.form.value.nomeLogin
+          this.record.nomeCompleto = this.form.value.nomeCompleto
+          this.record.email = this.form.value.email
+          this.record.ativo = false
+          console.log(this.record)
+          this.service.atualizarDados(this.record, this.selectedImage).subscribe({
+
+            next : (dados) => {
+              this.message.showSuccess('Usuário alterado com sucesso');
+              this.location.back()
+            },
+            error : (err) => {
+              this.message.showError(`${err.error}`)
+            }
+          })
 
     }
 
     }
+    else{
+
+      if(this.form.valid){
+
+        if(this.ativo === true || this.situacao === 'Ativo'){
+          this.record.id = this.usuario.id
+          this.record.nomeLogin = this.form.value.nomeLogin
+          this.record.nomeCompleto = this.form.value.nomeCompleto
+          this.record.email = this.form.value.email
+          this.record.ativo = true
+          console.log(this.record)
+        this.service.atualizarDadosUser(this.record).subscribe({
+          next : (dados) => {
+            this.message.showSuccess('Usuário alterado com sucesso');
+            this.location.back()
+          },
+          error : (err) => {
+            this.message.showError(`${err.error}`)
+          }
+        })
+      }
+
+      if(this.ativo === false || this.situacao === 'Inativo'){
+
+        this.record.id = this.usuario.id
+          this.record.nomeLogin = this.form.value.nomeLogin
+          this.record.nomeCompleto = this.form.value.nomeCompleto
+          this.record.email = this.form.value.email
+          this.record.ativo = false
+          console.log(this.record)
+          this.service.atualizarDadosUser(this.record).subscribe({
+            next : (dados) => {
+              this.message.showSuccess('Usuário alterado com sucesso');
+              this.location.back()
+            },
+            error : (err) => {
+              this.message.showError(`${err.error}`)
+            }
+          })
+
+
+    }
+    }
+  }
 
     }
 

@@ -6,7 +6,7 @@ import { AppMessageService } from 'src/shared/services/app-message/app-message.s
 import { Usuario } from '../../dto/DadosUsuario';
 import { Location } from '@angular/common';
 import { EditUsuario } from '../../dto/DadosAtualizarLogin';
-import { window } from 'rxjs';
+import { Observable, window } from 'rxjs';
 import { LocalStorageService } from 'src/shared/services/localStorage/localStorage.service';
 
 @Injectable({
@@ -28,25 +28,27 @@ export class EditUsuarioService {
   }
 
   private backendURL = environment.endPoint;
-  private readonly API = `${this.backendURL}/usuario/atualizar`
+  private readonly API = `${this.backendURL}/usuario`
   private readonly buscarDadosUsuario = `${this.backendURL}/usuario`
 
-  atualizarDadosUser(record: EditUsuario ){
-
-    return this.http.put<Usuario>(this.API, record, {responseType: 'json'})
-    .subscribe(
-      (response) => {
-
-      this.message.showSuccess("Usuário alterado com sucesso");
-      this.location.back()
-
-    },
-    (error) => {
-       this.message.showError(error.error)
 
 
-    }
-  );
+  atualizarDados(record: EditUsuario, image : File ) : Observable<Usuario>{
+    const formData : FormData = new FormData();
+    formData.append('record', new Blob([JSON.stringify(record)],{
+      type: 'application/json'
+    }));
+    formData.append('image', image);
+    console.log(record)
+    return this.http.put<Usuario>(this.API, formData);
+  }
+
+  atualizarDadosUser(record: EditUsuario) : Observable<Usuario>{
+    const formData : FormData = new FormData();
+    formData.append('record', new Blob([JSON.stringify(record)],{
+      type: 'application/json'
+    }));
+    return this.http.put<Usuario>(this.API, record);
   }
 
   buscarDadosUser(id : string){

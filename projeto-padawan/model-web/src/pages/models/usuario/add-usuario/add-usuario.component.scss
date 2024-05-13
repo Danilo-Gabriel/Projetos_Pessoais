@@ -25,6 +25,10 @@
   width: 100%;
   min-width: 150px;
 }
+::ng-deep .p-fileupload .p-button {
+  background-color: #3f51b5; /* Cor de fundo */
+  color: #ffffff; /* Cor do texto */
+}
 
 
 
