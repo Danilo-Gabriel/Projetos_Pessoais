@@ -16,7 +16,7 @@ import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
 import padawan_api.services.email.services.EmailService;
 
 @RestController
-@RequestMapping("/api/email")
+@RequestMapping("/api/public")
 public class EmailController {
 
         @Autowired

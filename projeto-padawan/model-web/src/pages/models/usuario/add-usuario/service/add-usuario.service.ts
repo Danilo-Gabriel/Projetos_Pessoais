@@ -40,6 +40,7 @@ saveImg(dados: Usuario, image : File ) : Observable<Usuario> {
   formData.append('image', image);
    return this.http.post<Usuario>(this.API, formData);
 }
+
 saveUsuario(dados : Usuario) : Observable<Usuario> {
 
   const formData : FormData = new FormData();
@@ -51,50 +52,11 @@ saveUsuario(dados : Usuario) : Observable<Usuario> {
 }
 
 
-/*
-  save(jsonDados: Usuario ){
-
-  const formData : FormData = new FormData();
-  formData.append('jsonDados', new Blob([JSON.stringify(jsonDados)],
-  {
-    type : 'application/json'
-  }));
-  return this.http.post<ReturnCadastroUser>(this.API, formData)
-  .subscribe(
-    (response) => {
-      this.message.showSuccess(`${response.Resp}`),
-      this.location.back();
-     // this.router.navigate(['/pages/home/list-usuario']);
-      //this.onAviso(response)
-  },
-  (error) => {
-    this.message.showError(error.error);
-    //this.onAviso(error.error)
-  }
-);
-}
-
-
-
-*/
-
-
-
 
 buscarID(id : string){
 
   return this.http.get<Usuario>(`${this.buscardDadosUsuarioID}/${id}`)
 }
-
-
-/*
-onAviso(avisoMsg: string)
-{
- this.dialog.open(ErrorDialogComponent, {
-  data: avisoMsg
- });
-}
-*/
 
 
 }

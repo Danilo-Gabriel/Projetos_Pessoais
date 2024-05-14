@@ -89,7 +89,5 @@ export class AddUsuarioComponent implements OnInit {
 
 
 }
-function BlockUI(): (target: AddUsuarioComponent, propertyKey: "blockUI") => void {
-  throw new Error('Function not implemented.');
-}
+
 

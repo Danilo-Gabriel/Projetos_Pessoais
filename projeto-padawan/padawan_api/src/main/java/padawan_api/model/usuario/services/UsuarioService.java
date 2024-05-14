@@ -183,9 +183,9 @@ public class UsuarioService {
         if (usuariosOptional.isPresent()) {
 
             Usuario usuario = usuariosOptional.get();
-
+            String imageUrl = imageStorageService.uploadImage(imageFile);
+            usuario.setUuid(imageUrl);
             usuario.atualizarUsuarioClassUsuarioJPA(dados);
-
             repository.save(usuario);
 
         } else {

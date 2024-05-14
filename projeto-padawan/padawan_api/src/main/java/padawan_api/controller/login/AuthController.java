@@ -25,7 +25,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 //@CrossOrigin(origins = ("*"))
-@RequestMapping("/api/auth")
+@RequestMapping("/api/public")
 public class AuthController {
 
     

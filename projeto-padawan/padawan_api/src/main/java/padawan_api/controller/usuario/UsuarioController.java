@@ -83,13 +83,13 @@ public class UsuarioController {
   
     @PutMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
     @Transactional
-    public  ResponseEntity<?> atualizarUsuarioClassController(@RequestPart("record") RegistrarUsuarioDTO dados,
+    public  ResponseEntity<?> atualizarUsuarioClassController(@RequestPart("record") AtualizarRegistroDeUsuariosDTO dados,
     @RequestPart(value = "image", required = false) MultipartFile image
     ) {
 
         try{
          
-           // this.usuarioService.atualizarUsuarioClassService(dados);
+            this.usuarioService.atualizarUsuarioClassService(dados, image);
 
             return ResponseEntity.ok(dados);
         }

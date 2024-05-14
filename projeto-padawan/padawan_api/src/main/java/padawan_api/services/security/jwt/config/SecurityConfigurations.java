@@ -46,10 +46,7 @@ public class SecurityConfigurations {
        return http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/auth/logout").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/conta/contasDisponiveis").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/email/mensagem").permitAll()
+                .requestMatchers( "/api/public/**").permitAll()
                 .requestMatchers("/api/**").authenticated()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

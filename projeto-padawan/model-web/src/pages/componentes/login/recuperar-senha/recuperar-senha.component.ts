@@ -39,6 +39,7 @@ export class RecuperarSenhaComponent implements OnInit {
 
   ngOnInit() {
 
+    debugger
     this.routeSub = this.route.params
     .subscribe(params => {
       this.hashUsuario = params['hashUsuario']

@@ -18,10 +18,10 @@ export class LoginService {
 
  private backendUrl = environment.endPoint;
 
- private readonly apiLogin = `${this.backendUrl}/auth/login`;
- private readonly apiLogout = `${this.backendUrl}/auth/logout`;
+ private readonly apiLogin = `${this.backendUrl}/public/login`;
+ private readonly apiLogout = `${this.backendUrl}/public/logout`;
 
- private readonly urlRecuperarSenha = `${this.backendUrl}/email/mensagem`;
+ private readonly urlRecuperarSenha = `${this.backendUrl}/public/mensagem`;
 
   constructor(
     private http : HttpClient,

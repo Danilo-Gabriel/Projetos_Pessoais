@@ -36,7 +36,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import java.util.List;
 
 @Table(name = "usuarios")
-@Entity(name = "Usuario")
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
