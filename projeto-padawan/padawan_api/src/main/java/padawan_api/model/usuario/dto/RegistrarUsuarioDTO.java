@@ -17,11 +17,11 @@ public record RegistrarUsuarioDTO(
         @NotNull
         String nomeLogin,
 
-        @NotNull
-        @NotBlank
-        String senha,
+        String imageUrl,
 
-        String imageUrl
+        String url
+
+
 
         ) {
 }

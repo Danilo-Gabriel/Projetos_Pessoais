@@ -47,7 +47,6 @@ public class UsuarioController {
 
             ReturnDTO resp = new ReturnDTO("Usuário Criado com sucesso!");
 
-            
             this.usuarioService.registrarUsuarioClassService(dados, image);
            
             return ResponseEntity.status(HttpStatus.CREATED).body(resp);

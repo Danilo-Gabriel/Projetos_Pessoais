@@ -29,8 +29,6 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 
 //import java.util.Collection;
 //import java.util.List;
@@ -92,7 +90,6 @@ public class Usuario implements UserDetails {
         this.nomeCompleto = dados.nomeCompleto();
         this.email = dados.email();
         this.nomeLogin = dados.nomeLogin();
-        this.senha = new BCryptPasswordEncoder().encode(dados.senha());
         this.hash = null;
         this.ativo = true;
     }

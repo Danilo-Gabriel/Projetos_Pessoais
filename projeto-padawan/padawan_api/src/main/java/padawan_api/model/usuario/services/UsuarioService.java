@@ -17,9 +17,12 @@ import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
-
+import padawan_api.services.email.dto.EmailDTO;
+import padawan_api.services.email.services.EmailService;
 
 import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,6 +32,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository repository;
+
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     private ContaRepository contaRepository;
@@ -41,23 +47,23 @@ public class UsuarioService {
 
         if(this.repository.findByNomeLogin(dados.nomeLogin()) != null) throw new Exception("Login já se encontra em uso, escolha outro");
 
+            EmailDTO envioEmailDTO = new EmailDTO(dados.email(), dados.url());
+
             if(imageFile != null){
 
                 String imageUrl = imageStorageService.uploadImage(imageFile);
                 Usuario newUser = new Usuario(dados);
                 newUser.setUuid(imageUrl);
                 this.repository.save(newUser);
+                emailService.enviarNovaSenhaPorEmailClassService(envioEmailDTO);
         
             }else{
 
+              
                 Usuario newUser = new Usuario(dados);
                 this.repository.save(newUser);
+                emailService.enviarNovaSenhaPorEmailClassService(envioEmailDTO);
             }
-
-           
-
-
-       
     }
 
     /* 

@@ -3,16 +3,18 @@ package padawan_api.services.email.services;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
-
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 
-
-
+import org.bouncycastle.jcajce.provider.asymmetric.dsa.DSASigner.detDSA;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
 
 import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.repository.Usuario;
@@ -83,10 +85,19 @@ public class EmailService {
 
     public static String Criptmd5(String texto) throws Exception{
         
+        Calendar cal = Calendar.getInstance();
+        long timestamp = cal.getTimeInMillis() / 1000;
+        texto += Long.toString(timestamp);
+
         MessageDigest m = MessageDigest.getInstance("MD5");
         m.reset();
-        m.update(texto.getBytes("utf8"),0,texto.length());
+        m.update(texto.getBytes());
         return new BigInteger(1,m.digest()).toString(16);
+    }
+
+    public static boolean verificarValidadeHash(String hash, long timestamp) {
+        long tempoAtual = System.currentTimeMillis() / 1000;
+        return tempoAtual - timestamp <= 604800;
     }
 
      public void enviarNovaSenhaPorEmailClassService(EmailDTO email) throws Exception{
@@ -109,6 +120,7 @@ public class EmailService {
                 hash = Criptmd5(hash+usuario.getNomeLogin());
 
                 usuario.setHash(hash);
+                usuario.setSenha(hash);
                 repository.save(usuario);
             
                 // CADASTRAR ESSE HASH NO BANCO DE DADOS
@@ -138,6 +150,7 @@ public class EmailService {
 
     public UsuarioDTO validarHashUsuarioClassService(String hash) throws Exception{
 
+        if(verificarValidadeHash(hash, System.currentTimeMillis()) != true) throw new Exception("Hash invalido, prazo de troca estourado!");
         Optional<Usuario> usuarioOptional = this.repository.findByHash(hash);
 
         if(usuarioOptional.isPresent()){
@@ -145,7 +158,7 @@ public class EmailService {
             Usuario usuario = usuarioOptional.get();
 
             if(usuario.getAtivo()){
-            
+
             return new UsuarioDTO(usuario);
 
             }else{

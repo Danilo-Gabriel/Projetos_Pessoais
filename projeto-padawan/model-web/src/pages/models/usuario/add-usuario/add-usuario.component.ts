@@ -28,9 +28,9 @@ export class AddUsuarioComponent implements OnInit {
     {
     this.form = this.formBuilder.group({
       nomeLogin: ['', Validators.required],
-      senha: ['', Validators.required],
       nomeCompleto: ['', Validators.required],
-      email: ['', Validators.required]
+      email: ['', Validators.required],
+      url : "http://localhost:4200/recuperar-senha"
     });
 
   }
@@ -52,8 +52,6 @@ export class AddUsuarioComponent implements OnInit {
 
   onSubmit() : void{
 
-    console.log(this.selectedImage)
-    debugger
     if(this.form.valid && this.selectedImage){
       this.service.saveImg(this.form.value, this.selectedImage).subscribe({
         next : (dados) => {
