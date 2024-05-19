@@ -33,7 +33,7 @@ validarHashUsuario(hash: string){
       console.error('Erro ao validar hash de usuário:', error);
       this.router.navigate(['login']);
       setTimeout(() => {
-        this.messagem.showError("Hash inválido")
+        this.messagem.showError(error.error)
       }, 2000)
       return of(error);
     })

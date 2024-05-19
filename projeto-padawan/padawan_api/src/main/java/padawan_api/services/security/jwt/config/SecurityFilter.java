@@ -47,7 +47,8 @@ public class SecurityFilter extends OncePerRequestFilter {
 
                 if(user != null){
 
-                    Authentication authentication = new UsernamePasswordAuthenticationToken(user, token, user.getAuthorities());
+                    UserDetails userDetails = repository.findByNomeLogin(nome_login);
+                    Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, token, user.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
 

@@ -33,22 +33,21 @@ export class EditUsuarioService {
 
 
 
-  atualizarDados(record: EditUsuario, image : File ) : Observable<Usuario>{
+  atualizarDados(dados: EditUsuario, image : File ) : Observable<Usuario>{
     const formData : FormData = new FormData();
-    formData.append('record', new Blob([JSON.stringify(record)],{
+    formData.append('dados', new Blob([JSON.stringify(dados)],{
       type: 'application/json'
     }));
     formData.append('image', image);
-    console.log(record)
     return this.http.put<Usuario>(this.API, formData);
   }
 
-  atualizarDadosUser(record: EditUsuario) : Observable<Usuario>{
+  atualizarDadosUser(dados: EditUsuario) : Observable<Usuario>{
     const formData : FormData = new FormData();
-    formData.append('record', new Blob([JSON.stringify(record)],{
+    formData.append('dados', new Blob([JSON.stringify(dados)],{
       type: 'application/json'
     }));
-    return this.http.put<Usuario>(this.API, record);
+    return this.http.put<Usuario>(this.API, formData);
   }
 
   buscarDadosUser(id : string){

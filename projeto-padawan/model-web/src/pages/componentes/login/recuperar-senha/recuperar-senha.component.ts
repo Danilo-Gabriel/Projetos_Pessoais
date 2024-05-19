@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
 import { RecuperarSenhaService } from './services/recuperar-senha.service';
 import { Usuario } from 'src/pages/models/usuario/dto/DadosUsuario';
+import { DadosHashUsuarioDTO } from 'src/pages/models/usuario/dto/DadosHashUsuarioDTO';
 
 @Component({
   selector: 'app-recuperar-senha',
@@ -18,7 +19,9 @@ export class RecuperarSenhaComponent implements OnInit {
   value!: string;
   private routeSub!: Subscription;
   private hashUsuario!: string;
-  usuario! : Usuario;
+  usuario! : DadosHashUsuarioDTO;
+  imageBase64 : string | undefined = '';
+
 
   constructor(
     private formBuilder : FormBuilder,
@@ -39,6 +42,7 @@ export class RecuperarSenhaComponent implements OnInit {
 
   ngOnInit() {
 
+
     debugger
     this.routeSub = this.route.params
     .subscribe(params => {
@@ -47,6 +51,11 @@ export class RecuperarSenhaComponent implements OnInit {
       .subscribe(
         dados => {
           this.usuario = dados;
+          if(this.usuario.imageBase64 != null ){
+            this.imageBase64 = `data:image/png;base64, ${this.usuario.imageBase64}`
+          }else{
+              this.imageBase64 = 'https://images7.alphacoders.com/131/1319607.jpeg';
+          }
           this.form.patchValue({
 
         });

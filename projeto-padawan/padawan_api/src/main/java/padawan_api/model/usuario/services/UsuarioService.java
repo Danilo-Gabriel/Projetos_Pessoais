@@ -21,8 +21,6 @@ import padawan_api.services.email.dto.EmailDTO;
 import padawan_api.services.email.services.EmailService;
 
 import java.util.Optional;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -184,15 +182,20 @@ public class UsuarioService {
 
         Optional<Usuario> usuariosOptional = this.repository.findById(dados.id());
        
-
-   
         if (usuariosOptional.isPresent()) {
 
-            Usuario usuario = usuariosOptional.get();
-            String imageUrl = imageStorageService.uploadImage(imageFile);
-            usuario.setUuid(imageUrl);
-            usuario.atualizarUsuarioClassUsuarioJPA(dados);
-            repository.save(usuario);
+            if(imageFile != null){
+                Usuario usuario = usuariosOptional.get();
+                String imageUrl = imageStorageService.uploadImage(imageFile);
+                usuario.setUuid(imageUrl);
+                usuario.atualizarUsuarioClassUsuarioJPA(dados);
+                repository.save(usuario);
+            }else{
+                Usuario usuario = usuariosOptional.get();
+                usuario.atualizarUsuarioClassUsuarioJPA(dados);
+                repository.save(usuario);
+            }
+
 
         } else {
 

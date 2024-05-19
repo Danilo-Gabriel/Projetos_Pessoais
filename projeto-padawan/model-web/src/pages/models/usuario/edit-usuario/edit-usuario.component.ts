@@ -98,7 +98,6 @@ export class EditUsuarioComponent implements OnInit {
 
   onSubmit(){
 
-    debugger
     if(this.form.value && this.selectedImage){
       if(this.ativo === true || this.situacao === 'Ativo'){
           this.record.id = this.usuario.id
