@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AppMessageService } from 'src/shared/services/app-message/app-message.service';
 import { RecuperarSenhaService } from './services/recuperar-senha.service';
-import { Usuario } from 'src/pages/models/usuario/dto/DadosUsuario';
 import { DadosHashUsuarioDTO } from 'src/pages/models/usuario/dto/DadosHashUsuarioDTO';
 
 @Component({
