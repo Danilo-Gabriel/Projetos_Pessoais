@@ -124,8 +124,8 @@ public class ContaController {
         return ResponseEntity.ok().body("Conta deletada");
 
     } catch (Exception e) {
-       
-       return ResponseEntity.badRequest().body(e.getMessage());
+       e.printStackTrace();
+       return ResponseEntity.noContent().build();
 
     }
 }

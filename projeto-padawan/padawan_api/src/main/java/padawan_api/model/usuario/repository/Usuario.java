@@ -19,7 +19,7 @@ import padawan_api.model.usuario.dto.EfetuarLoginDTO;
 import padawan_api.model.usuario.dto.RegistrarUsuarioDTO;
 import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
 
-
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -85,6 +85,9 @@ public class Usuario implements UserDetails {
     @JoinColumn(name = "uuid")
     private String uuid;
 
+    @Column(name = "date_time")
+    private LocalDateTime datetime;
+
 
     public Usuario(RegistrarUsuarioDTO dados) {
         this.nomeCompleto = dados.nomeCompleto();
@@ -116,6 +119,7 @@ public class Usuario implements UserDetails {
         if(this.ativo == true){
 
             if(dados != null){
+
                  this.nomeLogin = dados.nomeLogin();
                  this.nomeCompleto = dados.nomeCompleto();
                  this.email = dados.email();
@@ -202,6 +206,7 @@ public class Usuario implements UserDetails {
 
               this.senha = BCrypt.hashpw(dados.novaSenha(), BCrypt.gensalt());
               this.hash = null;
+              this.datetime = null;
          }
          else{
 
@@ -258,6 +263,9 @@ public class Usuario implements UserDetails {
         return this.senha;
     }
 
+    public boolean isAtivo(){
+        return this.ativo;
+    }
     
 }
 

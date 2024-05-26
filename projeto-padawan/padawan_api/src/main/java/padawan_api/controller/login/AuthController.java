@@ -58,11 +58,16 @@ public class AuthController {
             System.out.println(e);
             return ResponseEntity.status(400).body("Usuário ou senha incorreta");
         }
-        catch (Exception e) {
-            System.out.println(e);
-            return ResponseEntity.status(400).body("" + e.getMessage());
+        catch(NullPointerException e){
+            return ResponseEntity.badRequest().body("O usuário não possui conta associada!");
         }
     
+        catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+
+      
     }
 
     @GetMapping("logout")

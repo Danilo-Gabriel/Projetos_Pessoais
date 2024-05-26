@@ -2,6 +2,7 @@ package padawan_api.model.usuario.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,7 +44,17 @@ public class UsuarioService {
 
      public void registrarUsuarioClassService(RegistrarUsuarioDTO dados, MultipartFile imageFile) throws Exception{
 
-        if(this.repository.findByNomeLogin(dados.nomeLogin()) != null) throw new Exception("Login já se encontra em uso, escolha outro");
+        if(this.repository.findByNomeLogin(dados.nomeLogin()) != null){
+
+            throw new Exception("Login já se encontra em uso, escolha outro");
+        } 
+
+        Optional<Usuario> email = this.repository.findByEmail(dados.email());
+
+        if(email.isPresent()){
+
+            throw new Exception("Email já se encontra em uso, escolha outro");
+        } 
 
             EmailDTO envioEmailDTO = new EmailDTO(dados.email(), dados.url());
 
@@ -182,21 +193,36 @@ public class UsuarioService {
 
         Optional<Usuario> usuariosOptional = this.repository.findById(dados.id());
        
+       
         if (usuariosOptional.isPresent()) {
 
-            if(imageFile != null){
-                Usuario usuario = usuariosOptional.get();
-                String imageUrl = imageStorageService.uploadImage(imageFile);
-                usuario.setUuid(imageUrl);
-                usuario.atualizarUsuarioClassUsuarioJPA(dados);
-                repository.save(usuario);
-            }else{
-                Usuario usuario = usuariosOptional.get();
-                usuario.atualizarUsuarioClassUsuarioJPA(dados);
-                repository.save(usuario);
+            Usuario usuario = usuariosOptional.get();
+           
+            UserDetails login = this.repository.findByNomeLogin(dados.nomeLogin());
+
+            if(login != null && !login.equals(usuario)){
+
+                throw new Exception("Login já cadastrado por outro usuário!");
             }
 
+            Optional<Usuario> email = repository.findByEmail(dados.email());
+    
+            if(email.isPresent() && !email.get().getId().equals(usuario.getId())){
 
+                throw new Exception("Email já cadastrado por outro usuário!");
+            } 
+
+                    if(imageFile != null){
+
+                        String imageUrl = imageStorageService.uploadImage(imageFile);
+                        usuario.setUuid(imageUrl);
+                        usuario.atualizarUsuarioClassUsuarioJPA(dados);
+                        repository.save(usuario);
+                    }else{
+                        usuario.atualizarUsuarioClassUsuarioJPA(dados);
+                        repository.save(usuario);
+                    }
+        
         } else {
 
             throw new Exception("Usuário não cadastrado ");

@@ -12,6 +12,7 @@
     <changeSet id="V4.1.add_column_img_to_usuario" author="daniloGabriel">
     <addColumn tableName="usuarios">
         <column name="uuid" type="varchar(500)"/>
+        <column name="date_time" type="timestamp"/>
     </addColumn>
     </changeSet>
 

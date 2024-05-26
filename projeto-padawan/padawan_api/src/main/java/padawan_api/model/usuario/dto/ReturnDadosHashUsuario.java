@@ -11,5 +11,6 @@ public record ReturnDadosHashUsuario(
         String imageBase64
 
 ) {
-    
+
+   
 }

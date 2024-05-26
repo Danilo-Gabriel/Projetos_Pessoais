@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import padawan_api.model.usuario.dto.ReturnDTO;
-import padawan_api.model.usuario.dto.ReturnDadosHashUsuario;
-import padawan_api.model.usuario.dto.UsuarioDTO;
+import padawan_api.model.usuario.dto.ReturnDadosHashEmail;
 import padawan_api.services.email.dto.EmailDTO;
 import padawan_api.services.email.dto.RecupararSenhaPorEmailDTO;
 import padawan_api.services.email.services.EmailService;
@@ -53,7 +51,7 @@ public class EmailController {
       try {
         
        
-        ReturnDadosHashUsuario usuarioDTO = this.emailService.validarHashUsuarioClassService(hash);
+        ReturnDadosHashEmail usuarioDTO = this.emailService.validarHashUsuarioClassService(hash);
         
         return ResponseEntity.ok().body(usuarioDTO);
 

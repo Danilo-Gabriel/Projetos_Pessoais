@@ -3,7 +3,8 @@ package padawan_api.services.email.services;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import padawan_api.model.usuario.dto.ReturnDadosHashUsuario;
+import padawan_api.model.usuario.dto.ReturnDadosHashEmail;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
 import padawan_api.model.usuario.services.ImageStorageService;
@@ -34,6 +35,7 @@ public class EmailService {
     @Autowired
     private ImageStorageService imageStorageService;
    
+    
     private JavaMailSender emailSender;
 
     public EmailService(JavaMailSender emailSender){
@@ -86,39 +88,23 @@ public class EmailService {
 
     public static String Criptmd5(String texto) throws Exception{
         
-        Calendar cal = Calendar.getInstance();
-        long timestamp = cal.getTimeInMillis() / 1000;
-        texto += Long.toString(timestamp);
+     
     
         MessageDigest m = MessageDigest.getInstance("MD5");
         m.reset();
         m.update(texto.getBytes("UTF-8"));
         String hash = new BigInteger(1, m.digest()).toString(16);
-        return hash + ":" + timestamp;  // Concatenando o hash com o timestamp
+        return hash ;  
     }
 
-    public static boolean verificarValidadeHashConcatenado(String hashComTimestamp) {
-      
-        String[] parts = hashComTimestamp.split(":");
+    public boolean verificarValidadeHash(LocalDateTime time) {
         
-    
-        String hash = parts[0];
-        long timestamp;
-        try {
-            timestamp = Long.parseLong(parts[1]);
-        } catch (NumberFormatException e) {
-            return false;  
-        }
-    
-       
-       // timestamp -= 804800; 
-        return verificarValidadeHash(hash, timestamp);
+        LocalDateTime now = LocalDateTime.now();
+        return time.isAfter(now.minus(7, ChronoUnit.DAYS));
+        //isBefore
+      
     }
-    public static boolean verificarValidadeHash(String hash, long timestamp) {
-        long tempoAtual = System.currentTimeMillis() / 1000;
-        return tempoAtual - timestamp <= 604800;
-    }
-
+  
      public void enviarNovaSenhaPorEmailClassService(EmailDTO email) throws Exception{
 
         Optional<Usuario> usuarioOptional = this.repository.findByEmail(email.email());
@@ -132,7 +118,6 @@ public class EmailService {
                 
                 Date dataAtual = new Date();
                 SimpleDateFormat formatoHora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            
                 String hash = formatoHora.format(dataAtual);
 
                 
@@ -140,6 +125,7 @@ public class EmailService {
 
                 usuario.setHash(hash);
                 usuario.setSenha(hash);
+                usuario.setDatetime(LocalDateTime.now());
                 repository.save(usuario);
             
                 // CADASTRAR ESSE HASH NO BANCO DE DADOS
@@ -167,26 +153,22 @@ public class EmailService {
 
     }
 
-    public ReturnDadosHashUsuario validarHashUsuarioClassService(String hash) throws Exception{
+    public ReturnDadosHashEmail validarHashUsuarioClassService(String hash) throws Exception{
 
-        
-        if(verificarValidadeHashConcatenado(hash) != true) throw new Exception("Hash invalido, prazo de troca estourado!");
         Optional<Usuario> usuarioOptional = this.repository.findByHash(hash);
 
         if(usuarioOptional.isPresent()){
 
             Usuario usuario = usuarioOptional.get();
+            if(verificarValidadeHash(usuario.getDatetime()) != true) throw new Exception("Hash invalido, prazo de troca estourado!");
 
             if(usuario.getAtivo()){
-            
-            return new ReturnDadosHashUsuario(
+
+            return new ReturnDadosHashEmail(
                 usuario.getId(),
                 usuario.getNomeLogin(),
-                usuario.getConta().getNomeConta(),
-                usuario.getConta().getRole(),
-                this.imageStorageService.getImage(usuario.getUuid())
+                this.imageStorageService.getImage(usuario.getUuid()));
                 // this.imageStorageService.getImage(usuario.getImageUrl().replace("http://localhost:9000/image-usuario/", "")) // remove o http:localhost para passar apenas o UUID gerado na hora do cadastro do usuário para retornar a imagem em base 64
-                );
 
             }else{
 
