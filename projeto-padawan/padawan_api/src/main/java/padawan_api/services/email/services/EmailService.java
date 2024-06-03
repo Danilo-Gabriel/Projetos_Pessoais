@@ -167,6 +167,8 @@ public class EmailService {
             return new ReturnDadosHashEmail(
                 usuario.getId(),
                 usuario.getNomeLogin(),
+                usuario.getConta().getNomeConta(),
+                usuario.getConta().getRole(),
                 this.imageStorageService.getImage(usuario.getUuid()));
                 // this.imageStorageService.getImage(usuario.getImageUrl().replace("http://localhost:9000/image-usuario/", "")) // remove o http:localhost para passar apenas o UUID gerado na hora do cadastro do usuário para retornar a imagem em base 64
 

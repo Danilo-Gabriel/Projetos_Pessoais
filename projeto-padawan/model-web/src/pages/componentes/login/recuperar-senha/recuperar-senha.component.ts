@@ -20,6 +20,9 @@ export class RecuperarSenhaComponent implements OnInit {
   private hashUsuario!: string;
   usuario! : DadosHashUsuarioDTO;
   imageBase64 : string | undefined = '';
+  roles: string | undefined = '';
+  conta: string | undefined = '';
+  nomeUsuario : string | undefined = '';
 
 
   constructor(
@@ -50,6 +53,11 @@ export class RecuperarSenhaComponent implements OnInit {
       .subscribe(
         dados => {
           this.usuario = dados;
+          debugger
+          console.log(this.usuario)
+          this.conta = this.usuario.conta;
+          this.nomeUsuario = this.usuario.login;
+          this.roles = this.usuario.role;
           if(this.usuario.imageBase64 != null ){
             this.imageBase64 = `data:image/png;base64, ${this.usuario.imageBase64}`
           }else{
