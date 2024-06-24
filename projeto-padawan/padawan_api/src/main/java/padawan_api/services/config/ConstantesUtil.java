@@ -1,4 +1,4 @@
-package padawan_api.services.config.util;
+package padawan_api.services.config;
 
 public final class ConstantesUtil {
 

@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import padawan_api.model.usuario.repository.Usuario;
 import padawan_api.model.usuario.repository.UsuarioRepository;
-import padawan_api.services.redis.DadosRedis;
 import padawan_api.services.redis.RedisService;
 import padawan_api.services.security.jwt.TokenService;
 import org.apache.commons.lang3.StringUtils;

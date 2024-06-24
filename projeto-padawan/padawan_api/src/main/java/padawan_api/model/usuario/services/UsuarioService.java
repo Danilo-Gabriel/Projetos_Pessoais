@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.RequiredArgsConstructor;
 import padawan_api.model.conta.repository.Conta;
 import padawan_api.model.conta.repository.ContaRepository;
+import padawan_api.model.usuario.document.elasticsearch.AnotacaoUsuario;
+import padawan_api.model.usuario.document.service.AnotacaoUsuarioService;
 import padawan_api.model.usuario.dto.AtualizarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
@@ -34,6 +36,9 @@ public class UsuarioService {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private AnotacaoUsuarioService elastiService;
 
     @Autowired
     private ContaRepository contaRepository;
@@ -70,6 +75,16 @@ public class UsuarioService {
 
               
                 Usuario newUser = new Usuario(dados);
+
+                AnotacaoUsuario anotacaoUsuario = AnotacaoUsuario.builder()
+                        .id(newUser.getId())
+                        .nomeCompleto(newUser.getNomeCompleto())
+                        .nomeLogin(newUser.getNomeLogin())
+                        .email(newUser.getEmail())
+                        .hash(newUser.getHash())
+                        .ativo(newUser.getAtivo())
+                        .build();
+                this.elastiService.save(anotacaoUsuario);
                 this.repository.save(newUser);
                 emailService.enviarNovaSenhaPorEmailClassService(envioEmailDTO);
             }

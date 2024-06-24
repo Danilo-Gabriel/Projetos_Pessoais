@@ -1,6 +1,7 @@
 package padawan_api.controller.usuario;
 
 
+import io.lettuce.core.dynamic.annotation.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -9,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import padawan_api.model.usuario.document.elasticsearch.AnotacaoUsuario;
+import padawan_api.model.usuario.document.repository.AnotacaoUsuarioRepository;
+import padawan_api.model.usuario.document.service.AnotacaoUsuarioService;
 import padawan_api.model.usuario.dto.AtualizarRegistroDeUsuariosDTO;
 import padawan_api.model.usuario.dto.AlterarSenhaUsuarioLogadoDTO;
 import padawan_api.model.usuario.dto.AssociarUsuarioAContaDTO;
@@ -20,10 +24,7 @@ import padawan_api.model.usuario.dto.UsuarioDTO;
 import padawan_api.model.usuario.services.UsuarioService;
 
 import java.util.List;
-
-
-
-
+import java.util.Optional;
 
 
 @RestController
@@ -35,6 +36,8 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private AnotacaoUsuarioService service;
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> register(
@@ -75,6 +78,12 @@ public class UsuarioController {
             return ResponseEntity.badRequest().build();
         }
 
+    }
+
+    @GetMapping("/teste/{id}")
+    public AnotacaoUsuario teste(@PathVariable Long id){
+
+        return this.service.findById(id);
     }
 
 
