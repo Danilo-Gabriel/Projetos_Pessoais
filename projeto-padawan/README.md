@@ -8,6 +8,8 @@ TECNOLOGIAS UTILIZADAS
 - Docker (Container - Postgres)
 - JWT
 - Email
+- Redis
+- MinIO
 - Postgres 
 - Liquibase
 
